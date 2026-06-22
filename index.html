@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anand Suresh — AI solutioning &amp; widgets</title>
+  <meta name="description" content="AI solutioning — products, agents, and interactive widgets. Live demos and the engineering behind them. Coming soon." />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="Anand Suresh — AI solutioning" />
+  <meta property="og:description" content="Products, agents, and interactive widgets. Coming soon." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://anandsureshworks.com/" />
+
+  <style>
+    :root {
+      --bg: oklch(0.10 0 0);
+      --panel: oklch(0.13 0 0);
+      --fg: oklch(0.92 0 0);
+      --muted: oklch(0.62 0 0);
+      --primary: oklch(0.78 0.16 150);
+      --border: oklch(0.24 0 0);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+      line-height: 1.6;
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+    }
+    main { width: 100%; max-width: 38rem; }
+    .prompt { color: var(--primary); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em; }
+    h1 {
+      font-size: clamp(1.8rem, 6vw, 2.8rem);
+      margin: 0.6rem 0 0.4rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .tagline { color: var(--fg); font-size: 1.05rem; margin: 0 0 1.4rem; }
+    .status {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 1px solid var(--border); background: var(--panel);
+      border-radius: 0.5rem; padding: 0.4rem 0.75rem;
+      font-size: 0.85rem; color: var(--muted);
+    }
+    .dot {
+      width: 0.5rem; height: 0.5rem; border-radius: 50%;
+      background: var(--primary);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { .dot { animation: none; } }
+    .what {
+      margin: 1.6rem 0;
+      padding: 1rem 1.1rem;
+      border-left: 3px solid var(--primary);
+      background: oklch(0.78 0.16 150 / 0.06);
+      border-radius: 0 0.4rem 0.4rem 0;
+      color: var(--fg);
+      font-size: 0.95rem;
+    }
+    .what strong { color: var(--primary); }
+    .bridges { margin-top: 1.8rem; font-size: 0.95rem; display: grid; gap: 0.5rem; }
+    a {
+      color: var(--primary); text-decoration: none;
+      border-bottom: 1px solid color-mix(in oklch, var(--primary) 40%, transparent);
+      transition: border-color 0.15s;
+    }
+    a:hover { border-bottom-color: var(--primary); }
+    footer { margin-top: 2.4rem; color: var(--muted); font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="prompt">&gt;_ anandsureshworks</p>
+    <h1>Anand Suresh</h1>
+    <p class="tagline">AI solutioning — products, agents &amp; interactive widgets.</p>
+
+    <span class="status"><span class="dot" aria-hidden="true"></span> Coming soon</span>
+
+    <div class="what">
+      A showcase of what I build with LLMs and agents — <strong>live, interactive
+      widgets</strong> and the engineering behind them. Built to be probed, not
+      just demoed.
+    </div>
+
+    <nav class="bridges" aria-label="Related sites">
+      <span>See the widgets live, in context → <a href="https://anandsureshworks.dev/">anandsureshworks.dev</a></span>
+      <span>Security analysis &amp; takes → <a href="https://anandonsecurity.com/">anandonsecurity.com</a></span>
+    </nav>
+
+    <footer>© Anand Suresh · anandsureshworks.com</footer>
+  </main>
+</body>
+</html>
