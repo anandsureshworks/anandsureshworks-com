@@ -124,13 +124,11 @@
   </main>
 
   <script type="module">
-    import { findRegexSpans, mergeSpans, applyRedaction, countByType } from "./redact.js";
+    import { findRegexSpans, mergeSpans, applyRedaction, countByType, nerSpansFromTokens } from "./redact.js";
 
     const $ = (id) => document.getElementById(id);
     const input = $("input"), statusEl = $("status");
     const highlightEl = $("highlight"), redactedEl = $("redacted"), summaryEl = $("summary");
-
-    const TYPE_LABEL = { PER: "PERSON", ORG: "ORG", LOC: "LOCATION", MISC: "MISC" };
 
     function escapeHtml(s) {
       return s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
@@ -167,23 +165,8 @@
 
     async function nerSpans(text) {
       const pipe = await loadNer();
-      const out = await pipe(text);
-      const spans = [];
-      let cur = null;
-      for (const t of out) {
-        if (typeof t.start !== "number" || typeof t.end !== "number") continue;
-        if (t.score < 0.6 || !t.entity || t.entity === "O") { if (cur) { spans.push(cur); cur = null; } continue; }
-        const kind = t.entity.slice(2);            // PER / ORG / LOC / MISC
-        const begin = t.entity.startsWith("B-");
-        if (cur && !begin && cur.kind === kind && t.start <= cur.end + 1) {
-          cur.end = t.end;
-        } else {
-          if (cur) spans.push(cur);
-          cur = { start: t.start, end: t.end, kind, type: TYPE_LABEL[kind] || kind };
-        }
-      }
-      if (cur) spans.push(cur);
-      return spans;
+      const raw = await pipe(text);                 // tokens; v2 omits char offsets
+      return nerSpansFromTokens(text, raw);         // tested in redact.test.mjs
     }
 
     async function run() {

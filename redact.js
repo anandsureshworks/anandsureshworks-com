@@ -77,3 +77,50 @@ export function countByType(spans) {
   for (const s of spans) counts[s.type] = (counts[s.type] || 0) + 1;
   return counts;
 }
+
+export const NER_TYPE_LABEL = { PER: "PERSON", ORG: "ORG", LOC: "LOCATION", MISC: "MISC" };
+
+// Turn raw token-classification output into character spans. Works whether or
+// not the pipeline provides char offsets: if tokens carry numeric start/end we
+// use them; otherwise we reconstruct the entity surface from the wordpiece
+// tokens and locate it in the text (Transformers.js v2 omits offsets).
+export function nerSpansFromTokens(text, raw, minScore = 0.5) {
+  const groups = [];
+  let cur = null;
+  for (const t of raw || []) {
+    const ent = t.entity;
+    if (!ent || ent === "O" || (typeof t.score === "number" && t.score < minScore)) {
+      if (cur) { groups.push(cur); cur = null; }
+      continue;
+    }
+    const kind = ent.slice(2);                           // B-PER -> PER
+    const begin = ent.startsWith("B-");
+    const isSub = typeof t.word === "string" && t.word.startsWith("##");
+    if (cur && cur.kind === kind && (!begin || isSub)) cur.tokens.push(t);
+    else { if (cur) groups.push(cur); cur = { kind, tokens: [t] }; }
+  }
+  if (cur) groups.push(cur);
+
+  const spans = [];
+  let searchFrom = 0;
+  for (const g of groups) {
+    const type = NER_TYPE_LABEL[g.kind] || g.kind;
+    const first = g.tokens[0], last = g.tokens[g.tokens.length - 1];
+    if (typeof first.start === "number" && typeof last.end === "number") {
+      spans.push({ start: first.start, end: last.end, type });
+      searchFrom = Math.max(searchFrom, last.end);
+      continue;
+    }
+    let surface = "";
+    for (const t of g.tokens) {
+      const w = t.word || "";
+      surface += w.startsWith("##") ? w.slice(2) : (surface ? " " : "") + w;
+    }
+    const idx = surface ? text.indexOf(surface, searchFrom) : -1;
+    if (idx !== -1) {
+      spans.push({ start: idx, end: idx + surface.length, type });
+      searchFrom = idx + surface.length;
+    }
+  }
+  return spans;
+}

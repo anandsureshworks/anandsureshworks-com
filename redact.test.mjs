@@ -1,6 +1,6 @@
 // Node unit test for the deterministic redaction core (the rules layer).
 // Run: node redact.test.mjs
-import { findRegexSpans, applyRedaction, countByType, luhn } from "./redact.js";
+import { findRegexSpans, applyRedaction, countByType, luhn, mergeSpans, nerSpansFromTokens } from "./redact.js";
 
 let pass = 0;
 let fail = 0;
@@ -34,6 +34,36 @@ check("redacted output has no raw ssn", !redacted.includes("123-45-6789"));
 check("spans are non-overlapping", spans.every((s, i) => i === 0 || s.start >= spans[i - 1].end));
 check("luhn accepts a valid card", luhn("4242 4242 4242 4242"));
 check("luhn rejects a bad number", !luhn("1234 5678 9012 3456"));
+
+// ---- NER token aggregation (the part that broke in-browser) ----
+const nerText = "Jane Doe from Acme Corp in San Francisco";
+
+// Case A: wordpiece tokens WITHOUT offsets (Transformers.js v2 reality)
+const noOffset = [
+  { entity: "B-PER", score: 0.99, word: "Jane" },
+  { entity: "I-PER", score: 0.99, word: "Doe" },
+  { entity: "B-ORG", score: 0.98, word: "Ac" },
+  { entity: "I-ORG", score: 0.98, word: "##me" },
+  { entity: "I-ORG", score: 0.98, word: "Corp" },
+  { entity: "B-LOC", score: 0.97, word: "San" },
+  { entity: "I-LOC", score: 0.97, word: "Francisco" },
+];
+const sA = nerSpansFromTokens(nerText, noOffset);
+const rA = applyRedaction(nerText, mergeSpans(sA));
+check("NER(no offsets): 3 spans", sA.length === 3);
+check("NER(no offsets): reconstructs subwords + redacts", rA === "[PERSON] from [ORG] in [LOCATION]");
+
+// Case B: tokens WITH offsets — should use them directly
+const withOffset = [
+  { entity: "B-PER", score: 0.99, word: "Jane", start: 0, end: 4 },
+  { entity: "I-PER", score: 0.99, word: "Doe", start: 5, end: 8 },
+];
+const sB = nerSpansFromTokens(nerText, withOffset);
+check("NER(offsets): one PERSON span 0-8", sB.length === 1 && sB[0].start === 0 && sB[0].end === 8);
+
+// Low-confidence tokens are dropped
+const lowConf = [{ entity: "B-PER", score: 0.2, word: "Jane" }];
+check("NER: low-confidence dropped", nerSpansFromTokens(nerText, lowConf).length === 0);
 
 console.log(`\n${pass} passed, ${fail} failed`);
 process.exit(fail === 0 ? 0 : 1);
