@@ -1,0 +1,54 @@
+/* Yantra — brand design tokens & primitives.
+   Principle: every pixel carries a measurement, or it's removed.
+   Color = signal — chrome is monochrome; hue appears ONLY in data. */
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap");
+
+:root{
+  /* surfaces */
+  --s0:oklch(10% 0 0); --s1:oklch(14.5% 0 0); --s2:oklch(18% 0 0);
+  --bd-sub:oklch(22% 0 0); --bd:oklch(28% 0 0);
+  /* text — all >=4.5:1 on --s1 */
+  --t1:oklch(96% 0 0); --t2:oklch(70% 0 0); --t3:oklch(58% 0 0);
+  /* brand accent — chrome only (focus, the >_ mark). NEVER on data.
+     green is the hue furthest from the data ramp, so it can't be misread as a value.
+     heritage/connect: phosphor green oklch(85% .22 145) — the CRT/terminal root, referenced not used. */
+  --accent:oklch(72% 0.18 145);
+  /* semantic data ramp — cool=fresh -> warm=decayed. deuteranopia-safe + luminance-varied. */
+  --d5:oklch(72% 0.13 240); --d4:oklch(74% 0.10 205);
+  --d3:oklch(78% 0.08 70);  --d2:oklch(70% 0.13 45); --d1:oklch(63% 0.16 28);
+  /* type */
+  --sans:"Space Grotesk",-apple-system,system-ui,sans-serif;
+  --mono:"Space Mono",ui-monospace,monospace;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--s0);color:var(--t1);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+.mono{font-family:var(--mono)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+
+/* wayfinding */
+.brand-mark{font-family:var(--mono);font-size:.8rem;color:var(--accent);letter-spacing:.02em}
+.shelf-head{display:flex;align-items:baseline;gap:.75rem;margin-bottom:1.1rem;border-bottom:1px solid var(--bd-sub);padding-bottom:.5rem}
+.shelf-head h2{font-size:1rem;font-weight:600;margin:0}
+.shelf-head .thesis{font-size:.82rem;color:var(--t2)}
+.ramp-key{margin-left:auto;display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:.62rem;color:var(--t3);white-space:nowrap}
+.ramp-key i{width:13px;height:6px;border-radius:1px;display:block}
+.cards{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fill,minmax(20.5rem,1fr))}
+
+/* card anatomy — the inheritable instrument frame.
+   four fixed zones: eyebrow·question -> signal(160px) -> stat -> source. */
+.card{background:var(--s1);border:1px solid var(--bd-sub);border-radius:12px;display:flex;flex-direction:column;min-height:23rem;overflow:hidden}
+.c-head{padding:15px 17px 13px}
+.eyebrow{font-family:var(--mono);font-size:.7rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--t3)}
+.q{font-size:1.02rem;font-weight:600;margin:.45rem 0 .3rem;color:var(--t1);letter-spacing:-.01em}
+.concept{font-size:.8rem;color:var(--t2);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.c-signal{height:160px;padding:14px 17px;overflow:hidden;border-top:1px solid var(--bd-sub);border-bottom:1px solid var(--bd-sub);display:flex;align-items:center;justify-content:center}
+.c-stat{padding:11px 17px;display:flex;align-items:baseline;gap:.4rem}
+.c-stat .n{font-family:var(--mono);font-size:1.05rem;font-weight:700;color:var(--t1)}
+.c-stat .lbl{font-size:.76rem;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.c-stat .date{margin-left:auto;flex:none;padding-left:.55rem;font-family:var(--mono);font-size:.72rem;color:var(--t3)}
+.c-foot{margin-top:auto;padding:10px 17px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:.71rem;color:var(--t3);border-top:1px solid var(--bd-sub)}
+.c-foot a{color:var(--t2);text-decoration:none;border-bottom:1px solid var(--bd)}
+.c-foot a:hover{color:var(--t1)}

@@ -1,211 +1,156 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Anand Suresh — AI widgets</title>
-  <meta name="description" content="Interactive AI widgets that run entirely in your browser. Starting with a PII redactor: rules + an in-browser NER model. No data leaves your tab." />
-  <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Anand Suresh — AI widgets" />
-  <meta property="og:description" content="Interactive, in-browser AI widgets. Built to be probed." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://anandsureshworks.com/" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Anand Suresh — widgets</title>
+<meta name="description" content="Interactive, in-browser AI widgets — instruments for thinking. AI-as-tutor learning tools and security utilities, built lean." />
+<meta name="robots" content="index, follow" />
+<meta property="og:title" content="Anand Suresh — widgets" />
+<meta property="og:description" content="Instruments for thinking — AI-as-tutor and security widgets, in your browser." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://anandsureshworks.com/" />
+<link rel="stylesheet" href="/brand.css" />
+<style>
+  main{max-width:64rem;margin:0 auto;padding:3rem 1.25rem}
+  h1{font-size:1.5rem;font-weight:600;margin:.4rem 0 .3rem;letter-spacing:-.01em}
+  .sub{color:var(--t2);font-size:.9rem;margin:0 0 2.2rem}
+  section{margin-bottom:2.6rem}
 
-  <style>
-    :root {
-      --bg: oklch(0.10 0 0); --panel: oklch(0.13 0 0); --panel2: oklch(0.16 0 0);
-      --fg: oklch(0.92 0 0); --muted: oklch(0.62 0 0);
-      --primary: oklch(0.78 0.16 150); --border: oklch(0.24 0 0);
-      --warn: oklch(0.80 0.13 80);
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; background: var(--bg); color: var(--fg);
-      font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
-      line-height: 1.6; padding: 2.5rem 1.25rem;
-    }
-    main { width: 100%; max-width: 46rem; margin: 0 auto; }
-    .prompt { color: var(--primary); font-weight: 600; font-size: 0.9rem; }
-    h1 { font-size: clamp(1.6rem, 5vw, 2.3rem); margin: 0.5rem 0 0.3rem; letter-spacing: -0.01em; }
-    .tagline { color: var(--muted); margin: 0 0 2rem; }
-    .widget { border: 1px solid var(--border); border-radius: 0.75rem; background: var(--panel); overflow: hidden; margin-bottom: 1.5rem; }
-    .widget-head { display: flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.1rem; border-bottom: 1px solid var(--border); background: var(--panel2); }
-    .widget-head h2 { font-size: 0.95rem; margin: 0; }
-    .badge { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; border: 1px solid var(--border); border-radius: 0.3rem; padding: 0.1rem 0.4rem; color: var(--muted); }
-    .badge.live { color: var(--primary); border-color: color-mix(in oklch, var(--primary) 50%, transparent); }
-    .widget-body { padding: 1.1rem; }
-    .lead { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.9rem; }
-    textarea { width: 100%; min-height: 120px; resize: vertical; border: 1px solid var(--border); border-radius: 0.45rem; background: oklch(0.08 0 0); color: var(--fg); font: inherit; font-size: 0.85rem; padding: 0.7rem; }
-    textarea:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--primary); }
-    .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; margin: 0.8rem 0; font-size: 0.85rem; }
-    button { font: inherit; font-size: 0.85rem; font-weight: 600; cursor: pointer; border-radius: 0.45rem; padding: 0.5rem 0.95rem; border: 1px solid color-mix(in oklch, var(--primary) 50%, transparent); background: color-mix(in oklch, var(--primary) 12%, transparent); color: var(--primary); transition: background 0.15s; }
-    button:hover { background: color-mix(in oklch, var(--primary) 20%, transparent); }
-    button:disabled { opacity: 0.45; cursor: not-allowed; }
-    button.ghost { border-color: var(--border); background: transparent; color: var(--muted); }
-    label.toggle { display: inline-flex; align-items: center; gap: 0.45rem; color: var(--fg); cursor: pointer; }
-    .status { font-size: 0.78rem; color: var(--muted); min-height: 1.2rem; margin-bottom: 0.6rem; }
-    .panes { display: grid; gap: 0.9rem; }
-    @media (min-width: 40rem) { .panes { grid-template-columns: 1fr 1fr; } }
-    .pane h3 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 0 0 0.4rem; }
-    .out { border: 1px solid var(--border); border-radius: 0.45rem; background: oklch(0.08 0 0); padding: 0.7rem; font-size: 0.82rem; white-space: pre-wrap; word-break: break-word; min-height: 4rem; }
-    mark.pii { background: color-mix(in oklch, var(--warn) 22%, transparent); color: var(--warn); border-radius: 0.2rem; padding: 0 0.15rem; position: relative; }
-    mark.pii::after { content: attr(data-type); font-size: 0.6rem; vertical-align: super; opacity: 0.7; margin-left: 0.1rem; }
-    .summary { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.9rem; }
-    .chip { font-size: 0.72rem; border: 1px solid var(--border); border-radius: 0.3rem; padding: 0.15rem 0.5rem; color: var(--muted); }
-    .chip b { color: var(--fg); }
-    .privacy { font-size: 0.72rem; color: var(--muted); margin-top: 0.9rem; }
-    .soon { opacity: 0.72; }
-    .soon .widget-body { font-size: 0.85rem; color: var(--muted); }
-    .bridges { margin-top: 2rem; font-size: 0.9rem; display: grid; gap: 0.5rem; }
-    a { color: var(--primary); text-decoration: none; border-bottom: 1px solid color-mix(in oklch, var(--primary) 40%, transparent); }
-    a:hover { border-bottom-color: var(--primary); }
-    footer { margin-top: 2.4rem; color: var(--muted); font-size: 0.78rem; }
-  </style>
+  /* deep-decay */
+  .ring-col{display:flex;flex-direction:column;align-items:center;gap:4px;flex:none}
+  .ring-cap{font-family:var(--mono);font-size:.57rem;color:var(--t3);letter-spacing:.01em}
+  .ddwrap{display:flex;gap:16px;align-items:center;width:100%}
+  .ddbars{flex:1;min-width:0}
+  .ddrow{display:flex;align-items:center;gap:9px;padding:.26rem 0;font-size:.74rem}
+  .ddrow+.ddrow{border-top:1px solid var(--bd-sub)}
+  .ddrow .dom{flex:1;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ddrow .iso{font-family:var(--mono);color:var(--t3);font-size:.62rem}
+  .ddrow .pc{font-family:var(--mono);font-size:.66rem;width:48px;text-align:right;color:var(--t2)}
+  .ddbar{height:4px;background:var(--bd);border-radius:2px;width:46px;overflow:hidden;flex:none}
+  .ddbar i{display:block;height:100%}
+
+  /* arxiv */
+  .papers{width:100%}
+  .paper{padding:.3rem 0}
+  .paper+.paper{border-top:1px solid var(--bd-sub)}
+  .paper .pt{font-size:.76rem;color:var(--t1);line-height:1.25;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+  .paper .pm{display:flex;align-items:center;gap:.45rem;margin-top:.22rem;font-family:var(--mono);font-size:.64rem;color:var(--t3)}
+  .venue{border:1px solid var(--bd);border-radius:3px;padding:0 .3rem;color:var(--t2)}
+  .sbar{height:3px;background:var(--bd);border-radius:2px;margin-top:.24rem;overflow:hidden}
+  .sbar i{display:block;height:100%}
+
+  /* muon */
+  .sky{position:relative;width:100%;height:100%;overflow:hidden;border-radius:7px;background:radial-gradient(circle at 50% -40%, color-mix(in oklch,var(--d5) 22%,transparent), transparent 70%)}
+  .muon{position:absolute;width:1.5px;height:9px;border-radius:1px;background:linear-gradient(to bottom,transparent,var(--d5));opacity:0;animation:fall linear infinite}
+  @keyframes fall{0%{transform:translateY(-12px);opacity:0}6%{opacity:1}90%{opacity:.55}100%{transform:translateY(150px);opacity:0}}
+  @media (prefers-reduced-motion:reduce){.muon{animation:none;opacity:.35}}
+
+  /* secure */
+  .chips{display:flex;flex-wrap:wrap;gap:6px;align-content:center}
+  .chip{font-family:var(--mono);font-size:.66rem;color:var(--d2);border:1px solid color-mix(in oklch,var(--d2) 42%,transparent);border-radius:4px;padding:2px 7px}
+</style>
 </head>
 <body>
-  <main>
-    <p class="prompt">&gt;_ anandsureshworks</p>
-    <h1>AI widgets</h1>
-    <p class="tagline">Interactive AI, running entirely in your browser. Built to be probed, not just demoed.</p>
+<main>
+  <p class="brand-mark">&gt;_ anandsureshworks</p>
+  <h1>Widgets</h1>
+  <p class="sub">Instruments for thinking — built lean, running entirely in your browser.</p>
+  <section id="learn"></section>
+  <section id="secure"></section>
+</main>
 
-    <!-- ============ WIDGET 1: PII REDACTOR (live) ============ -->
-    <section class="widget">
-      <div class="widget-head">
-        <h2>PII &amp; Secret Redactor</h2>
-        <span class="badge live">live</span>
-      </div>
-      <div class="widget-body">
-        <p class="lead">Scrub a prompt before it reaches an LLM. Two layers: deterministic rules for
-          structured secrets (emails, cards, keys, JWTs) + an optional in-browser NER model for names,
-          orgs &amp; locations. Nothing is uploaded — it all runs in your tab.</p>
+<script type="module">
+  const dcol=v=> v>=.8?"var(--d5)": v>=.6?"var(--d4)": v>=.4?"var(--d3)": v>=.2?"var(--d2)":"var(--d1)";
+  const RAMPKEY=`<div class="ramp-key" aria-label="data scale from fresh to decayed"><span>fresh</span><i style="background:var(--d5)"></i><i style="background:var(--d4)"></i><i style="background:var(--d3)"></i><i style="background:var(--d2)"></i><i style="background:var(--d1)"></i><span>decayed</span></div>`;
 
-        <textarea id="input" spellcheck="false">Hi, this is Jane Doe from Acme Corp in San Francisco. You can reach me at jane.doe@acme.io or (415) 555-0132. My SSN is 123-45-6789 and the test card is 4242 4242 4242 4242. Deploy key: AKIA1234567890ABCDEF, server at 10.0.0.1.</textarea>
+  function card({eyebrow,q,concept,statN,statLbl,date,signal,sigAria,foot}){
+    return `<article class="card">
+      <div class="c-head"><div class="eyebrow">${eyebrow}</div><p class="q">${q}</p><p class="concept">${concept}</p></div>
+      <div class="c-signal" role="img" aria-label="${sigAria}" style="position:relative">${signal}</div>
+      <div class="c-stat"><span class="n">${statN}</span><span class="lbl">${statLbl}</span><span class="date">${date}</span></div>
+      <div class="c-foot"><span>${foot.note}</span><a href="${foot.href}">${foot.text}</a></div>
+    </article>`;
+  }
+  function shelf(id,{title,thesis,key,cards}){
+    document.getElementById(id).innerHTML=`<div class="shelf-head"><h2>${title}</h2><span class="thesis">${thesis}</span>${key?RAMPKEY:""}</div><div class="cards">${cards}</div>`;
+  }
+  const ghUrl=r=>`https://github.com/anandsureshworks/${r}`;
+  const sampleFoot=r=>({note:"sample · 2026-06-23",href:ghUrl(r),text:`${r} ↗`});
 
-        <div class="controls">
-          <button id="run">Redact</button>
-          <label class="toggle"><input type="checkbox" id="useAI" /> ✨ AI name/org detection <span style="color:var(--muted)">(downloads ~65&nbsp;MB once)</span></label>
-          <button class="ghost" id="copy" disabled>Copy redacted</button>
-        </div>
+  /* 1 EBBINGHAUS */
+  const TODAY=new Date("2026-06-23T00:00:00Z"), days=(a,b)=>Math.round((a-b)/864e5);
+  const ret=(l,S)=>Math.exp(-days(TODAY,new Date(l))/S);
+  const EB=[
+    {name:"Circle of Competence",l:"2026-06-01",S:14},{name:"Bayesian Updating",l:"2026-06-15",S:20},
+    {name:"Via Negativa",l:"2026-06-10",S:12},{name:"Margin of Safety",l:"2026-06-19",S:18},
+    {name:"Convexity",l:"2026-06-20",S:25},{name:"Deliberate Practice",l:"2026-06-22",S:30},
+  ].map(i=>{const t=days(TODAY,new Date(i.l));return{...i,t,r:ret(i.l,i.S)}});
+  function ebChart(){
+    const W=340,H=132,L=24,Rm=18,T=8,B=18,DMAX=45;
+    const mx=t=>L+Math.min(t,DMAX)/DMAX*(W-Rm-L), my=r=>T+(1-r)*(H-B-T);
+    const path=(S,t0)=>{let d="",f=1;for(let t=t0;t<=DMAX+.001;t+=1.5){d+=(f?"M":"L")+mx(t).toFixed(1)+" "+my(Math.exp(-t/S)).toFixed(1)+" ";f=0}return d.trim()};
+    const grid=[0,.5,1].map(r=>`<line x1="${L}" y1="${my(r)}" x2="${W-Rm}" y2="${my(r)}" stroke="var(--bd-sub)"/><text x="${L-4}" y="${my(r)+3}" text-anchor="end" fill="var(--t3)" font-size="8" font-family="Space Mono">${r*100|0}</text>`).join("");
+    const xt=[0,15,30,45].map(t=>`<text x="${mx(t)}" y="${H-5}" text-anchor="middle" fill="var(--t3)" font-size="8" font-family="Space Mono">${t}d</text>`).join("");
+    const thr=`<line x1="${L}" y1="${my(.9)}" x2="${W-Rm}" y2="${my(.9)}" stroke="var(--t3)" stroke-dasharray="2 3" opacity=".5"/><text x="${W-Rm-1}" y="${my(.9)-3}" text-anchor="end" fill="var(--t3)" font-size="7.5" font-family="Space Mono">90%</text>`;
+    const tails=EB.map(i=>`<path d="${path(i.S,i.t)}" fill="none" stroke="${dcol(i.r)}" stroke-width="1" stroke-dasharray="1.5 2.5" stroke-linecap="round" opacity=".55"/>`).join("");
+    const dots=EB.map(i=>`<circle cx="${mx(i.t)}" cy="${my(i.r)}" r="3.4" fill="${dcol(i.r)}"/>`).join("");
+    return `<svg viewBox="0 0 ${W} ${H}" width="100%">${grid}${thr}${tails}${dots}${xt}</svg>`;
+  }
 
-        <div class="status" id="status"></div>
+  /* 2 DEEP-DECAY */
+  const DD=[
+    {epoch:"Ötzi",iso:"C-14",age:"5.3 ky",t:5.3e3,half:5.7e3},
+    {epoch:"Last Ice Age",iso:"C-14",age:"11.7 ky",t:11.7e3,half:5.7e3},
+    {epoch:"K–Pg event",iso:"U-238",age:"66 My",t:66e6,half:4.47e9},
+    {epoch:"Earth forms",iso:"U-238",age:"4.54 By",t:4.54e9,half:4.47e9},
+    {epoch:"Big Bang",iso:"Rb-87",age:"13.8 By",t:13.8e9,half:49e9},
+  ].map(d=>({...d,f:Math.pow(0.5,d.t/d.half)}));
+  const ddDeep=DD.reduce((a,b)=>b.half>a.half?b:a);
+  const ddElapsed=(Math.log(1/ddDeep.f)/Math.LN2).toFixed(2);
+  function ddRing(f){
+    const R=24,C=2*Math.PI*R;
+    return `<svg width="66" height="66" viewBox="0 0 66 66" style="flex:none"><g transform="rotate(-90 33 33)"><circle cx="33" cy="33" r="${R}" fill="none" stroke="var(--bd)" stroke-width="5"/><circle cx="33" cy="33" r="${R}" fill="none" stroke="${dcol(f)}" stroke-width="5" stroke-linecap="round" stroke-dasharray="${(f*C).toFixed(1)} ${C.toFixed(1)}"/></g><text x="33" y="37" text-anchor="middle" fill="var(--t1)" font-size="15" font-weight="700" font-family="Space Mono">${Math.round(f*100)}</text></svg>`;
+  }
+  const ddSig=`<div class="ddwrap"><div class="ring-col">${ddRing(ddDeep.f)}<span class="ring-cap">${ddDeep.iso} · % left</span></div><div class="ddbars">${DD.map(d=>`<div class="ddrow"><span class="dom">${d.epoch}</span><span class="iso">${d.iso}</span><span class="ddbar"><i style="width:${Math.round(d.f*100)}%;background:${dcol(d.f)}"></i></span><span class="pc">${d.age}</span></div>`).join("")}</div></div>`;
 
-        <div class="panes">
-          <div class="pane">
-            <h3>Detected</h3>
-            <div class="out" id="highlight" aria-live="polite"></div>
-          </div>
-          <div class="pane">
-            <h3>Redacted</h3>
-            <div class="out" id="redacted" aria-live="polite"></div>
-          </div>
-        </div>
+  /* 3 ARXIV */
+  const AX=[
+    {s:.92,t:"Chain-of-Thought Faithfulness under Adversarial Prompts",v:"NeurIPS",c:"cs.CL"},
+    {s:.81,t:"Emergent In-Context Planning in Sub-Billion Models",v:"ICLR",c:"cs.LG"},
+    {s:.74,t:"A Mechanistic Account of Refusal Directions",v:"",c:"cs.LG · cs.CR"},
+  ];
+  const axSig=`<div class="papers">${AX.map((p,i)=>`<div class="paper"><div class="pt">${i+1}. ${p.t}</div><div class="sbar"><i style="width:${Math.round(p.s*100)}%;background:${dcol(p.s)}"></i></div><div class="pm"><span>${p.s.toFixed(2)}</span>${p.v?`<span class="venue">${p.v}</span>`:""}<span>${p.c}</span></div></div>`).join("")}</div>`;
 
-        <div class="summary" id="summary"></div>
-        <p class="privacy">🔒 100% client-side. The model and your text never leave this browser.</p>
-      </div>
-    </section>
+  /* 4 MUON */
+  const muSig=`<div class="sky" aria-hidden="true">${Array.from({length:9},(_,i)=>{const left=(i*11+6)%96,dur=(1.7+(i%4)*.5).toFixed(1),delay=(i*.45).toFixed(1);return `<span class="muon" style="left:${left}%;animation-duration:${dur}s;animation-delay:${delay}s"></span>`;}).join("")}</div>`;
 
-    <!-- ============ COMING SOON ============ -->
-    <section class="widget soon">
-      <div class="widget-head"><h2>Semantic Search</h2><span class="badge">soon</span></div>
-      <div class="widget-body">In-browser embeddings over the OWASP LLM reference — search by meaning, not keywords.</div>
-    </section>
-    <section class="widget soon">
-      <div class="widget-head"><h2>Prompt-Injection Sandbox</h2><span class="badge">soon</span></div>
-      <div class="widget-body">A real LLM in your browser with a hidden system prompt. Try to jailbreak it.</div>
-    </section>
+  shelf("learn",{title:"Learn", thesis:"AI as a tutor — keep a mind sharp.", key:true, cards:[
+    card({eyebrow:"Memory · spaced repetition", q:"What am I about to forget?",
+      concept:"Every fact fades on its own exponential curve; review resets it. <span class='mono' style='color:var(--t3)'>R = e⁻ᵗ/ˢ</span>",
+      statN:EB.filter(i=>i.r<.9).length, statLbl:"to review", date:"2026-06-23",
+      signal:ebChart(), sigAria:`Forgetting curve, ${EB.filter(i=>i.r<.9).length} of ${EB.length} topics below the 90% review line`, foot:sampleFoot("yantra-ebbinghaus")}),
+    card({eyebrow:"Deep time · radioactive decay", q:"How do we read deep time?",
+      concept:"Every isotope decays at its own half-life — a clock for a different depth of time. <span class='mono' style='color:var(--t3)'>½ᵗ/ᵗ½</span>",
+      statN:ddElapsed, statLbl:"half-lives since Big Bang", date:"2026-06-23",
+      signal:ddSig, sigAria:`Radioactive decay clocks; Rb-87 at ${Math.round(ddDeep.f*100)} percent since the Big Bang`, foot:sampleFoot("yantra-deep-decay")}),
+    card({eyebrow:"Research · relevance", q:"What should I read today?",
+      concept:"Scores the day's arXiv firehose by your interests; surfaces the few that matter.",
+      statN:"3", statLbl:"of 142 scored", date:"2026-06-23",
+      signal:axSig, sigAria:"Top three papers ranked by relevance score", foot:sampleFoot("yantra-arxiv-pulse")}),
+    card({eyebrow:"Physics · ambient", q:"What's raining through me right now?",
+      concept:"μ⁻ muon · 105.7 MeV — a heavy electron born 15 km up, reaching you only because time dilates.",
+      statN:"1.1", statLbl:"muons / cm²·min", date:"2026-06-23",
+      signal:muSig, sigAria:"Ambient muon flux animation, about one per square centimetre per minute", foot:sampleFoot("yantra-muon-rain")}),
+  ].join("")});
 
-    <nav class="bridges" aria-label="Related sites">
-      <span>The security analysis → <a href="https://anandonsecurity.com/">anandonsecurity.com</a></span>
-      <span>The open reference lab → <a href="https://anandsureshworks.dev/">anandsureshworks.dev</a></span>
-    </nav>
-
-    <footer>© Anand Suresh · anandsureshworks.com · <a href="https://github.com/anandsureshworks/anandsureshworks-com">source</a></footer>
-  </main>
-
-  <script type="module">
-    import { findRegexSpans, mergeSpans, applyRedaction, countByType, nerSpansFromTokens } from "./redact.js";
-
-    const $ = (id) => document.getElementById(id);
-    const input = $("input"), statusEl = $("status");
-    const highlightEl = $("highlight"), redactedEl = $("redacted"), summaryEl = $("summary");
-
-    function escapeHtml(s) {
-      return s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
-    }
-
-    function renderHighlight(text, spans) {
-      const ordered = [...spans].sort((a, b) => a.start - b.start);
-      let html = "", cursor = 0;
-      for (const s of ordered) {
-        html += escapeHtml(text.slice(cursor, s.start));
-        html += `<mark class="pii" data-type="${s.type}">${escapeHtml(text.slice(s.start, s.end))}</mark>`;
-        cursor = s.end;
-      }
-      html += escapeHtml(text.slice(cursor));
-      return html;
-    }
-
-    // ---- in-browser NER (lazy, optional) ----
-    let nerPipe = null;
-    async function loadNer() {
-      if (nerPipe) return nerPipe;
-      const { pipeline, env } = await import("https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2");
-      env.allowLocalModels = false;
-      nerPipe = await pipeline("token-classification", "Xenova/bert-base-NER", {
-        quantized: true,
-        progress_callback: (p) => {
-          if (p.status === "progress" && p.file && p.total) {
-            statusEl.textContent = `Loading model… ${p.file} ${Math.round((p.loaded / p.total) * 100)}%`;
-          }
-        },
-      });
-      return nerPipe;
-    }
-
-    async function nerSpans(text) {
-      const pipe = await loadNer();
-      const raw = await pipe(text);                 // tokens; v2 omits char offsets
-      return nerSpansFromTokens(text, raw);         // tested in redact.test.mjs
-    }
-
-    async function run() {
-      const text = input.value;
-      $("run").disabled = true;
-      statusEl.textContent = "Scanning with rules…";
-
-      let spans = findRegexSpans(text);
-
-      if ($("useAI").checked) {
-        try {
-          statusEl.textContent = nerPipe ? "Scanning with AI model…" : "Loading AI model (first run)…";
-          const ner = await nerSpans(text);
-          spans = mergeSpans([...spans, ...ner]);   // rules win ties (added first)
-        } catch (e) {
-          statusEl.textContent = "AI model unavailable — showing rules-only results.";
-          console.error(e);
-        }
-      }
-
-      highlightEl.innerHTML = renderHighlight(text, spans) || "<span style='color:var(--muted)'>nothing detected</span>";
-      redactedEl.textContent = applyRedaction(text, spans);
-      const counts = countByType(spans);
-      summaryEl.innerHTML = Object.keys(counts).length
-        ? Object.entries(counts).map(([t, n]) => `<span class="chip"><b>${n}</b> ${t}</span>`).join("")
-        : `<span class="chip">no PII found</span>`;
-      if (!statusEl.textContent.includes("unavailable")) {
-        statusEl.textContent = `Done — ${spans.length} item(s) redacted, all in your browser.`;
-      }
-      $("copy").disabled = false;
-      $("run").disabled = false;
-    }
-
-    $("run").addEventListener("click", run);
-    $("copy").addEventListener("click", async () => {
-      await navigator.clipboard.writeText(redactedEl.textContent);
-      statusEl.textContent = "Redacted text copied.";
-    });
-    run();  // run once on load with the sample (rules only)
-  </script>
+  shelf("secure",{title:"Secure", thesis:"Probe an LLM before it probes you.", key:false, cards:[
+    card({eyebrow:"Security · PII", q:"What's leaking in this prompt?",
+      concept:"Rules + an in-browser NER model scrub names, secrets & PII before they reach an LLM. Nothing leaves your tab.",
+      statN:"9", statLbl:"PII types caught · live", date:"2026-06-23",
+      signal:`<div class="chips">${["PERSON","EMAIL","SSN","CARD","API_KEY","IP","JWT","ORG","PHONE"].map(t=>`<span class="chip">${t}</span>`).join("")}</div>`,
+      sigAria:"Detects person, email, SSN, card, API key, IP, JWT, org and phone", foot:{note:"interactive",href:"./redactor/",text:"open tool ↗"}}),
+  ].join("")});
+</script>
 </body>
 </html>

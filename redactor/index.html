@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anand Suresh — AI widgets</title>
+  <meta name="description" content="Interactive AI widgets that run entirely in your browser. Starting with a PII redactor: rules + an in-browser NER model. No data leaves your tab." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Anand Suresh — AI widgets" />
+  <meta property="og:description" content="Interactive, in-browser AI widgets. Built to be probed." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://anandsureshworks.com/" />
+
+  <style>
+    :root {
+      --bg: oklch(0.10 0 0); --panel: oklch(0.13 0 0); --panel2: oklch(0.16 0 0);
+      --fg: oklch(0.92 0 0); --muted: oklch(0.62 0 0);
+      --primary: oklch(0.78 0.16 150); --border: oklch(0.24 0 0);
+      --warn: oklch(0.80 0.13 80);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--fg);
+      font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+      line-height: 1.6; padding: 2.5rem 1.25rem;
+    }
+    main { width: 100%; max-width: 46rem; margin: 0 auto; }
+    .prompt { color: var(--primary); font-weight: 600; font-size: 0.9rem; }
+    h1 { font-size: clamp(1.6rem, 5vw, 2.3rem); margin: 0.5rem 0 0.3rem; letter-spacing: -0.01em; }
+    .tagline { color: var(--muted); margin: 0 0 2rem; }
+    .widget { border: 1px solid var(--border); border-radius: 0.75rem; background: var(--panel); overflow: hidden; margin-bottom: 1.5rem; }
+    .widget-head { display: flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.1rem; border-bottom: 1px solid var(--border); background: var(--panel2); }
+    .widget-head h2 { font-size: 0.95rem; margin: 0; }
+    .badge { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; border: 1px solid var(--border); border-radius: 0.3rem; padding: 0.1rem 0.4rem; color: var(--muted); }
+    .badge.live { color: var(--primary); border-color: color-mix(in oklch, var(--primary) 50%, transparent); }
+    .widget-body { padding: 1.1rem; }
+    .lead { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.9rem; }
+    textarea { width: 100%; min-height: 120px; resize: vertical; border: 1px solid var(--border); border-radius: 0.45rem; background: oklch(0.08 0 0); color: var(--fg); font: inherit; font-size: 0.85rem; padding: 0.7rem; }
+    textarea:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--primary); }
+    .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; margin: 0.8rem 0; font-size: 0.85rem; }
+    button { font: inherit; font-size: 0.85rem; font-weight: 600; cursor: pointer; border-radius: 0.45rem; padding: 0.5rem 0.95rem; border: 1px solid color-mix(in oklch, var(--primary) 50%, transparent); background: color-mix(in oklch, var(--primary) 12%, transparent); color: var(--primary); transition: background 0.15s; }
+    button:hover { background: color-mix(in oklch, var(--primary) 20%, transparent); }
+    button:disabled { opacity: 0.45; cursor: not-allowed; }
+    button.ghost { border-color: var(--border); background: transparent; color: var(--muted); }
+    label.toggle { display: inline-flex; align-items: center; gap: 0.45rem; color: var(--fg); cursor: pointer; }
+    .status { font-size: 0.78rem; color: var(--muted); min-height: 1.2rem; margin-bottom: 0.6rem; }
+    .panes { display: grid; gap: 0.9rem; }
+    @media (min-width: 40rem) { .panes { grid-template-columns: 1fr 1fr; } }
+    .pane h3 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 0 0 0.4rem; }
+    .out { border: 1px solid var(--border); border-radius: 0.45rem; background: oklch(0.08 0 0); padding: 0.7rem; font-size: 0.82rem; white-space: pre-wrap; word-break: break-word; min-height: 4rem; }
+    mark.pii { background: color-mix(in oklch, var(--warn) 22%, transparent); color: var(--warn); border-radius: 0.2rem; padding: 0 0.15rem; position: relative; }
+    mark.pii::after { content: attr(data-type); font-size: 0.6rem; vertical-align: super; opacity: 0.7; margin-left: 0.1rem; }
+    .summary { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.9rem; }
+    .chip { font-size: 0.72rem; border: 1px solid var(--border); border-radius: 0.3rem; padding: 0.15rem 0.5rem; color: var(--muted); }
+    .chip b { color: var(--fg); }
+    .privacy { font-size: 0.72rem; color: var(--muted); margin-top: 0.9rem; }
+    .soon { opacity: 0.72; }
+    .soon .widget-body { font-size: 0.85rem; color: var(--muted); }
+    .bridges { margin-top: 2rem; font-size: 0.9rem; display: grid; gap: 0.5rem; }
+    a { color: var(--primary); text-decoration: none; border-bottom: 1px solid color-mix(in oklch, var(--primary) 40%, transparent); }
+    a:hover { border-bottom-color: var(--primary); }
+    footer { margin-top: 2.4rem; color: var(--muted); font-size: 0.78rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="prompt">&gt;_ anandsureshworks</p>
+    <h1>AI widgets</h1>
+    <p class="tagline">Interactive AI, running entirely in your browser. Built to be probed, not just demoed.</p>
+
+    <!-- ============ WIDGET 1: PII REDACTOR (live) ============ -->
+    <section class="widget">
+      <div class="widget-head">
+        <h2>PII &amp; Secret Redactor</h2>
+        <span class="badge live">live</span>
+      </div>
+      <div class="widget-body">
+        <p class="lead">Scrub a prompt before it reaches an LLM. Two layers: deterministic rules for
+          structured secrets (emails, cards, keys, JWTs) + an optional in-browser NER model for names,
+          orgs &amp; locations. Nothing is uploaded — it all runs in your tab.</p>
+
+        <textarea id="input" spellcheck="false">Hi, this is Jane Doe from Acme Corp in San Francisco. You can reach me at jane.doe@acme.io or (415) 555-0132. My SSN is 123-45-6789 and the test card is 4242 4242 4242 4242. Deploy key: AKIA1234567890ABCDEF, server at 10.0.0.1.</textarea>
+
+        <div class="controls">
+          <button id="run">Redact</button>
+          <label class="toggle"><input type="checkbox" id="useAI" /> ✨ AI name/org detection <span style="color:var(--muted)">(downloads ~65&nbsp;MB once)</span></label>
+          <button class="ghost" id="copy" disabled>Copy redacted</button>
+        </div>
+
+        <div class="status" id="status"></div>
+
+        <div class="panes">
+          <div class="pane">
+            <h3>Detected</h3>
+            <div class="out" id="highlight" aria-live="polite"></div>
+          </div>
+          <div class="pane">
+            <h3>Redacted</h3>
+            <div class="out" id="redacted" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <div class="summary" id="summary"></div>
+        <p class="privacy">🔒 100% client-side. The model and your text never leave this browser.</p>
+      </div>
+    </section>
+
+    <!-- ============ COMING SOON ============ -->
+    <section class="widget soon">
+      <div class="widget-head"><h2>Semantic Search</h2><span class="badge">soon</span></div>
+      <div class="widget-body">In-browser embeddings over the OWASP LLM reference — search by meaning, not keywords.</div>
+    </section>
+    <section class="widget soon">
+      <div class="widget-head"><h2>Prompt-Injection Sandbox</h2><span class="badge">soon</span></div>
+      <div class="widget-body">A real LLM in your browser with a hidden system prompt. Try to jailbreak it.</div>
+    </section>
+
+    <nav class="bridges" aria-label="Related sites">
+      <span>The security analysis → <a href="https://anandonsecurity.com/">anandonsecurity.com</a></span>
+      <span>The open reference lab → <a href="https://anandsureshworks.dev/">anandsureshworks.dev</a></span>
+    </nav>
+
+    <footer>© Anand Suresh · anandsureshworks.com · <a href="https://github.com/anandsureshworks/anandsureshworks-com">source</a></footer>
+  </main>
+
+  <script type="module">
+    import { findRegexSpans, mergeSpans, applyRedaction, countByType, nerSpansFromTokens } from "./redact.js";
+
+    const $ = (id) => document.getElementById(id);
+    const input = $("input"), statusEl = $("status");
+    const highlightEl = $("highlight"), redactedEl = $("redacted"), summaryEl = $("summary");
+
+    function escapeHtml(s) {
+      return s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+    }
+
+    function renderHighlight(text, spans) {
+      const ordered = [...spans].sort((a, b) => a.start - b.start);
+      let html = "", cursor = 0;
+      for (const s of ordered) {
+        html += escapeHtml(text.slice(cursor, s.start));
+        html += `<mark class="pii" data-type="${s.type}">${escapeHtml(text.slice(s.start, s.end))}</mark>`;
+        cursor = s.end;
+      }
+      html += escapeHtml(text.slice(cursor));
+      return html;
+    }
+
+    // ---- in-browser NER (lazy, optional) ----
+    let nerPipe = null;
+    async function loadNer() {
+      if (nerPipe) return nerPipe;
+      const { pipeline, env } = await import("https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2");
+      env.allowLocalModels = false;
+      nerPipe = await pipeline("token-classification", "Xenova/bert-base-NER", {
+        quantized: true,
+        progress_callback: (p) => {
+          if (p.status === "progress" && p.file && p.total) {
+            statusEl.textContent = `Loading model… ${p.file} ${Math.round((p.loaded / p.total) * 100)}%`;
+          }
+        },
+      });
+      return nerPipe;
+    }
+
+    async function nerSpans(text) {
+      const pipe = await loadNer();
+      const raw = await pipe(text);                 // tokens; v2 omits char offsets
+      return nerSpansFromTokens(text, raw);         // tested in redact.test.mjs
+    }
+
+    async function run() {
+      const text = input.value;
+      $("run").disabled = true;
+      statusEl.textContent = "Scanning with rules…";
+
+      let spans = findRegexSpans(text);
+
+      if ($("useAI").checked) {
+        try {
+          statusEl.textContent = nerPipe ? "Scanning with AI model…" : "Loading AI model (first run)…";
+          const ner = await nerSpans(text);
+          spans = mergeSpans([...spans, ...ner]);   // rules win ties (added first)
+        } catch (e) {
+          statusEl.textContent = "AI model unavailable — showing rules-only results.";
+          console.error(e);
+        }
+      }
+
+      highlightEl.innerHTML = renderHighlight(text, spans) || "<span style='color:var(--muted)'>nothing detected</span>";
+      redactedEl.textContent = applyRedaction(text, spans);
+      const counts = countByType(spans);
+      summaryEl.innerHTML = Object.keys(counts).length
+        ? Object.entries(counts).map(([t, n]) => `<span class="chip"><b>${n}</b> ${t}</span>`).join("")
+        : `<span class="chip">no PII found</span>`;
+      if (!statusEl.textContent.includes("unavailable")) {
+        statusEl.textContent = `Done — ${spans.length} item(s) redacted, all in your browser.`;
+      }
+      $("copy").disabled = false;
+      $("run").disabled = false;
+    }
+
+    $("run").addEventListener("click", run);
+    $("copy").addEventListener("click", async () => {
+      await navigator.clipboard.writeText(redactedEl.textContent);
+      statusEl.textContent = "Redacted text copied.";
+    });
+    run();  // run once on load with the sample (rules only)
+  </script>
+</body>
+</html>

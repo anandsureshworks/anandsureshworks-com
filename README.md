@@ -1,27 +1,33 @@
 # anandsureshworks-com
 
-**anandsureshworks.com** — the AI-solutioning / widget-gallery leg of the three-leg
-brand (build · secure · teach in public).
+**anandsureshworks.com** — the AI-solutioning / widget-gallery leg of the three-leg brand
+(build · secure · teach in public). Instruments for thinking, in the browser.
 
-- **anandsureshworks.com** — interactive in-browser AI widgets (this site)
+- **anandsureshworks.com** — this gallery
 - [anandonsecurity.com](https://anandonsecurity.com) — security voice & analysis
 - [anandsureshworks.dev](https://anandsureshworks.dev) — open-source reference lab
 
-## Widgets
+## Structure
 
-| Widget | Status | Stack |
-|---|---|---|
-| PII & Secret Redactor | live | rules (`redact.js`) + in-browser NER (Transformers.js) |
-| Semantic Search | soon | in-browser embeddings over the OWASP reference |
-| Prompt-Injection Sandbox | soon | in-browser LLM (WebLLM) |
+| Path | What |
+|---|---|
+| `index.html` | the gallery — shelves of widget cards |
+| `brand.css` | design tokens + card anatomy (see `BRAND.md`) |
+| `redactor/` | the live PII & Secret Redactor tool (rules + in-browser NER) |
 
-Everything runs client-side — no server, no API key, no data leaves the browser.
+Shelves: **Learn** (AI-as-tutor — Ebbinghaus, deep-decay, arXiv-pulse, muon-rain, shown with
+sample data) and **Secure** (the redactor). Source repos linked per card.
+
+## Design
+
+Defined in `BRAND.md` / `brand.css`. Core rule: *color = signal* — chrome is monochrome, hue
+only on data; Space Grotesk + Space Mono; uniform card anatomy; no tooltips, no legend boxes.
 
 ## Develop / test
 
 ```sh
-node redact.test.mjs        # unit tests for the deterministic redaction core
-python3 -m http.server 8000 # then open http://localhost:8000 to test in a browser
+node redactor/redact.test.mjs   # redaction core (18 tests)
+python3 -m http.server 8000     # http://localhost:8000
 ```
 
-Static site, zero build. Deploys on Vercel by pushing to `main`.
+Static, zero build. Deploys on Vercel by pushing to `main`.
