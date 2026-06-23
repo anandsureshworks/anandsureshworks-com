@@ -46,6 +46,21 @@
   @keyframes fall{0%{transform:translateY(-12px);opacity:0}6%{opacity:1}90%{opacity:.55}100%{transform:translateY(150px);opacity:0}}
   @media (prefers-reduced-motion:reduce){.muon{animation:none;opacity:.35}}
 
+  /* ebbinghaus interactive */
+  .c-signal.eb-signal{flex-direction:column;align-items:stretch;justify-content:flex-start;gap:7px;padding:10px 15px}
+  .eb-chart{flex:1;min-height:0}
+  .eb-chart svg{width:100%;height:100%;display:block}
+  .eb-form{display:flex;align-items:center;gap:6px}
+  .eb-form input[type=text]{flex:1;min-width:0;background:var(--s0);border:1px solid var(--bd);border-radius:6px;color:var(--t1);font-family:var(--sans);font-size:.76rem;padding:5px 8px}
+  .eb-form input[type=number]{width:44px;background:var(--s0);border:1px solid var(--bd);border-radius:6px;color:var(--t1);font-family:var(--mono);font-size:.74rem;padding:5px 6px;text-align:right}
+  .eb-form .eb-unit{font-family:var(--mono);font-size:.66rem;color:var(--t3)}
+  .eb-form input::placeholder{color:var(--t3)}
+  .eb-form input:focus-visible{outline:none;border-color:var(--accent)}
+  .eb-form button[type=submit]{flex:none;width:28px;height:28px;border-radius:6px;border:1px solid color-mix(in oklch,var(--accent) 50%,transparent);background:color-mix(in oklch,var(--accent) 14%,transparent);color:var(--accent);font-size:1.05rem;line-height:1;cursor:pointer}
+  .eb-form button[type=submit]:hover{background:color-mix(in oklch,var(--accent) 24%,transparent)}
+  .eb-clear{flex:none;font-family:var(--mono);font-size:.64rem;color:var(--t3);background:none;border:none;cursor:pointer;padding:2px}
+  .eb-clear:hover{color:var(--t2)}
+
   /* secure */
   .chips{display:flex;flex-wrap:wrap;gap:6px;align-content:center}
   .chip{font-family:var(--mono);font-size:.66rem;color:var(--d2);border:1px solid color-mix(in oklch,var(--d2) 42%,transparent);border-radius:4px;padding:2px 7px}
@@ -78,24 +93,42 @@
   const ghUrl=r=>`https://github.com/anandsureshworks/${r}`;
   const sampleFoot=r=>({note:"sample · 2026-06-23",href:ghUrl(r),text:`${r} ↗`});
 
-  /* 1 EBBINGHAUS */
-  const TODAY=new Date("2026-06-23T00:00:00Z"), days=(a,b)=>Math.round((a-b)/864e5);
-  const ret=(l,S)=>Math.exp(-days(TODAY,new Date(l))/S);
-  const EB=[
-    {name:"Circle of Competence",l:"2026-06-01",S:14},{name:"Bayesian Updating",l:"2026-06-15",S:20},
-    {name:"Via Negativa",l:"2026-06-10",S:12},{name:"Margin of Safety",l:"2026-06-19",S:18},
-    {name:"Convexity",l:"2026-06-20",S:25},{name:"Deliberate Practice",l:"2026-06-22",S:30},
-  ].map(i=>{const t=days(TODAY,new Date(i.l));return{...i,t,r:ret(i.l,i.S)}});
-  function ebChart(){
-    const W=340,H=132,L=24,Rm=18,T=8,B=18,DMAX=45;
+  /* 1 EBBINGHAUS — interactive: your topics, fixed S=14, saved locally */
+  const EB_KEY="eb_topics", EB_S=14;
+  const ebRet=d=>Math.exp(-d/EB_S);
+  let ebTopics=(()=>{try{return JSON.parse(localStorage.getItem(EB_KEY))||[]}catch{return[]}})();
+  const ebSave=()=>{try{localStorage.setItem(EB_KEY,JSON.stringify(ebTopics))}catch{}};
+  const ebEsc=s=>s.replace(/[<>&]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;"}[c]));
+  function ebChartSVG(topics){
+    const W=340,H=126,L=24,Rm=70,T=8,B=18,DMAX=45;
     const mx=t=>L+Math.min(t,DMAX)/DMAX*(W-Rm-L), my=r=>T+(1-r)*(H-B-T);
-    const path=(S,t0)=>{let d="",f=1;for(let t=t0;t<=DMAX+.001;t+=1.5){d+=(f?"M":"L")+mx(t).toFixed(1)+" "+my(Math.exp(-t/S)).toFixed(1)+" ";f=0}return d.trim()};
+    let cv="",f=1;for(let t=0;t<=DMAX+.001;t+=1.5){cv+=(f?"M":"L")+mx(t).toFixed(1)+" "+my(Math.exp(-t/EB_S)).toFixed(1)+" ";f=0}
     const grid=[0,.5,1].map(r=>`<line x1="${L}" y1="${my(r)}" x2="${W-Rm}" y2="${my(r)}" stroke="var(--bd-sub)"/><text x="${L-4}" y="${my(r)+3}" text-anchor="end" fill="var(--t3)" font-size="8" font-family="Space Mono">${r*100|0}</text>`).join("");
     const xt=[0,15,30,45].map(t=>`<text x="${mx(t)}" y="${H-5}" text-anchor="middle" fill="var(--t3)" font-size="8" font-family="Space Mono">${t}d</text>`).join("");
     const thr=`<line x1="${L}" y1="${my(.9)}" x2="${W-Rm}" y2="${my(.9)}" stroke="var(--t3)" stroke-dasharray="2 3" opacity=".5"/><text x="${W-Rm-1}" y="${my(.9)-3}" text-anchor="end" fill="var(--t3)" font-size="7.5" font-family="Space Mono">90%</text>`;
-    const tails=EB.map(i=>`<path d="${path(i.S,i.t)}" fill="none" stroke="${dcol(i.r)}" stroke-width="1" stroke-dasharray="1.5 2.5" stroke-linecap="round" opacity=".55"/>`).join("");
-    const dots=EB.map(i=>`<circle cx="${mx(i.t)}" cy="${my(i.r)}" r="3.4" fill="${dcol(i.r)}"/>`).join("");
-    return `<svg viewBox="0 0 ${W} ${H}" width="100%">${grid}${thr}${tails}${dots}${xt}</svg>`;
+    const curveP=`<path d="${cv.trim()}" fill="none" stroke="var(--t2)" stroke-width="1.3" opacity=".5"/>`;
+    const dots=topics.slice(-6).map(tp=>{const r=ebRet(tp.days);return `<circle cx="${mx(tp.days)}" cy="${my(r)}" r="3.4" fill="${dcol(r)}"/><text x="${mx(tp.days)+6}" y="${my(r)+3}" fill="var(--t2)" font-size="8.5" font-family="Space Grotesk">${ebEsc(tp.name)}</text>`}).join("");
+    const hint=topics.length?"":`<text x="${(L+W-Rm)/2}" y="${my(.46)}" text-anchor="middle" fill="var(--t3)" font-size="9" font-family="Space Grotesk">add a topic to drop it on the curve ↓</text>`;
+    return `<svg viewBox="0 0 ${W} ${H}" width="100%">${grid}${thr}${curveP}${hint}${dots}${xt}</svg>`;
+  }
+  function ebCard(){
+    return `<article class="card">
+      <div class="c-head"><div class="eyebrow">Memory · spaced repetition</div>
+        <p class="q">What are you about to forget?</p>
+        <p class="concept">Add a topic and watch it slide down its forgetting curve. <span class='mono' style='color:var(--t3)'>R = e⁻ᵗ/ˢ</span></p></div>
+      <div class="c-signal eb-signal">
+        <div class="eb-chart" id="ebChart" role="img" aria-label="Your forgetting curve"></div>
+        <form class="eb-form" id="ebForm">
+          <input id="ebName" type="text" placeholder="a topic you learned…" aria-label="topic name" maxlength="40" autocomplete="off" />
+          <input id="ebDays" type="number" min="0" max="45" value="3" aria-label="days ago" />
+          <span class="eb-unit">d ago</span>
+          <button type="submit" aria-label="add topic">+</button>
+          <button type="button" class="eb-clear" id="ebClear" hidden>clear</button>
+        </form>
+      </div>
+      <div class="c-stat"><span class="n" id="ebStat">0</span><span class="lbl">to review</span><span class="date">saved on this device</span></div>
+      <div class="c-foot"><span>interactive · your data</span><a href="https://github.com/anandsureshworks/yantra-ebbinghaus">yantra-ebbinghaus ↗</a></div>
+    </article>`;
   }
 
   /* 2 DEEP-DECAY */
@@ -126,10 +159,7 @@
   const muSig=`<div class="sky" aria-hidden="true">${Array.from({length:9},(_,i)=>{const left=(i*11+6)%96,dur=(1.7+(i%4)*.5).toFixed(1),delay=(i*.45).toFixed(1);return `<span class="muon" style="left:${left}%;animation-duration:${dur}s;animation-delay:${delay}s"></span>`;}).join("")}</div>`;
 
   shelf("learn",{title:"Learn", thesis:"AI as a tutor — keep a mind sharp.", key:true, cards:[
-    card({eyebrow:"Memory · spaced repetition", q:"What am I about to forget?",
-      concept:"Every fact fades on its own exponential curve; review resets it. <span class='mono' style='color:var(--t3)'>R = e⁻ᵗ/ˢ</span>",
-      statN:EB.filter(i=>i.r<.9).length, statLbl:"to review", date:"2026-06-23",
-      signal:ebChart(), sigAria:`Forgetting curve, ${EB.filter(i=>i.r<.9).length} of ${EB.length} topics below the 90% review line`, foot:sampleFoot("yantra-ebbinghaus")}),
+    ebCard(),
     card({eyebrow:"Deep time · radioactive decay", q:"How do we read deep time?",
       concept:"Every isotope decays at its own half-life — a clock for a different depth of time. <span class='mono' style='color:var(--t3)'>½ᵗ/ᵗ½</span>",
       statN:ddElapsed, statLbl:"half-lives since Big Bang", date:"2026-06-23",
@@ -151,6 +181,18 @@
       signal:`<div class="chips">${["PERSON","EMAIL","SSN","CARD","API_KEY","IP","JWT","ORG","PHONE"].map(t=>`<span class="chip">${t}</span>`).join("")}</div>`,
       sigAria:"Detects person, email, SSN, card, API key, IP, JWT, org and phone", foot:{note:"interactive",href:"./redactor/",text:"open tool ↗"}}),
   ].join("")});
+
+  // wire interactive ebbinghaus (the one card that reacts to the visitor)
+  (()=>{
+    const chart=document.getElementById("ebChart"), stat=document.getElementById("ebStat"),
+          form=document.getElementById("ebForm"), nm=document.getElementById("ebName"),
+          dy=document.getElementById("ebDays"), clr=document.getElementById("ebClear");
+    if(!chart) return;
+    const draw=()=>{chart.innerHTML=ebChartSVG(ebTopics);stat.textContent=ebTopics.filter(t=>ebRet(t.days)<.9).length;clr.hidden=!ebTopics.length;};
+    form.addEventListener("submit",e=>{e.preventDefault();const n=nm.value.trim();if(!n)return;const d=Math.max(0,Math.min(45,Math.round(+dy.value||0)));ebTopics.push({name:n.slice(0,40),days:d});ebSave();nm.value="";nm.focus();draw();});
+    clr.addEventListener("click",()=>{ebTopics=[];ebSave();draw();});
+    draw();
+  })();
 </script>
 </body>
 </html>
