@@ -120,7 +120,7 @@
       <div class="c-head"><div class="eyebrow">${eyebrow}</div><p class="q">${q}</p><p class="concept">${concept}</p></div>
       <div class="c-signal" role="img" aria-label="${sigAria}" style="position:relative">${signal}</div>
       <div class="c-stat"><span class="n">${statN}</span><span class="lbl">${statLbl}</span><span class="date">${date}</span></div>
-      <div class="c-foot"><span>${foot.note}</span><a href="${foot.href}">${foot.text}</a></div>
+      <div class="c-foot"><span>${foot.note}</span>${foot.href?`<a href="${foot.href}">${foot.text}</a>`:""}</div>
     </article>`;
   }
   const SHELVES=[];
@@ -137,7 +137,7 @@
     document.querySelectorAll(".tpanel").forEach(p=>p.hidden=(p.id!=="panel-"+id));
   }
   const ghUrl=r=>`https://github.com/anandsureshworks/${r}`;
-  const sampleFoot=r=>({note:"sample · 2026-06-23",href:ghUrl(r),text:`${r} ↗`});
+  const sampleFoot=r=>({note:"sample · 2026-06-23"});  // repos private — no source link
 
   /* 1 EBBINGHAUS — interactive: your topics, fixed S=14, saved locally */
   const EB_KEY="eb_topics", EB_S=14;
@@ -173,7 +173,7 @@
         </form>
       </div>
       <div class="c-stat"><span class="n" id="ebStat">0</span><span class="lbl">to review</span><span class="date">saved on this device</span></div>
-      <div class="c-foot"><span>interactive · your data</span><a href="https://github.com/anandsureshworks/yantra-ebbinghaus">yantra-ebbinghaus ↗</a></div>
+      <div class="c-foot"><span>interactive · your data</span></div>
     </article>`;
   }
 
