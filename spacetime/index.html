@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Spacetime — Anand Suresh</title>
+<meta name="description" content="Four procedural sketches of cosmic scale and relativity: looking out is looking back in time, mass bends spacetime, we are a speck — and the experiments that proved Einstein right." />
+<link rel="stylesheet" href="/brand.css" />
+<style>
+  :root{--s0:oklch(8% 0 0);--s1:oklch(13% 0 0);--bd-sub:oklch(22% 0 0);--bd:oklch(28% 0 0);
+    --t1:oklch(96% 0 0);--t2:oklch(70% 0 0);--t3:oklch(56% 0 0);--accent:oklch(72% 0.18 145);
+    --far:oklch(63% 0.16 28);--near:oklch(72% 0.13 240);
+    --sans:"Space Grotesk",system-ui,sans-serif;--mono:"Space Mono",monospace;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--s0);color:var(--t1);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:50rem;margin:0 auto;padding:2.4rem 1.25rem 4rem}
+  .mono{font-family:var(--mono)}
+  .back{font-family:var(--mono);font-size:.74rem;color:var(--t3);text-decoration:none}.back:hover{color:var(--t1)}.back .gt{color:var(--accent)}
+  .lead{font-family:var(--mono);font-size:.8rem;color:var(--accent)}
+  h1{font-size:1.7rem;font-weight:600;margin:.5rem 0 .3rem;letter-spacing:-.01em}
+  .intro{color:var(--t2);max-width:40rem;margin:0 0 2.5rem}
+  section{margin:2.6rem 0;padding-top:2rem;border-top:1px solid var(--bd-sub)}
+  .eyebrow{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3)}
+  h2{font-size:1.15rem;font-weight:600;margin:.35rem 0 .2rem}
+  .teach{font-size:.86rem;color:var(--t2);max-width:40rem;margin:0 0 1.2rem}
+  .teach b{color:var(--t1)}
+
+  /* demo 1: light-travel-time */
+  .lt{display:flex;flex-direction:column;gap:0}
+  .ltrow{display:grid;grid-template-columns:8.5rem 1fr 9rem;align-items:center;gap:.6rem;padding:.4rem 0;border-bottom:1px solid var(--bd-sub);cursor:default}
+  .ltrow:hover{background:oklch(16% 0 0)}
+  .ltrow .nm{font-size:.84rem}
+  .ltrow .bar{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--near),var(--far))}
+  .ltrow .yr{font-family:var(--mono);font-size:.72rem;color:var(--t2);text-align:right}
+  .ltrow .yr b{color:var(--t1)}
+  .ltnote{font-size:.78rem;color:var(--t3);margin-top:.7rem}
+
+  /* demo 2: curvature shader */
+  .glwrap{position:relative;border:1px solid var(--bd-sub);border-radius:14px;overflow:hidden;background:var(--s1)}
+  #gl{display:block;width:100%;height:260px}
+  .glcap{position:absolute;left:12px;bottom:10px;font-family:var(--mono);font-size:.68rem;color:var(--t2);background:oklch(10% 0 0/.6);padding:3px 7px;border-radius:5px}
+
+  /* demo 3: powers of ten */
+  .potwrap{background:var(--s1);border:1px solid var(--bd-sub);border-radius:14px;padding:1.2rem}
+  .potstage{position:relative;height:230px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .frame{width:200px;height:200px;border-radius:50%;border:1px solid var(--bd);position:relative;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle, oklch(15% 0.02 250), oklch(10% 0 0))}
+  .earth{border-radius:50%;background:var(--near);box-shadow:0 0 12px color-mix(in oklch,var(--near) 60%,transparent);flex:none}
+  .youtag{position:absolute;font-family:var(--mono);font-size:.64rem;color:var(--t3)}
+  .potmeta{text-align:center;margin-top:.6rem}
+  .potmeta .nm{font-size:1.1rem;font-weight:700}
+  .potmeta .sc{font-family:var(--mono);font-size:.74rem;color:var(--t3)}
+  .potmeta .awe{font-size:.82rem;color:var(--t2);min-height:1.2rem;margin-top:.2rem}
+  input[type=range]{width:100%;accent-color:var(--accent);margin-top:1rem}
+  /* demo 4: gotchas */
+  .gotchas{display:grid;gap:.9rem;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr))}
+  .gotcha{background:var(--s1);border:1px solid var(--bd-sub);border-radius:12px;padding:1rem}
+  .gotcha .badge{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border:1px solid color-mix(in oklch,var(--accent) 40%,transparent);border-radius:4px;padding:1px 5px;margin-bottom:.55rem}
+  .gotcha .claim{font-size:.92rem;font-weight:600;margin:0 0 .5rem;line-height:1.35}
+  .gotcha .proof{font-size:.8rem;color:var(--t2);line-height:1.5;margin:0}
+  .gotcha .proof b{color:var(--t1)}
+  .closer{font-size:.92rem;color:var(--t1);margin-top:1.4rem;max-width:42rem}
+  .closer b{color:var(--accent)}
+  .pfoot{margin-top:3rem;border-top:1px solid var(--bd-sub);padding-top:1.1rem;font-family:var(--mono);font-size:.72rem;color:var(--t3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/"><span class="gt">&lt;_</span> widgets</a>
+  <p class="lead" style="margin-top:1rem">&gt;_ anandsureshworks · spacetime</p>
+  <h1>Three sketches of "we are a speck"</h1>
+  <p class="intro">Cosmic awe is math, not megabytes — each of these is a few KB. Procedural, in your browser, and each is also a lesson.</p>
+
+  <!-- ============ 1. LIGHT-TRAVEL-TIME ============ -->
+  <section>
+    <div class="eyebrow">Sketch 1 · light-travel-time</div>
+    <h2>Looking out is looking back</h2>
+    <p class="teach">Light is fast but the sky is far. Every star you see is <b>the past</b> — you're seeing it as it was when its light left. The deeper you look, the further back in time.</p>
+    <div class="lt" id="lt"></div>
+    <p class="ltnote">Hover a row. The bar is log-distance; the year is when that light began its trip to your eye.</p>
+  </section>
+
+  <!-- ============ 2. SPACETIME CURVATURE (shader) ============ -->
+  <section>
+    <div class="eyebrow">Sketch 2 · spacetime curvature</div>
+    <h2>Mass tells space how to bend</h2>
+    <p class="teach">Gravity isn't a force pulling you — it's <b>geometry</b>. Mass curves the grid of spacetime, and things just follow the straightest path through the bent grid. Watch the masses drift and the grid warp around them.</p>
+    <div class="glwrap">
+      <canvas id="gl"></canvas>
+      <div class="glcap">one full-screen GLSL fragment shader · ~3 KB · 60 fps</div>
+    </div>
+  </section>
+
+  <!-- ============ 3. POWERS OF TEN ============ -->
+  <section>
+    <div class="eyebrow">Sketch 3 · powers of ten</div>
+    <h2>Zoom out until you vanish</h2>
+    <p class="teach">Drag to pull the camera back, ten times at a step. Watch Earth — the blue dot — shrink past a pixel, until "you are here" stops meaning anything.</p>
+    <div class="potwrap">
+      <div class="potstage"><div class="frame" id="frame"><div class="earth" id="earth"></div><span class="youtag" id="youtag"></span></div></div>
+      <div class="potmeta"><div class="nm" id="potnm">—</div><div class="sc mono" id="potsc">—</div><div class="awe" id="potawe">—</div></div>
+      <input type="range" id="pot" min="0" max="11" value="4" step="1" aria-label="zoom scale" />
+    </div>
+  </section>
+
+  <!-- ============ 4. EINSTEIN'S GOTCHAS ============ -->
+  <section>
+    <div class="eyebrow">Sketch 4 · Einstein's gotchas</div>
+    <h2>It sounded absurd. It was measured anyway.</h2>
+    <p class="teach">Every prediction below was ridiculed, then confirmed. A century of experiments built to <b>break</b> relativity has only made it sturdier — which is why it's still physics' best description of space, time and gravity.</p>
+    <div class="gotchas" id="gotchas"></div>
+    <p class="closer">Not one confirmed experiment has ever contradicted it. <b>That's what "most accepted theory" actually means.</b></p>
+  </section>
+
+  <p class="pfoot">&gt;_ anandsureshworks · spacetime sketches · procedural, computed locally</p>
+</div>
+
+<script type="module">
+  /* ---------- 1. light-travel-time ---------- */
+  const YEAR=2026;
+  const OBJ=[
+    {n:"The Sun", ly:0.0000158, lbl:"8 minutes ago"},
+    {n:"Proxima Cen.", ly:4.24},
+    {n:"Sirius", ly:8.6},
+    {n:"Vega", ly:25},
+    {n:"Arcturus", ly:37},
+    {n:"Aldebaran", ly:65},
+    {n:"Betelgeuse", ly:548},
+    {n:"Rigel", ly:860},
+    {n:"Orion Nebula", ly:1344},
+    {n:"Deneb", ly:2615},
+    {n:"Andromeda", ly:2537000, lbl:"before our species existed"},
+  ];
+  const era=ly=>{ if(ly<1) return "minutes ago"; const y=Math.round(YEAR-ly);
+    if(y>1900) return `light left in <b>${y}</b>`;
+    if(y>0) return `left in <b>${y} CE</b>`;
+    return `left <b>${Math.abs(y).toLocaleString()} BCE</b>`; };
+  const lmax=Math.log10(2537000);
+  document.getElementById("lt").innerHTML=OBJ.map(o=>{
+    const w=Math.max(4, (Math.log10(Math.max(o.ly,0.01))+2)/(lmax+2)*100);
+    const dist = o.ly<1?"8 light-min": o.ly<1000?`${o.ly} ly`: o.ly<1e6?`${Math.round(o.ly)} ly`:`${(o.ly/1e6).toFixed(1)}M ly`;
+    return `<div class="ltrow"><span class="nm">${o.n}</span><span class="bar" style="width:${w}%"></span>
+      <span class="yr">${o.lbl?`<b>${o.lbl}</b>`:era(o.ly)}<br><span style="color:var(--t3)">${dist}</span></span></div>`;
+  }).join("");
+
+  /* ---------- 2. spacetime curvature (WebGL fragment shader) ---------- */
+  (function(){
+    const cv=document.getElementById("gl");
+    const gl=cv.getContext("webgl");
+    if(!gl){ cv.parentElement.style.background="radial-gradient(circle at 40% 40%, oklch(20% 0.05 160), oklch(10% 0 0))"; return; }
+    const vs=`attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}`;
+    const fs=`precision highp float;uniform vec2 u_res;uniform float u_time;
+      void main(){
+        vec2 uv=(gl_FragCoord.xy-0.5*u_res)/u_res.y;
+        vec2 m1=0.42*vec2(sin(u_time*0.30),cos(u_time*0.23));
+        vec2 m2=0.38*vec2(cos(u_time*0.19),sin(u_time*0.27));
+        vec2 p=uv;
+        for(int i=0;i<2;i++){vec2 m=i==0?m1:m2;vec2 d=p-m;float r=length(d)+0.04;p-=normalize(d)*(0.045/r);}
+        vec2 g=abs(fract(p*8.0)-0.5);
+        float line=smoothstep(0.0,0.035,min(g.x,g.y));
+        float grid=1.0-line;
+        float glow=0.012/length(uv-m1)+0.012/length(uv-m2);
+        vec3 base=vec3(0.035,0.045,0.06);
+        vec3 lc=vec3(0.40,0.74,0.58);
+        vec3 col=base+lc*grid*0.7+lc*glow*0.5;
+        gl_FragColor=vec4(col,1.0);
+      }`;
+    const sh=(t,s)=>{const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return o;};
+    const prog=gl.createProgram();gl.attachShader(prog,sh(gl.VERTEX_SHADER,vs));gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(prog);gl.useProgram(prog);
+    const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+    const loc=gl.getAttribLocation(prog,"p");gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+    const uRes=gl.getUniformLocation(prog,"u_res"),uT=gl.getUniformLocation(prog,"u_time");
+    const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function resize(){const w=cv.clientWidth,h=cv.clientHeight,d=Math.min(devicePixelRatio,2);cv.width=w*d;cv.height=h*d;gl.viewport(0,0,cv.width,cv.height);}
+    resize();addEventListener("resize",resize);
+    function frame(t){gl.uniform2f(uRes,cv.width,cv.height);gl.uniform1f(uT,reduce?6.0:t*0.001);gl.drawArrays(gl.TRIANGLES,0,3);if(!reduce)requestAnimationFrame(frame);}
+    if(reduce)frame(6000);else requestAnimationFrame(frame);
+  })();
+
+  /* ---------- 3. powers of ten ---------- */
+  const SC=[
+    {p:0,nm:"You",across:"~1 m",awe:"One person."},
+    {p:1,nm:"A room",across:"~10 m",awe:""},
+    {p:3,nm:"A neighbourhood",across:"~1 km",awe:""},
+    {p:5,nm:"A region",across:"~100 km",awe:""},
+    {p:7,nm:"Earth",across:"~12,700 km",awe:"The whole world — one dot from here on."},
+    {p:9,nm:"Earth & Moon",across:"~770,000 km",awe:""},
+    {p:11,nm:"Inner Solar System",across:"~0.3 billion km",awe:""},
+    {p:13,nm:"The Solar System",across:"~9 billion km",awe:"Everything humans have ever touched."},
+    {p:17,nm:"Nearest stars",across:"~5 light-years",awe:""},
+    {p:21,nm:"The Milky Way",across:"~100,000 light-years",awe:"200 billion suns. Ours is one."},
+    {p:23,nm:"The Local Group",across:"~10 million light-years",awe:""},
+    {p:27,nm:"Observable Universe",across:"~93 billion light-years",awe:"A speck, on a speck, orbiting a speck."},
+  ];
+  const earth=document.getElementById("earth"), youtag=document.getElementById("youtag"), FR=200;
+  function pot(i){const s=SC[i];
+    // earth diameter (1.27e7 m) as fraction of current frame (10^p m), mapped to the 200px frame
+    const frac=1.27e7/Math.pow(10,s.p);
+    const d=Math.min(FR, frac*FR);
+    earth.style.width=earth.style.height=(d>0.8? d.toFixed(1): 0)+"px";
+    youtag.textContent = d<2 ? "↖ you are in there, somewhere" : (s.p<=7? "":"");
+    youtag.style.top="58%"; youtag.style.left="52%";
+    document.getElementById("potnm").textContent=s.nm;
+    document.getElementById("potsc").textContent="across "+s.across+"  ·  10^"+s.p+" m";
+    document.getElementById("potawe").textContent=s.awe;
+  }
+  const slider=document.getElementById("pot");
+  slider.addEventListener("input",e=>pot(+e.target.value));
+  pot(+slider.value);
+
+  /* ---------- 4. einstein's gotchas ---------- */
+  const GOT=[
+    {badge:"confirmed · muons + 1971",
+     claim:"Moving clocks run slow.",
+     proof:"Muons born 15 km up should decay long before they hit the ground — they only make it because, at near light-speed, <b>their clocks tick slow</b>. Atomic clocks flown around the world in 1971 lost exactly the predicted nanoseconds."},
+    {badge:"confirmed · 1959 + your phone",
+     claim:"Gravity slows time.",
+     proof:"A clock at your feet ticks slower than one at your head. GPS satellites run <b>faster</b> than ground clocks — uncorrected for relativity, your maps would drift ~10 km every day."},
+    {badge:"confirmed · 1919 eclipse",
+     claim:"Mass bends light itself.",
+     proof:"During a solar eclipse, stars near the Sun appeared <b>shifted</b> — light bent by the Sun's curved spacetime, exactly as Einstein (not Newton) predicted. It made him world-famous overnight."},
+    {badge:"confirmed · LIGO 2015",
+     claim:"Spacetime ripples.",
+     proof:"Two black holes merging <b>1.3 billion light-years away</b> stretched the Earth by less than the width of a proton — and LIGO felt it. Predicted in 1916, measured 99 years later."},
+    {badge:"confirmed · every star",
+     claim:"Mass is frozen energy. E = mc².",
+     proof:"A gram of mass holds a city's worth of energy. Every nuclear reactor, every star, and the <b>Sun warming you right now</b> runs on converting a sliver of mass into light."},
+    {badge:"confirmed · EHT 2019",
+     claim:"Gravity can trap light forever.",
+     proof:"The Event Horizon Telescope photographed the shadow of the black hole M87* — its size matched general relativity's prediction <b>to the pixel</b>."},
+  ];
+  document.getElementById("gotchas").innerHTML=GOT.map(g=>
+    `<div class="gotcha"><span class="badge">✓ ${g.badge}</span><p class="claim">${g.claim}</p><p class="proof">${g.proof}</p></div>`).join("");
+</script>
+</body>
+</html>

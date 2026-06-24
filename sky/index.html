@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tonight's Sky — Anand Suresh</title>
+<meta name="description" content="Your actual night sky, computed from your location and this moment — Sun, Moon phase, and the bright stars over your horizon. Pure astronomy, in your browser." />
+<link rel="stylesheet" href="/brand.css" />
+<style>
+  :root{--s0:oklch(8% 0 0);--s1:oklch(13% 0 0);--bd-sub:oklch(22% 0 0);--bd:oklch(28% 0 0);
+    --t1:oklch(96% 0 0);--t2:oklch(70% 0 0);--t3:oklch(56% 0 0);--accent:oklch(72% 0.18 145);
+    --star:oklch(95% 0.02 250);--sun:oklch(82% 0.15 75);--moon:oklch(88% 0.03 250);
+    --sans:"Space Grotesk",system-ui,sans-serif;--mono:"Space Mono",monospace;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--s0);color:var(--t1);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:50rem;margin:0 auto;padding:2.2rem 1.25rem 3rem}
+  .back{font-family:var(--mono);font-size:.74rem;color:var(--t3);text-decoration:none}.back .gt{color:var(--accent)}
+  h1{font-size:1.6rem;font-weight:600;margin:1rem 0 .25rem;letter-spacing:-.01em}
+  .q{font-size:1rem;color:var(--t2);margin:0 0 .3rem}
+  .concept{font-size:.86rem;color:var(--t2);max-width:42rem;margin:0 0 1.4rem}
+  .loc{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:1.4rem;font-family:var(--mono);font-size:.78rem}
+  .loc input{width:84px;background:var(--s1);border:1px solid var(--bd);border-radius:6px;color:var(--t1);font-family:var(--mono);font-size:.76rem;padding:5px 7px}
+  .loc button{font-family:var(--sans);font-weight:600;font-size:.78rem;border:1px solid color-mix(in oklch,var(--accent) 50%,transparent);background:color-mix(in oklch,var(--accent) 14%,transparent);color:var(--accent);border-radius:7px;padding:6px 11px;cursor:pointer}
+  .loc .preset{border-color:var(--bd);background:transparent;color:var(--t2)}
+  .loc label{color:var(--t3)}
+  .tool{display:grid;gap:1.6rem}
+  @media(min-width:46rem){.tool{grid-template-columns:1fr .72fr;align-items:start}}
+  .skywrap{background:var(--s1);border:1px solid var(--bd-sub);border-radius:14px;padding:.6rem;position:relative}
+  .panel{display:flex;flex-direction:column;gap:.9rem}
+  .pcard{background:var(--s1);border:1px solid var(--bd-sub);border-radius:12px;padding:.9rem 1rem}
+  .pcard h2{font-size:.64rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.09em;color:var(--t3);margin:0 0 .5rem}
+  .big{font-size:1.15rem;font-weight:700}
+  .sub{font-size:.78rem;color:var(--t2)}
+  .kv{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.76rem;padding:.18rem 0;color:var(--t2)}
+  .kv b{color:var(--t1);font-weight:700}
+  .vis{font-size:.78rem;color:var(--t2);line-height:1.7}.vis .nm{color:var(--t1)}
+  .pfoot{margin-top:2.4rem;border-top:1px solid var(--bd-sub);padding-top:1.1rem;font-family:var(--mono);font-size:.72rem;color:var(--t3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/"><span class="gt">&lt;_</span> widgets</a>
+  <h1>Tonight's Sky</h1>
+  <p class="q">Where are you on Earth — and what's above you right now?</p>
+  <p class="concept">Your actual sky, computed from your location and this exact moment — the Sun, the Moon's phase, and the bright stars over your horizon. No API, no account; pure astronomy, in your browser.</p>
+
+  <div class="loc">
+    <button id="geo">📍 use my location</button>
+    <label>or</label>
+    lat <input id="lat" type="number" step="0.1" value="37.8" />
+    lng <input id="lng" type="number" step="0.1" value="-122.4" />
+    <button id="apply" class="preset">show sky</button>
+    <button class="preset" data-lat="51.5" data-lng="-0.1">London</button>
+    <button class="preset" data-lat="13.08" data-lng="80.27">Chennai</button>
+    <button class="preset" data-lat="-33.9" data-lng="151.2">Sydney</button>
+  </div>
+
+  <div class="tool">
+    <div class="skywrap"><div id="sky" role="img" aria-label="sky map"></div></div>
+    <div class="panel">
+      <div class="pcard"><h2>Right now</h2><div class="big" id="state">—</div><div class="sub" id="when">—</div></div>
+      <div class="pcard"><h2>Moon</h2><div class="kv"><span id="moonName">—</span><b id="moonPct">—</b></div></div>
+      <div class="pcard"><h2>Bright stars up</h2><div class="vis" id="vis">—</div></div>
+      <div class="pcard"><h2>Rising in the east</h2><div class="vis" id="heliacal">—</div></div>
+    </div>
+  </div>
+  <p class="pfoot">&gt;_ anandsureshworks · tonight's-sky · pure astronomy, computed locally</p>
+</div>
+
+<script type="module">
+  const D2R=Math.PI/180, R2D=180/Math.PI, clamp=x=>Math.max(-1,Math.min(1,x));
+  const STARS=[
+    ["Sirius",6.752,-16.716,-1.46],["Canopus",6.399,-52.696,-0.74],["Arcturus",14.261,19.182,-0.05],
+    ["Vega",18.616,38.784,0.03],["Capella",5.278,45.998,0.08],["Rigel",5.242,-8.202,0.13],
+    ["Procyon",7.655,5.225,0.34],["Betelgeuse",5.919,7.407,0.42],["Achernar",1.629,-57.237,0.46],
+    ["Altair",19.846,8.868,0.76],["Aldebaran",4.599,16.509,0.85],["Spica",13.420,-11.161,1.04],
+    ["Antares",16.490,-26.432,1.06],["Pollux",7.755,28.026,1.14],["Fomalhaut",22.961,-29.622,1.16],
+    ["Deneb",20.690,45.280,1.25],["Regulus",10.140,11.967,1.35],["Castor",7.577,31.888,1.58],
+    ["Polaris",2.530,89.264,1.98],
+  ].map(([n,raH,dec,mag])=>({n,ra:raH*15,dec,mag}));
+
+  const jd=d=>d.getTime()/86400000+2440587.5;
+  const gmst=j=>{let t=(280.46061837+360.98564736629*(j-2451545))%360;return (t+360)%360;};
+  function altaz(ra,dec,lst,lat){
+    const H=(((lst-ra)%360+360)%360)*D2R, dr=dec*D2R, lr=lat*D2R;
+    const sa=clamp(Math.sin(lr)*Math.sin(dr)+Math.cos(lr)*Math.cos(dr)*Math.cos(H));
+    const alt=Math.asin(sa);
+    let az=Math.acos(clamp((Math.sin(dr)-Math.sin(lr)*sa)/(Math.cos(lr)*Math.cos(alt))));
+    if(Math.sin(H)>0) az=2*Math.PI-az;
+    return {alt:alt*R2D, az:az*R2D};
+  }
+  function sun(j){const n=j-2451545;let L=(280.460+0.9856474*n)%360;if(L<0)L+=360;
+    const g=((357.528+0.9856003*n)%360)*D2R, lam=(L+1.915*Math.sin(g)+0.020*Math.sin(2*g))*D2R, eps=(23.439-4e-7*n)*D2R;
+    let ra=Math.atan2(Math.cos(eps)*Math.sin(lam),Math.cos(lam))*R2D;ra=(ra+360)%360;
+    return {ra,dec:Math.asin(Math.sin(eps)*Math.sin(lam))*R2D};}
+  function moon(j){const T=(j-2451545)/36525;
+    const Lp=(218.316+481267.881*T)*D2R, M=(134.963+477198.867*T)*D2R, F=(93.272+483202.017*T)*D2R;
+    const lon=Lp+6.289*Math.sin(M)*D2R, lat=5.128*Math.sin(F)*D2R, eps=23.439*D2R;
+    const ra=Math.atan2(Math.sin(lon)*Math.cos(eps)-Math.tan(lat)*Math.sin(eps),Math.cos(lon));
+    const dec=Math.asin(Math.sin(lat)*Math.cos(eps)+Math.cos(lat)*Math.sin(eps)*Math.sin(lon));
+    return {ra:((ra*R2D)%360+360)%360, dec:dec*R2D};}
+  function moonPhase(d){const age=(((jd(d)-2451550.1)%29.530588853)+29.530588853)%29.530588853;
+    const illum=(1-Math.cos(2*Math.PI*age/29.530588853))/2;
+    const names=["New","Waxing crescent","First quarter","Waxing gibbous","Full","Waning gibbous","Last quarter","Waning crescent"];
+    return {illum, name:names[Math.floor((age/29.530588853)*8+0.5)%8]};}
+
+  function render(lat,lng){
+    const now=new Date(), j=jd(now), lst=((gmst(j)+lng)%360+360)%360;
+    const s=sun(j), sAA=altaz(s.ra,s.dec,lst,lat);
+    const m=moon(j), mAA=altaz(m.ra,m.dec,lst,lat), mp=moonPhase(now);
+    const stars=STARS.map(st=>({...st, ...altaz(st.ra,st.dec,lst,lat)}));
+    const up=stars.filter(s=>s.alt>0).sort((a,b)=>a.mag-b.mag);
+
+    // sky map (polar: zenith centre, horizon edge; N up, E right)
+    const W=320,cx=160,cy=160,Rr=150;
+    const xy=(alt,az)=>{const r=(90-alt)/90*Rr, a=az*D2R; return [cx+r*Math.sin(a), cy-r*Math.cos(a)];};
+    const night=sAA.alt< -6, twi=sAA.alt>=-6&&sAA.alt<0;
+    const bg= sAA.alt>0?"oklch(40% 0.06 250)": twi?"oklch(20% 0.05 260)":"oklch(11% 0.03 260)";
+    let svg=`<svg viewBox="0 0 ${W} ${W}" width="100%" style="max-width:330px;display:block">
+      <circle cx="${cx}" cy="${cy}" r="${Rr}" fill="${bg}" stroke="var(--bd)"/>`;
+    [30,60].forEach(al=>{const r=(90-al)/90*Rr;svg+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--bd-sub)" opacity=".6"/>`;});
+    [["N",0],["E",90],["S",180],["W",270]].forEach(([l,az])=>{const[x,y]=xy(-3,az);svg+=`<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle" fill="var(--t3)" font-family="Space Mono" font-size="9">${l}</text>`;});
+    up.forEach(st=>{const[x,y]=xy(st.alt,st.az), r=Math.max(1.1,2.6-st.mag*0.5);
+      svg+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}" fill="var(--star)"/>`;
+      if(st.mag<1.0) svg+=`<text x="${(x+r+2).toFixed(1)}" y="${(y+3).toFixed(1)}" fill="var(--t2)" font-family="Space Grotesk" font-size="8">${st.n}</text>`;});
+    if(mAA.alt>0){const[x,y]=xy(mAA.alt,mAA.az);svg+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5" fill="var(--moon)" opacity="${(0.3+mp.illum*0.7).toFixed(2)}"/>`;}
+    if(sAA.alt>0){const[x,y]=xy(sAA.alt,sAA.az);svg+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7" fill="var(--sun)"/>`;}
+    svg+=`</svg>`;
+    document.getElementById("sky").innerHTML=svg;
+
+    document.getElementById("state").textContent = sAA.alt>0?"Daytime ☀": twi?"Twilight":"Night sky ✦";
+    document.getElementById("when").textContent = now.toLocaleString(undefined,{hour:"2-digit",minute:"2-digit"})+" · lat "+lat.toFixed(1)+", lng "+lng.toFixed(1)+(sAA.alt>0?" · stars below the glare":"");
+    document.getElementById("moonName").textContent=mp.name+(mAA.alt>0?" · up":" · below horizon");
+    document.getElementById("moonPct").textContent=Math.round(mp.illum*100)+"% lit";
+    document.getElementById("vis").innerHTML = up.length? up.slice(0,6).map(s=>`<span class="nm">${s.n}</span> <span style="color:var(--t3)">${Math.round(s.alt)}°</span>`).join(" · ") : "none above the horizon";
+    // heliacal-ish: brightest star rising in the east (az 45–135, alt 0–25)
+    const rising=up.filter(s=>s.az>45&&s.az<135&&s.alt<25).sort((a,b)=>a.mag-b.mag)[0];
+    document.getElementById("heliacal").innerHTML = rising? `<span class="nm">${rising.n}</span> is climbing the eastern sky — its heliacal season marks the turn of the year for cultures that watched it.` : "no bright star low in the east right now.";
+  }
+
+  const $=id=>document.getElementById(id);
+  function go(){render(parseFloat($("lat").value)||0, parseFloat($("lng").value)||0);}
+  $("apply").addEventListener("click",go);
+  document.querySelectorAll(".preset[data-lat]").forEach(b=>b.addEventListener("click",()=>{$("lat").value=b.dataset.lat;$("lng").value=b.dataset.lng;go();}));
+  $("geo").addEventListener("click",()=>navigator.geolocation?.getCurrentPosition(p=>{$("lat").value=p.coords.latitude.toFixed(2);$("lng").value=p.coords.longitude.toFixed(2);go();}));
+  go();
+</script>
+</body>
+</html>

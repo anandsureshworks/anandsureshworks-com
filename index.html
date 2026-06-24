@@ -210,6 +210,10 @@
   const cocgSig=`<div class="coc">${COCG.map(d=>{const inq=d.s>=7;return `<div class="cocrow"><span class="dm">${d.dom}</span><span class="tag ${inq?'in':'out'}">${inq?'in':'grow'}</span><span class="cocbar"><i style="width:${d.s*10}%;background:${dcol(d.s/10)}"></i></span><span class="sc">${d.s.toFixed(1)}</span></div>`}).join("")}</div>`;
   const gcgSig=`<div class="gcg"><div class="lede">5C · density · token cost — checked before you send.</div><div class="five"><span class="on">Character</span><span class="on">Cause</span><span class="on">Constraint</span><span>Contingency</span><span>Calibration</span></div></div>`;
 
+  /* cosmos glance teasers */
+  const skyGlance=(()=>{let d="";for(let i=0;i<16;i++){const a=i*2.39996,r=56*Math.sqrt((i+.5)/16),x=100+r*Math.cos(a),y=66+r*Math.sin(a),s=(0.8+((i*7)%3)*0.5).toFixed(1);d+=`<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${s}" fill="var(--t1)"/>`;}return `<svg viewBox="0 0 200 132" width="100%" style="max-width:210px"><circle cx="100" cy="66" r="60" fill="oklch(11% 0.02 260)" stroke="var(--bd)"/>${d}<circle cx="138" cy="40" r="5" fill="var(--d5)" opacity=".85"/></svg>`;})();
+  const stGlance=`<svg viewBox="0 0 200 132" width="100%" style="max-width:210px">${[58,46,34,22,12].map(r=>`<circle cx="100" cy="66" r="${r}" fill="none" stroke="var(--t3)" stroke-width="1" opacity="${(0.25+(60-r)/120).toFixed(2)}"/>`).join("")}<circle cx="100" cy="66" r="4.5" fill="var(--t1)"/></svg>`;
+
   shelf("learn",{title:"Learn", thesis:"AI as a tutor — sharpen how you think.", key:true, cards:[
     ebCard(),
     card({eyebrow:"Self · competence", q:"What's inside your circle?",
@@ -240,6 +244,17 @@
       statN:"9", statLbl:"PII types caught · live", date:"2026-06-23",
       signal:`<div class="chips">${["PERSON","EMAIL","SSN","CARD","API_KEY","IP","JWT","ORG","PHONE"].map(t=>`<span class="chip">${t}</span>`).join("")}</div>`,
       sigAria:"Detects person, email, SSN, card, API key, IP, JWT, org and phone", foot:{note:"interactive",href:"./redactor/",text:"open tool ↗"}}),
+  ].join("")});
+
+  shelf("cosmos",{title:"Cosmos", thesis:"Where you are — and how small that is.", key:false, cards:[
+    card({eyebrow:"Cosmos · your sky", q:"What's above you right now?",
+      concept:"Your real sky — Sun, Moon phase, the bright stars over your horizon — from where you are, this second.",
+      statN:"live", statLbl:"from your location", date:"",
+      signal:skyGlance, sigAria:"A map of bright stars in the night sky", foot:{note:"interactive",href:"./sky/",text:"open ↗"}}),
+    card({eyebrow:"Cosmos · spacetime", q:"How big is it — really?",
+      concept:"Looking out is looking back in time; mass bends spacetime; we are a speck — and the proof Einstein was right.",
+      statN:"4", statLbl:"sketches · a cosmology tutor", date:"",
+      signal:stGlance, sigAria:"Concentric ripples in spacetime", foot:{note:"interactive",href:"./spacetime/",text:"open ↗"}}),
   ].join("")});
 
   renderTabs();
