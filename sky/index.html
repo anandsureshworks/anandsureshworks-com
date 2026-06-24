@@ -128,7 +128,13 @@
     document.getElementById("sky").innerHTML=svg;
 
     document.getElementById("state").textContent = sAA.alt>0?"Daytime ☀": twi?"Twilight":"Night sky ✦";
-    document.getElementById("when").textContent = now.toLocaleString(undefined,{hour:"2-digit",minute:"2-digit"})+" · lat "+lat.toFixed(1)+", lng "+lng.toFixed(1)+(sAA.alt>0?" · stars below the glare":"");
+    // local solar time AT THIS LOCATION (from longitude) — so the clock agrees with the sky,
+    // not the visitor's browser timezone. ≈ wall-clock ± the zone's offset from true solar.
+    const solar=new Date(now.getTime()+lng/15*3600e3);
+    const hhmm=String(solar.getUTCHours()).padStart(2,"0")+":"+String(solar.getUTCMinutes()).padStart(2,"0");
+    const sunNote = sAA.alt>0 ? "sun "+Math.round(sAA.alt)+"° up · stars below the glare"
+                  : "sun "+Math.round(Math.abs(sAA.alt))+"° below";
+    document.getElementById("when").textContent = hhmm+" local solar · "+sunNote;
     document.getElementById("moonName").textContent=mp.name+(mAA.alt>0?" · up":" · below horizon");
     document.getElementById("moonPct").textContent=Math.round(mp.illum*100)+"% lit";
     document.getElementById("vis").innerHTML = up.length? up.slice(0,6).map(s=>`<span class="nm">${s.n}</span> <span style="color:var(--t3)">${Math.round(s.alt)}°</span>`).join(" · ") : "none above the horizon";
