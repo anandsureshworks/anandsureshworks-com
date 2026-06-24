@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Circle of Competence — Anand Suresh</title>
+<meta name="description" content="A self-assessment instrument: rate what you know, see your circle of competence, and know when to trust your judgment vs. borrow and verify." />
+<link rel="stylesheet" href="/brand.css" />
+<style>
+  .wrap{max-width:56rem;margin:0 auto;padding:2.2rem 1.25rem 3rem}
+  .back{font-family:var(--mono);font-size:.74rem;color:var(--t3);text-decoration:none}
+  .back:hover{color:var(--t1)} .back .gt{color:var(--accent)}
+  h1{font-size:1.6rem;font-weight:600;margin:1rem 0 .25rem;letter-spacing:-.01em}
+  .q{font-size:1rem;color:var(--t2);margin:0 0 .3rem}
+  .concept{font-size:.86rem;color:var(--t2);max-width:40rem;margin:0 0 2rem}
+  .concept b{color:var(--t1)}
+  .tool{display:grid;gap:2rem}
+  @media(min-width:48rem){.tool{grid-template-columns:1fr .85fr;align-items:start}}
+  .radar-wrap{background:var(--s1);border:1px solid var(--bd-sub);border-radius:14px;padding:1rem;display:flex;flex-direction:column;align-items:center}
+  .summary{font-family:var(--mono);font-size:.78rem;color:var(--t2);margin-top:.4rem}
+  .summary b{color:var(--d5)}
+  .panel h2{font-size:.7rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.09em;color:var(--t3);margin:0 0 .7rem}
+  .drow{display:flex;align-items:center;gap:.6rem;padding:.5rem 0;border-bottom:1px solid var(--bd-sub)}
+  .drow .nm{flex:1;font-size:.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .drow input[type=range]{width:96px;accent-color:var(--accent)}
+  .drow .sc{font-family:var(--mono);font-size:.8rem;width:30px;text-align:right}
+  .drow .rm{background:none;border:none;color:var(--t3);cursor:pointer;font-size:1rem;line-height:1;padding:0 2px}
+  .drow .rm:hover{color:var(--d1)}
+  .addf{display:flex;gap:.5rem;margin-top:.9rem}
+  .addf input{flex:1;background:var(--s0);border:1px solid var(--bd);border-radius:7px;color:var(--t1);font-family:var(--sans);font-size:.82rem;padding:7px 10px}
+  .addf input:focus-visible{outline:none;border-color:var(--accent)}
+  .addf button{flex:none;border:1px solid color-mix(in oklch,var(--accent) 50%,transparent);background:color-mix(in oklch,var(--accent) 14%,transparent);color:var(--accent);border-radius:7px;font-size:.82rem;padding:0 12px;cursor:pointer}
+  .hint{font-size:.78rem;color:var(--t3);margin-top:1.1rem;line-height:1.5}
+  .hint b{color:var(--t2)}
+  .pfoot{margin-top:3rem;border-top:1px solid var(--bd-sub);padding-top:1.1rem;font-family:var(--mono);font-size:.72rem;color:var(--t3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/"><span class="gt">&lt;_</span> widgets</a>
+  <h1>Circle of Competence</h1>
+  <p class="q">What's inside your circle?</p>
+  <p class="concept">Rate what you actually know. <b>Inside the edge</b> (7.0) — trust your own judgment and predict. <b>Outside it</b> — borrow breadth and verify, don't guess.</p>
+
+  <div class="tool">
+    <div class="radar-wrap">
+      <div id="radar" role="img" aria-label="Competence radar"></div>
+      <div class="summary" id="summary"></div>
+    </div>
+    <div class="panel">
+      <h2>Rate your domains</h2>
+      <div id="domains"></div>
+      <form class="addf" id="addf"><input id="addn" placeholder="add a domain…" maxlength="28" autocomplete="off" /><button type="submit">add</button></form>
+      <p class="hint">The dashed ring is your <b>edge of competence</b> at 7.0. A domain past it sits <b>inside your circle</b> — act on your own read. Short of it, you're <b>outside</b> — borrow and detect. Saved on this device.</p>
+    </div>
+  </div>
+  <p class="pfoot">&gt;_ anandsureshworks · circle-of-competence · self-assessed, local only</p>
+</div>
+
+<script type="module">
+  const KEY="coc_domains", THRESH=7.0;
+  const dcol=v=> v>=.8?"var(--d5)": v>=.7?"var(--d4)": v>=.4?"var(--d2)":"var(--d1)";
+  let D=(()=>{try{const v=JSON.parse(localStorage.getItem(KEY));return v&&v.length?v:null}catch{return null}})() || [
+    {name:"AI Engineering",s:8.6},{name:"Security / CDN",s:8.4},{name:"Storytelling & Vision",s:7.9},
+    {name:"Domain Scholarship",s:7.8},{name:"Personal Finance",s:7.7},{name:"Leadership",s:6.6},
+  ];
+  const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(D))}catch{}};
+  const esc=s=>s.replace(/[<>&]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;"}[c]));
+
+  function renderRadar(){
+    const el=document.getElementById("radar");
+    const size=300,cx=150,cy=150,maxR=112,N=D.length;
+    if(N<3){el.innerHTML=`<svg viewBox="0 0 ${size} ${size}" width="100%"><text x="${cx}" y="${cy}" text-anchor="middle" fill="var(--t3)" font-family="Space Grotesk" font-size="12">add at least 3 domains</text></svg>`;return;}
+    const ang=i=>-Math.PI/2+i*2*Math.PI/N, pt=(i,r)=>[cx+Math.cos(ang(i))*r, cy+Math.sin(ang(i))*r];
+    const ring=(r,attr)=>{const p=D.map((_,i)=>pt(i,r).map(n=>n.toFixed(1)).join(",")).join(" ");return `<polygon points="${p}" fill="none" ${attr}/>`;};
+    const grid=[.25,.5,.75,1].map(f=>ring(f*maxR,`stroke="var(--bd-sub)"`)).join("");
+    const edge=ring(THRESH/10*maxR,`stroke="var(--t3)" stroke-dasharray="3 3" opacity=".8"`);
+    const axes=D.map((_,i)=>{const[x,y]=pt(i,maxR);return `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="var(--bd-sub)"/>`;}).join("");
+    const poly=D.map((d,i)=>pt(i,d.s/10*maxR).map(n=>n.toFixed(1)).join(",")).join(" ");
+    const shape=`<polygon points="${poly}" fill="color-mix(in oklch,var(--d4) 16%,transparent)" stroke="var(--d4)" stroke-width="1.5"/>`;
+    const verts=D.map((d,i)=>{const[x,y]=pt(i,d.s/10*maxR);return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.4" fill="${dcol(d.s/10)}"/>`;}).join("");
+    const labels=D.map((d,i)=>{const[x,y]=pt(i,maxR+13);const c=Math.cos(ang(i));const anc=c>.3?"start":c<-.3?"end":"middle";
+      return `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${anc}" dominant-baseline="middle" fill="var(--t2)" font-family="Space Grotesk" font-size="9.5">${esc(d.name)}</text>
+        <text x="${x.toFixed(1)}" y="${(y+11).toFixed(1)}" text-anchor="${anc}" dominant-baseline="middle" fill="${dcol(d.s/10)}" font-family="Space Mono" font-size="9">${d.s.toFixed(1)}</text>`;}).join("");
+    el.innerHTML=`<svg viewBox="0 0 ${size} ${size}" width="100%" style="max-width:300px">${grid}${edge}${axes}${shape}${verts}${labels}</svg>`;
+  }
+  function renderDomains(){
+    document.getElementById("domains").innerHTML=D.map((d,i)=>`<div class="drow">
+      <span class="nm">${esc(d.name)}</span>
+      <input type="range" min="0" max="10" step="0.1" value="${d.s}" data-i="${i}" aria-label="${esc(d.name)} score" />
+      <span class="sc" style="color:${dcol(d.s/10)}">${d.s.toFixed(1)}</span>
+      <button class="rm" data-i="${i}" aria-label="remove ${esc(d.name)}">×</button></div>`).join("");
+    document.getElementById("summary").innerHTML=`<b>${D.filter(d=>d.s>=THRESH).length}</b> of ${D.length} inside your circle`;
+  }
+  function draw(){renderRadar();renderDomains();}
+  document.getElementById("domains").addEventListener("input",e=>{const i=+e.target.dataset.i;if(e.target.type==="range"){D[i].s=+e.target.value;save();draw();}});
+  document.getElementById("domains").addEventListener("click",e=>{if(e.target.classList.contains("rm")){D.splice(+e.target.dataset.i,1);save();draw();}});
+  document.getElementById("addf").addEventListener("submit",e=>{e.preventDefault();const n=document.getElementById("addn").value.trim();if(!n)return;D.push({name:n.slice(0,28),s:5});save();document.getElementById("addn").value="";draw();});
+  draw();
+</script>
+</body>
+</html>

@@ -61,6 +61,24 @@
   .eb-clear{flex:none;font-family:var(--mono);font-size:.64rem;color:var(--t3);background:none;border:none;cursor:pointer;padding:2px}
   .eb-clear:hover{color:var(--t2)}
 
+  /* circle-of-competence glance (bars) */
+  .coc{display:flex;flex-direction:column;height:100%;justify-content:center}
+  .cocrow{display:flex;align-items:center;gap:9px;padding:.24rem 0;font-size:.75rem}
+  .cocrow+.cocrow{border-top:1px solid var(--bd-sub)}
+  .cocrow .dm{flex:1;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cocrow .tag{font-family:var(--mono);font-size:.58rem;padding:0 .3rem;border-radius:3px}
+  .cocrow .tag.in{color:var(--d5);border:1px solid color-mix(in oklch,var(--d5) 40%,transparent)}
+  .cocrow .tag.out{color:var(--d2);border:1px solid color-mix(in oklch,var(--d2) 40%,transparent)}
+  .cocbar{width:58px;height:4px;background:var(--bd);border-radius:2px;flex:none;overflow:hidden}
+  .cocbar i{display:block;height:100%}
+  .cocrow .sc{font-family:var(--mono);font-size:.68rem;width:26px;text-align:right;color:var(--t2)}
+  /* great-consumer glance (5C pills) */
+  .gcg{display:flex;flex-direction:column;gap:10px;justify-content:center;height:100%}
+  .gcg .lede{font-size:.78rem;color:var(--t2);line-height:1.4}
+  .gcg .five{display:flex;flex-wrap:wrap;gap:5px}
+  .gcg .five span{font-family:var(--mono);font-size:.62rem;color:var(--t3);border:1px solid var(--bd);border-radius:4px;padding:2px 6px}
+  .gcg .five span.on{color:var(--d5);border-color:color-mix(in oklch,var(--d5) 40%,transparent)}
+
   /* secure */
   .chips{display:flex;flex-wrap:wrap;gap:6px;align-content:center}
   .chip{font-family:var(--mono);font-size:.66rem;color:var(--d2);border:1px solid color-mix(in oklch,var(--d2) 42%,transparent);border-radius:4px;padding:2px 7px}
@@ -169,8 +187,22 @@
   /* 4 MUON */
   const muSig=`<div class="sky" aria-hidden="true">${Array.from({length:9},(_,i)=>{const left=(i*11+6)%96,dur=(1.7+(i%4)*.5).toFixed(1),delay=(i*.45).toFixed(1);return `<span class="muon" style="left:${left}%;animation-duration:${dur}s;animation-delay:${delay}s"></span>`;}).join("")}</div>`;
 
-  shelf("learn",{title:"Learn", thesis:"AI as a tutor — keep a mind sharp.", key:true, cards:[
+  /* glance teasers for the tool pages (/circle/, /consumer/) */
+  const COCG=[{dom:"AI Engineering",s:8.6},{dom:"Security / CDN",s:8.4},{dom:"Storytelling & Vision",s:7.9},{dom:"Leadership",s:6.6}];
+  const cocgIn=COCG.filter(d=>d.s>=7).length;
+  const cocgSig=`<div class="coc">${COCG.map(d=>{const inq=d.s>=7;return `<div class="cocrow"><span class="dm">${d.dom}</span><span class="tag ${inq?'in':'out'}">${inq?'in':'grow'}</span><span class="cocbar"><i style="width:${d.s*10}%;background:${dcol(d.s/10)}"></i></span><span class="sc">${d.s.toFixed(1)}</span></div>`}).join("")}</div>`;
+  const gcgSig=`<div class="gcg"><div class="lede">5C · density · token cost — checked before you send.</div><div class="five"><span class="on">Character</span><span class="on">Cause</span><span class="on">Constraint</span><span>Contingency</span><span>Calibration</span></div></div>`;
+
+  shelf("learn",{title:"Learn", thesis:"AI as a tutor — sharpen how you think.", key:true, cards:[
     ebCard(),
+    card({eyebrow:"Self · competence", q:"What's inside your circle?",
+      concept:"Rate what you know — inside the edge, trust your judgment; outside, borrow and verify.",
+      statN:`${cocgIn}`, statLbl:"in your circle · edge 7.0", date:"",
+      signal:cocgSig, sigAria:`Competence by domain; ${cocgIn} of ${COCG.length} inside the circle`, foot:{note:"interactive · your data",href:"./circle/",text:"open ↗"}}),
+    card({eyebrow:"Discipline · tokenomics", q:"Is every token earning its place?",
+      concept:"Grade a prompt before you send — 5C, density, token cost. No model, nothing spent.",
+      statN:"0", statLbl:"tokens to grade — pure rules", date:"",
+      signal:gcgSig, sigAria:"Grade a prompt against the 5C discipline rubric", foot:{note:"interactive",href:"./consumer/",text:"open ↗"}}),
     card({eyebrow:"Deep time · radioactive decay", q:"How do we read deep time?",
       concept:"Every isotope decays at its own half-life — a clock for a different depth of time. <span class='mono' style='color:var(--t3)'>½ᵗ/ᵗ½</span>",
       statN:ddElapsed, statLbl:"half-lives since Big Bang", date:"2026-06-23",

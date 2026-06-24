@@ -11,9 +11,14 @@
 
 | Path | What |
 |---|---|
-| `index.html` | the gallery — shelves of widget cards |
+| `index.html` | the gallery — shelves of widget cards (glances) |
 | `brand.css` | design tokens + card anatomy (see `BRAND.md`) |
-| `redactor/` | the live PII & Secret Redactor tool (rules + in-browser NER) |
+| `redactor/` | PII & Secret Redactor (rules + in-browser NER) |
+| `circle/` | Circle of Competence — self-assessment radar (rate domains, edge 7.0) |
+| `consumer/` | Great Consumer — grade a prompt (5C + density + token cost, rule-based) |
+
+Pattern: the gallery shows **glance cards**; richer interactive widgets are their own
+**tool pages** (`/redactor/`, `/circle/`, `/consumer/`) linked from the card.
 
 Shelves: **Learn** (AI-as-tutor — Ebbinghaus, deep-decay, arXiv-pulse, muon-rain, shown with
 sample data) and **Secure** (the redactor). Source repos linked per card.

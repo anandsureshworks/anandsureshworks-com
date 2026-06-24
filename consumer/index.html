@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Great Consumer — Anand Suresh</title>
+<meta name="description" content="Grade a prompt before you send it — 5C discipline, signal density, token cost. Deterministic, rule-based, no model and no tokens spent. Build prompt efficiency." />
+<link rel="stylesheet" href="/brand.css" />
+<style>
+  .wrap{max-width:56rem;margin:0 auto;padding:2.2rem 1.25rem 3rem}
+  .back{font-family:var(--mono);font-size:.74rem;color:var(--t3);text-decoration:none}.back:hover{color:var(--t1)}.back .gt{color:var(--accent)}
+  h1{font-size:1.6rem;font-weight:600;margin:1rem 0 .25rem;letter-spacing:-.01em}
+  .q{font-size:1rem;color:var(--t2);margin:0 0 .3rem}
+  .concept{font-size:.86rem;color:var(--t2);max-width:42rem;margin:0 0 2rem}.concept b{color:var(--t1)}
+  .tool{display:grid;gap:1.6rem}
+  @media(min-width:48rem){.tool{grid-template-columns:1.3fr .7fr;align-items:start}}
+  textarea{width:100%;min-height:130px;resize:vertical;background:var(--s1);border:1px solid var(--bd);border-radius:10px;color:var(--t1);font-family:var(--mono);font-size:.82rem;padding:12px;line-height:1.5}
+  textarea:focus-visible{outline:none;border-color:var(--accent)}
+  .row{display:flex;align-items:center;gap:.8rem;margin:.7rem 0}
+  .grade-btn{border:1px solid color-mix(in oklch,var(--accent) 50%,transparent);background:color-mix(in oklch,var(--accent) 14%,transparent);color:var(--accent);border-radius:8px;font-family:var(--sans);font-weight:600;font-size:.84rem;padding:8px 16px;cursor:pointer}
+  .grade-btn:hover{background:color-mix(in oklch,var(--accent) 24%,transparent)}
+  .est{font-family:var(--mono);font-size:.74rem;color:var(--t3)}
+  .result{background:var(--s1);border:1px solid var(--bd-sub);border-radius:12px;padding:1.1rem;margin-top:.2rem}
+  .gradeline{display:flex;align-items:center;gap:.9rem;margin-bottom:.9rem}
+  .glet{font-family:var(--mono);font-weight:700;font-size:2rem;line-height:1}
+  .gtip{font-size:.84rem;color:var(--t2)}.gtip b{color:var(--t1)}
+  .cc{display:flex;flex-direction:column;gap:.3rem;margin:.4rem 0 .9rem}
+  .ccrow{display:flex;align-items:baseline;gap:.5rem;font-size:.82rem}
+  .ccrow .mk{font-family:var(--mono);width:14px}
+  .ccrow.on .mk{color:var(--d5)} .ccrow.off .mk{color:var(--d1)}
+  .ccrow.off{color:var(--t3)} .ccrow .kc{font-weight:600;color:var(--t1)}
+  .ccrow.off .kc{color:var(--t2)} .ccrow .tp{color:var(--t3);font-size:.76rem}
+  .metrics{display:flex;flex-wrap:wrap;gap:1.2rem;font-family:var(--mono);font-size:.74rem;color:var(--t2);border-top:1px solid var(--bd-sub);padding-top:.7rem}
+  .metrics b{color:var(--t1)}
+  .panel{display:flex;flex-direction:column;gap:1.1rem}
+  .pcard{background:var(--s1);border:1px solid var(--bd-sub);border-radius:12px;padding:1rem}
+  .pcard h2{font-size:.66rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.09em;color:var(--t3);margin:0 0 .7rem}
+  .budget{display:flex;align-items:center;gap:.9rem}
+  .bnum{font-family:var(--mono)}.bnum .big{font-size:1.2rem;font-weight:700;color:var(--t1)}.bnum .sub{font-size:.72rem;color:var(--t3)}
+  .streak{font-family:var(--mono);font-size:1.4rem;font-weight:700;color:var(--d5)}
+  .streak small{font-size:.72rem;color:var(--t3);font-weight:400}
+  .waste{font-size:.78rem;color:var(--t2);line-height:1.7}.waste .w{font-family:var(--mono);color:var(--d2)}
+  .pfoot{margin-top:3rem;border-top:1px solid var(--bd-sub);padding-top:1.1rem;font-family:var(--mono);font-size:.72rem;color:var(--t3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/"><span class="gt">&lt;_</span> widgets</a>
+  <h1>Great Consumer</h1>
+  <p class="q">Is every token earning its place?</p>
+  <p class="concept">Grade a prompt <b>before</b> you send it. The check is deterministic — your 5C discipline, signal density, and token cost — so it spends nothing to tell you where you're wasteful. QAC: every token must justify its cost.</p>
+
+  <div class="tool">
+    <div>
+      <textarea id="prompt" spellcheck="false" aria-label="prompt to grade">Please could you maybe just help me write something about caching? I would really appreciate it, thanks!</textarea>
+      <div class="row"><button class="grade-btn" id="grade">Grade prompt</button><span class="est mono" id="est"></span></div>
+      <div class="result" id="result" hidden></div>
+    </div>
+    <div class="panel">
+      <div class="pcard"><h2>Today's token budget</h2>
+        <div class="budget"><svg id="ring" width="58" height="58" viewBox="0 0 58 58" aria-hidden="true"></svg>
+          <div class="bnum"><div class="big" id="bspent">0</div><div class="sub">of 8,000 · QAC ceiling</div></div></div></div>
+      <div class="pcard"><h2>Discipline streak</h2>
+        <div class="streak" id="streak">0 <small>A/B prompts in a row</small></div></div>
+      <div class="pcard"><h2>Waste ledger (session)</h2>
+        <div class="waste" id="waste">Grade a few prompts to see where tokens leak.</div></div>
+    </div>
+  </div>
+  <p class="pfoot">&gt;_ anandsureshworks · great-consumer · rule-based, local only — no model, no tokens spent</p>
+</div>
+
+<script type="module">
+  const FIVE_C=[
+    {k:"Character", re:/\b(you are|act as|as an?|your role|persona|expert|assistant)\b/i, tip:"name the model's role"},
+    {k:"Cause", re:/\b(so that|in order to|goal|because|the task|i need|help me|produce|write|build|analy[sz]e|summari[sz]e)\b/i, tip:"state the goal / why"},
+    {k:"Constraint", re:/\b(must|only|do not|don'?t|never|limit|within|no more than|format|json|bullet|markdown|under \d+|≤|<=)\b/i, tip:"add a limit or output format"},
+    {k:"Contingency", re:/\b(if|otherwise|when .+ then|fallback|in case|unless|else|on (?:error|failure))\b/i, tip:"add an if-X-then-Y fallback"},
+    {k:"Calibration", re:/\b(concise|brief|detailed|short|terse|thorough|confident|uncertain|tone|step[- ]by[- ]step|\d+\s*words?)\b/i, tip:"set tone / length / depth"},
+  ];
+  const FILLER=/\b(please|kindly|just|very|really|i would like|i was wondering|could you maybe|if you don'?t mind|i appreciate|thanks?|as an ai|basically|actually|simply)\b/gi;
+  const estTokens=t=>Math.max(1,Math.ceil(t.length/4));
+  const KEY="gc_log";
+  let log=(()=>{try{return JSON.parse(localStorage.getItem(KEY))||[]}catch{return[]}})();
+  const saveLog=()=>{try{localStorage.setItem(KEY,JSON.stringify(log.slice(-200)))}catch{}};
+
+  function analyze(text){
+    const present=FIVE_C.map(c=>({...c,on:c.re.test(text)}));
+    const have=present.filter(c=>c.on).length;
+    const words=(text.trim().match(/\S+/g)||[]).length;
+    const fillerHits=(text.match(FILLER)||[]).length;
+    const density=Math.max(0,Math.min(1, 1 - fillerHits/Math.max(words/8,1)));
+    const score=have/5*0.78 + density*0.22;
+    const letter=score>=.9?"A":score>=.75?"B":score>=.6?"C":score>=.4?"D":"F";
+    const weakest=present.find(c=>!c.on);
+    return {present,have,words,fillerHits,density,score,letter,tokens:estTokens(text),weakest};
+  }
+  const gcol=l=>({A:"var(--d5)",B:"var(--d4)",C:"var(--d3)",D:"var(--d2)",F:"var(--d1)"}[l]);
+
+  function renderResult(a){
+    const res=document.getElementById("result");res.hidden=false;
+    res.innerHTML=`<div class="gradeline"><span class="glet" style="color:${gcol(a.letter)}">${a.letter}</span>
+      <span class="gtip">${a.weakest?`Weakest link: <b>${a.weakest.k}</b> — ${a.weakest.tip}.`:`All 5C present. Now cut filler.`}</span></div>
+      <div class="cc">${a.present.map(c=>`<div class="ccrow ${c.on?'on':'off'}"><span class="mk">${c.on?'✓':'·'}</span><span class="kc">${c.k}</span><span class="tp">${c.on?'':'— '+c.tip}</span></div>`).join("")}</div>
+      <div class="metrics"><span>density <b>${Math.round(a.density*100)}%</b></span><span>filler <b>${a.fillerHits}</b></span><span>~<b>${a.tokens}</b> tokens</span><span>~$<b>${(a.tokens/1e6*3).toFixed(4)}</b></span></div>`;
+  }
+  function renderPanel(){
+    const today=new Date().toISOString().slice(0,10);
+    const todays=log.filter(e=>e.d===today);
+    const spent=todays.reduce((s,e)=>s+e.t,0), budget=8000, frac=Math.min(spent/budget,1);
+    const R=24,C=2*Math.PI*R, col=frac<.7?"var(--d5)":frac<1?"var(--d2)":"var(--d1)";
+    document.getElementById("ring").innerHTML=`<g transform="rotate(-90 29 29)"><circle cx="29" cy="29" r="${R}" fill="none" stroke="var(--bd)" stroke-width="5"/><circle cx="29" cy="29" r="${R}" fill="none" stroke="${col}" stroke-width="5" stroke-linecap="round" stroke-dasharray="${(frac*C).toFixed(1)} ${C.toFixed(1)}"/></g>`;
+    document.getElementById("bspent").textContent=spent.toLocaleString();
+    let st=0;for(let i=log.length-1;i>=0;i--){if(log[i].g==="A"||log[i].g==="B")st++;else break;}
+    document.getElementById("streak").innerHTML=`${st} <small>A/B prompts in a row</small>`;
+    const fill=todays.reduce((s,e)=>s+(e.f||0),0);
+    document.getElementById("waste").innerHTML=todays.length
+      ? `<span class="w">${fill}</span> filler words this session · the tokens you didn't need.<br>${todays.length} prompt(s) graded, ${spent.toLocaleString()} tokens.`
+      : "Grade a few prompts to see where tokens leak.";
+  }
+  document.getElementById("prompt").addEventListener("input",e=>{document.getElementById("est").textContent="~"+estTokens(e.target.value)+" tokens";});
+  document.getElementById("grade").addEventListener("click",()=>{
+    const t=document.getElementById("prompt").value;if(!t.trim())return;
+    const a=analyze(t);renderResult(a);
+    log.push({d:new Date().toISOString().slice(0,10),t:a.tokens,g:a.letter,f:a.fillerHits});saveLog();renderPanel();
+  });
+  document.getElementById("est").textContent="~"+estTokens(document.getElementById("prompt").value)+" tokens";
+  renderPanel();
+</script>
+</body>
+</html>
