@@ -16,6 +16,13 @@
   h1{font-size:1.5rem;font-weight:600;margin:.4rem 0 .3rem;letter-spacing:-.01em}
   .sub{color:var(--t2);font-size:.9rem;margin:0 0 2.2rem}
   section{margin-bottom:2.6rem}
+  .tabs{display:flex;gap:1.4rem;border-bottom:1px solid var(--bd-sub);margin:0 0 1.6rem}
+  .tabs button{background:none;border:none;border-bottom:2px solid transparent;color:var(--t3);font-family:var(--sans);font-size:.95rem;font-weight:600;padding:.45rem 0 .6rem;margin-bottom:-1px;cursor:pointer;display:flex;align-items:center;gap:.4rem}
+  .tabs button[aria-selected=true]{color:var(--t1);border-bottom-color:var(--accent)}
+  .tabs button:hover{color:var(--t2)}
+  .tabs .tcount{font-family:var(--mono);font-size:.66rem;color:var(--t3);font-weight:400}
+  .panel-head{display:flex;align-items:baseline;gap:.75rem;margin-bottom:1.1rem}
+  .panel-head .thesis{font-size:.84rem;color:var(--t2)}
 
   /* deep-decay */
   .ring-col{display:flex;flex-direction:column;align-items:center;gap:4px;flex:none}
@@ -90,8 +97,8 @@
   <h1>Widgets</h1>
   <p class="identity"><b>Instruments for thinking</b>, built by <b>Anand Suresh</b> — I design and ship
     AI, security and learning tools. Everything here runs lean, entirely in your browser.</p>
-  <section id="learn"></section>
-  <section id="secure"></section>
+  <nav class="tabs" id="tabs" role="tablist" aria-label="widget categories"></nav>
+  <div id="panels"></div>
 </main>
 
 <footer class="path">
@@ -116,8 +123,18 @@
       <div class="c-foot"><span>${foot.note}</span><a href="${foot.href}">${foot.text}</a></div>
     </article>`;
   }
-  function shelf(id,{title,thesis,key,cards}){
-    document.getElementById(id).innerHTML=`<div class="shelf-head"><h2>${title}</h2><span class="thesis">${thesis}</span>${key?RAMPKEY:""}</div><div class="cards">${cards}</div>`;
+  const SHELVES=[];
+  function shelf(id,o){ SHELVES.push({id,...o}); }
+  function renderTabs(){
+    const tabs=document.getElementById("tabs"), panels=document.getElementById("panels");
+    tabs.innerHTML=SHELVES.map((s,i)=>`<button role="tab" id="tab-${s.id}" data-tab="${s.id}" aria-controls="panel-${s.id}" aria-selected="${i===0}" tabindex="${i===0?0:-1}">${s.title}<span class="tcount">${(s.cards.match(/<article/g)||[]).length}</span></button>`).join("");
+    panels.innerHTML=SHELVES.map((s,i)=>`<section class="tpanel" id="panel-${s.id}" role="tabpanel" aria-labelledby="tab-${s.id}"${i?" hidden":""}><div class="panel-head"><span class="thesis">${s.thesis}</span>${s.key?RAMPKEY:""}</div><div class="cards">${s.cards}</div></section>`).join("");
+    tabs.addEventListener("click",e=>{const b=e.target.closest("button[role=tab]");if(b)select(b.dataset.tab);});
+    tabs.addEventListener("keydown",e=>{if(e.key!=="ArrowRight"&&e.key!=="ArrowLeft")return;e.preventDefault();const bs=[...tabs.querySelectorAll("button")],i=bs.findIndex(b=>b.getAttribute("aria-selected")==="true"),n=(i+(e.key==="ArrowRight"?1:bs.length-1))%bs.length;select(bs[n].dataset.tab);bs[n].focus();});
+  }
+  function select(id){
+    document.querySelectorAll("#tabs button").forEach(b=>{const on=b.dataset.tab===id;b.setAttribute("aria-selected",String(on));b.tabIndex=on?0:-1;});
+    document.querySelectorAll(".tpanel").forEach(p=>p.hidden=(p.id!=="panel-"+id));
   }
   const ghUrl=r=>`https://github.com/anandsureshworks/${r}`;
   const sampleFoot=r=>({note:"sample · 2026-06-23",href:ghUrl(r),text:`${r} ↗`});
@@ -224,6 +241,8 @@
       signal:`<div class="chips">${["PERSON","EMAIL","SSN","CARD","API_KEY","IP","JWT","ORG","PHONE"].map(t=>`<span class="chip">${t}</span>`).join("")}</div>`,
       sigAria:"Detects person, email, SSN, card, API key, IP, JWT, org and phone", foot:{note:"interactive",href:"./redactor/",text:"open tool ↗"}}),
   ].join("")});
+
+  renderTabs();
 
   // wire interactive ebbinghaus (the one card that reacts to the visitor)
   (()=>{
