@@ -22,11 +22,28 @@
   --mono:"Space Mono",ui-monospace,monospace;
 }
 
+/* Light theme — the "notebook" half of notebook-meets-terminal.
+   Same rules hold: chrome stays monochrome, hue lives only in data,
+   the ramp keeps cool=fresh -> warm=decayed (darkened for contrast on paper). */
+:root[data-theme="light"]{
+  --s0:oklch(97% 0 0); --s1:oklch(100% 0 0); --s2:oklch(94.5% 0 0);
+  --bd-sub:oklch(89% 0 0); --bd:oklch(82% 0 0);
+  --t1:oklch(22% 0 0); --t2:oklch(40% 0 0); --t3:oklch(48% 0 0);
+  --accent:oklch(52% 0.17 150);
+  --d5:oklch(52% 0.16 245); --d4:oklch(56% 0.11 205);
+  --d3:oklch(60% 0.13 75);  --d2:oklch(55% 0.17 45); --d1:oklch(52% 0.19 28);
+}
+
 *{box-sizing:border-box}
 body{margin:0;background:var(--s0);color:var(--t1);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
 .mono{font-family:var(--mono)}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+@media (prefers-reduced-motion: no-preference){body{transition:background-color .25s ease,color .25s ease}}
+
+/* theme toggle — fixed, mono, instrument-like */
+.theme-toggle{position:fixed;top:.85rem;right:1rem;z-index:20;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.95rem;line-height:1;background:var(--s1);color:var(--t2);border:1px solid var(--bd-sub);border-radius:8px;cursor:pointer}
+.theme-toggle:hover{color:var(--t1);border-color:var(--bd)}
 
 /* wayfinding */
 .brand-mark{font-family:var(--mono);font-size:.8rem;color:var(--accent);letter-spacing:.02em}
