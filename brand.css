@@ -44,6 +44,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 /* theme toggle — fixed, mono, instrument-like */
 .theme-toggle{position:fixed;top:.85rem;right:1rem;z-index:20;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.95rem;line-height:1;background:var(--s1);color:var(--t2);border:1px solid var(--bd-sub);border-radius:8px;cursor:pointer}
 .theme-toggle:hover{color:var(--t1);border-color:var(--bd)}
+.skip-link{position:absolute;left:-999px;top:0;z-index:100;background:var(--accent);color:var(--s0);font-family:var(--mono);font-size:.8rem;padding:.5rem .9rem;border-radius:0 0 8px 0}
+.skip-link:focus{left:0}
 
 /* wayfinding */
 .brand-mark{font-family:var(--mono);font-size:.8rem;color:var(--accent);letter-spacing:.02em}
