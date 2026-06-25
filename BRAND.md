@@ -24,27 +24,28 @@ cage; this keeps every branch independent, so the brand evolves without renaming
   - `anandonsecurity.com` — security column (a branch *voice*; masthead links up to the trunk)
   - `anandsureshworks.com` — widget gallery
 - **L4 — Products (fruit), named for what they do:**
-  - `agentvitals` — dependency-free reliability harness for scheduled/autonomous agents (MIT, public)
+  - `agentliveness` — dependency-free reliability harness for scheduled/autonomous agents (MIT, public)
 
 **Guard-rail — the only rule that matters:** *no branch may eclipse the trunk.* A
-branch may be loud and narrow (anandonsecurity = security; agentvitals = agents);
+branch may be loud and narrow (anandonsecurity = security; agentliveness = agents);
 the trunk stays broader than all of them, or the tree collapses back into a fork.
 
 ## Naming law
 A public name ships only if all six hold:
 1. **Legible over clever** — understood before it's admired
-2. **Descriptive compound, lowercase** (`agentvitals`)
+2. **Descriptive compound, lowercase** (`agentliveness`)
 3. **No insider / Sanskrit / internal codes** on any public surface
 4. **Pronounceable + typeable** from one hearing
-5. **Available** across the set you'll need: GitHub + PyPI/npm + the `.com`/`.dev`
+5. **Available *and distinct*** across the set you'll need: GitHub + PyPI/npm + the `.com`/`.dev`. Real case: `agentvitals` was blocked by PyPI's typosquatting guard against an active competitor `agent-vitals` — distinctness from existing projects is part of "available," forcing the rename to `agentliveness`.
 6. **Names the function, never the trunk** (never `agent-anand`)
 
 Internal engines keep evocative codenames (`net-sentinel`, `great-consumer`,
 `circle-of-competence`) — private, so clever is free. **Yantra** is one of these:
 the internal name for the visual design language below, *never* a public product brand.
 
-**Optional soft family:** `agentvitals` opens a clinical / health-signal metaphor
-(*vitals · pulse · triage · signs*) — domain-neutral, so future products may rhyme
+**Soft family:** `agentliveness` anchors a *liveness* theme (the sharper thesis —
+freshness ≠ liveness), deliberately stepping away from the crowded clinical / "vitals"
+lane where the competitor sits. Future products may rhyme on liveness / detection
 without a rigid prefix. Name the second product when it exists; don't systematize early.
 
 ---
