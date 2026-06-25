@@ -1,4 +1,57 @@
-# Yantra — brand design language
+# anandsureshworks — brand
+
+The trunk, the thesis, the naming law, and the visual language. One page.
+Refined as the brand grows.
+
+## Thesis (the trunk)
+**Making autonomous systems legible** — turning opaque machine behavior into
+something a human can trust and reason about. Security, reliability, and teaching
+are three branches of this one root; none of them is the whole tree.
+
+Product-level expression: **"Predict less, detect more."** (Liveness over
+freshness; detect over predict.)
+
+## Brand architecture — a tree, not a fork
+Coherence comes from the **trunk + thesis, never a shared prefix** (Google model:
+`Search / Maps / Gmail` — not Apple's `iPhone / iPad`). A rigid prefix *is* the
+cage; this keeps every branch independent, so the brand evolves without renaming.
+
+- **L1 — Trunk / master brand:** the person — `anandsureshworks`. Domain-neutral
+  on purpose; must never narrow into one branch in people's minds.
+- **L2 — Thesis:** *making autonomous systems legible* (above) — the sap in every branch.
+- **L3 — Channels (branches):**
+  - `anandsureshworks.dev` — lab / reference (OWASP LLM Top 10)
+  - `anandonsecurity.com` — security column (a branch *voice*; masthead links up to the trunk)
+  - `anandsureshworks.com` — widget gallery
+- **L4 — Products (fruit), named for what they do:**
+  - `agentvitals` — dependency-free reliability harness for scheduled/autonomous agents (MIT, public)
+
+**Guard-rail — the only rule that matters:** *no branch may eclipse the trunk.* A
+branch may be loud and narrow (anandonsecurity = security; agentvitals = agents);
+the trunk stays broader than all of them, or the tree collapses back into a fork.
+
+## Naming law
+A public name ships only if all six hold:
+1. **Legible over clever** — understood before it's admired
+2. **Descriptive compound, lowercase** (`agentvitals`)
+3. **No insider / Sanskrit / internal codes** on any public surface
+4. **Pronounceable + typeable** from one hearing
+5. **Available** across the set you'll need: GitHub + PyPI/npm + the `.com`/`.dev`
+6. **Names the function, never the trunk** (never `agent-anand`)
+
+Internal engines keep evocative codenames (`net-sentinel`, `great-consumer`,
+`circle-of-competence`) — private, so clever is free. **Yantra** is one of these:
+the internal name for the visual design language below, *never* a public product brand.
+
+**Optional soft family:** `agentvitals` opens a clinical / health-signal metaphor
+(*vitals · pulse · triage · signs*) — domain-neutral, so future products may rhyme
+without a rigid prefix. Name the second product when it exists; don't systematize early.
+
+---
+
+# Yantra — visual design language
+
+*The visual expression of the thesis. Internal name; not a public brand.*
 
 **Principle:** *every pixel carries a measurement, or it's removed.* (signal-or-silence, made visual.)
 
