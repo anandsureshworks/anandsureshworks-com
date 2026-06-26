@@ -1,12 +1,30 @@
 # anandsureshworks — brand
 
-The trunk, the thesis, the naming law, and the visual language. One page.
+The keystone, the thesis, the naming law, and the visual language. One page.
 Refined as the brand grows.
 
-## Thesis (the trunk)
-**Making autonomous systems legible** — turning opaque machine behavior into
-something a human can trust and reason about. Security, reliability, and teaching
-are three branches of this one root; none of them is the whole tree.
+## Keystone (the method — the trunk's operating system)
+**I approach any domain with first-principles rigor, demonstrate in the open so it
+can be tested, and demystify it to make grasping faster across varied degrees of
+fluency.**
+
+Three moves, domain-agnostic — the constant beneath every craft, topic, and
+audience, so range reads as *velocity*, not drift:
+1. **Reason** — from first principles (*how I think*)
+2. **Demonstrate** — in the open, so it's testable (*how I prove it*)
+3. **Demystify** — graspable at any level of fluency (*how I share it*)
+
+Tagline: **Think it through. Show it working. Make it clear.**
+
+The keystone is domain-agnostic on purpose — the craft and topic may change; the
+method is the constant. Its only obligation: clause 2 means it's only credible
+while visibly *running*.
+
+## Thesis (the current domain expression)
+**Making autonomous systems legible** — the keystone applied to today's domain:
+turning opaque machine behavior into something a human can trust and reason about.
+Security, reliability, and teaching are branches of this one root; none of them is
+the whole tree.
 
 Product-level expression: **"Predict less, detect more."** (Liveness over
 freshness; detect over predict.)
