@@ -47,6 +47,10 @@
   .venue{border:1px solid var(--bd);border-radius:3px;padding:0 .3rem;color:var(--t2)}
   .sbar{height:3px;background:var(--bd);border-radius:2px;margin-top:.24rem;overflow:hidden}
   .sbar i{display:block;height:100%}
+  .ax-link{color:var(--t1);text-decoration:none;border-bottom:1px solid var(--bd-sub)}
+  .ax-link:hover{border-color:var(--t2)}
+  .ax-load{font-size:.74rem;color:var(--t3);padding:.3rem 0}
+  .ax-load a{color:var(--t2)}
 
   /* muon */
   .sky{position:relative;width:100%;height:100%;overflow:hidden;border-radius:7px;background:radial-gradient(circle at 50% -40%, color-mix(in oklch,var(--d5) 22%,transparent), transparent 70%)}
@@ -273,12 +277,8 @@
   const ddSig=`<div class="ddwrap"><div class="ring-col">${ddRing(ddDeep.f)}<span class="ring-cap">${ddDeep.iso} · % left</span></div><div class="ddbars">${DD.map(d=>`<div class="ddrow"><span class="dom">${d.epoch}</span><span class="iso">${d.iso}</span><span class="ddbar"><i style="width:${Math.round(d.f*100)}%;background:${dcol(d.f)}"></i></span><span class="pc">${d.age}</span></div>`).join("")}</div></div>`;
 
   /* 3 ARXIV */
-  const AX=[
-    {s:.92,t:"Chain-of-Thought Faithfulness under Adversarial Prompts",v:"NeurIPS",c:"cs.CL"},
-    {s:.81,t:"Emergent In-Context Planning in Sub-Billion Models",v:"ICLR",c:"cs.LG"},
-    {s:.74,t:"A Mechanistic Account of Refusal Directions",v:"",c:"cs.LG · cs.CR"},
-  ];
-  const axSig=`<div class="papers">${AX.map((p,i)=>`<div class="paper"><div class="pt">${i+1}. ${p.t}</div><div class="sbar"><i style="width:${Math.round(p.s*100)}%;background:${dcol(p.s)}"></i></div><div class="pm"><span>${p.s.toFixed(2)}</span>${p.v?`<span class="venue">${p.v}</span>`:""}<span>${p.c}</span></div></div>`).join("")}</div>`;
+  // live: the widget reads /data/arxiv.json — the arxiv-pulse engine owns the fetch + scoring.
+  const axRender=papers=>papers.slice(0,3).map((p,i)=>`<div class="paper"><div class="pt">${i+1}. <a class="ax-link" href="${p.url}" target="_blank" rel="noopener">${ebEsc(p.t)}</a></div><div class="sbar"><i style="width:${Math.round(p.s*100)}%;background:${dcol(p.s)}"></i></div><div class="pm"><span>${p.s.toFixed(2)}</span>${p.v?`<span class="venue">${p.v}</span>`:""}<span>${p.c}</span></div></div>`).join("");
 
   /* 4 MUON */
   const muSig=`<div class="sky" aria-hidden="true">${Array.from({length:9},(_,i)=>{const left=(i*11+6)%96,dur=(1.7+(i%4)*.5).toFixed(1),delay=(i*.45).toFixed(1);return `<span class="muon" style="left:${left}%;animation-duration:${dur}s;animation-delay:${delay}s"></span>`;}).join("")}</div>`;
@@ -308,9 +308,9 @@
       statN:ddElapsed, statLbl:"half-lives since Big Bang", date:"2026-06-23",
       signal:ddSig, sigAria:`Radioactive decay clocks; Rb-87 at ${Math.round(ddDeep.f*100)} percent since the Big Bang`, foot:{note:"computed in-browser"}}),
     card({eyebrow:"Research · relevance", q:"What should I read today?",
-      concept:"Scores the day's arXiv firehose by your interests; surfaces the few that matter.",
-      statN:"3", statLbl:"of 142 scored", date:"2026-06-23",
-      signal:axSig, sigAria:"Top three papers ranked by relevance score", foot:{note:"sample output · engine private"}}),
+      concept:"My arxiv-pulse engine scores the day's arXiv firehose by my interests — this surfaces the few that matter. Open each to the real paper.",
+      statN:"—", statLbl:"ranked by fit", date:"",
+      signal:`<div class="papers" id="axPapers"><div class="ax-load">loading today's papers…</div></div>`, sigAria:"Top arXiv papers ranked by relevance", foot:{note:"arxiv-pulse"}}),
     card({eyebrow:"Physics · ambient", q:"What's raining through me right now?",
       concept:"μ⁻ muon · 105.7 MeV — a heavy electron born 15 km up, reaching you only because time dilates.",
       statN:"1.1", statLbl:"muons / cm²·min", date:"2026-06-23",
@@ -348,6 +348,26 @@
     form.addEventListener("submit",e=>{e.preventDefault();const n=nm.value.trim();if(!n)return;const d=Math.max(0,Math.min(45,Math.round(+dy.value||0)));ebTopics.push({name:n.slice(0,40),days:d});ebSave();nm.value="";nm.focus();draw();});
     clr.addEventListener("click",()=>{ebTopics=[];ebSave();draw();});
     draw();
+  })();
+
+  // wire live arXiv — widget reads same-origin JSON; the arxiv-pulse engine owns refresh + scoring
+  (async()=>{
+    const wrap=document.getElementById("axPapers"); if(!wrap) return;
+    const card=wrap.closest(".card");
+    try{
+      const r=await fetch("/data/arxiv.json",{cache:"no-store"});
+      if(!r.ok) throw 0;
+      const j=await r.json(); const papers=(j.papers||[]).slice(0,3);
+      if(!papers.length) throw 0;
+      wrap.innerHTML=axRender(papers);
+      const day=(j.generated_at||"").slice(0,10);
+      card.querySelector(".c-stat .n").textContent=String(papers.length);
+      card.querySelector(".c-stat .date").textContent=day;
+      card.querySelector(".c-foot span").textContent=`arxiv-pulse · ${day}`;
+    }catch(e){
+      wrap.innerHTML=`<div class="ax-load">couldn't load today's picks — <a class="ax-link" href="https://arxiv.org/list/cs.AI/recent" target="_blank" rel="noopener">browse arXiv ↗</a></div>`;
+      card.querySelector(".c-foot span").textContent="arxiv-pulse · offline";
+    }
   })();
 </script>
 </body>
