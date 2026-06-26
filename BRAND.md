@@ -79,17 +79,34 @@ Tokens live in `brand.css`; this is the why. Refined as the brand grows.
 ## Personality
 Precise · calm · instrument-like — a scientist's notebook meets a terminal. Quietly confident. Shows, doesn't tell.
 
+## Mark & leitmotif — the weave
+The brand mark is a **woven "AS" monogram**: the letters are woven into a dense twill where the
+green (security) thread runs *under* the white (application) ground and surfaces only to form the
+letters. The over/under construction *is* the meaning — *security underlies the application,
+surfaces where it counts* — and it is ownable by construction, not just by shape. It retires the
+old `>_` terminal glyph.
+
+- **Weave = leitmotif.** The same twill recurs as a brand motif — most visibly in the **method
+  triangle** (Reason · Demonstrate · Demystify rendered as three woven legs), and available for
+  section rules, footers, loading states. Monochrome by default: it ties surfaces together by
+  *texture*, not colour, so "hue lives only in data" still holds.
+- **One green thread.** The accent green is a single thread — woven through the monogram and run
+  through the triangle. It is the only colour the mark and the leitmotif carry.
+- **Source of truth:** `scripts/gen_mark.py` regenerates the SVG (green is one token). Never
+  hand-edit the marks; regenerate.
+
 ## Color — "color = signal"
 Chrome is **monochrome**; hue appears **only** where it carries data meaning.
 - Surfaces `oklch 10 / 14.5 / 18%`, borders `22 / 28%`.
 - Text `96 / 70 / 58%` — all ≥4.5:1 on a card.
-- **Accent (chrome only):** sap-green `oklch(72% .18 145)` — focus rings + the `>_` mark, **never on data**. Chosen because green is the hue *furthest from the data ramp*, so it can never be misread as a reading.
-  - **Heritage / connect:** *phosphor green* (CRT/terminal). The sentimental root of the mark — referenced, not used as fill.
+- **Accent (chrome only):** sap-green `oklch(72% .18 145)` — focus rings, the woven **AS mark**, the method-triangle thread, live-status. **Never on data.** Chosen because green is the hue *furthest from the data ramp*, so it can never be misread as a reading.
+  - **The single green thread:** the accent is one continuous thread — woven through the AS monogram and run through the method triangle. One thread, every surface.
+  - **Heritage:** *phosphor green* (CRT/terminal). Once referenced via the `>_` glyph; now expressed **structurally in the weave** itself, not as a literal terminal prompt.
 - **Data ramp** (`--d5..--d1`): cool-blue → rust = **fresh → decayed**. Deuteranopia-safe + luminance-varied; always paired with a number — never hue alone.
 
 ## Type
 - **Space Grotesk** (sans) — questions, prose, headings.
-- **Space Mono** (mono) — every reading: numbers, units, formulae, identifiers, the `>_` mark.
+- **Space Mono** (mono) — every reading: numbers, units, formulae, identifiers, the wordmark.
 - Rule: **if it's a measurement, it's mono.**
 
 ## Card anatomy (uniform)

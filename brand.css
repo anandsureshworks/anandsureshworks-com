@@ -10,9 +10,12 @@
   --bd-sub:oklch(22% 0 0); --bd:oklch(28% 0 0);
   /* text — all >=4.5:1 on --s1 */
   --t1:oklch(96% 0 0); --t2:oklch(70% 0 0); --t3:oklch(58% 0 0);
-  /* brand accent — chrome only (focus, the >_ mark). NEVER on data.
+  /* brand accent — chrome only (focus rings, the woven AS mark, the method-triangle
+     thread, live-status). NEVER on the data ramp.
      green is the hue furthest from the data ramp, so it can't be misread as a value.
-     heritage/connect: phosphor green oklch(85% .22 145) — the CRT/terminal root, referenced not used. */
+     It is the brand's single green thread: woven through the AS monogram (security under
+     the application, surfacing for the letters) and run through the method triangle.
+     heritage: phosphor green (CRT/terminal) — now expressed structurally in the weave, not as the old >_ glyph. */
   --accent:oklch(72% 0.18 145);
   /* semantic data ramp — cool=fresh -> warm=decayed. deuteranopia-safe + luminance-varied. */
   --d5:oklch(72% 0.13 240); --d4:oklch(74% 0.10 205);
@@ -49,6 +52,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 
 /* wayfinding */
 .brand-mark{font-family:var(--mono);font-size:.8rem;color:var(--accent);letter-spacing:.02em}
+/* inline woven AS mark at text scale — footers, mastheads (retires the old >_ glyph) */
+.mk-inline{width:1.05em;height:1.05em;border-radius:3px;vertical-align:-.2em;margin-right:.15em}
 .shelf-head{display:flex;align-items:baseline;gap:.75rem;margin-bottom:1.1rem;border-bottom:1px solid var(--bd-sub);padding-bottom:.5rem}
 .shelf-head h2{font-size:1rem;font-weight:600;margin:0}
 .shelf-head .thesis{font-size:.82rem;color:var(--t2)}
