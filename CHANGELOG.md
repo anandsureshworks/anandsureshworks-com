@@ -7,6 +7,12 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **arxiv-pulse engine** (`scripts/arxiv-pulse.py`) — closes the "read today" loop:
+  a dependency-free, launchd-scheduled engine that fetches the arXiv firehose, scores
+  papers against a transparent interest model, and atomically writes `~/.arxiv-pulse.json`
+  + `data/arxiv.json` (ISO-8601 UTC `generated_at`, 15s timeout + backoff, one documented
+  endpoint). `arxiv-pulse-publish.sh` + a launchd plist auto-refresh + deploy daily, so
+  the card is genuinely live, not manually seeded.
 - **Woven AS brand mark** — a dependency-free SVG monogram where "AS" is woven
   into a dense twill: a green (security) thread carried *under* the white
   (application) ground, surfacing only to form the letters. Generated from a

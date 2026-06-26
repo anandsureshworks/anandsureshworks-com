@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- arxiv-pulse — daily refresh of the .com "read today" card.
+     Install:
+       cp scripts/com.anandsureshworks.arxiv-pulse.plist ~/Library/LaunchAgents/
+       launchctl load ~/Library/LaunchAgents/com.anandsureshworks.arxiv-pulse.plist
+     Edit the path below if the repo lives elsewhere. -->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.anandsureshworks.arxiv-pulse</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/anandsuresh/anandsureshworks-com/scripts/arxiv-pulse-publish.sh</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key><integer>7</integer>
+    <key>Minute</key><integer>20</integer>
+  </dict>
+  <key>StandardOutPath</key>
+  <string>/tmp/arxiv-pulse.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/arxiv-pulse.err</string>
+  <key>RunAtLoad</key>
+  <false/>
+</dict>
+</plist>
