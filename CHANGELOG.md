@@ -26,3 +26,10 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Tool-page back-links relabelled `widgets` → `anandsureshworks` (the hub is the
   person now, not a widget bucket).
 - `<title>` / OG / meta-description on the hub rewritten around person + method.
+- **Card provenance made honest** — replaced the blanket "sample" footer with
+  truthful per-card labels: deep-decay → *computed in-browser*, muon → *animated
+  illustration*, arXiv-pulse → *sample output · engine private*. Keeps the
+  keystone's "demonstrate in the open" clause from being quietly contradicted.
+- **Shelf theses hang off the method** — Learn/Secure/Cosmos now read as one
+  method across domains: *first principles, turned on how you think / the model /
+  the universe* (range as velocity, not drift).
