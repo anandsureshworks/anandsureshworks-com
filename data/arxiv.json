@@ -1,29 +1,30 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-06-26T08:00:00Z",
+  "generated_at": "2026-06-26T19:11:23Z",
+  "scored": 60,
   "_contract": {
-    "owner": "arxiv-pulse (private engine) — owns the arXiv fetch + relevance scoring",
+    "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
     "widget": "read-only; renders this file, computes nothing",
     "interval": "daily; stale if generated_at age > 48h"
   },
   "papers": [
     {
+      "t": "OpenRCA 2.0: From Outcome Labels to Causal Process Supervision",
+      "url": "https://arxiv.org/abs/2606.27154",
+      "c": "cs.AI",
+      "s": 0.99
+    },
+    {
       "t": "Empowering GUI Agents via Autonomous Experience Exploration and Hindsight Experience Utilization for Task Planning",
       "url": "https://arxiv.org/abs/2606.27330",
-      "c": "cs.CL · agents",
-      "s": 0.91
+      "c": "cs.CL",
+      "s": 0.72
     },
     {
-      "t": "When are likely answers right? On Sequence Probability and Correctness in LLMs",
-      "url": "https://arxiv.org/abs/2606.27359",
-      "c": "stat.ML",
-      "s": 0.84
-    },
-    {
-      "t": "Reinforcement Learning without Ground-Truth Solutions can Improve LLMs",
-      "url": "https://arxiv.org/abs/2606.27369",
-      "c": "cs.LG",
-      "s": 0.77
+      "t": "Prompt Injection in Automated Résumé Screening with Large Language Models: Single and Multi-Injection Settings",
+      "url": "https://arxiv.org/abs/2606.27287",
+      "c": "cs.AI",
+      "s": 0.67
     }
   ]
 }
