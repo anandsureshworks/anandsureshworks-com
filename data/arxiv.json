@@ -1,0 +1,29 @@
+{
+  "source": "arxiv-pulse",
+  "generated_at": "2026-06-26T08:00:00Z",
+  "_contract": {
+    "owner": "arxiv-pulse (private engine) — owns the arXiv fetch + relevance scoring",
+    "widget": "read-only; renders this file, computes nothing",
+    "interval": "daily; stale if generated_at age > 48h"
+  },
+  "papers": [
+    {
+      "t": "Empowering GUI Agents via Autonomous Experience Exploration and Hindsight Experience Utilization for Task Planning",
+      "url": "https://arxiv.org/abs/2606.27330",
+      "c": "cs.CL · agents",
+      "s": 0.91
+    },
+    {
+      "t": "When are likely answers right? On Sequence Probability and Correctness in LLMs",
+      "url": "https://arxiv.org/abs/2606.27359",
+      "c": "stat.ML",
+      "s": 0.84
+    },
+    {
+      "t": "Reinforcement Learning without Ground-Truth Solutions can Improve LLMs",
+      "url": "https://arxiv.org/abs/2606.27369",
+      "c": "cs.LG",
+      "s": 0.77
+    }
+  ]
+}

@@ -26,3 +26,15 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Tool-page back-links relabelled `widgets` → `anandsureshworks` (the hub is the
   person now, not a widget bucket).
 - `<title>` / OG / meta-description on the hub rewritten around person + method.
+- **arXiv-pulse made live** — instead of hardcoded papers, the card now reads a
+  same-origin `data/arxiv.json` (owned/refreshed by the private arxiv-pulse engine;
+  widget is read-only per "widgets read JSON, engines own the API calls"). Renders
+  the day's top papers as clickable links to the real arXiv abstracts, stamped with
+  `generated_at`. Graceful "browse arXiv" fallback if the file can't load.
+- **Card provenance made honest** — replaced the blanket "sample" footer with
+  truthful per-card labels: deep-decay → *computed in-browser*, muon → *animated
+  illustration*, arXiv-pulse → live (above). Keeps the keystone's "demonstrate in
+  the open" clause from being quietly contradicted.
+- **Shelf theses hang off the method** — Learn/Secure/Cosmos now read as one
+  method across domains: *first principles, turned on how you think / the model /
+  the universe* (range as velocity, not drift).

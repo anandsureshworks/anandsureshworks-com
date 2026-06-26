@@ -47,6 +47,10 @@
   .venue{border:1px solid var(--bd);border-radius:3px;padding:0 .3rem;color:var(--t2)}
   .sbar{height:3px;background:var(--bd);border-radius:2px;margin-top:.24rem;overflow:hidden}
   .sbar i{display:block;height:100%}
+  .ax-link{color:var(--t1);text-decoration:none;border-bottom:1px solid var(--bd-sub)}
+  .ax-link:hover{border-color:var(--t2)}
+  .ax-load{font-size:.74rem;color:var(--t3);padding:.3rem 0}
+  .ax-load a{color:var(--t2)}
 
   /* muon */
   .sky{position:relative;width:100%;height:100%;overflow:hidden;border-radius:7px;background:radial-gradient(circle at 50% -40%, color-mix(in oklch,var(--d5) 22%,transparent), transparent 70%)}
@@ -217,7 +221,6 @@
     document.querySelectorAll(".tpanel").forEach(p=>p.hidden=(p.id!=="panel-"+id));
   }
   const ghUrl=r=>`https://github.com/anandsureshworks/${r}`;
-  const sampleFoot=r=>({note:"sample · 2026-06-23"});  // repos private — no source link
 
   /* 1 EBBINGHAUS — interactive: your topics, fixed S=14, saved locally */
   const EB_KEY="eb_topics", EB_S=14;
@@ -274,12 +277,8 @@
   const ddSig=`<div class="ddwrap"><div class="ring-col">${ddRing(ddDeep.f)}<span class="ring-cap">${ddDeep.iso} · % left</span></div><div class="ddbars">${DD.map(d=>`<div class="ddrow"><span class="dom">${d.epoch}</span><span class="iso">${d.iso}</span><span class="ddbar"><i style="width:${Math.round(d.f*100)}%;background:${dcol(d.f)}"></i></span><span class="pc">${d.age}</span></div>`).join("")}</div></div>`;
 
   /* 3 ARXIV */
-  const AX=[
-    {s:.92,t:"Chain-of-Thought Faithfulness under Adversarial Prompts",v:"NeurIPS",c:"cs.CL"},
-    {s:.81,t:"Emergent In-Context Planning in Sub-Billion Models",v:"ICLR",c:"cs.LG"},
-    {s:.74,t:"A Mechanistic Account of Refusal Directions",v:"",c:"cs.LG · cs.CR"},
-  ];
-  const axSig=`<div class="papers">${AX.map((p,i)=>`<div class="paper"><div class="pt">${i+1}. ${p.t}</div><div class="sbar"><i style="width:${Math.round(p.s*100)}%;background:${dcol(p.s)}"></i></div><div class="pm"><span>${p.s.toFixed(2)}</span>${p.v?`<span class="venue">${p.v}</span>`:""}<span>${p.c}</span></div></div>`).join("")}</div>`;
+  // live: the widget reads /data/arxiv.json — the arxiv-pulse engine owns the fetch + scoring.
+  const axRender=papers=>papers.slice(0,3).map((p,i)=>`<div class="paper"><div class="pt">${i+1}. <a class="ax-link" href="${p.url}" target="_blank" rel="noopener">${ebEsc(p.t)}</a></div><div class="sbar"><i style="width:${Math.round(p.s*100)}%;background:${dcol(p.s)}"></i></div><div class="pm"><span>${p.s.toFixed(2)}</span>${p.v?`<span class="venue">${p.v}</span>`:""}<span>${p.c}</span></div></div>`).join("");
 
   /* 4 MUON */
   const muSig=`<div class="sky" aria-hidden="true">${Array.from({length:9},(_,i)=>{const left=(i*11+6)%96,dur=(1.7+(i%4)*.5).toFixed(1),delay=(i*.45).toFixed(1);return `<span class="muon" style="left:${left}%;animation-duration:${dur}s;animation-delay:${delay}s"></span>`;}).join("")}</div>`;
@@ -294,7 +293,7 @@
   const skyGlance=(()=>{let d="";for(let i=0;i<16;i++){const a=i*2.39996,r=56*Math.sqrt((i+.5)/16),x=100+r*Math.cos(a),y=66+r*Math.sin(a),s=(0.8+((i*7)%3)*0.5).toFixed(1);d+=`<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${s}" fill="var(--t1)"/>`;}return `<svg viewBox="0 0 200 132" width="100%" style="max-width:210px"><circle cx="100" cy="66" r="60" fill="oklch(11% 0.02 260)" stroke="var(--bd)"/>${d}<circle cx="138" cy="40" r="5" fill="var(--d5)" opacity=".85"/></svg>`;})();
   const stGlance=`<svg viewBox="0 0 200 132" width="100%" style="max-width:210px">${[58,46,34,22,12].map(r=>`<circle cx="100" cy="66" r="${r}" fill="none" stroke="var(--t3)" stroke-width="1" opacity="${(0.25+(60-r)/120).toFixed(2)}"/>`).join("")}<circle cx="100" cy="66" r="4.5" fill="var(--t1)"/></svg>`;
 
-  shelf("learn",{title:"Learn", thesis:"AI as a tutor — sharpen how you think.", key:true, cards:[
+  shelf("learn",{title:"Learn", thesis:"First principles, turned on how you think.", key:true, cards:[
     ebCard(),
     card({eyebrow:"Self · competence", q:"What's inside your circle?",
       concept:"Rate what you know — inside the edge, trust your judgment; outside, borrow and verify.",
@@ -307,18 +306,18 @@
     card({eyebrow:"Deep time · radioactive decay", q:"How do we read deep time?",
       concept:"Every isotope decays at its own half-life — a clock for a different depth of time. <span class='mono' style='color:var(--t3)'>½ᵗ/ᵗ½</span>",
       statN:ddElapsed, statLbl:"half-lives since Big Bang", date:"2026-06-23",
-      signal:ddSig, sigAria:`Radioactive decay clocks; Rb-87 at ${Math.round(ddDeep.f*100)} percent since the Big Bang`, foot:sampleFoot("yantra-deep-decay")}),
+      signal:ddSig, sigAria:`Radioactive decay clocks; Rb-87 at ${Math.round(ddDeep.f*100)} percent since the Big Bang`, foot:{note:"computed in-browser"}}),
     card({eyebrow:"Research · relevance", q:"What should I read today?",
-      concept:"Scores the day's arXiv firehose by your interests; surfaces the few that matter.",
-      statN:"3", statLbl:"of 142 scored", date:"2026-06-23",
-      signal:axSig, sigAria:"Top three papers ranked by relevance score", foot:sampleFoot("yantra-arxiv-pulse")}),
+      concept:"My arxiv-pulse engine scores the day's arXiv firehose by my interests — this surfaces the few that matter. Open each to the real paper.",
+      statN:"—", statLbl:"ranked by fit", date:"",
+      signal:`<div class="papers" id="axPapers"><div class="ax-load">loading today's papers…</div></div>`, sigAria:"Top arXiv papers ranked by relevance", foot:{note:"arxiv-pulse"}}),
     card({eyebrow:"Physics · ambient", q:"What's raining through me right now?",
       concept:"μ⁻ muon · 105.7 MeV — a heavy electron born 15 km up, reaching you only because time dilates.",
       statN:"1.1", statLbl:"muons / cm²·min", date:"2026-06-23",
-      signal:muSig, sigAria:"Ambient muon flux animation, about one per square centimetre per minute", foot:sampleFoot("yantra-muon-rain")}),
+      signal:muSig, sigAria:"Ambient muon flux animation, about one per square centimetre per minute", foot:{note:"animated illustration"}}),
   ].join("")});
 
-  shelf("secure",{title:"Secure", thesis:"Probe an LLM before it probes you.", key:false, cards:[
+  shelf("secure",{title:"Secure", thesis:"First principles, turned on the model.", key:false, cards:[
     card({eyebrow:"Security · PII", q:"What's leaking in this prompt?",
       concept:"Rules + an in-browser NER model scrub names, secrets & PII before they reach an LLM. Nothing leaves your tab.",
       statN:"9", statLbl:"PII types caught · live", date:"2026-06-23",
@@ -326,7 +325,7 @@
       sigAria:"Detects person, email, SSN, card, API key, IP, JWT, org and phone", foot:{note:"interactive",href:"./redactor/",text:"open tool ↗"}}),
   ].join("")});
 
-  shelf("cosmos",{title:"Cosmos", thesis:"Where you are — and how small that is.", key:false, cards:[
+  shelf("cosmos",{title:"Cosmos", thesis:"First principles, turned on the universe.", key:false, cards:[
     card({eyebrow:"Cosmos · your sky", q:"What's above you right now?",
       concept:"Your real sky — Sun, Moon phase, the bright stars over your horizon — from where you are, this second.",
       statN:"live", statLbl:"from your location", date:"",
@@ -349,6 +348,26 @@
     form.addEventListener("submit",e=>{e.preventDefault();const n=nm.value.trim();if(!n)return;const d=Math.max(0,Math.min(45,Math.round(+dy.value||0)));ebTopics.push({name:n.slice(0,40),days:d});ebSave();nm.value="";nm.focus();draw();});
     clr.addEventListener("click",()=>{ebTopics=[];ebSave();draw();});
     draw();
+  })();
+
+  // wire live arXiv — widget reads same-origin JSON; the arxiv-pulse engine owns refresh + scoring
+  (async()=>{
+    const wrap=document.getElementById("axPapers"); if(!wrap) return;
+    const card=wrap.closest(".card");
+    try{
+      const r=await fetch("/data/arxiv.json",{cache:"no-store"});
+      if(!r.ok) throw 0;
+      const j=await r.json(); const papers=(j.papers||[]).slice(0,3);
+      if(!papers.length) throw 0;
+      wrap.innerHTML=axRender(papers);
+      const day=(j.generated_at||"").slice(0,10);
+      card.querySelector(".c-stat .n").textContent=String(papers.length);
+      card.querySelector(".c-stat .date").textContent=day;
+      card.querySelector(".c-foot span").textContent=`arxiv-pulse · ${day}`;
+    }catch(e){
+      wrap.innerHTML=`<div class="ax-load">couldn't load today's picks — <a class="ax-link" href="https://arxiv.org/list/cs.AI/recent" target="_blank" rel="noopener">browse arXiv ↗</a></div>`;
+      card.querySelector(".c-foot span").textContent="arxiv-pulse · offline";
+    }
   })();
 </script>
 </body>
