@@ -3,13 +3,14 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Anand Suresh — widgets</title>
-<meta name="description" content="Interactive, in-browser AI widgets — instruments for thinking. AI-as-tutor learning tools and security utilities, built lean." />
+<title>Anand Suresh — a method, not a field</title>
+<meta name="description" content="A method, not a field — first-principles rigor, demonstrated in the open, demystified for any reader. Live, in-browser instruments across AI, security, learning, and the cosmos. By Anand Suresh." />
 <meta name="robots" content="index, follow" />
-<meta property="og:title" content="Anand Suresh — widgets" />
-<meta property="og:description" content="Instruments for thinking — AI-as-tutor and security widgets, in your browser." />
+<meta property="og:title" content="Anand Suresh — a method, not a field" />
+<meta property="og:description" content="Think it through. Show it working. Make it clear. Live, in-browser instruments across AI, security, learning, and the cosmos." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://anandsureshworks.com/" />
+<link rel="icon" href="/icon.svg" type="image/svg+xml" />
 <link rel="stylesheet" href="/brand.css" />
 <style>
   main{max-width:64rem;margin:0 auto;padding:3rem 1.25rem}
@@ -89,6 +90,29 @@
   /* secure */
   .chips{display:flex;flex-wrap:wrap;gap:6px;align-content:center}
   .chip{font-family:var(--mono);font-size:.66rem;color:var(--d2);border:1px solid color-mix(in oklch,var(--d2) 42%,transparent);border-radius:4px;padding:2px 7px}
+
+  /* hero — method-first (the trunk, then the proof). weave + triangle + green thread = brand leitmotif */
+  .hmk{display:flex;align-items:center;gap:.55rem;font-family:var(--mono);font-size:.8rem;color:var(--t2);margin:0}
+  .hmk img{width:30px;height:30px;display:block}
+  h1.hname{font-size:1.55rem;font-weight:600;letter-spacing:-.015em;margin:.9rem 0 .15rem;color:var(--t1)}
+  .hwho{font-size:.95rem;color:var(--t2);line-height:1.5;max-width:41rem;margin:.4rem 0 0}
+  .hwho b{color:var(--t1);font-weight:600}
+  .herobody{max-width:44rem}
+  .method{display:flex;gap:1.8rem;align-items:center;margin:1.6rem 0 0;flex-wrap:wrap}
+  .tri{flex:none;width:204px}
+  .tri svg{width:100%;height:auto;display:block;overflow:visible}
+  .pipe{flex:1;min-width:13rem;display:flex;flex-direction:column;justify-content:space-between;gap:.35rem;align-self:stretch}
+  .step{background:var(--s1);border:1px solid var(--bd-sub);border-radius:9px;padding:.62rem .9rem;display:flex;align-items:baseline;justify-content:space-between;gap:.6rem}
+  .step .cl{font-size:.95rem;font-weight:600;color:var(--t1);letter-spacing:-.01em;line-height:1.1}
+  .step .ds{font-family:var(--mono);font-size:.6rem;letter-spacing:.04em;color:var(--t3);text-transform:uppercase;text-align:right;white-space:nowrap}
+  .arrow{align-self:center;font-family:var(--mono);color:var(--t3);font-size:.92rem;line-height:1}
+  .live{display:flex;align-items:center;flex-wrap:wrap;gap:.4rem .6rem;margin:1.9rem 0 1.8rem;padding:.7rem 1rem;background:var(--s2);border:1px solid var(--bd-sub);border-radius:9px;font-family:var(--mono);font-size:.76rem;color:var(--t1)}
+  .live .dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--accent);animation:livepulse 2.2s ease-out infinite}
+  @keyframes livepulse{0%{box-shadow:0 0 0 0 color-mix(in oklch,var(--accent) 55%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+  @media (prefers-reduced-motion:reduce){.live .dot{animation:none}}
+  .live .live-sub{color:var(--t3);font-size:.72rem}
+  .path-mark{width:18px;height:18px;border-radius:3px;vertical-align:-4px}
+  @media(max-width:620px){.method{gap:1.1rem}.tri{width:172px;margin:0 auto}}
 </style>
 <script>
 (function(){
@@ -108,16 +132,56 @@
 <a class="skip-link" href="#main">Skip to content</a>
 <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle color theme">☀</button>
 <main id="main">
-  <p class="brand-mark">&gt;_ anandsureshworks</p>
-  <h1>Widgets</h1>
-  <p class="identity"><b>Instruments for thinking</b>, built by <b>Anand Suresh</b> — I design and ship
-    AI, security and learning tools. Everything here runs lean, entirely in your browser.</p>
-  <nav class="tabs" id="tabs" role="tablist" aria-label="widget categories"></nav>
+  <p class="hmk"><img src="/as-logo.svg" alt="" width="30" height="30">anandsureshworks</p>
+  <h1 class="hname">Anand Suresh</h1>
+  <p class="hwho">A <b>method, not a field</b> — first-principles rigor, demonstrated in the open,
+    demystified for any reader. The same three moves across <b>AI, security, learning, and the cosmos</b>.</p>
+
+  <div class="herobody">
+    <div class="method">
+      <!-- woven triangle (the process) — three legs, one green thread, echoes the AS mark -->
+      <div class="tri" role="img" aria-label="The method as a woven triangle: three legs — Reason, Demonstrate, Demystify — all required, one green thread running through them">
+        <svg viewBox="0 0 240 184" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="weave" width="6" height="6" patternUnits="userSpaceOnUse">
+              <path d="M0,6 L6,0 M-1.5,1.5 L1.5,-1.5 M4.5,7.5 L7.5,4.5" stroke="var(--t2)" stroke-width="1.5" fill="none"/>
+              <path d="M0,0 L6,6 M-1.5,4.5 L1.5,7.5 M4.5,-1.5 L7.5,1.5" stroke="var(--t3)" stroke-width="1" fill="none" opacity="0.55"/>
+            </pattern>
+          </defs>
+          <path fill-rule="evenodd" fill="url(#weave)" d="M120,34 L44,150 L196,150 Z M120,53 L62,141 L178,141 Z"/>
+          <polygon points="120,34 44,150 196,150" fill="none" stroke="var(--t2)" stroke-width="1.1" stroke-linejoin="round" opacity="0.4"/>
+          <polygon points="120,44 53,145 187,145" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linejoin="round"/>
+          <circle cx="120" cy="34" r="3.6" fill="var(--t1)"/>
+          <circle cx="44" cy="150" r="3.6" fill="var(--t1)"/>
+          <circle cx="196" cy="150" r="3.6" fill="var(--t1)"/>
+          <text x="120" y="23" text-anchor="middle" font-family="Space Grotesk" font-size="13" font-weight="600" fill="var(--t1)">Reason</text>
+          <text x="58" y="172" text-anchor="middle" font-family="Space Grotesk" font-size="13" font-weight="600" fill="var(--t1)">Demonstrate</text>
+          <text x="184" y="172" text-anchor="middle" font-family="Space Grotesk" font-size="13" font-weight="600" fill="var(--t1)">Demystify</text>
+        </svg>
+      </div>
+      <!-- the steps (linear) -->
+      <div class="pipe">
+        <div class="step"><span class="cl">Think it through.</span><span class="ds">first principles</span></div>
+        <div class="arrow" aria-hidden="true">↓</div>
+        <div class="step"><span class="cl">Show it working.</span><span class="ds">in the open · testable</span></div>
+        <div class="arrow" aria-hidden="true">↓</div>
+        <div class="step"><span class="cl">Make it clear.</span><span class="ds">any fluency</span></div>
+      </div>
+    </div>
+
+    <div class="live">
+      <span class="dot" aria-hidden="true"></span>
+      <span>Everything below runs live, in your browser.</span>
+      <span class="live-sub">— nothing to install, nothing sent anywhere.</span>
+    </div>
+  </div>
+
+  <nav class="tabs" id="tabs" role="tablist" aria-label="categories"></nav>
   <div id="panels"></div>
 </main>
 
 <footer class="path">
-  <div class="path-id"><span class="gt">&gt;_</span> Anand Suresh</div>
+  <div class="path-id"><img class="path-mark" src="/as-logo.svg" alt="" width="18" height="18"> Anand Suresh</div>
   <nav class="path-links">
     <span class="lead">elsewhere:</span>
     <a href="https://anandonsecurity.com">security writing ↗</a>
