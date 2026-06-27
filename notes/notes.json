@@ -1,0 +1,13 @@
+{
+  "site": "https://anandsureshworks.com",
+  "notes": [
+    {
+      "slug": "cdn-to-agents",
+      "title": "What a CDN taught me about AI agents",
+      "dek": "Three times in ten years, the same reliability lesson — wearing different clothes.",
+      "date": "2026-06-27",
+      "tags": ["systems", "agentic"],
+      "draft": false
+    }
+  ]
+}

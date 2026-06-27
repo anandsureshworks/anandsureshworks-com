@@ -116,6 +116,10 @@
   @media (prefers-reduced-motion:reduce){.live .dot{animation:none}}
   .live .live-sub{color:var(--t3);font-size:.72rem}
   .path-mark{width:18px;height:18px;border-radius:3px;vertical-align:-4px}
+  .stream-cta{display:flex;flex-wrap:wrap;align-items:baseline;gap:.4rem .8rem;margin:0 0 1.8rem;padding:.8rem 1rem;border:1px solid var(--bd-sub);border-radius:9px;background:var(--s1)}
+  .stream-cta a{font-family:var(--mono);font-weight:600;color:var(--accent);text-decoration:none;font-size:.95rem}
+  .stream-cta a:hover{text-decoration:underline}
+  .stream-cta span{font-size:.82rem;color:var(--t2)}
   @media(max-width:620px){.method{gap:1.1rem}.tri{width:172px;margin:0 auto}}
 </style>
 <script>
@@ -178,6 +182,11 @@
       <span>Everything below runs live, in your browser.</span>
       <span class="live-sub">— nothing to install, nothing sent anywhere.</span>
     </div>
+  </div>
+
+  <div class="stream-cta">
+    <a href="/notes/">Notes &rarr;</a>
+    <span>weekly writing &mdash; first principles across systems, agents, finance, learning &amp; more</span>
   </div>
 
   <nav class="tabs" id="tabs" role="tablist" aria-label="categories"></nav>
