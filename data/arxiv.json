@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-06-28T11:20:01Z",
+  "generated_at": "2026-06-29T11:20:05Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "OpenRCA 2.0: From Outcome Labels to Causal Process Supervision",
-      "url": "https://arxiv.org/abs/2606.27154",
-      "c": "cs.AI",
+      "t": "LLawCo: Learning Laws of Cooperation for Modeling Embodied Multi-Agent Behavior",
+      "url": "https://arxiv.org/abs/2606.28182",
+      "c": "cs.LG",
       "s": 0.99
     },
     {
-      "t": "Empowering GUI Agents via Autonomous Experience Exploration and Hindsight Experience Utilization for Task Planning",
-      "url": "https://arxiv.org/abs/2606.27330",
-      "c": "cs.CL",
-      "s": 0.72
+      "t": "Agent-Native Immune System: Architecture, Taxonomy, and Engineering",
+      "url": "https://arxiv.org/abs/2606.28270",
+      "c": "cs.AI",
+      "s": 0.94
     },
     {
-      "t": "Prompt Injection in Automated Résumé Screening with Large Language Models: Single and Multi-Injection Settings",
-      "url": "https://arxiv.org/abs/2606.27287",
-      "c": "cs.AI",
-      "s": 0.67
+      "t": "Robust Harmful Features Under Jailbreak Attacks: Mechanistic Evidence from Attention Head Specialization in Large Language Models",
+      "url": "https://arxiv.org/abs/2606.28153",
+      "c": "cs.CR",
+      "s": 0.89
     }
   ]
 }
