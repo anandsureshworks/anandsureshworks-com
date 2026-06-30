@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-06-29T11:20:05Z",
+  "generated_at": "2026-06-30T11:30:15Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "LLawCo: Learning Laws of Cooperation for Modeling Embodied Multi-Agent Behavior",
-      "url": "https://arxiv.org/abs/2606.28182",
+      "t": "Attractor States Emerge in Multi-Turn LLM Conversations",
+      "url": "https://arxiv.org/abs/2606.30571",
       "c": "cs.LG",
-      "s": 0.99
+      "s": 0.83
     },
     {
-      "t": "Agent-Native Immune System: Architecture, Taxonomy, and Engineering",
-      "url": "https://arxiv.org/abs/2606.28270",
+      "t": "Entity Binding Failures in Tool-Augmented Agents",
+      "url": "https://arxiv.org/abs/2606.30531",
       "c": "cs.AI",
-      "s": 0.94
+      "s": 0.78
     },
     {
-      "t": "Robust Harmful Features Under Jailbreak Attacks: Mechanistic Evidence from Attention Head Specialization in Large Language Models",
-      "url": "https://arxiv.org/abs/2606.28153",
-      "c": "cs.CR",
-      "s": 0.89
+      "t": "SWE-INTERACT: Reimagining SWE Benchmarks as User-Driven Long-Horizon Coding Sessions",
+      "url": "https://arxiv.org/abs/2606.30573",
+      "c": "cs.LG",
+      "s": 0.67
     }
   ]
 }
