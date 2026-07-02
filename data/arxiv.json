@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-07-01T11:20:02Z",
+  "generated_at": "2026-07-02T11:24:17Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Theory of Mind and Persuasion Beyond Conversation: Assessing the Capacity of LLMs to Induce Belief States via Planning and Action",
-      "url": "https://arxiv.org/abs/2606.31916",
+      "t": "Adversarial Pragmatics for AI Safety Evaluation: A Benchmark for Instruction Conflict, Embedded Commands, and Policy Ambiguity",
+      "url": "https://arxiv.org/abs/2607.01153",
       "c": "cs.CL",
       "s": 0.99
     },
     {
-      "t": "MVP-Nav: Multi-layer Value Map Planner Navigator",
-      "url": "https://arxiv.org/abs/2606.31919",
-      "c": "cs.RO",
-      "s": 0.78
+      "t": "Can Agents Generalize to the Open World? Unveiling the Fragility of Static Training in Tool Use",
+      "url": "https://arxiv.org/abs/2607.01084",
+      "c": "cs.AI",
+      "s": 0.89
     },
     {
-      "t": "Reinforcement Learning with Metacognitive Feedback Elicits Faithful Uncertainty Expression in LLMs",
-      "url": "https://arxiv.org/abs/2606.32032",
-      "c": "cs.CL",
-      "s": 0.72
+      "t": "Antaeus: Hunting Repository-Level Logic Vulnerabilities via Context-Grounded LLM Reasoning",
+      "url": "https://arxiv.org/abs/2607.01138",
+      "c": "cs.CR",
+      "s": 0.83
     }
   ]
 }
