@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-07-02T11:24:17Z",
+  "generated_at": "2026-07-03T11:20:05Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Adversarial Pragmatics for AI Safety Evaluation: A Benchmark for Instruction Conflict, Embedded Commands, and Policy Ambiguity",
-      "url": "https://arxiv.org/abs/2607.01153",
-      "c": "cs.CL",
-      "s": 0.99
+      "t": "Hardware-Enforced Semantic Coordination for Safety-Critical Real-Time Autonomous Systems",
+      "url": "https://arxiv.org/abs/2607.02376",
+      "c": "cs.AI",
+      "s": 0.94
     },
     {
-      "t": "Can Agents Generalize to the Open World? Unveiling the Fragility of Static Training in Tool Use",
-      "url": "https://arxiv.org/abs/2607.01084",
-      "c": "cs.AI",
+      "t": "Reasoning effort, not tool access, buys first-try reliability in agentic code generation: an observational study",
+      "url": "https://arxiv.org/abs/2607.02436",
+      "c": "cs.SE",
       "s": 0.89
     },
     {
-      "t": "Antaeus: Hunting Repository-Level Logic Vulnerabilities via Context-Grounded LLM Reasoning",
-      "url": "https://arxiv.org/abs/2607.01138",
-      "c": "cs.CR",
-      "s": 0.83
+      "t": "Bringing Agentic Search to Earth Observation Data Discovery",
+      "url": "https://arxiv.org/abs/2607.02387",
+      "c": "cs.IR",
+      "s": 0.78
     }
   ]
 }
