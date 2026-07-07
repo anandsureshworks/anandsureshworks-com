@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-07-06T11:20:01Z",
+  "generated_at": "2026-07-07T11:27:42Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,21 +9,21 @@
   },
   "papers": [
     {
-      "t": "Hardware-Enforced Semantic Coordination for Safety-Critical Real-Time Autonomous Systems",
-      "url": "https://arxiv.org/abs/2607.02376",
+      "t": "LLM-as-a-Verifier: A General-Purpose Verification Framework",
+      "url": "https://arxiv.org/abs/2607.05391",
       "c": "cs.AI",
-      "s": 0.94
+      "s": 0.78
     },
     {
-      "t": "Reasoning effort, not tool access, buys first-try reliability in agentic code generation: an observational study",
-      "url": "https://arxiv.org/abs/2607.02436",
-      "c": "cs.SE",
-      "s": 0.89
+      "t": "GaP: A Graph-as-Policy Multi-Agent Self-Learning Harness For Variational Automation Tasks",
+      "url": "https://arxiv.org/abs/2607.05369",
+      "c": "cs.RO",
+      "s": 0.78
     },
     {
-      "t": "Bringing Agentic Search to Earth Observation Data Discovery",
-      "url": "https://arxiv.org/abs/2607.02387",
-      "c": "cs.IR",
+      "t": "Untrusted Content Masking for Web Agents with Security Guarantees",
+      "url": "https://arxiv.org/abs/2607.05277",
+      "c": "cs.CR",
       "s": 0.78
     }
   ]
