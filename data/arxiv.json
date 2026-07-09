@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-07-08T11:20:07Z",
+  "generated_at": "2026-07-09T11:25:13Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "From Voting to Agent Collaboration: Answer-Type-Aware LLM Pipelines for BioASQ 14b",
-      "url": "https://arxiv.org/abs/2607.06452",
-      "c": "cs.CL",
-      "s": 0.78
+      "t": "Beware of Agentic Botnets: Scalable Untargeted Promptware Attacks via Universal and Transferable Adversarial HalluSquatting",
+      "url": "https://arxiv.org/abs/2607.07433",
+      "c": "cs.CR",
+      "s": 0.99
     },
     {
-      "t": "An Experimental Design Approach to Evaluating Agentic AI's Autonomous Model Discovery",
-      "url": "https://arxiv.org/abs/2607.06413",
-      "c": "stat.ME",
-      "s": 0.78
+      "t": "Breaking Database Lock-in: Agentic Regeneration of High Performance Storage Readers for Database Bypass",
+      "url": "https://arxiv.org/abs/2607.07696",
+      "c": "cs.DB",
+      "s": 0.83
     },
     {
-      "t": "DT-Guard: Intent-Driven Reasoning-Active Training for Reasoning-Free LLM Safety Guardrail",
-      "url": "https://arxiv.org/abs/2607.06326",
-      "c": "cs.AI",
-      "s": 0.78
+      "t": "Mitigating Taint-Style Vulnerabilities in MCP Servers via Security-Aware Tool Descriptions",
+      "url": "https://arxiv.org/abs/2607.07461",
+      "c": "cs.CR",
+      "s": 0.83
     }
   ]
 }
