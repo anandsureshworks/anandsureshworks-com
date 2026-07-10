@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-07-09T11:25:13Z",
+  "generated_at": "2026-07-10T11:20:05Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Beware of Agentic Botnets: Scalable Untargeted Promptware Attacks via Universal and Transferable Adversarial HalluSquatting",
-      "url": "https://arxiv.org/abs/2607.07433",
-      "c": "cs.CR",
-      "s": 0.99
+      "t": "SolarChain-Eval: A Physics-Constrained Benchmark for Trustworthy Economic Agents in Decentralized Energy Markets",
+      "url": "https://arxiv.org/abs/2607.08681",
+      "c": "cs.AI",
+      "s": 0.89
     },
     {
-      "t": "Breaking Database Lock-in: Agentic Regeneration of High Performance Storage Readers for Database Bypass",
-      "url": "https://arxiv.org/abs/2607.07696",
-      "c": "cs.DB",
+      "t": "Validity of LLMs as data annotators: AMALIA on authority",
+      "url": "https://arxiv.org/abs/2607.08731",
+      "c": "cs.CL",
       "s": 0.83
     },
     {
-      "t": "Mitigating Taint-Style Vulnerabilities in MCP Servers via Security-Aware Tool Descriptions",
-      "url": "https://arxiv.org/abs/2607.07461",
-      "c": "cs.CR",
-      "s": 0.83
+      "t": "AUTOPILOT VQA: Benchmarking Vision-Language Models for Incident-Centric Dashcam Understanding",
+      "url": "https://arxiv.org/abs/2607.08745",
+      "c": "cs.AI",
+      "s": 0.72
     }
   ]
 }
