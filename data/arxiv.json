@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-06-27T11:28:28Z",
+  "generated_at": "2026-07-11T11:20:01Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "OpenRCA 2.0: From Outcome Labels to Causal Process Supervision",
-      "url": "https://arxiv.org/abs/2606.27154",
+      "t": "SolarChain-Eval: A Physics-Constrained Benchmark for Trustworthy Economic Agents in Decentralized Energy Markets",
+      "url": "https://arxiv.org/abs/2607.08681",
       "c": "cs.AI",
-      "s": 0.99
+      "s": 0.89
     },
     {
-      "t": "Empowering GUI Agents via Autonomous Experience Exploration and Hindsight Experience Utilization for Task Planning",
-      "url": "https://arxiv.org/abs/2606.27330",
+      "t": "Validity of LLMs as data annotators: AMALIA on authority",
+      "url": "https://arxiv.org/abs/2607.08731",
       "c": "cs.CL",
-      "s": 0.72
+      "s": 0.83
     },
     {
-      "t": "Prompt Injection in Automated Résumé Screening with Large Language Models: Single and Multi-Injection Settings",
-      "url": "https://arxiv.org/abs/2606.27287",
+      "t": "AUTOPILOT VQA: Benchmarking Vision-Language Models for Incident-Centric Dashcam Understanding",
+      "url": "https://arxiv.org/abs/2607.08745",
       "c": "cs.AI",
-      "s": 0.67
+      "s": 0.72
     }
   ]
 }
