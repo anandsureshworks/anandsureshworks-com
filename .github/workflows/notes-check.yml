@@ -1,0 +1,24 @@
+# Gate the notes stream: fail the push/PR if the derived surfaces drift from their
+# source, or if a note is published (draft:false) while still a scaffold. `--check`
+# runs gen_notes' build() — which raises on a hollow publish — then diffs every
+# generated surface against what's committed. Pure stdlib, no network, no secrets.
+name: notes-check
+
+on:
+  push:
+    paths: ['notes/**', 'scripts/gen_notes.py', '.github/workflows/notes-check.yml']
+  pull_request:
+    paths: ['notes/**', 'scripts/gen_notes.py', '.github/workflows/notes-check.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  notes-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
+      - name: Check notes surfaces are fresh and no scaffold is live
+        run: python3 scripts/gen_notes.py --check
