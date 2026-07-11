@@ -13,7 +13,7 @@ import json, os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SITE = "https://anandsureshworks.com"
+SITE = "https://www.anandsureshworks.com"
 NOTES_DIR = ROOT / "notes"
 
 def esc(s: str) -> str:

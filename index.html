@@ -9,7 +9,9 @@
 <meta property="og:title" content="Anand Suresh — a method, not a field" />
 <meta property="og:description" content="Think it through. Show it working. Make it clear. Live, in-browser instruments across AI, security, learning, and the cosmos." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://anandsureshworks.com/" />
+<meta property="og:url" content="https://www.anandsureshworks.com/" />
+<link rel="canonical" href="https://www.anandsureshworks.com/" />
+<link rel="alternate" type="application/atom+xml" title="Anand Suresh — notes" href="/notes/feed.xml" />
 <link rel="icon" href="/icon.svg" type="image/svg+xml" />
 <link rel="stylesheet" href="/brand.css" />
 <style>
@@ -120,6 +122,24 @@
   .stream-cta a{font-family:var(--mono);font-weight:600;color:var(--accent);text-decoration:none;font-size:.95rem}
   .stream-cta a:hover{text-decoration:underline}
   .stream-cta span{font-size:.82rem;color:var(--t2)}
+  /* hero signals rail — fills the right flank with honest, self-updating signals */
+  .herorail{display:flex;gap:2rem;align-items:flex-start;flex-wrap:wrap}
+  .herorail>.herobody{flex:1 1 32rem;min-width:0}
+  .signals{flex:1 1 14rem;max-width:17rem;display:flex;flex-direction:column;gap:.85rem;margin-top:1.6rem;padding:1rem 1.1rem;background:var(--s1);border:1px solid var(--bd-sub);border-radius:11px}
+  .sig-block{display:flex;flex-direction:column;gap:.3rem}
+  .sig-block+.sig-block{padding-top:.8rem;border-top:1px solid var(--bd-sub)}
+  .sig-lbl{font-family:var(--mono);font-size:.58rem;letter-spacing:.09em;text-transform:uppercase;color:var(--t3)}
+  .sig-fresh{display:flex;align-items:center;gap:.45rem;font-family:var(--mono);font-size:.75rem;color:var(--t1)}
+  .sig-fresh .dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--t3)}
+  .sig-fresh.is-fresh .dot{background:var(--accent);animation:livepulse 2.2s ease-out infinite}
+  .sig-fresh.is-stale .dot{background:var(--d2)}
+  .sig-sub{font-family:var(--mono);font-size:.62rem;color:var(--t3)}
+  .sig-note{font-size:.83rem;font-weight:600;color:var(--t1);text-decoration:none;line-height:1.3}
+  .sig-note:hover{color:var(--accent)}
+  .sig-note .arw{color:var(--accent)}
+  .sig-links{display:flex;flex-wrap:wrap;gap:.45rem .8rem;font-family:var(--mono);font-size:.73rem}
+  .sig-links a{color:var(--t2);text-decoration:none;border-bottom:1px solid var(--bd-sub)}
+  .sig-links a:hover{color:var(--t1);border-color:var(--t2)}
   @media(max-width:620px){.method{gap:1.1rem}.tri{width:172px;margin:0 auto}}
 </style>
 <script>
@@ -145,6 +165,7 @@
   <p class="hwho">A <b>method, not a field</b> — first-principles rigor, demonstrated in the open,
     demystified for any reader. The same three moves across <b>AI, security, learning, and the cosmos</b>.</p>
 
+  <div class="herorail">
   <div class="herobody">
     <div class="method">
       <!-- woven triangle (the process) — three legs, one green thread, echoes the AS mark -->
@@ -183,10 +204,29 @@
       <span class="live-sub">— nothing to install, nothing sent anywhere.</span>
     </div>
   </div>
+  <aside class="signals" aria-label="Site signals">
+    <div class="sig-block">
+      <span class="sig-lbl">Live data</span>
+      <div class="sig-fresh" id="sigFresh"><span class="dot" aria-hidden="true"></span><span id="sigFreshTxt">checking…</span></div>
+      <span class="sig-sub" id="sigFreshSub"></span>
+    </div>
+    <div class="sig-block">
+      <span class="sig-lbl">Latest note</span>
+      <a class="sig-note" id="sigNote" href="/notes/">Read the notes <span class="arw" aria-hidden="true">&rarr;</span></a>
+    </div>
+    <div class="sig-block">
+      <span class="sig-lbl">Connect</span>
+      <div class="sig-links">
+        <a href="https://github.com/anandsureshworks" target="_blank" rel="noopener">github &#8599;</a>
+        <a href="/notes/feed.xml">rss</a>
+      </div>
+    </div>
+  </aside>
+  </div>
 
   <div class="stream-cta">
     <a href="/notes/">Notes &rarr;</a>
-    <span>weekly writing &mdash; first principles across systems, agents, finance, learning &amp; more</span>
+    <span>writing in the open &mdash; first principles across systems, agents, finance, learning &amp; more</span>
   </div>
 
   <nav class="tabs" id="tabs" role="tablist" aria-label="categories"></nav>
@@ -201,6 +241,7 @@
     <a href="https://anandsureshworks.dev">reference lab ↗</a>
     <a href="https://agentliveness.anandsureshworks.dev">agentliveness ↗</a>
     <a href="https://github.com/anandsureshworks">github ↗</a>
+    <a href="/notes/feed.xml">notes feed ↗</a>
   </nav>
 </footer>
 
@@ -377,6 +418,34 @@
       wrap.innerHTML=`<div class="ax-load">couldn't load today's picks — <a class="ax-link" href="https://arxiv.org/list/cs.AI/recent" target="_blank" rel="noopener">browse arXiv ↗</a></div>`;
       card.querySelector(".c-foot span").textContent="arxiv-pulse · offline";
     }
+  })();
+
+  // signals rail — honest & self-updating: the site's own data freshness, computed in-browser
+  // from generated_at (mirrors the data-integrity contract: fresh < 2x the daily refresh interval)
+  (async()=>{
+    const el=document.getElementById("sigFresh"),txt=document.getElementById("sigFreshTxt"),sub=document.getElementById("sigFreshSub");
+    if(!el) return;
+    const rel=ms=>{const h=ms/36e5;if(h<1)return Math.max(1,Math.round(ms/6e4))+"m ago";if(h<48)return Math.round(h)+"h ago";return Math.round(h/24)+"d ago";};
+    try{
+      const r=await fetch("/data/arxiv.json",{cache:"no-store"}); if(!r.ok) throw 0;
+      const g=(await r.json()).generated_at; if(!g) throw 0;
+      const age=Date.now()-new Date(g).getTime(), fresh=age<48*36e5;
+      el.classList.add(fresh?"is-fresh":"is-stale");
+      txt.textContent="arXiv data · "+(fresh?"fresh":"stale");
+      sub.textContent="refreshed "+rel(age);
+    }catch(e){ el.classList.add("is-stale"); txt.textContent="arXiv data · offline"; }
+  })();
+
+  // latest note from the notes manifest (widgets read JSON only)
+  (async()=>{
+    const a=document.getElementById("sigNote"); if(!a) return;
+    try{
+      const r=await fetch("/notes/notes.json",{cache:"no-store"}); if(!r.ok) throw 0;
+      const pub=((await r.json()).notes||[]).filter(n=>!n.draft).sort((x,y)=>x.date<y.date?1:-1);
+      const n=pub[0]; if(!n) throw 0;
+      a.href="/notes/"+n.slug+"/";
+      a.innerHTML=n.title.replace(/&/g,"&amp;").replace(/</g,"&lt;")+' <span class="arw" aria-hidden="true">&rarr;</span>';
+    }catch(e){/* keep default label */}
   })();
 </script>
 </body>
