@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Keep the notes stream's derived surfaces in lockstep with their source.
+# When notes source (the manifest, a note page, or the generator) is staged, regenerate
+# and re-stage the derived index/feeds/tag pages — so a commit can never carry stale
+# surfaces, and gen_notes' publish-guard can never be bypassed (a hollow note aborts the commit).
+#
+# One-time enable per clone:  git config core.hooksPath .githooks
+set -euo pipefail
+
+if git diff --cached --name-only | grep -qE '^notes/notes\.json$|^notes/[^/]+/index\.html$|^scripts/gen_notes\.py$'; then
+  python3 scripts/gen_notes.py   # exits non-zero (aborting the commit) on a hollow/missing publish
+  git add -A notes/index.html notes/feed.xml
+  git add -A notes/tag 2>/dev/null || true
+fi

@@ -9,7 +9,7 @@ Run after adding/editing a note (or flipping its draft flag):
     python3 scripts/gen_notes.py
 """
 from __future__ import annotations
-import json, os
+import json, os, shutil
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -85,13 +85,37 @@ def write(path: Path, text: str):
     tmp.write_text(text)
     os.replace(tmp, path)
 
-def main():
+# A note is publishable (draft:false) only if its page exists AND is fully written.
+# These are the tells of the hand-authored scaffold. Publishing one live once leaked
+# bracketed placeholder prose to the public site (2026-07-11) — the guard makes it impossible.
+SCAFFOLD_MARKERS = ('class="ph"', "DRAFT scaffold")
+
+def publish_blockers(published):
+    """Reasons a to-be-published note must not go live (missing page / still a scaffold)."""
+    out = []
+    for n in published:
+        page_path = NOTES_DIR / n["slug"] / "index.html"
+        if not page_path.exists():
+            out.append(f'{n["slug"]}: no page at notes/{n["slug"]}/index.html')
+            continue
+        hit = next((m for m in SCAFFOLD_MARKERS if m in page_path.read_text()), None)
+        if hit:
+            out.append(f'{n["slug"]}: still a scaffold ({hit}) — finish it or set "draft": true')
+    return out
+
+def build():
+    """Compute every derived surface as [(Path, text)]. Raises SystemExit on a hollow publish."""
     data = json.loads((NOTES_DIR / "notes.json").read_text())
     published = sorted([n for n in data["notes"] if not n.get("draft")],
                        key=lambda n: n["date"], reverse=True)
+    blockers = publish_blockers(published)
+    if blockers:
+        raise SystemExit("gen_notes: refusing to publish — a live note must be fully written:\n  - "
+                         + "\n  - ".join(blockers))
 
-    # index
     tags = sorted({t for n in published for t in n["tags"]})
+    outputs = []
+
     tag_feeds = " · ".join(f'<a class="tagchip" href="/notes/tag/{t}/">{esc(t)}</a>' for t in tags)
     idx_body = (
         '<div class="notes-head"><h1>Notes</h1>'
@@ -101,13 +125,12 @@ def main():
         f'<ul class="note-list">{"".join(item(n) for n in published)}</ul>'
         '<p class="subscribe">Subscribe: <a href="/notes/feed.xml">all notes (Atom)</a> '
         '&mdash; or any tag has its own feed.</p>')
-    write(NOTES_DIR / "index.html",
-          page("Notes — Anand Suresh", "First-principles notes across many domains.",
-               idx_body, "/notes/feed.xml", "Anand Suresh — notes"))
-    write(NOTES_DIR / "feed.xml",
-          atom(published, f"{SITE}/notes/feed.xml", f"{SITE}/notes/", "Anand Suresh — notes"))
+    outputs.append((NOTES_DIR / "index.html",
+        page("Notes — Anand Suresh", "First-principles notes across many domains.",
+             idx_body, "/notes/feed.xml", "Anand Suresh — notes")))
+    outputs.append((NOTES_DIR / "feed.xml",
+        atom(published, f"{SITE}/notes/feed.xml", f"{SITE}/notes/", "Anand Suresh — notes")))
 
-    # per-tag pages + feeds
     for t in tags:
         tn = [n for n in published if t in n["tags"]]
         body = (f'<div class="notes-head"><h1>#{esc(t)}</h1>'
@@ -115,15 +138,42 @@ def main():
                 f'<div class="filter"><a class="tagchip" href="/notes/">&larr; all notes</a> '
                 f'&middot; subscribe: <a class="tagchip" href="/notes/tag/{t}/feed.xml">{esc(t)} feed</a></div></div>'
                 f'<ul class="note-list">{"".join(item(n) for n in tn)}</ul>')
-        write(NOTES_DIR / "tag" / t / "index.html",
-              page(f"#{t} — Anand Suresh notes", f"Notes tagged {t}.",
-                   body, f"/notes/tag/{t}/feed.xml", f"Anand Suresh — {t}"))
-        write(NOTES_DIR / "tag" / t / "feed.xml",
-              atom(tn, f"{SITE}/notes/tag/{t}/feed.xml", f"{SITE}/notes/tag/{t}/",
-                   f"Anand Suresh — {t}"))
+        outputs.append((NOTES_DIR / "tag" / t / "index.html",
+            page(f"#{t} — Anand Suresh notes", f"Notes tagged {t}.",
+                 body, f"/notes/tag/{t}/feed.xml", f"Anand Suresh — {t}")))
+        outputs.append((NOTES_DIR / "tag" / t / "feed.xml",
+            atom(tn, f"{SITE}/notes/tag/{t}/feed.xml", f"{SITE}/notes/tag/{t}/",
+                 f"Anand Suresh — {t}")))
 
+    return outputs, published, tags
+
+def orphan_tag_dirs(tags):
+    """Tag dirs on disk that no live tag owns — stale derived surfaces to prune."""
+    tag_root = NOTES_DIR / "tag"
+    if not tag_root.exists():
+        return []
+    return [d for d in tag_root.iterdir() if d.is_dir() and d.name not in tags]
+
+def main(check=False):
+    outputs, published, tags = build()
+    orphans = orphan_tag_dirs(tags)
+    if check:
+        drift = [path.relative_to(ROOT) for path, text in outputs
+                 if (path.read_text() if path.exists() else None) != text]
+        drift += [d.relative_to(ROOT) for d in orphans]
+        if drift:
+            raise SystemExit("gen_notes --check: DRIFT — run `python3 scripts/gen_notes.py`: "
+                             + ", ".join(str(d) for d in drift))
+        print(f"gen_notes --check: clean ({len(outputs)} surfaces match)")
+        return
+    for path, text in outputs:
+        write(path, text)
+    for d in orphans:
+        shutil.rmtree(d)
     print(f"gen_notes: {len(published)} published, {len(tags)} tags "
-          f"({', '.join(tags) or 'none'}) -> notes/index.html, feeds, tag pages")
+          f"({', '.join(tags) or 'none'}) -> notes/index.html, feeds, tag pages"
+          + (f"; pruned {len(orphans)} orphan tag dir(s)" if orphans else ""))
 
 if __name__ == "__main__":
-    main()
+    import sys
+    main(check="--check" in sys.argv)
