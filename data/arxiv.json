@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-07-12T11:34:48Z",
+  "generated_at": "2026-07-13T11:34:40Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "SolarChain-Eval: A Physics-Constrained Benchmark for Trustworthy Economic Agents in Decentralized Energy Markets",
-      "url": "https://arxiv.org/abs/2607.08681",
-      "c": "cs.AI",
-      "s": 0.89
+      "t": "VEXAIoT: Autonomous IoT Vulnerability EXploitation using AI Agents",
+      "url": "https://arxiv.org/abs/2607.09653",
+      "c": "cs.CR",
+      "s": 0.99
     },
     {
-      "t": "Validity of LLMs as data annotators: AMALIA on authority",
-      "url": "https://arxiv.org/abs/2607.08731",
-      "c": "cs.CL",
+      "t": "Failure as a Process: An Anatomy of CLI Coding Agent Trajectories",
+      "url": "https://arxiv.org/abs/2607.09510",
+      "c": "cs.SE",
+      "s": 0.94
+    },
+    {
+      "t": "LLM for EDA in Front-End Design: Challenges and Opportunities",
+      "url": "https://arxiv.org/abs/2607.09616",
+      "c": "cs.ET",
       "s": 0.83
-    },
-    {
-      "t": "AUTOPILOT VQA: Benchmarking Vision-Language Models for Incident-Centric Dashcam Understanding",
-      "url": "https://arxiv.org/abs/2607.08745",
-      "c": "cs.AI",
-      "s": 0.72
     }
   ]
 }
