@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-07-13T11:34:40Z",
+  "generated_at": "2026-07-14T11:20:01Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "VEXAIoT: Autonomous IoT Vulnerability EXploitation using AI Agents",
-      "url": "https://arxiv.org/abs/2607.09653",
-      "c": "cs.CR",
-      "s": 0.99
+      "t": "AdvancedMathBench: A Benchmark Suite for Advanced Mathematical Proof Generation and Verification",
+      "url": "https://arxiv.org/abs/2607.11849",
+      "c": "cs.CL",
+      "s": 0.72
     },
     {
-      "t": "Failure as a Process: An Anatomy of CLI Coding Agent Trajectories",
-      "url": "https://arxiv.org/abs/2607.09510",
-      "c": "cs.SE",
-      "s": 0.94
+      "t": "How Temperature Shapes Ideological Discourse in Retrieval-Augmented Generation?",
+      "url": "https://arxiv.org/abs/2607.11783",
+      "c": "cs.CL",
+      "s": 0.72
     },
     {
-      "t": "LLM for EDA in Front-End Design: Challenges and Opportunities",
-      "url": "https://arxiv.org/abs/2607.09616",
-      "c": "cs.ET",
-      "s": 0.83
+      "t": "An Explainable Agentic System for Detection of Conversational Scams with Summary-Based Memory",
+      "url": "https://arxiv.org/abs/2607.11707",
+      "c": "cs.MA",
+      "s": 0.72
     }
   ]
 }
