@@ -117,6 +117,11 @@
   @keyframes livepulse{0%{box-shadow:0 0 0 0 color-mix(in oklch,var(--accent) 55%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
   @media (prefers-reduced-motion:reduce){.live .dot{animation:none}}
   .live .live-sub{color:var(--t3);font-size:.72rem}
+  .live .prove{margin-left:auto;display:flex;align-items:center;gap:.55rem;font-size:.72rem;white-space:nowrap}
+  .live .prove .plead{color:var(--t3)}
+  .live .prove a{color:var(--accent);font-weight:700;text-decoration:none;border:1px solid color-mix(in oklch,var(--accent) 40%,transparent);border-radius:6px;padding:.18rem .55rem;background:color-mix(in oklch,var(--accent) 9%,transparent)}
+  .live .prove a:hover{background:color-mix(in oklch,var(--accent) 20%,transparent)}
+  @media(max-width:560px){.live .prove{margin-left:0}}
   .path-mark{width:18px;height:18px;border-radius:3px;vertical-align:-4px}
   .stream-cta{display:flex;flex-wrap:wrap;align-items:baseline;gap:.4rem .8rem;margin:0 0 1.8rem;padding:.8rem 1rem;border:1px solid var(--bd-sub);border-radius:9px;background:var(--s1)}
   .stream-cta a{font-family:var(--mono);font-weight:600;color:var(--accent);text-decoration:none;font-size:.95rem}
@@ -202,6 +207,7 @@
       <span class="dot" aria-hidden="true"></span>
       <span>Everything below runs live, in your browser.</span>
       <span class="live-sub">— nothing to install, nothing sent anywhere.</span>
+      <span class="prove"><span class="plead">don&rsquo;t take it on faith:</span> <a href="/trust/">verify &rarr;</a> <a href="/status/">status &rarr;</a></span>
     </div>
   </div>
   <aside class="signals" aria-label="Site signals">
@@ -219,6 +225,8 @@
       <div class="sig-links">
         <a href="https://github.com/anandsureshworks" target="_blank" rel="noopener">github &#8599;</a>
         <a href="/notes/feed.xml">rss</a>
+        <a href="/trust/">trust</a>
+        <a href="/status/">status</a>
       </div>
     </div>
   </aside>
