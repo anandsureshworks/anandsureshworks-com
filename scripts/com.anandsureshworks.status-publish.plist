@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- status publish — daily re-verification of the fleet gates + refresh of the
+     aggregate-only public status the website reads at /data/status.json.
+     Install:
+       cp scripts/com.anandsureshworks.status-publish.plist ~/Library/LaunchAgents/
+       launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.anandsureshworks.status-publish.plist -->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.anandsureshworks.status-publish</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/anandsuresh/anandsureshworks-com/scripts/status-publish.sh</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key><integer>7</integer>
+    <key>Minute</key><integer>40</integer>
+  </dict>
+  <key>StandardOutPath</key>
+  <string>/tmp/status-publish.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/status-publish.err</string>
+  <key>RunAtLoad</key>
+  <false/>
+</dict>
+</plist>

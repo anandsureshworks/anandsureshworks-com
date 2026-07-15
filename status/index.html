@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Status — the reliability page · Anand Suresh</title>
+  <meta name="description" content="A public reliability page for a person: every data feed on this site carries a freshness contract, and the fleet behind it re-verifies its own guards daily. Live state, computed in your browser." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Status — a reliability page for a person" />
+  <meta property="og:description" content="Freshness contracts on every feed, deterministic gates on the fleet, verified daily — shown live." />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://www.anandsureshworks.com/status/" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/brand.css" />
+  <script>(function(){var d=document.documentElement;try{var t=localStorage.getItem('theme');d.dataset.theme=(t==='light'||t==='dark')?t:(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');}catch(e){d.dataset.theme='dark';}})();</script>
+  <style>
+    main{max-width:50rem;margin:0 auto;padding:2.4rem 1.25rem 4rem}
+    .mast{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.78rem;color:var(--t2);text-decoration:none;margin:0 0 1.6rem}
+    .mast:hover{color:var(--t1)}
+    .kicker{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+    h1{font-size:1.9rem;font-weight:600;letter-spacing:-.02em;margin:.4rem 0 .3rem}
+    .dek{font-size:1rem;color:var(--t2);line-height:1.55;max-width:42rem;margin:0}
+    .banner{display:flex;align-items:center;gap:.6rem;margin:1.6rem 0 0;padding:.85rem 1.05rem;border-radius:11px;border:1px solid;font-family:var(--mono);font-size:.85rem}
+    .banner.ok{color:var(--accent);border-color:color-mix(in oklch,var(--accent) 40%,transparent);background:color-mix(in oklch,var(--accent) 8%,transparent)}
+    .banner.bad{color:var(--d1);border-color:color-mix(in oklch,var(--d1) 45%,transparent);background:color-mix(in oklch,var(--d1) 8%,transparent)}
+    .dot{width:9px;height:9px;border-radius:50%;flex:none;background:currentColor}
+    .banner.ok .dot{animation:p 2.2s ease-out infinite}
+    @keyframes p{0%{box-shadow:0 0 0 0 color-mix(in oklch,var(--accent) 55%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+    @media(prefers-reduced-motion:reduce){.banner.ok .dot{animation:none}}
+    h2{font-size:1.05rem;font-weight:600;letter-spacing:-.01em;margin:2.3rem 0 .25rem}
+    .sub{font-size:.85rem;color:var(--t2);margin:0 0 1rem;max-width:40rem}
+    .rows{border:1px solid var(--bd-sub);border-radius:11px;overflow:hidden}
+    .row{display:flex;align-items:center;gap:1rem;padding:.85rem 1rem;flex-wrap:wrap}
+    .row+.row{border-top:1px solid var(--bd-sub)}
+    .row .nm{flex:1;min-width:11rem}
+    .row .nm b{display:block;font-size:.88rem;font-weight:600;color:var(--t1)}
+    .row .nm span{font-size:.74rem;color:var(--t3)}
+    .row .val{font-family:var(--mono);font-size:.8rem;color:var(--t2)}
+    .pill{font-family:var(--mono);font-size:.6rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:.14rem .5rem;border-radius:4px;border:1px solid;flex:none}
+    .pill.ok{color:var(--accent);border-color:color-mix(in oklch,var(--accent) 45%,transparent);background:color-mix(in oklch,var(--accent) 10%,transparent)}
+    .pill.bad{color:var(--d1);border-color:color-mix(in oklch,var(--d1) 50%,transparent);background:color-mix(in oklch,var(--d1) 12%,transparent)}
+    .pill.na{color:var(--t3);border-color:var(--bd)}
+    .foot{margin-top:2.6rem;padding-top:1.2rem;border-top:1px solid var(--bd-sub);font-size:.82rem;color:var(--t2);line-height:1.65}
+    .foot code{font-family:var(--mono);font-size:.76rem;color:var(--t1)}
+    .foot a{color:var(--t1)}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle color theme">&#9728;</button>
+  <main id="main">
+    <a class="mast" href="/"><img src="/as-logo.svg" alt="" width="18" height="18" style="border-radius:3px" /> anandsureshworks</a>
+    <div class="kicker">Reliability · in the open</div>
+    <h1>Status</h1>
+    <p class="dek">A status page for a <em>person</em>. Every feed on this site carries a freshness contract; the fleet behind it re&#8209;verifies its own guards daily. State below is computed live, in your browser, from the same JSON the site itself reads — if something rots, this page shows it red.</p>
+
+    <div class="banner" id="banner"><span class="dot" aria-hidden="true"></span><span id="bannerTxt">computing…</span></div>
+
+    <h2>Site data feeds</h2>
+    <p class="sub">Contract: refreshed daily by a scheduled engine; age beyond 2&times; the interval (48&nbsp;h) is an incident — per the same data&#8209;integrity rule the fleet runs on.</p>
+    <div class="rows" id="feeds"></div>
+
+    <h2>Fleet discipline</h2>
+    <p class="sub">Deterministic gates on the machine that builds all of this — re-run and republished daily as aggregates (counts only; details never leave the host).</p>
+    <div class="rows" id="fleet"></div>
+
+    <div class="foot">
+      <strong>How this works.</strong> Detection is deterministic and cheap — <code>generated_at</code> freshness contracts, an RCA mechanism health gate, dirty&#8209;tree audits, launchd liveness checks. Agents are reserved for <em>diagnosis</em> when a sensor trips, never for detection: a watcher that can fail silently is the exact failure class this fleet exists to kill. Every incident that survives to a root cause becomes a runnable mechanism test, and those tests are what the "RCA mechanisms" count re-verifies daily.
+      <br><br>Related: <a href="/trust/">the trust audit</a> — this site inspecting itself in your browser. &nbsp;<a href="/">&larr; back</a>
+    </div>
+  </main>
+
+  <script>
+  (function(){
+    var d=document.documentElement,b=document.getElementById('themeToggle');
+    function paint(){var l=d.dataset.theme==='light';b.textContent=l?'☾':'☀';b.setAttribute('aria-label','Switch to '+(l?'dark':'light')+' theme');}
+    paint();b.addEventListener('click',function(){var n=d.dataset.theme==='light'?'dark':'light';d.dataset.theme=n;try{localStorage.setItem('theme',n);}catch(e){}paint();});
+  })();
+
+  (async function(){
+    const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+    const rel=ms=>{const h=ms/36e5;return h<1?Math.max(1,Math.round(ms/6e4))+'m ago':h<48?Math.round(h)+'h ago':Math.round(h/24)+'d ago';};
+    const INCIDENT_MS=48*36e5; // 2x the daily interval
+    let allOk=true, anyLoaded=false;
+
+    async function feedRow(name,url,what){
+      try{
+        const r=await fetch(url,{cache:'no-store'}); if(!r.ok) throw 0;
+        const g=(await r.json()).generated_at; if(!g) throw 0;
+        const age=Date.now()-new Date(g).getTime(), ok=age<INCIDENT_MS;
+        allOk=allOk&&ok; anyLoaded=true;
+        return `<div class="row"><div class="nm"><b>${esc(name)}</b><span>${esc(what)}</span></div><span class="val">updated ${rel(age)}</span><span class="pill ${ok?'ok':'bad'}">${ok?'fresh':'incident'}</span></div>`;
+      }catch(e){
+        allOk=false;
+        return `<div class="row"><div class="nm"><b>${esc(name)}</b><span>${esc(what)}</span></div><span class="val">unreachable</span><span class="pill bad">incident</span></div>`;
+      }
+    }
+
+    const feeds=await Promise.all([
+      feedRow('arxiv-pulse','/data/arxiv.json','the "read today" card — daily paper scoring'),
+      feedRow('net-sentinel posture','/data/net-sentinel.json','curated network posture (aggregate-only)'),
+      feedRow('fleet status','/data/status.json','this page’s own feed — gates re-verified daily'),
+    ]);
+    document.getElementById('feeds').innerHTML=feeds.join('');
+
+    // fleet gates from status.json
+    let f='';
+    try{
+      const r=await fetch('/data/status.json',{cache:'no-store'}); const j=await r.json();
+      const c=j.checks||{};
+      const rows=[
+        {b:'RCA mechanisms', s:'every root-cause fix has a runnable test; all must pass',
+         val:`${c.rca_mechanisms.pass}/${c.rca_mechanisms.total} passing`, ok:c.rca_mechanisms.pass===c.rca_mechanisms.total&&c.rca_mechanisms.total>0, at:c.rca_mechanisms.verified_at},
+        {b:'Dirty trees', s:'uncommitted work across the fleet — unrecorded work doesn’t exist',
+         val:`${c.dirty_trees.dirty} of ${c.dirty_trees.total} repos dirty`, ok:c.dirty_trees.dirty===0, at:c.dirty_trees.verified_at},
+        {b:'Engines live', s:'scheduled + keep-alive jobs actually loaded, not just authored',
+         val:`${c.engines.live}/${c.engines.total} loaded`, ok:c.engines.live===c.engines.total&&c.engines.total>0, at:null},
+      ];
+      f=rows.map(x=>{
+        allOk=allOk&&x.ok;
+        const when=x.at?` · verified ${rel(Date.now()-new Date(x.at).getTime())}`:'';
+        return `<div class="row"><div class="nm"><b>${esc(x.b)}</b><span>${esc(x.s)}</span></div><span class="val">${esc(x.val)}${when}</span><span class="pill ${x.ok?'ok':'bad'}">${x.ok?'pass':'fail'}</span></div>`;
+      }).join('');
+    }catch(e){ allOk=false; f=`<div class="row"><div class="nm"><b>fleet status</b></div><span class="val">unreachable</span><span class="pill bad">incident</span></div>`; }
+    document.getElementById('fleet').innerHTML=f;
+
+    const bn=document.getElementById('banner'), bt=document.getElementById('bannerTxt');
+    bn.classList.add(allOk?'ok':'bad');
+    bt.textContent=allOk?'all contracts honored — feeds fresh, gates passing':'attention: a contract is being violated right now — that’s the point of this page';
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trust — this site audits itself · Anand Suresh</title>
+  <meta name="description" content="Don't take the privacy claims on faith: this page inspects the site live in your browser — transport, security headers, cookies, storage, third-party requests — and shows you the evidence." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Trust — this site audits itself, in your browser" />
+  <meta property="og:description" content="Transport, headers, cookies, storage, third-party requests — checked live, evidence shown." />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://www.anandsureshworks.com/trust/" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/brand.css" />
+  <script>(function(){var d=document.documentElement;try{var t=localStorage.getItem('theme');d.dataset.theme=(t==='light'||t==='dark')?t:(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');}catch(e){d.dataset.theme='dark';}})();</script>
+  <style>
+    main{max-width:50rem;margin:0 auto;padding:2.4rem 1.25rem 4rem}
+    .mast{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.78rem;color:var(--t2);text-decoration:none;margin:0 0 1.6rem}
+    .mast:hover{color:var(--t1)}
+    .kicker{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+    h1{font-size:1.9rem;font-weight:600;letter-spacing:-.02em;margin:.4rem 0 .3rem}
+    .dek{font-size:1rem;color:var(--t2);line-height:1.55;max-width:42rem;margin:0 0 1.6rem}
+    .rows{border:1px solid var(--bd-sub);border-radius:11px;overflow:hidden}
+    .row{padding:.9rem 1rem}
+    .row+.row{border-top:1px solid var(--bd-sub)}
+    .rhead{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+    .rhead b{flex:1;min-width:12rem;font-size:.9rem;font-weight:600;color:var(--t1)}
+    .pill{font-family:var(--mono);font-size:.6rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:.14rem .5rem;border-radius:4px;border:1px solid;flex:none}
+    .pill.ok{color:var(--accent);border-color:color-mix(in oklch,var(--accent) 45%,transparent);background:color-mix(in oklch,var(--accent) 10%,transparent)}
+    .pill.bad{color:var(--d1);border-color:color-mix(in oklch,var(--d1) 50%,transparent);background:color-mix(in oklch,var(--d1) 12%,transparent)}
+    .pill.info{color:var(--t2);border-color:var(--bd)}
+    .ev{font-family:var(--mono);font-size:.72rem;color:var(--t2);margin:.45rem 0 0;line-height:1.6;overflow-wrap:anywhere}
+    .why{font-size:.78rem;color:var(--t3);margin:.35rem 0 0;line-height:1.5;max-width:38rem}
+    .foot{margin-top:2.6rem;padding-top:1.2rem;border-top:1px solid var(--bd-sub);font-size:.82rem;color:var(--t2);line-height:1.65}
+    .foot a{color:var(--t1)}
+    .foot code{font-family:var(--mono);font-size:.76rem;color:var(--t1)}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle color theme">&#9728;</button>
+  <main id="main">
+    <a class="mast" href="/"><img src="/as-logo.svg" alt="" width="18" height="18" style="border-radius:3px" /> anandsureshworks</a>
+    <div class="kicker">Security · self-audit</div>
+    <h1>Trust, verified</h1>
+    <p class="dek">The homepage claims <em>"nothing to install, nothing sent anywhere."</em> Don't take that on faith. This page turns the audit lens on the site itself — every check below runs live in <strong>your</strong> browser, right now, and shows its evidence.</p>
+
+    <div class="rows" id="checks"><div class="row"><div class="rhead"><b>Running checks…</b></div></div></div>
+
+    <div class="foot">
+      <strong>One disclosed exception.</strong> The <a href="/redactor/">PII redactor</a> can — only if you click to enable it — lazily download its NER model from <code>cdn.jsdelivr.net</code> and <code>huggingface.co</code>. The model flows <em>in</em>; your text never leaves the tab. That path is excluded from the strict site&#8209;wide CSP and disclosed here rather than hidden.
+      <br><br>Related: <a href="/status/">the status page</a> — the fleet behind this site proving its freshness contracts. &nbsp;<a href="/">&larr; back</a>
+    </div>
+  </main>
+
+  <script>
+  (function(){
+    var d=document.documentElement,b=document.getElementById('themeToggle');
+    function paint(){var l=d.dataset.theme==='light';b.textContent=l?'☾':'☀';b.setAttribute('aria-label','Switch to '+(l?'dark':'light')+' theme');}
+    paint();b.addEventListener('click',function(){var n=d.dataset.theme==='light'?'dark':'light';d.dataset.theme=n;try{localStorage.setItem('theme',n);}catch(e){}paint();});
+  })();
+
+  (async function(){
+    const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    const checks=[];
+
+    // 1 — transport
+    const https=location.protocol==='https:';
+    checks.push({name:'Encrypted transport (TLS)', ok:https,
+      ev:'location.protocol = '+location.protocol,
+      why:'Everything between you and this site is encrypted in transit — nothing readable on the wire.'});
+
+    // 2 — security headers (same-origin HEAD; readable by JS)
+    let hdrs=null;
+    try{ const r=await fetch('/',{method:'HEAD',cache:'no-store'}); hdrs=r.headers; }catch(e){}
+    const H=(k)=>hdrs?hdrs.get(k):null;
+    const wanted=[
+      ['strict-transport-security','HSTS — your browser refuses to ever downgrade this site to plaintext.'],
+      ['content-security-policy','CSP — the browser blocks any script or connection this site didn’t declare. Even if content were injected, it couldn’t phone home.'],
+      ['x-content-type-options','Stops MIME-sniffing — files can’t be reinterpreted as something executable.'],
+      ['x-frame-options','This site can’t be framed inside another page for clickjacking.'],
+      ['referrer-policy','Where you go next doesn’t leak where you came from.'],
+      ['permissions-policy','Camera, mic, payment: denied to everything, including this site itself.'],
+    ];
+    for(const [k,why] of wanted){
+      const v=H(k);
+      checks.push({name:'Header · '+k, ok:!!v, ev:v?esc(k+': '+(v.length>110?v.slice(0,110)+'…':v)):'not present in this response', why});
+    }
+
+    // 3 — cookies
+    checks.push({name:'Cookies', ok:document.cookie==='',
+      ev:document.cookie===''?'document.cookie = "" (empty)':'cookies present: '+esc(document.cookie.split(';').length+''),
+      why:'No cookies means no cross-visit identifier — this site cannot recognize you tomorrow, by design.'});
+
+    // 4 — localStorage (transparent enumeration)
+    const known={theme:'your light/dark preference'};
+    const keys=[]; try{ for(let i=0;i<localStorage.length;i++) keys.push(localStorage.key(i)); }catch(e){}
+    const lsEv=keys.length? keys.map(k=>k+' — '+(known[k]||'created by an instrument you used; stays on this device')).join(' · ') : '(empty)';
+    checks.push({name:'Local storage', ok:true, info:true,
+      ev:esc(lsEv),
+      why:'Instruments save state in YOUR browser only (spaced-repetition topics, theme). It never leaves the device — there is no server to send it to.'});
+
+    // 5 — third-party requests (live evidence from the resource timeline)
+    const origins=[...new Set(performance.getEntriesByType('resource').map(e=>{try{return new URL(e.name).origin}catch(_){return null}}).filter(Boolean))];
+    const foreign=origins.filter(o=>o!==location.origin);
+    checks.push({name:'Third-party requests (this page)', ok:foreign.length===0,
+      ev:foreign.length===0?'every request this page made went to '+esc(location.origin)+' — fonts included (self-hosted)':'foreign origins: '+esc(foreign.join(', ')),
+      why:'The strongest privacy statement a page can make: your visit was never disclosed to anyone else — no fonts CDN, no analytics, no beacons.'});
+
+    // 6 — service workers
+    let sw=0; try{ sw=(await navigator.serviceWorker.getRegistrations()).length; }catch(e){}
+    checks.push({name:'Service workers', ok:sw===0,
+      ev:sw+' registered',
+      why:'Nothing installed itself to run in the background or persist beyond this tab.'});
+
+    document.getElementById('checks').innerHTML=checks.map(c=>{
+      const cls=c.info?'info':(c.ok?'ok':'bad'); const lbl=c.info?'shown':(c.ok?'pass':'unmet');
+      return `<div class="row"><div class="rhead"><b>${esc(c.name)}</b><span class="pill ${cls}">${lbl}</span></div><p class="ev">${c.ev}</p><p class="why">${esc(c.why)}</p></div>`;
+    }).join('');
+  })();
+  </script>
+</body>
+</html>
