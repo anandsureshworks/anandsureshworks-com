@@ -29,6 +29,7 @@
     .ptile .pv{font-family:var(--mono);font-size:1.15rem;font-weight:600;color:var(--t1);letter-spacing:-.01em;display:flex;align-items:center;gap:.4rem}
     .ptile .pl{font-family:var(--mono);font-size:.6rem;letter-spacing:.05em;text-transform:uppercase;color:var(--t3)}
     .ptile.good .pv{color:var(--accent)}
+    .plive{font-family:var(--mono);font-size:.62rem;color:var(--t3);font-weight:400;display:inline-flex;align-items:center;gap:.35rem;vertical-align:middle;margin-left:.5rem}
     .dot{width:8px;height:8px;border-radius:50%;flex:none}
     .dot.live{background:var(--accent);animation:p 2.2s ease-out infinite}
     @keyframes p{0%{box-shadow:0 0 0 0 color-mix(in oklch,var(--accent) 55%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
@@ -73,8 +74,8 @@
     <p class="dek">A deny&#8209;by&#8209;default outbound monitor. Every connection your machine makes is matched against a learned allowlist — plaintext is flagged, first&#8209;seen anomalies are caught, and nothing is trusted by default.</p>
     <p class="demo-badge" id="demoNote">Loading…</p>
 
-    <h2>Posture</h2>
-    <p class="sub">The safe, aggregate view — no addresses, no processes. This is all that a live feed would ever expose.</p>
+    <h2>Posture <span class="plive" id="postureLive"></span></h2>
+    <p class="sub">The safe, aggregate view from the live engine — no addresses, no processes. This is all it ever exposes.</p>
     <section class="posture" id="posture"></section>
 
     <h2>A scan, walked through</h2>
@@ -111,8 +112,19 @@
 
     document.getElementById('demoNote').textContent='⚠ '+j.note;
 
+    // live curated posture (aggregate-only); falls back to the synthetic demo posture
+    let live=null;
+    try{ const lr=await fetch('/data/net-sentinel.json',{cache:'no-store'}); if(lr.ok) live=await lr.json(); }catch(e){}
+    const p = live || j.posture;
+    const pl=document.getElementById('postureLive');
+    if(live && live.generated_at){
+      const age=Date.now()-new Date(live.generated_at).getTime();
+      const rel = age<36e5 ? Math.max(1,Math.round(age/6e4))+'m' : age<864e5 ? Math.round(age/36e5)+'h' : Math.round(age/864e5)+'d';
+      pl.innerHTML='<span class="dot live"></span>live · updated '+rel+' ago';
+    } else { pl.textContent='illustrative'; }
+
     // posture tiles
-    const p=j.posture, tiles=[
+    const tiles=[
       {v:p.policy, l:'policy', good:true},
       {v:p.tls_only?'TLS-only':'mixed', l:'transport', good:p.tls_only},
       {v:String(p.plaintext_http), l:'plaintext HTTP', good:p.plaintext_http===0},

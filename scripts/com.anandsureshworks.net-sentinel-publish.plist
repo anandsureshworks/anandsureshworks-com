@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- net-sentinel publish — daily refresh of the curated (aggregate-only) network posture
+     the website reads at /data/net-sentinel.json.
+     Install:
+       cp scripts/com.anandsureshworks.net-sentinel-publish.plist ~/Library/LaunchAgents/
+       launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.anandsureshworks.net-sentinel-publish.plist
+     Edit the path below if the repo lives elsewhere. -->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.anandsureshworks.net-sentinel-publish</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/anandsuresh/anandsureshworks-com/scripts/net-sentinel-publish.sh</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key><integer>7</integer>
+    <key>Minute</key><integer>30</integer>
+  </dict>
+  <key>StandardOutPath</key>
+  <string>/tmp/net-sentinel-publish.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/net-sentinel-publish.err</string>
+  <key>RunAtLoad</key>
+  <false/>
+</dict>
+</plist>
