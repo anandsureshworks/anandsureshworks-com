@@ -367,12 +367,17 @@
       signal:muSig, sigAria:"Ambient muon flux animation, about one per square centimetre per minute", foot:{note:"animated illustration"}}),
   ].join("")});
 
-  shelf("secure",{title:"Secure", thesis:"First principles, turned on the model.", key:false, cards:[
+  shelf("secure",{title:"Secure", thesis:"First principles, turned on trust.", key:false, cards:[
     card({eyebrow:"Security · PII", q:"What's leaking in this prompt?",
       concept:"Rules + an in-browser NER model scrub names, secrets & PII before they reach an LLM. Nothing leaves your tab.",
       statN:"9", statLbl:"PII types caught · live", date:"2026-06-23",
       signal:`<div class="chips">${["PERSON","EMAIL","SSN","CARD","API_KEY","IP","JWT","ORG","PHONE"].map(t=>`<span class="chip">${t}</span>`).join("")}</div>`,
       sigAria:"Detects person, email, SSN, card, API key, IP, JWT, org and phone", foot:{note:"interactive",href:"./redactor/",text:"open tool ↗"}}),
+    card({eyebrow:"Security · network", q:"What is your machine talking to?",
+      concept:"A deny-by-default outbound monitor: every connection matched against a learned allowlist, plaintext flagged, first-seen anomalies caught. Nothing trusted by default.",
+      statN:"0", statLbl:"plaintext HTTP · deny-by-default", date:"",
+      signal:`<div class="chips">${["DENY-DEFAULT","TLS-ONLY","0 PLAINTEXT","ALLOWLIST","TIERED ALERTS"].map(t=>`<span class="chip">${t}</span>`).join("")}</div>`,
+      sigAria:"Network posture: deny by default, TLS only, zero plaintext, learned allowlist, tiered alerts", foot:{note:"interactive",href:"./netsentinel/",text:"open demo ↗"}}),
   ].join("")});
 
   shelf("cosmos",{title:"Cosmos", thesis:"First principles, turned on the universe.", key:false, cards:[

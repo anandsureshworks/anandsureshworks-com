@@ -1,0 +1,28 @@
+{
+  "demo": true,
+  "note": "Illustrative data. Destinations use RFC 5737 documentation IP ranges (192.0.2.0/24, 198.51.100.0/24, 203.0.113.0/24) — never real hosts. Live posture is aggregate-only; raw connections are never published.",
+  "generated_at": "2026-07-14T09:12:00Z",
+  "posture": {
+    "policy": "deny-by-default",
+    "tls_only": true,
+    "plaintext_http": 0,
+    "endpoints_managed": 3116,
+    "engine_live": true
+  },
+  "scan": { "total": 42, "allowed": 39, "denied": 2, "alerted": 1 },
+  "connections": [
+    { "process": "browser",          "dest": "cdn.example-docs.test", "ip": "203.0.113.24",  "port": 443, "proto": "TLS 1.3", "verdict": "allow", "note": "allowlisted · known good" },
+    { "process": "pkg-updater",      "dest": "mirror.example.test",   "ip": "198.51.100.7",  "port": 443, "proto": "TLS 1.2", "verdict": "allow", "note": "learned 3d ago" },
+    { "process": "sync-agent",       "dest": "api.example.test",      "ip": "203.0.113.61",  "port": 443, "proto": "TLS 1.3", "verdict": "allow", "note": "allowlisted" },
+    { "process": "telemetry-agent",  "dest": "metrics.vendor.test",   "ip": "198.51.100.44", "port": 80,  "proto": "HTTP",    "verdict": "deny",  "note": "plaintext blocked · deny-by-default" },
+    { "process": "installer",        "dest": "unknown",               "ip": "192.0.2.130",   "port": 8080,"proto": "HTTP",    "verdict": "deny",  "note": "unlisted + plaintext" },
+    { "process": "unknown-9134",     "dest": "unresolved",            "ip": "203.0.113.99",  "port": 6667,"proto": "TCP",     "verdict": "alert", "note": "CRITICAL · new outbound, unusual port, no allowlist match" }
+  ],
+  "anomaly": {
+    "tier": "CRITICAL",
+    "process": "unknown-9134",
+    "dest": "203.0.113.99:6667",
+    "why": "First-seen outbound to an unlisted host on a non-standard port (6667) from an unrecognized process. No allowlist match, no learned history — the deny-by-default posture blocks it and raises a tiered alert instead of trusting it.",
+    "action": "blocked + alerted"
+  }
+}
