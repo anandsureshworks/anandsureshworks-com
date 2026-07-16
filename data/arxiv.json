@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-07-15T11:23:47Z",
+  "generated_at": "2026-07-16T11:24:06Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Knowledgeless Language Models: Suppressing Parametric Recall for Evidence-Grounded Language Modeling",
-      "url": "https://arxiv.org/abs/2607.12831",
-      "c": "cs.CL",
+      "t": "Rethinking Penetration Testing for AI-Enabled Systems: From Resource Compromise to Behavioral Objective Violation",
+      "url": "https://arxiv.org/abs/2607.14006",
+      "c": "cs.CR",
       "s": 0.99
     },
     {
-      "t": "Verifier-Based Reinforcement Fine-Tuning of Reasoning Models for Thermal Energy Storage Control",
-      "url": "https://arxiv.org/abs/2607.12856",
-      "c": "cs.LG",
-      "s": 0.89
+      "t": "Unleashing Multimodal Large Language Models for Training-free HOI Detection in the Wild",
+      "url": "https://arxiv.org/abs/2607.13881",
+      "c": "cs.CV",
+      "s": 0.99
     },
     {
-      "t": "Silent Alarm: A J-Space Protocol for Comparing Danger Recognition Across Models and Quantization Levels",
-      "url": "https://arxiv.org/abs/2607.12792",
+      "t": "Traffic-Aware Randomized Smoothing for LLM-Based Network Intrusion Detection",
+      "url": "https://arxiv.org/abs/2607.13801",
       "c": "cs.CR",
-      "s": 0.78
+      "s": 0.99
     }
   ]
 }
