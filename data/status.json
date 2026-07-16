@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-07-15T11:51:40.100981+00:00",
+  "generated_at": "2026-07-16T11:40:07.860693+00:00",
   "checks": {
     "rca_mechanisms": {
-      "pass": 20,
+      "pass": 21,
       "total": 21,
-      "verified_at": "2026-07-15T11:51:40.057397+00:00"
+      "verified_at": "2026-07-16T11:40:07.833978+00:00"
     },
     "dirty_trees": {
       "dirty": 0,
-      "total": 14,
-      "verified_at": "2026-07-15T11:51:34.119353+00:00"
+      "total": 15,
+      "verified_at": "2026-07-16T11:40:01.858764+00:00"
     },
     "engines": {
-      "live": 12,
-      "total": 12
+      "live": 13,
+      "total": 13
     }
   },
   "note": "Aggregate-only: counts and booleans from deterministic gates. No repo names, engine labels, or check detail is ever published."
