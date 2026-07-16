@@ -9,7 +9,7 @@ Run after adding/editing a note (or flipping its draft flag):
     python3 scripts/gen_notes.py
 """
 from __future__ import annotations
-import json, os, shutil
+import json, os, re, shutil
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -30,6 +30,9 @@ CHROME = """<!doctype html>
 <meta name="robots" content="index, follow" />
 <link rel="icon" href="/icon.svg" type="image/svg+xml" />
 <link rel="alternate" type="application/atom+xml" title="@FEEDTITLE@" href="@FEED@" />
+<meta property="og:title" content="@TITLE@" />
+<meta property="og:description" content="@DESC@" />
+<meta property="og:image" content="https://www.anandsureshworks.com/og-card.png" />
 <link rel="stylesheet" href="/brand.css" />
 <link rel="stylesheet" href="/notes.css" />
 <script>(function(){var d=document.documentElement;try{var t=localStorage.getItem('theme');d.dataset.theme=(t==='light'||t==='dark')?t:(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');}catch(e){d.dataset.theme='dark';}})();</script>
@@ -90,6 +93,33 @@ def write(path: Path, text: str):
 # bracketed placeholder prose to the public site (2026-07-11) — the guard makes it impossible.
 SCAFFOLD_MARKERS = ('class="ph"', "DRAFT scaffold")
 
+# slugs/tags are interpolated into hrefs, feed IDs, and filesystem write paths —
+# constrain them to kebab-case so nothing can break out (defense-in-depth).
+SLUG_RE = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
+
+# The sitemap is machine-owned here so it can never drift: static pages declared,
+# published notes appended automatically.
+STATIC_PAGES = ["", "notes/", "netsentinel/", "status/", "trust/", "method/",
+                "redactor/", "sky/", "spacetime/", "circle/", "consumer/"]
+
+def validate_names(data: dict) -> None:
+    bad = []
+    for n in data["notes"]:
+        if not SLUG_RE.fullmatch(n["slug"]):
+            bad.append(f'slug "{n["slug"]}"')
+        bad += [f'tag "{t}" (note {n["slug"]})' for t in n["tags"] if not SLUG_RE.fullmatch(t)]
+    if bad:
+        raise SystemExit("gen_notes: invalid slug/tag (kebab-case [a-z0-9-] only):\n  - "
+                         + "\n  - ".join(bad))
+
+def sitemap(published) -> str:
+    urls = [f"{SITE}/{p}" for p in STATIC_PAGES] + \
+           [f"{SITE}/notes/{n['slug']}/" for n in published]
+    body = "\n".join(f"  <url><loc>{esc(u)}</loc></url>" for u in urls)
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+            f"{body}\n</urlset>\n")
+
 def publish_blockers(published):
     """Reasons a to-be-published note must not go live (missing page / still a scaffold)."""
     out = []
@@ -106,6 +136,7 @@ def publish_blockers(published):
 def build():
     """Compute every derived surface as [(Path, text)]. Raises SystemExit on a hollow publish."""
     data = json.loads((NOTES_DIR / "notes.json").read_text())
+    validate_names(data)
     published = sorted([n for n in data["notes"] if not n.get("draft")],
                        key=lambda n: n["date"], reverse=True)
     blockers = publish_blockers(published)
@@ -144,6 +175,8 @@ def build():
         outputs.append((NOTES_DIR / "tag" / t / "feed.xml",
             atom(tn, f"{SITE}/notes/tag/{t}/feed.xml", f"{SITE}/notes/tag/{t}/",
                  f"Anand Suresh — {t}")))
+
+    outputs.append((ROOT / "sitemap.xml", sitemap(published)))
 
     return outputs, published, tags
 

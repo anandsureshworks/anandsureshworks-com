@@ -1,0 +1,37 @@
+<!doctype html>
+<!-- og-card source — rendered to /og-card.png (1200x630) via headless Chrome:
+     scripts/gen_og_card.sh . Committed source so the card is reproducible. -->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<style>
+  @font-face{font-family:'Space Grotesk';font-weight:400 700;src:url("../fonts/space-grotesk-latin-var.woff2") format("woff2")}
+  @font-face{font-family:'Space Mono';font-weight:400;src:url("../fonts/space-mono-latin-400.woff2") format("woff2")}
+  *{margin:0;box-sizing:border-box}
+  body{width:1200px;height:630px;background:oklch(10% 0 0);color:oklch(96% 0 0);
+    font-family:'Space Grotesk',sans-serif;display:flex;align-items:center;overflow:hidden;position:relative}
+  .weave{position:absolute;inset:0;opacity:.05;
+    background:repeating-linear-gradient(45deg,transparent 0 7px,oklch(70% .16 155) 7px 9px),
+               repeating-linear-gradient(-45deg,transparent 0 7px,oklch(40% 0 0) 7px 9px)}
+  .thread{position:absolute;left:0;right:0;bottom:118px;height:3px;background:oklch(70% .16 155);opacity:.85}
+  .wrap{position:relative;padding:0 96px;display:flex;flex-direction:column;gap:26px}
+  .mk{display:flex;align-items:center;gap:18px}
+  .mk img{width:76px;height:76px;border-radius:14px}
+  .mk span{font-family:'Space Mono',monospace;font-size:26px;color:oklch(70% 0 0);letter-spacing:.04em}
+  h1{font-size:88px;font-weight:700;letter-spacing:-.025em;line-height:1.02}
+  h1 b{color:oklch(70% .16 155)}
+  .moves{font-family:'Space Mono',monospace;font-size:27px;color:oklch(78% 0 0);letter-spacing:.01em}
+  .moves i{font-style:normal;color:oklch(70% .16 155)}
+  .url{position:absolute;right:96px;bottom:44px;font-family:'Space Mono',monospace;font-size:24px;color:oklch(60% 0 0)}
+</style>
+</head>
+<body>
+  <div class="weave"></div><div class="thread"></div>
+  <div class="wrap">
+    <div class="mk"><img src="../as-logo.svg" alt="" /><span>anandsureshworks</span></div>
+    <h1>A <b>method</b>,<br/>not a field.</h1>
+    <div class="moves">think it through <i>&rarr;</i> show it working <i>&rarr;</i> make it clear</div>
+  </div>
+  <div class="url">anandsureshworks.com</div>
+</body>
+</html>
