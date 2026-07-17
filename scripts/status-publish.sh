@@ -36,3 +36,6 @@ git commit -m "chore(data): refresh status $(date -u +%Y-%m-%d)" \
            -m "Automated aggregate-only fleet-status refresh by the status publish job."
 git push origin main
 echo "status: published + pushed."
+
+# RCA-022: never trust the deploy hop — verify prod caught up; self-heal via CLI deploy if not.
+"$(dirname "$0")/deploy-verify.sh" data/status.json "https://www.anandsureshworks.com/data/status.json" 5

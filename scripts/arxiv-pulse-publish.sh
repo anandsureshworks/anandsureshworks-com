@@ -45,3 +45,6 @@ git commit -m "chore(data): refresh arxiv-pulse $(date -u +%Y-%m-%d)" \
            -m "Automated daily refresh by the arxiv-pulse launchd engine."
 git push origin main
 echo "arxiv-pulse: published + pushed."
+
+# RCA-022: never trust the deploy hop — verify prod caught up; self-heal via CLI deploy if not.
+"$(dirname "$0")/deploy-verify.sh" data/arxiv.json "https://www.anandsureshworks.com/data/arxiv.json" 5

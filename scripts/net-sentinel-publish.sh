@@ -40,3 +40,6 @@ git commit -m "chore(data): refresh net-sentinel posture $(date -u +%Y-%m-%d)" \
            -m "Automated curated-posture refresh (aggregate-only) by the net-sentinel publish job."
 git push origin main
 echo "net-sentinel: published + pushed."
+
+# RCA-022: never trust the deploy hop — verify prod caught up; self-heal via CLI deploy if not.
+"$(dirname "$0")/deploy-verify.sh" data/net-sentinel.json "https://www.anandsureshworks.com/data/net-sentinel.json" 5
