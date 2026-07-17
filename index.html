@@ -106,15 +106,23 @@
   .hwho b{color:var(--t1);font-weight:600}
   .herobody{max-width:44rem}
   .method{display:flex;gap:1.8rem;align-items:center;margin:1.6rem 0 0;flex-wrap:wrap}
-  .tri{flex:none;width:204px}
+  .tri{flex:none;width:204px;display:block;text-decoration:none;cursor:pointer}
+  .tri:hover polygon[stroke*=accent]{stroke-width:2.6}
   .tri svg{width:100%;height:auto;display:block;overflow:visible}
   .pipe{flex:1;min-width:13rem;display:flex;flex-direction:column;justify-content:space-between;gap:.35rem;align-self:stretch}
   .step{background:var(--s1);border:1px solid var(--bd-sub);border-radius:9px;padding:.62rem .9rem;display:flex;align-items:baseline;justify-content:space-between;gap:.6rem}
   .step .cl{font-size:.95rem;font-weight:600;color:var(--t1);letter-spacing:-.01em;line-height:1.1}
   .step .ds{font-family:var(--mono);font-size:.6rem;letter-spacing:.04em;color:var(--t3);text-transform:uppercase;text-align:right;white-space:nowrap}
   .arrow{align-self:center;font-family:var(--mono);color:var(--t3);font-size:.92rem;line-height:1}
-  .pipe-link{align-self:flex-end;font-family:var(--mono);font-size:.68rem;color:var(--accent);text-decoration:none;margin-top:.15rem}
-  .pipe-link:hover{text-decoration:underline}
+  a.step{text-decoration:none;transition:border-color .15s ease,transform .15s ease;cursor:pointer}
+  a.step:hover{border-color:var(--accent);transform:translateX(3px)}
+  a.step:hover .ds{color:var(--accent)}
+  a.step:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .method-live{display:flex;align-items:center;gap:.5rem;margin-top:.35rem;padding:.5rem .9rem;border:1px solid color-mix(in oklch,var(--accent) 35%,transparent);border-radius:9px;background:color-mix(in oklch,var(--accent) 7%,transparent);font-family:var(--mono);font-size:.72rem;color:var(--t1);text-decoration:none}
+  .method-live:hover{background:color-mix(in oklch,var(--accent) 15%,transparent)}
+  .method-live .dot{flex:none;width:7px;height:7px;border-radius:50%;background:var(--accent);animation:livepulse 2.2s ease-out infinite}
+  @media (prefers-reduced-motion:reduce){.method-live .dot{animation:none}}
+  .method-live .go{margin-left:auto;color:var(--accent);font-weight:700}
   .live{display:flex;align-items:center;flex-wrap:wrap;gap:.4rem .6rem;margin:1.9rem 0 1.8rem;padding:.7rem 1rem;background:var(--s2);border:1px solid var(--bd-sub);border-radius:9px;font-family:var(--mono);font-size:.76rem;color:var(--t1)}
   .live .dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--accent);animation:livepulse 2.2s ease-out infinite}
   @keyframes livepulse{0%{box-shadow:0 0 0 0 color-mix(in oklch,var(--accent) 55%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
@@ -177,7 +185,7 @@
   <div class="herobody">
     <div class="method">
       <!-- woven triangle (the process) — three legs, one green thread, echoes the AS mark -->
-      <div class="tri" role="img" aria-label="The method as a woven triangle: three legs — Reason, Demonstrate, Demystify — all required, one green thread running through them">
+      <a class="tri" href="/method/" aria-label="The method as a woven triangle: three legs — Reason, Demonstrate, Demystify — one green thread through them. Open the method, applied.">
         <svg viewBox="0 0 240 184" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="weave" width="6" height="6" patternUnits="userSpaceOnUse">
@@ -195,15 +203,15 @@
           <text x="58" y="172" text-anchor="middle" font-family="Space Grotesk" font-size="13" font-weight="600" fill="var(--t1)">Demonstrate</text>
           <text x="184" y="172" text-anchor="middle" font-family="Space Grotesk" font-size="13" font-weight="600" fill="var(--t1)">Demystify</text>
         </svg>
-      </div>
+      </a>
       <!-- the steps (linear) -->
       <div class="pipe">
-        <div class="step"><span class="cl">Think it through.</span><span class="ds">first principles</span></div>
+        <a class="step" href="/method/#reason"><span class="cl">Think it through.</span><span class="ds">first principles</span></a>
         <div class="arrow" aria-hidden="true">↓</div>
-        <div class="step"><span class="cl">Show it working.</span><span class="ds">in the open · testable</span></div>
+        <a class="step" href="/method/#demonstrate"><span class="cl">Show it working.</span><span class="ds">in the open · testable</span></a>
         <div class="arrow" aria-hidden="true">↓</div>
-        <div class="step"><span class="cl">Make it clear.</span><span class="ds">any fluency</span></div>
-        <a class="pipe-link" href="/method/">watch the method run on one question &rarr;</a>
+        <a class="step" href="/method/#demystify"><span class="cl">Make it clear.</span><span class="ds">any fluency</span></a>
+        <a class="method-live" href="/method/" id="methodLive"><span class="dot" aria-hidden="true"></span><span id="methodLiveTxt">the method, running on this site&hellip;</span><span class="go" aria-hidden="true">&rarr;</span></a>
       </div>
     </div>
 
@@ -453,6 +461,22 @@
       txt.textContent="arXiv data · "+(fresh?"fresh":"stale");
       sub.textContent="refreshed "+rel(age);
     }catch(e){ el.classList.add("is-stale"); txt.textContent="arXiv data · offline"; }
+  })();
+
+  // the method, live in the hero: apply the freshness contract to this site's own
+  // three feeds and say so — the diagram above isn't a claim, it's running.
+  (async()=>{
+    const t=document.getElementById("methodLiveTxt"); if(!t) return;
+    const FEEDS=["/data/arxiv.json","/data/net-sentinel.json","/data/status.json"];
+    const I=48*36e5; // 2x daily interval = incident threshold
+    const checks=await Promise.all(FEEDS.map(async u=>{
+      try{const r=await fetch(u,{cache:"no-store"});const g=(await r.json()).generated_at;
+          return g && (Date.now()-new Date(g).getTime())<I;}catch(e){return false;}
+    }));
+    const ok=checks.filter(Boolean).length;
+    t.textContent=ok===FEEDS.length
+      ? `the method, running on this site right now — ${ok}/${FEEDS.length} contracts honored`
+      : `the method, running right now — ${ok}/${FEEDS.length} contracts honored (one is red: see for yourself)`;
   })();
 
   // latest note from the notes manifest (widgets read JSON only)
