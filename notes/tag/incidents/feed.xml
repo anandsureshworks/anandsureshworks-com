@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Anand Suresh — notes</title>
-  <link href="https://www.anandsureshworks.com/notes/feed.xml" rel="self" />
+  <title>Anand Suresh — incidents</title>
+  <link href="https://www.anandsureshworks.com/notes/tag/incidents/feed.xml" rel="self" />
   <link href="https://www.anandsureshworks.com/notes/" />
-  <id>https://www.anandsureshworks.com/notes/</id>
+  <id>https://www.anandsureshworks.com/notes/tag/incidents/</id>
   <updated>2026-07-17T08:00:00Z</updated>
   <author><name>Anand Suresh</name></author>
-  <entry>
-    <title>A green checkmark is not a pulse</title>
-    <link href="https://www.anandsureshworks.com/notes/green-checkmark-is-not-a-pulse/" />
-    <id>https://www.anandsureshworks.com/notes/green-checkmark-is-not-a-pulse/</id>
-    <updated>2026-07-17T08:00:00Z</updated>
-    <published>2026-07-17T08:00:00Z</published>
-    <category term="systems" /><category term="reliability" />
-    <summary>Freshness tells you the last time it worked. Liveness is a different question.</summary>
-  </entry>
   <entry>
     <title>The deploy that lied</title>
     <link href="https://www.anandsureshworks.com/notes/the-deploy-that-lied/" />

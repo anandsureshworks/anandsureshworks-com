@@ -6,8 +6,35 @@
       "title": "What a CDN taught me about AI agents",
       "dek": "Three times in ten years, the same reliability lesson — wearing different clothes.",
       "date": "2026-06-27",
-      "tags": ["systems", "agentic"],
+      "tags": [
+        "systems",
+        "agentic"
+      ],
       "draft": true
+    },
+    {
+      "slug": "green-checkmark-is-not-a-pulse",
+      "title": "A green checkmark is not a pulse",
+      "dek": "Freshness tells you the last time it worked. Liveness is a different question.",
+      "date": "2026-07-17",
+      "tags": [
+        "systems",
+        "reliability"
+      ],
+      "kind": "field",
+      "draft": false
+    },
+    {
+      "slug": "the-deploy-that-lied",
+      "title": "The deploy that lied",
+      "dek": "Every gate was green. Production was 36 hours stale. Both were telling the truth.",
+      "date": "2026-07-17",
+      "tags": [
+        "systems",
+        "incidents"
+      ],
+      "kind": "field",
+      "draft": false
     }
   ]
 }

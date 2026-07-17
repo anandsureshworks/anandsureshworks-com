@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A green checkmark is not a pulse — Anand Suresh</title>
+  <meta name="description" content="Freshness tells you the last time something worked. Liveness is a different question — and the gap between the two is where systems quietly die. A field note from three real incidents." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="A green checkmark is not a pulse" />
+  <meta property="og:description" content="Freshness tells you the last time it worked. Liveness is a different question." />
+  <meta property="og:image" content="https://www.anandsureshworks.com/og-card.png" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.anandsureshworks.com/notes/green-checkmark-is-not-a-pulse/" />
+  <link rel="canonical" href="https://www.anandsureshworks.com/notes/green-checkmark-is-not-a-pulse/" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="alternate" type="application/atom+xml" title="Anand Suresh — notes" href="/notes/feed.xml" />
+  <link rel="stylesheet" href="/brand.css" />
+  <link rel="stylesheet" href="/notes.css" />
+  <script>(function(){var d=document.documentElement;try{var t=localStorage.getItem('theme');d.dataset.theme=(t==='light'||t==='dark')?t:(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');}catch(e){d.dataset.theme='dark';}})();</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle color theme">&#9728;</button>
+
+  <div class="note-wrap">
+    <a class="note-mast" href="/"><img src="/as-logo.svg" alt="" /> anandsureshworks</a>
+
+    <main id="main">
+    <article>
+      <header>
+        <div class="kicker">Field note · systems</div>
+        <h1>A green checkmark is not a pulse</h1>
+        <p class="dek">Freshness tells you the last time it worked. Liveness is a different question.</p>
+        <p class="byline"><span>Anand Suresh</span><span>2026-07-17</span><span>~1 min</span></p>
+      </header>
+
+      <p>A timestamp proves one thing: the system succeeded <em>once, then</em>. Everything else you read into it is inference — and I've watched that inference fail three distinct ways, on my own machines, each one now a numbered root cause in my log.</p>
+
+      <p>A scheduled job whose output looked fresh — but the schedule was never actually loaded. Authoring a plist is not running one. A publish job that exited green every day for two weeks — pushing a ref that never moved. Success signals can be no-ops. A health check that lived inside the process it monitored — so when the process died, the checkmark died silent with it.</p>
+
+      <p>Three different systems. One failure: I trusted evidence of the <em>past</em> as proof of the <em>present</em>.</p>
+
+      <p>The fix is a contract, not vigilance. Declare an expected interval. Stamp every output with <code>generated_at</code>. Define age beyond twice the interval as an incident — mechanically, loudly, with the check living outside the thing it checks. This site now <a href="/status/">holds itself to that contract in public</a>, and you can <a href="/method/">walk the full derivation</a>.</p>
+
+      <p>The takeaway fits in a pocket: a green checkmark tells you the last time something worked — never that it works now. Ask when it last ran, who would notice if it died tonight, and what number makes "too old" an alarm instead of an opinion.</p>
+
+      <footer>
+        <a href="/notes/">&lt;_ all notes</a>
+        <span>anandsureshworks.com</span>
+      </footer>
+    </article>
+    </main>
+  </div>
+
+  <script>(function(){var d=document.documentElement,b=document.getElementById('themeToggle');function paint(){var l=d.dataset.theme==='light';b.textContent=l?'☾':'☀';b.setAttribute('aria-label','Switch to '+(l?'dark':'light')+' theme');}paint();b.addEventListener('click',function(){var n=d.dataset.theme==='light'?'dark':'light';d.dataset.theme=n;try{localStorage.setItem('theme',n);}catch(e){}paint();});})();</script>
+</body>
+</html>

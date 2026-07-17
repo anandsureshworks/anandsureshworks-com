@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Anand Suresh — notes</title>
-  <link href="https://www.anandsureshworks.com/notes/feed.xml" rel="self" />
+  <title>Anand Suresh — systems</title>
+  <link href="https://www.anandsureshworks.com/notes/tag/systems/feed.xml" rel="self" />
   <link href="https://www.anandsureshworks.com/notes/" />
-  <id>https://www.anandsureshworks.com/notes/</id>
+  <id>https://www.anandsureshworks.com/notes/tag/systems/</id>
   <updated>2026-07-17T08:00:00Z</updated>
   <author><name>Anand Suresh</name></author>
   <entry>

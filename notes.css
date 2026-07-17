@@ -64,3 +64,10 @@ article footer { margin-top: 2.6rem; padding-top: 1.2rem; border-top: 1px solid 
   border: 1px dashed color-mix(in oklch, var(--d3) 50%, transparent);
   border-radius: .4rem; padding: .5rem .8rem; margin: 0 0 1.4rem; }
 .ph { color: var(--t3); font-style: italic; }   /* placeholder prose, removed on publish */
+
+/* field notes — the short tier: 150-300 words, one lesson, no throat-clearing */
+.fchip { font-family: var(--mono); font-size: .6rem; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--accent); border: 1px solid color-mix(in oklch, var(--accent) 40%, transparent);
+  border-radius: 4px; padding: .08rem .4rem; }
+article p a { color: var(--accent); text-decoration: none; border-bottom: 1px solid color-mix(in oklch, var(--accent) 45%, transparent); }
+article p a:hover { border-bottom-color: var(--accent); }

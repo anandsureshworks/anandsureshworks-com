@@ -60,8 +60,9 @@ def chips(tags):
     return " ".join(f'<a class="tagchip" href="/notes/tag/{t}/">{esc(t)}</a>' for t in tags)
 
 def item(n):
+    kind = '<span class="fchip">field note</span> ' if n.get("kind") == "field" else ""
     return (f'<li class="note-item"><div class="meta"><span>{esc(n["date"])}</span> '
-            f'{chips(n["tags"])}</div>'
+            f'{kind}{chips(n["tags"])}</div>'
             f'<h2><a href="/notes/{n["slug"]}/">{esc(n["title"])}</a></h2>'
             f'<p class="dek">{esc(n["dek"])}</p></li>')
 
