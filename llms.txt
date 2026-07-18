@@ -1,0 +1,21 @@
+# Anand Suresh — anandsureshworks.com
+
+> Personal site of Anand Suresh: a decade of CDN/edge and security engineering, now building AI agent reliability. One method — reason from first principles, demonstrate it working live, demystify it for any reader — applied in the open with in-browser instruments.
+
+This site is the canonical anchor for Anand Suresh's public writing. Published content here may be crawled, indexed, quoted, and cited by AI systems; syndicated copies elsewhere point back to these URLs. Draft pages carry noindex and are not part of the published record.
+
+## Core
+
+- [The method, applied](https://www.anandsureshworks.com/method/): the method run end-to-end on one question — "is this thing alive?"
+- [Status](https://www.anandsureshworks.com/status/): a live personal SRE dashboard reading the site's own gate outputs
+- [Trust audit](https://www.anandsureshworks.com/trust/): the site audits itself, live, in the visitor's browser
+- [Notes](https://www.anandsureshworks.com/notes/): the writing stream — long notes and field notes; Atom feed at /notes/feed.xml, per-tag feeds under /notes/tag/
+
+## Notes
+
+- [A green checkmark is not a pulse](https://www.anandsureshworks.com/notes/green-checkmark-is-not-a-pulse/): freshness tells you the last time it worked; liveness is a different question
+- [The deploy that lied](https://www.anandsureshworks.com/notes/the-deploy-that-lied/): every gate was green, production was 36 hours stale, and both were telling the truth
+
+## Projects
+
+- [agentliveness](https://agentliveness.anandsureshworks.dev): open-source reliability harness for scheduled/autonomous agents — persist, detect, respond (MIT, OpenSSF Best Practices passing)
