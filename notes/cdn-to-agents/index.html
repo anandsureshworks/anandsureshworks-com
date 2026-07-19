@@ -4,10 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>What a CDN taught me about AI agents — Anand Suresh</title>
-  <meta name="description" content="Three times in ten years, the same reliability lesson — wearing different clothes. From CDN edge nodes (2016) to the day we shipped agentliveness (2026)." />
-  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="Three eras, one question: is this thing alive, and can I prove it right now? From CDN edge nodes (2016) to the day we shipped agentliveness (2026)." />
+  <meta name="robots" content="index, follow" />
   <meta property="og:title" content="What a CDN taught me about AI agents" />
-  <meta property="og:description" content="Three times in ten years, the same reliability lesson — wearing different clothes." />
+  <meta property="og:description" content="Three eras, one question: is this thing alive, and can I prove it right now?" />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://www.anandsureshworks.com/notes/cdn-to-agents/" />
   <link rel="canonical" href="https://www.anandsureshworks.com/notes/cdn-to-agents/" />
@@ -16,6 +16,20 @@
   <link rel="stylesheet" href="/brand.css" />
   <link rel="stylesheet" href="/notes.css" />
   <script>(function(){var d=document.documentElement;try{var t=localStorage.getItem('theme');d.dataset.theme=(t==='light'||t==='dark')?t:(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');}catch(e){d.dataset.theme='dark';}})();</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "What a CDN taught me about AI agents",
+    "description": "Three eras, one question: is this thing alive — and can I prove it right now?",
+    "datePublished": "2026-07-19",
+    "url": "https://www.anandsureshworks.com/notes/cdn-to-agents/",
+    "mainEntityOfPage": "https://www.anandsureshworks.com/notes/cdn-to-agents/",
+    "isPartOf": {"@type": "CreativeWorkSeries", "name": "Working the new era out in public", "position": 1},
+    "author": {"@type": "Person", "name": "Anand Suresh", "url": "https://www.anandsureshworks.com/"},
+    "publisher": {"@type": "Person", "name": "Anand Suresh", "url": "https://www.anandsureshworks.com/"}
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -24,42 +38,55 @@
   <div class="note-wrap">
     <a class="note-mast" href="/"><img src="/as-logo.svg" alt="" /> anandsureshworks</a>
 
-    <p class="draft">⚠ DRAFT scaffold — awaiting your ~1000-word draft. Structure is locked to your 3-scenario arc (2016 · 2020 · the agentliveness day); paste your prose into each block and I'll finish formatting. Not committed to <code>main</code>.</p>
-
     <main id="main">
     <article>
       <header>
-        <div class="kicker">Systems · agentic</div>
+        <div class="kicker">Systems · agentic · 01</div>
         <h1>What a CDN taught me about AI agents</h1>
-        <p class="dek">Three times in ten years, the same reliability lesson — wearing different clothes.</p>
-        <p class="byline"><span>Anand Suresh</span><span>2026-06-27</span><span>~5 min</span></p>
+        <p class="dek">Three eras, one question: is this thing alive &mdash; and can I prove it right now?</p>
+        <p class="byline"><span>Anand Suresh</span><span>2026-07-19</span><span>~5 min</span></p>
       </header>
 
       <div class="throughline">
-        <p class="ph">[Through-line / theme, ~2 sentences — candidate: "The lesson that became agentliveness wasn't born with agents. I'd already learned it twice at the edge of a CDN — I just didn't have a name for it yet."] Keep or rewrite; this states the spine the three scenarios pay off.</p>
+        <p>The lesson that became agentliveness wasn't born with agents. I'd already learned it twice at the edge of a CDN — I just didn't have a name for it yet.</p>
       </div>
 
       <div class="scenario">
         <span class="year">2016</span>
-        <h2 class="ph">[scenario title — the CDN-era situation]</h2>
-        <p class="ph">[~250–300 words: what you were running, the symptom that surprised you, and the reliability lesson it taught. Concrete: the system, what broke, the fix. End on the lesson in one line.]</p>
+        <h2>Two log lines and a subtraction</h2>
+        <p>2016 felt like the year the internet's biggest audiences arrived over streaming all at once. March Madness, the Olympics, a general election: crowds that had always belonged to broadcast were suddenly pouring through our edge nodes, live, with no tolerance for buffering. I was working the CDN, and during one live March Madness game we needed to know, right then, whether users were feeling latency.</p>
+        <p>The answer was embarrassingly small. Two log lines on an ingest server. Subtract their unix epoch timestamps, and the delta tracked what users were feeling: a pulse, computed by hand. Around it we ran a polling script that walked the CDN nodes round-robin for live health checks. Nothing in the tooling of the day was built to answer that question at game speed. Plain bash, a subtraction, and a loop.</p>
+        <p>The Olympics brought different trouble: volumes past anything manual analysis could scale to. There we graduated to SQL that carved windows of observability into massive logs, queries that isolated issues no one would have found by looking.</p>
+        <p>Streaming kept climbing after that, and the tooling we built to keep up grew into a discipline of its own: system design, triage, volume handling, uptime. But the seed of it all was my first real vision of scale &mdash; millions of people watching one game through fleets of machines we polled one at a time, the health of that entire experience compressing into a number small enough to hold in your head. A system's pulse can be two timestamps and the will to subtract them.</p>
       </div>
 
       <div class="scenario">
         <span class="year">2020</span>
-        <h2 class="ph">[scenario title — the lesson, deeper / different clothes]</h2>
-        <p class="ph">[~250–300 words: the second time the same principle bit, in a new context. Same shape: situation → what broke/surprised → the lesson — so the pattern compounds.]</p>
+        <h2>The launch I couldn't stand next to</h2>
+        <p>Four years later the pandemic took away the room. I had moved from hands-on-keyboard into management that stayed close to the keyboard, and my company was preparing to deliver a major global console launch, planned and executed over online-only communication, end to end.</p>
+        <p>Launches like that used to be conducted in person. A war room, a shoulder tap, the read you get on a problem from the way someone stands up. All of it was gone at once, which put the full weight of the story on telemetry. If the graphs didn't carry it, there was no hallway where it could be recovered. The exposure had changed too: global traffic instead of one event's edge nodes, resiliency as a planning discipline instead of a night-of scramble, the same instruments now speaking to planners and decision-makers, not just to the engineer who wrote the polling script.</p>
+        <p>The launch held. From the CDN side I watched the first run-throughs appear online within hours of the downloads completing, on every continent at once. No dashboard showed that part, and none showed the other thing I took from it: what a team pulling in one direction can actually move.</p>
+        <p>More and more of what used to be observed in person would now have to be observed through instruments, and the flood was only starting. When nobody can stand in the room, telemetry <em>becomes</em> the room.</p>
+        <p>The years after pulled me into security, where the instruments meet adversaries: bots at global scale, attack vectors that follow geopolitics as much as technology, practices that have to evolve or lose. Every era so far had asked <em>is it alive?</em> This one added: <em>and is it lying to you?</em></p>
       </div>
 
       <div class="scenario">
         <span class="year">2026</span>
-        <h2 class="ph">The day we shipped agentliveness</h2>
-        <p class="ph">[~250–300 words: building the first live agentliveness — the moment the decade-old lesson finally had a name. Close the loop: this is the same thing from 2016/2020, now made into a tool.]</p>
+        <h2>The day we shipped agentliveness</h2>
+        <p>When AI arrived I met it with trepidation, then outright rejection. What finally broke the rejection wasn't a demo. It was the grudging admission of the oldest clich&eacute; in this business: change is the only constant.</p>
+        <p>So I started small, deliberately: <a href="/method/">first principles</a> before frameworks, deriving the new field from what a decade of operating systems at scale had already taught me.</p>
+        <p>The old question surfaced immediately, wearing new clothes. An agent can hold <a href="/notes/green-checkmark-is-not-a-pulse/">a green checkmark and still be gone</a>. And here the second question catches up with the first: a fresh timestamp sitting on top of a dead producer isn't just a stale signal &mdash; it's a signal that lies.</p>
+        <p>So the subtraction grew up. Running my own fleet of scheduled agents taught me, failure by failure, what the new era actually demands. A counter that silently reset to zero every run taught me that cross-run state must survive process death by construction. A file written by a newer schema, parsing as plausible garbage, taught me that version drift has to fail loud. A fresh timestamp over an analysis that never advanced taught me &mdash; again &mdash; that freshness is not liveness. A degraded verdict written to a log nobody read taught me that detection without a response channel is an unseen incident. And a notifier that crashed the very engine it was guarding taught me that the alarm must never take down the run it protects. Five failures, three verbs: persist, detect, respond.</p>
+        <p>Every one of those fixes was built the new way &mdash; with assisted coding tools, an agent at my elbow helping me build the mechanics that watch agents. That recursion is the learning arc: I'm not studying agentic engineering from the outside, I'm acquiring it the same way I acquired the CDN &mdash; by operating the thing, breaking it, and turning each break into a primitive.</p>
+        <p>One morning this June I distilled those lessons into a small reliability harness, scrubbed its private history, and pushed it public. It had lived for weeks under a different name. The morning it went live I renamed it, because the old name didn't state the lesson: <a href="https://agentliveness.anandsureshworks.dev">agentliveness</a>. At its core it is the 2016 move with a decade of scar tissue attached: don't just check the timestamp, prove the producer is still producing.</p>
+        <p>I'm leaving the rest of this chapter open on purpose. The path I'm walking is being laid as I walk it, and this note is the first in a series: working the new era out in public, from first principles, as it happens.</p>
       </div>
 
       <hr />
 
-      <p class="ph">[Close, ~80–120 words: what stayed constant across all three (the principle) vs. what changed (the context). One crisp takeaway the reader leaves with.]</p>
+      <p>Across ten years, one question stayed constant: <em>is this thing alive &mdash; and can I prove it right now?</em> Only the thing changed: a live stream, a global launch, an agent. The instruments change. The subtraction doesn't. I'm still asking.</p>
+
+      <p class="series-next">Next in the series: what agentliveness actually measures.</p>
 
       <footer>
         <a href="/notes/">&lt;_ all notes</a>

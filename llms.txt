@@ -13,6 +13,7 @@ This site is the canonical anchor for Anand Suresh's public writing. Published c
 
 ## Notes
 
+- [What a CDN taught me about AI agents](https://www.anandsureshworks.com/notes/cdn-to-agents/): series opener 01 — three eras (2016 streaming, 2020 pandemic launch, 2026 agentic AI), one question: is this thing alive, and can I prove it right now?
 - [A green checkmark is not a pulse](https://www.anandsureshworks.com/notes/green-checkmark-is-not-a-pulse/): freshness tells you the last time it worked; liveness is a different question
 - [The deploy that lied](https://www.anandsureshworks.com/notes/the-deploy-that-lied/): every gate was green, production was 36 hours stale, and both were telling the truth
 

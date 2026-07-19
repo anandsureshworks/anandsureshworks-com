@@ -4,8 +4,17 @@
   <link href="https://www.anandsureshworks.com/notes/feed.xml" rel="self" />
   <link href="https://www.anandsureshworks.com/notes/" />
   <id>https://www.anandsureshworks.com/notes/</id>
-  <updated>2026-07-17T08:00:00Z</updated>
+  <updated>2026-07-19T08:00:00Z</updated>
   <author><name>Anand Suresh</name></author>
+  <entry>
+    <title>What a CDN taught me about AI agents</title>
+    <link href="https://www.anandsureshworks.com/notes/cdn-to-agents/" />
+    <id>https://www.anandsureshworks.com/notes/cdn-to-agents/</id>
+    <updated>2026-07-19T08:00:00Z</updated>
+    <published>2026-07-19T08:00:00Z</published>
+    <category term="systems" /><category term="agentic" />
+    <summary>Three eras, one question: is this thing alive — and can I prove it right now?</summary>
+  </entry>
   <entry>
     <title>A green checkmark is not a pulse</title>
     <link href="https://www.anandsureshworks.com/notes/green-checkmark-is-not-a-pulse/" />

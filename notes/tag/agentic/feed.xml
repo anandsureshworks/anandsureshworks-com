@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Anand Suresh — agentic</title>
+  <link href="https://www.anandsureshworks.com/notes/tag/agentic/feed.xml" rel="self" />
+  <link href="https://www.anandsureshworks.com/notes/" />
+  <id>https://www.anandsureshworks.com/notes/tag/agentic/</id>
+  <updated>2026-07-19T08:00:00Z</updated>
+  <author><name>Anand Suresh</name></author>
+  <entry>
+    <title>What a CDN taught me about AI agents</title>
+    <link href="https://www.anandsureshworks.com/notes/cdn-to-agents/" />
+    <id>https://www.anandsureshworks.com/notes/cdn-to-agents/</id>
+    <updated>2026-07-19T08:00:00Z</updated>
+    <published>2026-07-19T08:00:00Z</published>
+    <category term="systems" /><category term="agentic" />
+    <summary>Three eras, one question: is this thing alive — and can I prove it right now?</summary>
+  </entry>
+</feed>

@@ -65,6 +65,9 @@ article footer { margin-top: 2.6rem; padding-top: 1.2rem; border-top: 1px solid 
   border-radius: .4rem; padding: .5rem .8rem; margin: 0 0 1.4rem; }
 .ph { color: var(--t3); font-style: italic; }   /* placeholder prose, removed on publish */
 
+/* series teaser — one mono line after the close of a series installment */
+.series-next { font-family: var(--mono); font-size: .76rem; color: var(--t3); margin: 1.4rem 0 0; }
+
 /* field notes — the short tier: 150-300 words, one lesson, no throat-clearing */
 .fchip { font-family: var(--mono); font-size: .6rem; letter-spacing: .05em; text-transform: uppercase;
   color: var(--accent); border: 1px solid color-mix(in oklch, var(--accent) 40%, transparent);
