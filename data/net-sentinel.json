@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-18T11:21:29.189285+00:00",
+  "generated_at": "2026-07-19T11:28:37.612380+00:00",
   "policy": "deny-by-default",
   "tls_only": true,
   "plaintext_http": 0,
-  "endpoints_managed": 2753,
+  "endpoints_managed": 2832,
   "engine_live": true,
   "note": "Curated aggregate posture only \u2014 no addresses, processes, ports, or connection detail is ever published."
 }
