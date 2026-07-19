@@ -423,12 +423,17 @@
   ].join("")});
 
   shelf("cosmos",{title:"Cosmos", thesis:"First principles, turned on the universe.", key:false, cards:[
+    card({eyebrow:"Cosmos · Einstein's gotchas", q:"It sounded absurd. It was measured anyway.",
+      concept:"Six predictions ridiculed, then confirmed — a century of experiments built to <b>break</b> relativity has only made it sturdier.",
+      statN:"6", statLbl:"predictions · 0 broken", date:"1919 – 2019",
+      signal:`<div class="chips">${["MUONS","1971 CLOCKS","1919 ECLIPSE","GPS","LIGO 2015","E=mc²","EHT 2019"].map(t=>`<span class="chip">${t}</span>`).join("")}</div>`,
+      sigAria:"Six confirmed predictions of relativity, from the 1919 eclipse to the 2019 black-hole photograph", foot:{note:"interactive",href:"./spacetime/#einstein",text:"open ↗"}}),
     card({eyebrow:"Cosmos · your sky", q:"What's above you right now?",
       concept:"Your real sky — Sun, Moon phase, the bright stars over your horizon — from where you are, this second.",
       statN:"live", statLbl:"from your location", date:"",
       signal:skyGlance, sigAria:"A map of bright stars in the night sky", foot:{note:"interactive",href:"./sky/",text:"open ↗"}}),
     card({eyebrow:"Cosmos · spacetime", q:"How big is it — really?",
-      concept:"Looking out is looking back in time; mass bends spacetime; we are a speck — and the proof Einstein was right.",
+      concept:"Looking out is looking back in time; mass bends spacetime; we are a speck.",
       statN:"4", statLbl:"sketches · a cosmology tutor", date:"",
       signal:stGlance, sigAria:"Concentric ripples in spacetime", foot:{note:"interactive",href:"./spacetime/",text:"open ↗"}}),
   ].join("")});
