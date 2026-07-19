@@ -3,3 +3,4 @@ __pycache__/
 *.tmp
 .arxiv-pulse.json
 .vercel
+.coverage
