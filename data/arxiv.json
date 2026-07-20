@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-07-19T11:20:03Z",
+  "generated_at": "2026-07-20T11:33:00Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "BrainPilot: Automating Brain Discovery with Agentic Research",
-      "url": "https://arxiv.org/abs/2607.15079",
-      "c": "cs.AI",
-      "s": 0.83
+      "t": "LLM-Powered Agentic AI for 5G/6G Networks: A Tutorial and Survey on Architectures, Protocols, and Standardization",
+      "url": "https://arxiv.org/abs/2607.16066",
+      "c": "cs.NI",
+      "s": 0.99
     },
     {
-      "t": "Beyond Success Rate: Cost-Aware Evaluation of Offensive and Defensive Security Agents",
-      "url": "https://arxiv.org/abs/2607.15263",
+      "t": "Refusal is Not Safety! Benchmarking Latent Safety Risks of LLM-Driven Content Humorization",
+      "url": "https://arxiv.org/abs/2607.15977",
       "c": "cs.CR",
-      "s": 0.72
+      "s": 0.99
     },
     {
-      "t": "Bridge Evidence: Static Retrieval Utility Does Not Predict Causal Utility in Multi-Step Agentic Search",
-      "url": "https://arxiv.org/abs/2607.15253",
-      "c": "cs.IR",
-      "s": 0.72
+      "t": "The Honest Quorum Problem: Epistemic Byzantine Fault Tolerance for Agentic Infrastructure",
+      "url": "https://arxiv.org/abs/2607.16109",
+      "c": "cs.LG",
+      "s": 0.99
     }
   ]
 }
