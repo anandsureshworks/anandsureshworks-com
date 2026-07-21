@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-07-20T11:33:00Z",
+  "generated_at": "2026-07-21T11:20:05Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "LLM-Powered Agentic AI for 5G/6G Networks: A Tutorial and Survey on Architectures, Protocols, and Standardization",
-      "url": "https://arxiv.org/abs/2607.16066",
-      "c": "cs.NI",
-      "s": 0.99
-    },
-    {
-      "t": "Refusal is Not Safety! Benchmarking Latent Safety Risks of LLM-Driven Content Humorization",
-      "url": "https://arxiv.org/abs/2607.15977",
+      "t": "Adaptive Adversaries: A Multi-Turn, Multi-LLM Benchmark for LLM Agent Security",
+      "url": "https://arxiv.org/abs/2607.18063",
       "c": "cs.CR",
       "s": 0.99
     },
     {
-      "t": "The Honest Quorum Problem: Epistemic Byzantine Fault Tolerance for Agentic Infrastructure",
-      "url": "https://arxiv.org/abs/2607.16109",
-      "c": "cs.LG",
-      "s": 0.99
+      "t": "LLMs and Agentic AI Systems for Smart Grids: A Tutorial on Architectures and Applications",
+      "url": "https://arxiv.org/abs/2607.18147",
+      "c": "eess.SY",
+      "s": 0.83
+    },
+    {
+      "t": "Autoresearch with Coding Agents: Generalizers and Metric-Maximizers on Quran Recitation Data",
+      "url": "https://arxiv.org/abs/2607.18064",
+      "c": "cs.SE",
+      "s": 0.78
     }
   ]
 }
