@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-07-21T11:20:05Z",
+  "generated_at": "2026-07-22T11:30:00Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Adaptive Adversaries: A Multi-Turn, Multi-LLM Benchmark for LLM Agent Security",
-      "url": "https://arxiv.org/abs/2607.18063",
+      "t": "Agents in the Wild: Where Research Meets Deployment",
+      "url": "https://arxiv.org/abs/2607.19336",
+      "c": "cs.AI",
+      "s": 0.99
+    },
+    {
+      "t": "They'll Verify. They Just Won't Act. How Authority Framing and Laundered Code Turn a Trusted Agentic CI/CD Pipeline Into an Attack Surface",
+      "url": "https://arxiv.org/abs/2607.19267",
       "c": "cs.CR",
       "s": 0.99
     },
     {
-      "t": "LLMs and Agentic AI Systems for Smart Grids: A Tutorial on Architectures and Applications",
-      "url": "https://arxiv.org/abs/2607.18147",
-      "c": "eess.SY",
-      "s": 0.83
-    },
-    {
-      "t": "Autoresearch with Coding Agents: Generalizers and Metric-Maximizers on Quran Recitation Data",
-      "url": "https://arxiv.org/abs/2607.18064",
-      "c": "cs.SE",
-      "s": 0.78
+      "t": "The safety failures we are not instrumenting: a perspective on hidden safety-critical challenges in modern AI systems",
+      "url": "https://arxiv.org/abs/2607.19292",
+      "c": "cs.CY",
+      "s": 0.89
     }
   ]
 }
