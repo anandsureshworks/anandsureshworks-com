@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-07-22T11:30:00Z",
+  "generated_at": "2026-07-23T11:28:52Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Agents in the Wild: Where Research Meets Deployment",
-      "url": "https://arxiv.org/abs/2607.19336",
-      "c": "cs.AI",
-      "s": 0.99
-    },
-    {
-      "t": "They'll Verify. They Just Won't Act. How Authority Framing and Laundered Code Turn a Trusted Agentic CI/CD Pipeline Into an Attack Surface",
-      "url": "https://arxiv.org/abs/2607.19267",
+      "t": "The Ethics of Autonomous AI Agents for Offensive Security",
+      "url": "https://arxiv.org/abs/2607.20255",
       "c": "cs.CR",
-      "s": 0.99
+      "s": 0.89
     },
     {
-      "t": "The safety failures we are not instrumenting: a perspective on hidden safety-critical challenges in modern AI systems",
-      "url": "https://arxiv.org/abs/2607.19292",
-      "c": "cs.CY",
-      "s": 0.89
+      "t": "PoTRE: Test-Time Reasoning inspired by Cognitive Heterogeneity",
+      "url": "https://arxiv.org/abs/2607.20268",
+      "c": "cs.AI",
+      "s": 0.83
+    },
+    {
+      "t": "Small, Free, and Effective: Orchestrating Open-Weight Small Language Models to Outperform Single LLM for Malware Analysis",
+      "url": "https://arxiv.org/abs/2607.20216",
+      "c": "cs.CR",
+      "s": 0.83
     }
   ]
 }
