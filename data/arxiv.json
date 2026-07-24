@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-07-23T11:28:52Z",
+  "generated_at": "2026-07-24T11:34:09Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,21 +9,21 @@
   },
   "papers": [
     {
-      "t": "The Ethics of Autonomous AI Agents for Offensive Security",
-      "url": "https://arxiv.org/abs/2607.20255",
-      "c": "cs.CR",
+      "t": "Euclid-MCP: A Model Context Protocol Server for Deterministic Logical Reasoning via Prolog",
+      "url": "https://arxiv.org/abs/2607.21412",
+      "c": "cs.AI",
+      "s": 0.99
+    },
+    {
+      "t": "OpenForgeRL: Train Harness-native Agents in Any Environment",
+      "url": "https://arxiv.org/abs/2607.21557",
+      "c": "cs.AI",
       "s": 0.89
     },
     {
-      "t": "PoTRE: Test-Time Reasoning inspired by Cognitive Heterogeneity",
-      "url": "https://arxiv.org/abs/2607.20268",
+      "t": "Agentic Context Management: Solving Agent Memory and Cost by Treating Them as Lifecycle and Architecture Problems",
+      "url": "https://arxiv.org/abs/2607.21503",
       "c": "cs.AI",
-      "s": 0.83
-    },
-    {
-      "t": "Small, Free, and Effective: Orchestrating Open-Weight Small Language Models to Outperform Single LLM for Malware Analysis",
-      "url": "https://arxiv.org/abs/2607.20216",
-      "c": "cs.CR",
       "s": 0.83
     }
   ]
