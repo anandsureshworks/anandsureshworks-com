@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-07-26T11:20:25Z",
+  "generated_at": "2026-07-27T11:27:52Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,21 +9,21 @@
   },
   "papers": [
     {
-      "t": "Euclid-MCP: A Model Context Protocol Server for Deterministic Logical Reasoning via Prolog",
-      "url": "https://arxiv.org/abs/2607.21412",
-      "c": "cs.AI",
+      "t": "A Self-Calibrating Agentic AI Framework for Autonomous Edge Resource Allocation",
+      "url": "https://arxiv.org/abs/2607.22400",
+      "c": "cs.NI",
       "s": 0.99
     },
     {
-      "t": "OpenForgeRL: Train Harness-native Agents in Any Environment",
-      "url": "https://arxiv.org/abs/2607.21557",
-      "c": "cs.AI",
-      "s": 0.89
+      "t": "Towards Trustworthy and Cost-Efficient Data Integration: From Naïve RAG to Agentic RAG",
+      "url": "https://arxiv.org/abs/2607.22319",
+      "c": "cs.DB",
+      "s": 0.99
     },
     {
-      "t": "Agentic Context Management: Solving Agent Memory and Cost by Treating Them as Lifecycle and Architecture Problems",
-      "url": "https://arxiv.org/abs/2607.21503",
-      "c": "cs.AI",
+      "t": "Skill Self-Play: Pushing the Frontier of LLM Capability with Co-Evolving Skills",
+      "url": "https://arxiv.org/abs/2607.22529",
+      "c": "cs.CL",
       "s": 0.83
     }
   ]
