@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-07-27T11:27:52Z",
+  "generated_at": "2026-07-28T11:24:59Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "A Self-Calibrating Agentic AI Framework for Autonomous Edge Resource Allocation",
-      "url": "https://arxiv.org/abs/2607.22400",
-      "c": "cs.NI",
+      "t": "Agentic Permissions Policy Algebra for Taint Confinement in LLM Agents",
+      "url": "https://arxiv.org/abs/2607.24625",
+      "c": "cs.CR",
       "s": 0.99
     },
     {
-      "t": "Towards Trustworthy and Cost-Efficient Data Integration: From Naïve RAG to Agentic RAG",
-      "url": "https://arxiv.org/abs/2607.22319",
-      "c": "cs.DB",
-      "s": 0.99
+      "t": "Evaluating Fuzz Testing for Reinforcement Learning Agents",
+      "url": "https://arxiv.org/abs/2607.24577",
+      "c": "cs.LG",
+      "s": 0.94
     },
     {
-      "t": "Skill Self-Play: Pushing the Frontier of LLM Capability with Co-Evolving Skills",
-      "url": "https://arxiv.org/abs/2607.22529",
-      "c": "cs.CL",
-      "s": 0.83
+      "t": "ClinFusion: A Vision-Centric Multimodal LLM System for Holistic Medical Understanding",
+      "url": "https://arxiv.org/abs/2607.24743",
+      "c": "cs.CV",
+      "s": 0.89
     }
   ]
 }
