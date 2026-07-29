@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-07-28T11:24:59Z",
+  "generated_at": "2026-07-29T11:31:25Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Agentic Permissions Policy Algebra for Taint Confinement in LLM Agents",
-      "url": "https://arxiv.org/abs/2607.24625",
-      "c": "cs.CR",
-      "s": 0.99
-    },
-    {
-      "t": "Evaluating Fuzz Testing for Reinforcement Learning Agents",
-      "url": "https://arxiv.org/abs/2607.24577",
-      "c": "cs.LG",
-      "s": 0.94
-    },
-    {
-      "t": "ClinFusion: A Vision-Centric Multimodal LLM System for Holistic Medical Understanding",
-      "url": "https://arxiv.org/abs/2607.24743",
+      "t": "Evaluating VLMs for Autonomous Agent-Driven Geometry Clipping Detection in Video Game QA",
+      "url": "https://arxiv.org/abs/2607.25921",
       "c": "cs.CV",
       "s": 0.89
+    },
+    {
+      "t": "Untangling Co-Drift: Proactive Multi-Intent Failure Prediction and Root-Cause Disambiguation for Self-Driving Networks",
+      "url": "https://arxiv.org/abs/2607.25989",
+      "c": "cs.NI",
+      "s": 0.78
+    },
+    {
+      "t": "From Role Prompt to Infinite Thinking: Exploiting Persona Conditioning for Inference Cost Attacks in LLMs",
+      "url": "https://arxiv.org/abs/2607.25936",
+      "c": "cs.CR",
+      "s": 0.78
     }
   ]
 }
