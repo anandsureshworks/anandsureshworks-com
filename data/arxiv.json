@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-07-29T11:31:25Z",
+  "generated_at": "2026-07-30T11:21:54Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Evaluating VLMs for Autonomous Agent-Driven Geometry Clipping Detection in Video Game QA",
-      "url": "https://arxiv.org/abs/2607.25921",
-      "c": "cs.CV",
-      "s": 0.89
+      "t": "OptimismBench: Forecasting Bias and the Alignment Effect in Language Model Judgment",
+      "url": "https://arxiv.org/abs/2607.26981",
+      "c": "cs.CL",
+      "s": 0.83
     },
     {
-      "t": "Untangling Co-Drift: Proactive Multi-Intent Failure Prediction and Root-Cause Disambiguation for Self-Driving Networks",
-      "url": "https://arxiv.org/abs/2607.25989",
-      "c": "cs.NI",
+      "t": "TREK: A Travel Reasoning and Evaluation Kit for LLM Agents in Complex Trip Planning",
+      "url": "https://arxiv.org/abs/2607.26977",
+      "c": "cs.CL",
       "s": 0.78
     },
     {
-      "t": "From Role Prompt to Infinite Thinking: Exploiting Persona Conditioning for Inference Cost Attacks in LLMs",
-      "url": "https://arxiv.org/abs/2607.25936",
-      "c": "cs.CR",
-      "s": 0.78
+      "t": "On-Policy Distillation for LLM Safety: A Routing Approach to Template-Robust Realignment",
+      "url": "https://arxiv.org/abs/2607.27081",
+      "c": "cs.AI",
+      "s": 0.72
     }
   ]
 }
