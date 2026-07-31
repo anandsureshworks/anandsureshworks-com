@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-07-30T11:21:54Z",
+  "generated_at": "2026-07-31T11:20:26Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "OptimismBench: Forecasting Bias and the Alignment Effect in Language Model Judgment",
-      "url": "https://arxiv.org/abs/2607.26981",
+      "t": "ORCA-bench: How Ready Are Language Model Agents for Oncall?",
+      "url": "https://arxiv.org/abs/2607.28545",
       "c": "cs.CL",
-      "s": 0.83
+      "s": 0.94
     },
     {
-      "t": "TREK: A Travel Reasoning and Evaluation Kit for LLM Agents in Complex Trip Planning",
-      "url": "https://arxiv.org/abs/2607.26977",
-      "c": "cs.CL",
-      "s": 0.78
+      "t": "Machines that know they are aging: a framework for hardware-aware autonomous intelligence",
+      "url": "https://arxiv.org/abs/2607.28451",
+      "c": "cs.RO",
+      "s": 0.89
     },
     {
-      "t": "On-Policy Distillation for LLM Safety: A Routing Approach to Template-Robust Realignment",
-      "url": "https://arxiv.org/abs/2607.27081",
+      "t": "Rethinking Inference-Time Scaling in Local Computer-Use Agents: Failure Modes and Compute Tradeoffs",
+      "url": "https://arxiv.org/abs/2607.28573",
       "c": "cs.AI",
-      "s": 0.72
+      "s": 0.78
     }
   ]
 }
