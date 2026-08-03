@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-08-02T11:25:11Z",
+  "generated_at": "2026-08-03T11:20:17Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "ORCA-bench: How Ready Are Language Model Agents for Oncall?",
-      "url": "https://arxiv.org/abs/2607.28545",
-      "c": "cs.CL",
-      "s": 0.94
+      "t": "Beyond Component Testing: Validating Agentic AI Systems",
+      "url": "https://arxiv.org/abs/2607.29405",
+      "c": "cs.AI",
+      "s": 0.99
     },
     {
-      "t": "Machines that know they are aging: a framework for hardware-aware autonomous intelligence",
-      "url": "https://arxiv.org/abs/2607.28451",
-      "c": "cs.RO",
-      "s": 0.89
-    },
-    {
-      "t": "Rethinking Inference-Time Scaling in Local Computer-Use Agents: Failure Modes and Compute Tradeoffs",
-      "url": "https://arxiv.org/abs/2607.28573",
+      "t": "AMTFV: Agentic Mathematical Tool-Flow Verification for LLM Self-Correction",
+      "url": "https://arxiv.org/abs/2607.29549",
       "c": "cs.AI",
       "s": 0.78
+    },
+    {
+      "t": "AgenticRepair: Multi-Faceted Program Context Engineering for Agentic Vulnerability Repair",
+      "url": "https://arxiv.org/abs/2607.29422",
+      "c": "cs.SE",
+      "s": 0.72
     }
   ]
 }
