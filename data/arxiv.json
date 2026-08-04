@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-08-03T11:20:17Z",
+  "generated_at": "2026-08-04T11:22:08Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Beyond Component Testing: Validating Agentic AI Systems",
-      "url": "https://arxiv.org/abs/2607.29405",
-      "c": "cs.AI",
+      "t": "Grounding Agentic VLMs with Dedicated Segmentation for Fine-Grained Vehicle Damage Assessment",
+      "url": "https://arxiv.org/abs/2608.02470",
+      "c": "cs.CV",
       "s": 0.99
     },
     {
-      "t": "AMTFV: Agentic Mathematical Tool-Flow Verification for LLM Self-Correction",
-      "url": "https://arxiv.org/abs/2607.29549",
-      "c": "cs.AI",
-      "s": 0.78
+      "t": "Agentic Incident Response through Digital Twin-Enhanced Multiscale Planning",
+      "url": "https://arxiv.org/abs/2608.02422",
+      "c": "cs.CR",
+      "s": 0.99
     },
     {
-      "t": "AgenticRepair: Multi-Faceted Program Context Engineering for Agentic Vulnerability Repair",
-      "url": "https://arxiv.org/abs/2607.29422",
-      "c": "cs.SE",
-      "s": 0.72
+      "t": "A Taxonomy of Cognitive Capability Gaps in Generative and Agentic AI",
+      "url": "https://arxiv.org/abs/2608.02553",
+      "c": "cs.AI",
+      "s": 0.94
     }
   ]
 }
