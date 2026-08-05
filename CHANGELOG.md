@@ -7,6 +7,21 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Homepage UX pass (rev 3)** — classical landing anatomy without breaking brand law:
+  the credibility line ("systems engineer → AI practitioner building in the open") made
+  human-visible instead of JSON-LD-only; the L2 thesis surfaced on the page for the first
+  time (with the learning arc: loops, graphs, evals); a CTA ladder replacing ~12
+  equal-weight links (one filled primary "Follow the notes" at the Z-exit seat of the
+  signals rail, outlined/text secondaries); verify/status demoted to text tier so each
+  screen spends its green once; agentliveness lifted from footer-only to a product row;
+  a closing band so the page ends with a move. Type moved onto a 1.333 modular scale
+  (name at 2.37rem). B (work-with-me) and C (product-first) door promotions are designed
+  and documented as weight/seat swaps, deferred until their triggers.
+- **BRAND.md rulings** — persona layer (AI practitioner building in the open — brand the
+  practitioner, not the practice), the 1.333 type scale, and the one-filled-primary CTA law.
+
+### Removed
+- The boxed "Notes →" stream-cta strip (its job moved to the rail primary + closing band).
 - **arxiv-pulse engine** (`scripts/arxiv-pulse.py`) — closes the "read today" loop:
   a dependency-free, launchd-scheduled engine that fetches the arXiv firehose, scores
   papers against a transparent interest model, and atomically writes `~/.arxiv-pulse.json`

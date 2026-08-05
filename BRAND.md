@@ -29,6 +29,15 @@ the whole tree.
 Product-level expression: **"Predict less, detect more."** (Liveness over
 freshness; detect over predict.)
 
+## Persona (the trunk's voice — ruled 2026-08-05)
+**AI practitioner building in the open** — explorer breadth at the person level,
+so the trunk unlocks adjacent areas instead of narrowing into one (the Lenny model:
+brand the practitioner, not the practice). Today's expression is agent reliability;
+the declared learning arc — **loops, graph engineering, evals** — widens the
+*expression* without renaming any product. Products stay narrow and
+function-named (naming law); the persona stays broad. This is the guard-rail
+("no branch may eclipse the trunk") stated positively.
+
 ## Brand architecture — a tree, not a fork
 Coherence comes from the **trunk + thesis, never a shared prefix** (Google model:
 `Search / Maps / Gmail` — not Apple's `iPhone / iPad`). A rigid prefix *is* the
@@ -108,6 +117,10 @@ Chrome is **monochrome**; hue appears **only** where it carries data meaning.
 - **Space Grotesk** (sans) — questions, prose, headings.
 - **Space Mono** (mono) — every reading: numbers, units, formulae, identifiers, the wordmark.
 - Rule: **if it's a measurement, it's mono.**
+- Rule (2026-08-05): **sizes sit on a 1.333 modular scale** — .75 / .85 / 1.02 / 1.33 / 1.78 / 2.37rem.
+  A size is a rung on the ladder, never a bespoke value; hierarchy comes free on every new page.
+- CTA ladder: **one filled primary per screen**; secondaries are outlined, tertiaries are text.
+  The accent stays chrome-only, so the single filled button spends the green budget whole.
 
 ## Card anatomy (uniform)
 Flex column, `min-height` floor, footer pinned. Four zones, always:
