@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-08-04T11:22:08Z",
+  "generated_at": "2026-08-05T11:20:04Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Grounding Agentic VLMs with Dedicated Segmentation for Fine-Grained Vehicle Damage Assessment",
-      "url": "https://arxiv.org/abs/2608.02470",
-      "c": "cs.CV",
+      "t": "MultiGlobeQA: A Multilingual and Globally Diverse Benchmark for Geospatial Reasoning",
+      "url": "https://arxiv.org/abs/2608.03882",
+      "c": "cs.CL",
       "s": 0.99
     },
     {
-      "t": "Agentic Incident Response through Digital Twin-Enhanced Multiscale Planning",
-      "url": "https://arxiv.org/abs/2608.02422",
-      "c": "cs.CR",
-      "s": 0.99
-    },
-    {
-      "t": "A Taxonomy of Cognitive Capability Gaps in Generative and Agentic AI",
-      "url": "https://arxiv.org/abs/2608.02553",
+      "t": "MAFIA: Query-Only Memory Attacks via Probing and Factual Injection against Audited LLM Agents",
+      "url": "https://arxiv.org/abs/2608.03844",
       "c": "cs.AI",
-      "s": 0.94
+      "s": 0.83
+    },
+    {
+      "t": "Quantization Effects on Biomedical LLM Reliability",
+      "url": "https://arxiv.org/abs/2608.03854",
+      "c": "cs.LG",
+      "s": 0.78
     }
   ]
 }
