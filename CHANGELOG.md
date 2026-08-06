@@ -7,6 +7,19 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Wings as chapters (rev 4)** — the gallery stops filing its wings behind tabs:
+  Learn / Secure / Cosmos render as full-width, deep-linkable chapters
+  (#learn/#secure/#cosmos), each led by its signature instrument at double width
+  (Ebbinghaus · Redactor · Your Sky — Cosmos reordered so the sky leads). A
+  three-door wings strip with live micro-signals (muon streaks, posture chips,
+  stars) enters the fold so every wing exists before the first scroll. Tab JS
+  (select/keyboard) retired — all content visible, no state.
+- **Claim-first og-card** — the LinkedIn/social feed card now leads with the claim
+  only this site can make ("Eleven live instruments. In your browser. Watching
+  themselves.") + wing counts, replacing the wordmark-first card; og:description
+  and meta description rewritten to match. `gen_og_card.sh` hardened against
+  Chrome headless=new's viewport-vs-window offset (render 715, top-crop 630 —
+  sips center-crops unless --cropOffset follows -c).
 - **Homepage UX pass (rev 3)** — classical landing anatomy without breaking brand law:
   the credibility line ("systems engineer → AI practitioner building in the open") made
   human-visible instead of JSON-LD-only; the L2 thesis surfaced on the page for the first

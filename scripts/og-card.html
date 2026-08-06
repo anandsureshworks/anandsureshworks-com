@@ -1,6 +1,9 @@
 <!doctype html>
 <!-- og-card source — rendered to /og-card.png (1200x630) via headless Chrome:
-     scripts/gen_og_card.sh . Committed source so the card is reproducible. -->
+     scripts/gen_og_card.sh . Committed source so the card is reproducible.
+     rev 4 (2026-08-06): claim-first — the feed card leads with the proof only this
+     site can offer (live, self-verifying instruments), not the wordmark. The
+     instrument count is stated here AND in og:description — update both when wings grow. -->
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -9,29 +12,36 @@
   @font-face{font-family:'Space Mono';font-weight:400;src:url("../fonts/space-mono-latin-400.woff2") format("woff2")}
   *{margin:0;box-sizing:border-box}
   body{width:1200px;height:630px;background:oklch(10% 0 0);color:oklch(96% 0 0);
-    font-family:'Space Grotesk',sans-serif;display:flex;align-items:center;overflow:hidden;position:relative}
+    font-family:'Space Grotesk',sans-serif;overflow:hidden;position:relative;
+    display:flex;flex-direction:column;justify-content:space-between;padding:64px 96px 56px}
   .weave{position:absolute;inset:0;opacity:.05;
     background:repeating-linear-gradient(45deg,transparent 0 7px,oklch(70% .16 155) 7px 9px),
                repeating-linear-gradient(-45deg,transparent 0 7px,oklch(40% 0 0) 7px 9px)}
-  .thread{position:absolute;left:0;right:0;bottom:118px;height:3px;background:oklch(70% .16 155);opacity:.85}
-  .wrap{position:relative;padding:0 96px;display:flex;flex-direction:column;gap:26px}
-  .mk{display:flex;align-items:center;gap:18px}
-  .mk img{width:76px;height:76px;border-radius:14px}
-  .mk span{font-family:'Space Mono',monospace;font-size:26px;color:oklch(70% 0 0);letter-spacing:.04em}
-  h1{font-size:88px;font-weight:700;letter-spacing:-.025em;line-height:1.02}
-  h1 b{color:oklch(70% .16 155)}
-  .moves{font-family:'Space Mono',monospace;font-size:27px;color:oklch(78% 0 0);letter-spacing:.01em}
-  .moves i{font-style:normal;color:oklch(70% .16 155)}
-  .url{position:absolute;right:96px;bottom:44px;font-family:'Space Mono',monospace;font-size:24px;color:oklch(60% 0 0)}
+  .tri{position:absolute;right:84px;top:96px;width:300px}
+  .mk{position:relative;display:flex;align-items:center;gap:16px}
+  .mk img{width:56px;height:56px;border-radius:11px}
+  .mk span{font-family:'Space Mono',monospace;font-size:24px;color:oklch(70% 0 0);letter-spacing:.04em}
+  h1{position:relative;font-size:62px;font-weight:700;letter-spacing:-.025em;line-height:1.12;max-width:820px}
+  h1 b{color:oklch(70% .16 155);font-weight:700}
+  .wrow{position:relative;display:flex;align-items:baseline;gap:30px;font-family:'Space Mono',monospace;font-size:20px;color:oklch(70% 0 0)}
+  .wrow span{white-space:nowrap}
+  .wrow b{color:oklch(96% 0 0);font-weight:700}
+  .live{display:inline-flex;align-items:center;gap:10px;color:oklch(70% .16 155)}
+  .live i{width:12px;height:12px;border-radius:50%;background:oklch(70% .16 155);flex:none}
+  .url{margin-left:auto;color:oklch(60% 0 0);font-size:20px}
 </style>
 </head>
 <body>
-  <div class="weave"></div><div class="thread"></div>
-  <div class="wrap">
-    <div class="mk"><img src="../as-logo.svg" alt="" /><span>anandsureshworks</span></div>
-    <h1>A <b>method</b>,<br/>not a field.</h1>
-    <div class="moves">think it through <i>&rarr;</i> show it working <i>&rarr;</i> make it clear</div>
-  </div>
-  <div class="url">anandsureshworks.com</div>
+  <div class="weave"></div>
+  <svg class="tri" viewBox="0 0 240 184" aria-hidden="true">
+    <polygon points="120,34 44,150 196,150" fill="none" stroke="oklch(40% 0 0)" stroke-width="1.4"/>
+    <polygon points="120,44 53,145 187,145" fill="none" stroke="oklch(70% .16 155)" stroke-width="2.4"/>
+    <circle cx="120" cy="34" r="4.4" fill="oklch(96% 0 0)"/>
+    <circle cx="44" cy="150" r="4.4" fill="oklch(96% 0 0)"/>
+    <circle cx="196" cy="150" r="4.4" fill="oklch(96% 0 0)"/>
+  </svg>
+  <div class="mk"><img src="../as-logo.svg" alt="" /><span>anandsureshworks</span></div>
+  <h1>Eleven <b>live</b> instruments.<br/>In your browser.<br/>Watching themselves.</h1>
+  <div class="wrow"><span><b>Learn</b> 06</span><span><b>Secure</b> 02</span><span><b>Cosmos</b> 03</span><span class="live"><i></i>self-verifying</span><span class="url">anandsureshworks.com</span></div>
 </body>
 </html>

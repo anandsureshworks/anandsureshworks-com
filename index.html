@@ -4,10 +4,10 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Anand Suresh — a method, not a field</title>
-<meta name="description" content="A method, not a field — first-principles rigor, demonstrated in the open, demystified for any reader. Live, in-browser instruments across AI, security, learning, and the cosmos. By Anand Suresh." />
+<meta name="description" content="A method, not a field — eleven live instruments across AI, security, learning, and the cosmos, running in your browser and verifying their own freshness. By Anand Suresh." />
 <meta name="robots" content="index, follow" />
 <meta property="og:title" content="Anand Suresh — a method, not a field" />
-<meta property="og:description" content="Think it through. Show it working. Make it clear. Live, in-browser instruments across AI, security, learning, and the cosmos." />
+<meta property="og:description" content="Eleven live instruments across AI, security, learning & the cosmos — running in your browser, verifying their own freshness. Nothing installed, nothing sent anywhere." />
 <meta property="og:image" content="https://www.anandsureshworks.com/og-card.png" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.anandsureshworks.com/" />
@@ -20,13 +20,36 @@
   h1{font-size:1.5rem;font-weight:600;margin:.4rem 0 .3rem;letter-spacing:-.01em}
   .sub{color:var(--t2);font-size:.9rem;margin:0 0 2.2rem}
   section{margin-bottom:2.6rem}
-  .tabs{display:flex;gap:1.4rem;border-bottom:1px solid var(--bd-sub);margin:0 0 1.6rem}
-  .tabs button{background:none;border:none;border-bottom:2px solid transparent;color:var(--t3);font-family:var(--sans);font-size:.95rem;font-weight:600;padding:.45rem 0 .6rem;margin-bottom:-1px;cursor:pointer;display:flex;align-items:center;gap:.4rem}
-  .tabs button[aria-selected=true]{color:var(--t1);border-bottom-color:var(--accent)}
-  .tabs button:hover{color:var(--t2)}
-  .tabs .tcount{font-family:var(--mono);font-size:.66rem;color:var(--t3);font-weight:400}
-  .panel-head{display:flex;align-items:baseline;gap:.75rem;margin-bottom:1.1rem}
-  .panel-head .thesis{font-size:.84rem;color:var(--t2)}
+  /* rev 4 — wings as chapters, not tabs: every wing visible, each led by its signature instrument.
+     The doors strip puts all three wings in the fold; chapters are deep-linkable (#learn/#secure/#cosmos). */
+  .wings{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2.4rem 0 0}
+  @media(max-width:760px){.wings{grid-template-columns:1fr}}
+  .wing{display:flex;flex-direction:column;gap:.45rem;padding:1rem 1.1rem 1.05rem;background:var(--s1);border:1px solid var(--bd-sub);border-radius:11px;text-decoration:none;transition:border-color .15s ease,transform .15s ease}
+  .wing:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .wing:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .wing .eyeb{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3)}
+  .wing h3{font-size:1.33rem;font-weight:600;margin:0;letter-spacing:-.012em;color:var(--t1)}
+  .wing .wth{font-size:.78rem;color:var(--t2);min-height:2.3em}
+  .wing .micro{height:44px;display:flex;align-items:center;overflow:hidden}
+  .wing .wct{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--mono);font-size:.66rem;color:var(--t3)}
+  .wing .wct .go{color:var(--accent);font-weight:700}
+  .microchips{display:flex;gap:5px;flex-wrap:wrap}
+  .microchips span{font-family:var(--mono);font-size:.56rem;color:var(--d2);border:1px solid color-mix(in oklch,var(--d2) 42%,transparent);border-radius:3px;padding:1px 5px}
+  .mstk{position:relative;width:100%;height:44px;border-radius:6px;overflow:hidden;background:radial-gradient(circle at 50% -60%, color-mix(in oklch,var(--d5) 20%,transparent), transparent 75%)}
+  .mstk i{position:absolute;width:1.5px;height:8px;border-radius:1px;background:linear-gradient(to bottom,transparent,var(--d5));animation:mfall 2.4s linear infinite;opacity:0}
+  @keyframes mfall{0%{transform:translateY(-10px);opacity:0}8%{opacity:1}88%{opacity:.5}100%{transform:translateY(52px);opacity:0}}
+  @media (prefers-reduced-motion:reduce){.mstk i{animation:none;opacity:.35;transform:translateY(14px)}}
+  .chapter{margin-top:3rem;scroll-margin-top:1rem}
+  .chhead{display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap;border-bottom:1px solid var(--bd-sub);padding-bottom:.6rem;margin-bottom:1.2rem}
+  .chhead .eyeb{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3)}
+  .chhead h2{font-size:1.78rem;font-weight:600;margin:0;letter-spacing:-.018em;line-height:1.05}
+  .chhead .thesis{font-size:.84rem;color:var(--t2)}
+  .chhead .count{margin-left:auto;font-family:var(--mono);font-size:.66rem;color:var(--t3)}
+  main .cards{grid-template-columns:repeat(auto-fill,minmax(18.5rem,1fr))} /* 3-up on desktop so a lead can span 2 (page-local; brand.css default untouched) */
+  .card.lead{grid-column:span 2}
+  @media(max-width:760px){.card.lead{grid-column:span 1}}
+  .lead .q{font-size:1.33rem}
+  .lead .c-signal{height:200px}
 
   /* deep-decay */
   .ring-col{display:flex;flex-direction:column;align-items:center;gap:4px;flex:none}
@@ -294,8 +317,8 @@
     <a class="cta2" href="/notes/feed.xml">rss &#8599;</a>
   </div>
 
-  <nav class="tabs" id="tabs" role="tablist" aria-label="categories"></nav>
-  <div id="panels"></div>
+  <div class="wings" id="wings" aria-label="the three wings"></div>
+  <div id="chapters"></div>
 
   <div class="prodrow">
     <span class="pname">agentliveness</span><span class="lic">MIT</span>
@@ -330,8 +353,8 @@
   const dcol=v=> v>=.8?"var(--d5)": v>=.6?"var(--d4)": v>=.4?"var(--d3)": v>=.2?"var(--d2)":"var(--d1)";
   const RAMPKEY=`<div class="ramp-key" aria-label="data scale from fresh to decayed"><span>fresh</span><i style="background:var(--d5)"></i><i style="background:var(--d4)"></i><i style="background:var(--d3)"></i><i style="background:var(--d2)"></i><i style="background:var(--d1)"></i><span>decayed</span></div>`;
 
-  function card({eyebrow,q,concept,statN,statLbl,date,signal,sigAria,foot}){
-    return `<article class="card">
+  function card({eyebrow,q,concept,statN,statLbl,date,signal,sigAria,foot,lead}){
+    return `<article class="card${lead?" lead":""}">
       <div class="c-head"><div class="eyebrow">${eyebrow}</div><p class="q">${q}</p><p class="concept">${concept}</p></div>
       <div class="c-signal" role="img" aria-label="${sigAria}" style="position:relative">${signal}</div>
       <div class="c-stat"><span class="n">${statN}</span><span class="lbl">${statLbl}</span><span class="date">${date}</span></div>
@@ -340,16 +363,19 @@
   }
   const SHELVES=[];
   function shelf(id,o){ SHELVES.push({id,...o}); }
-  function renderTabs(){
-    const tabs=document.getElementById("tabs"), panels=document.getElementById("panels");
-    tabs.innerHTML=SHELVES.map((s,i)=>`<button role="tab" id="tab-${s.id}" data-tab="${s.id}" aria-controls="panel-${s.id}" aria-selected="${i===0}" tabindex="${i===0?0:-1}">${s.title}<span class="tcount">${(s.cards.match(/<article/g)||[]).length}</span></button>`).join("");
-    panels.innerHTML=SHELVES.map((s,i)=>`<section class="tpanel" id="panel-${s.id}" role="tabpanel" aria-labelledby="tab-${s.id}"${i?" hidden":""}><div class="panel-head"><span class="thesis">${s.thesis}</span>${s.key?RAMPKEY:""}</div><div class="cards">${s.cards}</div></section>`).join("");
-    tabs.addEventListener("click",e=>{const b=e.target.closest("button[role=tab]");if(b)select(b.dataset.tab);});
-    tabs.addEventListener("keydown",e=>{if(e.key!=="ArrowRight"&&e.key!=="ArrowLeft")return;e.preventDefault();const bs=[...tabs.querySelectorAll("button")],i=bs.findIndex(b=>b.getAttribute("aria-selected")==="true"),n=(i+(e.key==="ArrowRight"?1:bs.length-1))%bs.length;select(bs[n].dataset.tab);bs[n].focus();});
-  }
-  function select(id){
-    document.querySelectorAll("#tabs button").forEach(b=>{const on=b.dataset.tab===id;b.setAttribute("aria-selected",String(on));b.tabIndex=on?0:-1;});
-    document.querySelectorAll(".tpanel").forEach(p=>p.hidden=(p.id!=="panel-"+id));
+  // rev 4: wings render as chapters (all visible, deep-linkable) behind a doors strip in the fold.
+  // NOTE: the og:description + og-card state the total instrument count — update both when adding cards.
+  const WING_MICRO={
+    learn:`<span class="mstk" aria-hidden="true"><i style="left:12%;animation-delay:0s"></i><i style="left:34%;animation-delay:.7s"></i><i style="left:58%;animation-delay:.3s"></i><i style="left:81%;animation-delay:1.2s"></i></span>`,
+    secure:`<span class="microchips" aria-hidden="true"><span>DENY-DEFAULT</span><span>9 PII TYPES</span><span>0 PLAINTEXT</span></span>`,
+    cosmos:`<svg viewBox="0 0 220 44" width="100%" aria-hidden="true"><circle cx="18" cy="24" r="1.4" fill="var(--t1)"/><circle cx="47" cy="12" r="1" fill="var(--t2)"/><circle cx="78" cy="30" r="1.7" fill="var(--t1)"/><circle cx="107" cy="9" r="1" fill="var(--t2)"/><circle cx="132" cy="22" r="1.3" fill="var(--t1)"/><circle cx="164" cy="33" r="1" fill="var(--t2)"/><circle cx="187" cy="14" r="2.1" fill="var(--d5)"/><circle cx="205" cy="27" r="1.2" fill="var(--t1)"/></svg>`};
+  const wingNoun=s=>s.id==="secure"?"tools":"instruments";
+  function renderChapters(){
+    const wings=document.getElementById("wings"), chapters=document.getElementById("chapters");
+    wings.innerHTML=SHELVES.map((s,i)=>{const n=(s.cards.match(/<article/g)||[]).length;
+      return `<a class="wing" href="#${s.id}"><span class="eyeb">wing 0${i+1}</span><h3>${s.title}</h3><span class="wth">${s.thesis}</span><span class="micro">${WING_MICRO[s.id]||""}</span><span class="wct"><span>${n} ${wingNoun(s)} · live</span><span class="go" aria-hidden="true">enter &darr;</span></span></a>`;}).join("");
+    chapters.innerHTML=SHELVES.map((s,i)=>{const n=(s.cards.match(/<article/g)||[]).length;
+      return `<section class="chapter" id="${s.id}" aria-labelledby="ch-${s.id}"><div class="chhead"><span class="eyeb">wing 0${i+1}</span><h2 id="ch-${s.id}">${s.title}</h2><span class="thesis">${s.thesis}</span>${s.key?RAMPKEY:""}<span class="count">${n} ${wingNoun(s)}</span></div><div class="cards">${s.cards}</div></section>`;}).join("");
   }
   const ghUrl=r=>`https://github.com/anandsureshworks/${r}`;
 
@@ -372,7 +398,7 @@
     return `<svg viewBox="0 0 ${W} ${H}" width="100%">${grid}${thr}${curveP}${hint}${dots}${xt}</svg>`;
   }
   function ebCard(){
-    return `<article class="card">
+    return `<article class="card lead">
       <div class="c-head"><div class="eyebrow">Memory · spaced repetition</div>
         <p class="q">What are you about to forget?</p>
         <p class="concept">Add a topic and watch it slide down its forgetting curve. <span class='mono' style='color:var(--t3)'>R = e⁻ᵗ/ˢ</span></p></div>
@@ -449,7 +475,7 @@
   ].join("")});
 
   shelf("secure",{title:"Secure", thesis:"First principles, turned on trust.", key:false, cards:[
-    card({eyebrow:"Security · PII", q:"What's leaking in this prompt?",
+    card({lead:true, eyebrow:"Security · PII", q:"What's leaking in this prompt?",
       concept:"Rules + an in-browser NER model scrub names, secrets & PII before they reach an LLM. Nothing leaves your tab.",
       statN:"9", statLbl:"PII types caught · live", date:"2026-06-23",
       signal:`<div class="chips">${["PERSON","EMAIL","SSN","CARD","API_KEY","IP","JWT","ORG","PHONE"].map(t=>`<span class="chip">${t}</span>`).join("")}</div>`,
@@ -462,22 +488,22 @@
   ].join("")});
 
   shelf("cosmos",{title:"Cosmos", thesis:"First principles, turned on the universe.", key:false, cards:[
+    card({lead:true, eyebrow:"Cosmos · your sky", q:"What's above you right now?",
+      concept:"Your real sky — Sun, Moon phase, the bright stars over your horizon — from where you are, this second.",
+      statN:"live", statLbl:"from your location", date:"",
+      signal:skyGlance, sigAria:"A map of bright stars in the night sky", foot:{note:"interactive",href:"./sky/",text:"open ↗"}}),
     card({eyebrow:"Cosmos · Einstein's gotchas", q:"It sounded absurd. It was measured anyway.",
       concept:"Six predictions ridiculed, then confirmed — a century of experiments built to <b>break</b> relativity has only made it sturdier.",
       statN:"6", statLbl:"predictions · 0 broken", date:"1919 – 2019",
       signal:`<div class="chips">${["MUONS","1971 CLOCKS","1919 ECLIPSE","GPS","LIGO 2015","E=mc²","EHT 2019"].map(t=>`<span class="chip">${t}</span>`).join("")}</div>`,
       sigAria:"Six confirmed predictions of relativity, from the 1919 eclipse to the 2019 black-hole photograph", foot:{note:"interactive",href:"./spacetime/#einstein",text:"open ↗"}}),
-    card({eyebrow:"Cosmos · your sky", q:"What's above you right now?",
-      concept:"Your real sky — Sun, Moon phase, the bright stars over your horizon — from where you are, this second.",
-      statN:"live", statLbl:"from your location", date:"",
-      signal:skyGlance, sigAria:"A map of bright stars in the night sky", foot:{note:"interactive",href:"./sky/",text:"open ↗"}}),
     card({eyebrow:"Cosmos · spacetime", q:"How big is it — really?",
       concept:"Looking out is looking back in time; mass bends spacetime; we are a speck.",
       statN:"4", statLbl:"sketches · a cosmology tutor", date:"",
       signal:stGlance, sigAria:"Concentric ripples in spacetime", foot:{note:"interactive",href:"./spacetime/",text:"open ↗"}}),
   ].join("")});
 
-  renderTabs();
+  renderChapters();
 
   // wire interactive ebbinghaus (the one card that reacts to the visitor)
   (()=>{
