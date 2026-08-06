@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-08-05T11:20:04Z",
+  "generated_at": "2026-08-06T11:28:42Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "MultiGlobeQA: A Multilingual and Globally Diverse Benchmark for Geospatial Reasoning",
-      "url": "https://arxiv.org/abs/2608.03882",
-      "c": "cs.CL",
-      "s": 0.99
-    },
-    {
-      "t": "MAFIA: Query-Only Memory Attacks via Probing and Factual Injection against Audited LLM Agents",
-      "url": "https://arxiv.org/abs/2608.03844",
-      "c": "cs.AI",
+      "t": "Agent Against Agent: An Agentic System for Automatic Prompt Injection Red Teaming",
+      "url": "https://arxiv.org/abs/2608.05108",
+      "c": "cs.CR",
       "s": 0.83
     },
     {
-      "t": "Quantization Effects on Biomedical LLM Reliability",
-      "url": "https://arxiv.org/abs/2608.03854",
-      "c": "cs.LG",
+      "t": "Argus: A General-Purpose Agentic Runtime for Long-Horizon Reasoning",
+      "url": "https://arxiv.org/abs/2608.05144",
+      "c": "cs.AI",
       "s": 0.78
+    },
+    {
+      "t": "Hierarchical Graph Memory for LLM Agents with Path-level Localization and Rewrite",
+      "url": "https://arxiv.org/abs/2608.05095",
+      "c": "cs.AI",
+      "s": 0.72
     }
   ]
 }
