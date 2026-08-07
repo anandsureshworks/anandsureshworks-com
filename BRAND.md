@@ -112,6 +112,7 @@ Chrome is **monochrome**; hue appears **only** where it carries data meaning.
   - **The single green thread:** the accent is one continuous thread — woven through the AS monogram and run through the method triangle. One thread, every surface.
   - **Heritage:** *phosphor green* (CRT/terminal). Once referenced via the `>_` glyph; now expressed **structurally in the weave** itself, not as a literal terminal prompt.
 - **Data ramp** (`--d5..--d1`): cool-blue → rust = **fresh → decayed**. Deuteranopia-safe + luminance-varied; always paired with a number — never hue alone.
+  - **Scoped exception (ruled 2026-08-07): /particles/ carries a page-local state palette** — the chart reuses ramp hues as categorical states (`--d5` = met-by-work, `--d1` = honestly-never; accent = lit/live). Conditions: every state also carries state TEXT (never hue alone), the local legend is printed on the page, and the exception stays page-scoped — no other surface may repurpose the ramp without its own ruling.
 
 ## Type
 - **Space Grotesk** (sans) — questions, prose, headings.
