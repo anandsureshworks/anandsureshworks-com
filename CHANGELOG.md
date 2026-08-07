@@ -7,6 +7,21 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **/particles/ — the particle commons** (rev 5 spec, built): the Standard Model as a
+  public 17-slot chart where a tile lights only when a live instrument ships. Chart is
+  a map, not a container — tiles navigate by state (lit→instrument, work→its line,
+  never→a per-particle honest reveal, queued→cadence). Five instruments at launch
+  (muon rain w/ frame-consistent quiz, your-own-radioactivity w/ weight slider, the
+  neutrino river w/ geolocation-or-manual latitude, CMB static, the confinement zoom),
+  live counters + global pause, and **the arithmetic**: five in-page derivations so
+  "every derivation is shown" is literally true at launch. State served from
+  `data/particles.json`, owned by `scripts/gen_particles.py` (gen_notes precedent —
+  editorial state gets a committed generator with --check, not a fake launchd sensor);
+  the homepage Cosmos card reads the same file. Scoped brand ruling honored: page-local
+  state palette with state text; rail symbols neutral (green never decorates).
+- **Homepage: fourth Cosmos card** — "the particle commons" progress card (lit count +
+  17-dot chart from particles.json). Count contract fired: eleven → **twelve** across
+  og-card, og:description, and meta description in this same commit.
 - **Wings as chapters (rev 4)** — the gallery stops filing its wings behind tabs:
   Learn / Secure / Cosmos render as full-width, deep-linkable chapters
   (#learn/#secure/#cosmos), each led by its signature instrument at double width

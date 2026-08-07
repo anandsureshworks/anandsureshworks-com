@@ -4,10 +4,10 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Anand Suresh — a method, not a field</title>
-<meta name="description" content="A method, not a field — eleven live instruments across AI, security, learning, and the cosmos, running in your browser and verifying their own freshness. By Anand Suresh." />
+<meta name="description" content="A method, not a field — twelve live instruments across AI, security, learning, and the cosmos, running in your browser and verifying their own freshness. By Anand Suresh." />
 <meta name="robots" content="index, follow" />
 <meta property="og:title" content="Anand Suresh — a method, not a field" />
-<meta property="og:description" content="Eleven live instruments across AI, security, learning & the cosmos — running in your browser, verifying their own freshness. Nothing installed, nothing sent anywhere." />
+<meta property="og:description" content="Twelve live instruments across AI, security, learning & the cosmos — running in your browser, verifying their own freshness. Nothing installed, nothing sent anywhere." />
 <meta property="og:image" content="https://www.anandsureshworks.com/og-card.png" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.anandsureshworks.com/" />
@@ -116,6 +116,15 @@
   .gcg .five{display:flex;flex-wrap:wrap;gap:5px}
   .gcg .five span{font-family:var(--mono);font-size:.62rem;color:var(--t3);border:1px solid var(--bd);border-radius:4px;padding:2px 6px}
   .gcg .five span.on{color:var(--d5);border-color:color-mix(in oklch,var(--d5) 40%,transparent)}
+
+  /* particles glance */
+  .pcwrap{display:flex;flex-direction:column;gap:.55rem;align-items:flex-start;justify-content:center}
+  .pcchart{display:flex;gap:4px;flex-wrap:wrap;max-width:15rem}
+  .pcchart i{width:10px;height:10px;border-radius:50%;border:1.3px solid var(--bd)}
+  .pcchart i.pc-lit{background:var(--accent);border-color:var(--accent)}
+  .pcchart i.pc-wk{border-color:var(--d5)}
+  .pcchart i.pc-nv{opacity:.35}
+  .pcmeta{font-family:var(--mono);font-size:.64rem;color:var(--t3)}
 
   /* secure */
   .chips{display:flex;flex-wrap:wrap;gap:6px;align-content:center}
@@ -446,6 +455,20 @@
   const cocgSig=`<div class="coc">${COCG.map(d=>{const inq=d.s>=7;return `<div class="cocrow"><span class="dm">${d.dom}</span><span class="tag ${inq?'in':'out'}">${inq?'in':'grow'}</span><span class="cocbar"><i style="width:${d.s*10}%;background:${dcol(d.s/10)}"></i></span><span class="sc">${d.s.toFixed(1)}</span></div>`}).join("")}</div>`;
   const gcgSig=`<div class="gcg"><div class="lede">5C · density · token cost — checked before you send.</div><div class="five"><span class="on">Character</span><span class="on">Cause</span><span class="on">Constraint</span><span>Contingency</span><span>Calibration</span></div></div>`;
 
+  /* particles glance — reads data/particles.json (gen_particles.py owns the state) */
+  (async()=>{
+    const wrap=document.getElementById("pcSig"); if(!wrap) return;
+    const cardEl=wrap.closest(".card");
+    try{
+      const r=await fetch("/data/particles.json",{cache:"no-store"}); if(!r.ok) throw 0;
+      const j=await r.json(); const slots=j.slots||[]; if(slots.length!==17) throw 0;
+      const dot=s=>s.state==="lit"?`<i class="pc-lit"></i>`:s.state==="work"?`<i class="pc-wk"></i>`:s.state==="never"?`<i class="pc-nv"></i>`:`<i></i>`;
+      wrap.innerHTML=`<div class="pcchart">${slots.map(dot).join("")}</div><div class="pcmeta">${j.counts.lit}/17 lit · ${j.counts.work} met by their work · ${j.counts.never} honestly never</div>`;
+      cardEl.querySelector(".c-stat .n").textContent=String(j.counts.lit);
+      cardEl.querySelector(".c-stat .date").textContent="lit "+(j.last_lit||"");
+    }catch(e){ wrap.innerHTML=`<div class="ax-load">chart state offline — <a class="ax-link" href="./particles/">open the page ↗</a></div>`; }
+  })();
+
   /* cosmos glance teasers */
   const skyGlance=(()=>{let d="";for(let i=0;i<16;i++){const a=i*2.39996,r=56*Math.sqrt((i+.5)/16),x=100+r*Math.cos(a),y=66+r*Math.sin(a),s=(0.8+((i*7)%3)*0.5).toFixed(1);d+=`<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${s}" fill="var(--t1)"/>`;}return `<svg viewBox="0 0 200 132" width="100%" style="max-width:210px"><circle cx="100" cy="66" r="60" fill="oklch(11% 0.02 260)" stroke="var(--bd)"/>${d}<circle cx="138" cy="40" r="5" fill="var(--d5)" opacity=".85"/></svg>`;})();
   const stGlance=`<svg viewBox="0 0 200 132" width="100%" style="max-width:210px">${[58,46,34,22,12].map(r=>`<circle cx="100" cy="66" r="${r}" fill="none" stroke="var(--t3)" stroke-width="1" opacity="${(0.25+(60-r)/120).toFixed(2)}"/>`).join("")}<circle cx="100" cy="66" r="4.5" fill="var(--t1)"/></svg>`;
@@ -501,6 +524,11 @@
       concept:"Looking out is looking back in time; mass bends spacetime; we are a speck.",
       statN:"4", statLbl:"sketches · a cosmology tutor", date:"",
       signal:stGlance, sigAria:"Concentric ripples in spacetime", foot:{note:"interactive",href:"./spacetime/",text:"open ↗"}}),
+    card({eyebrow:"Cosmos · the particle commons", q:"Seventeen particles, one room — yours.",
+      concept:"The Standard Model as a public chart, lit one live instrument at a time — muon rain, your own radioactivity, the neutrino river. Your quiz ring stays on your device.",
+      statN:"—", statLbl:"of 17 lit · one per quarter", date:"",
+      signal:`<div class="pcwrap" id="pcSig"><div class="ax-load">loading the chart…</div></div>`,
+      sigAria:"Standard Model chart progress: slots lit so far", foot:{note:"interactive",href:"./particles/",text:"open ↗"}}),
   ].join("")});
 
   renderChapters();

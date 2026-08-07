@@ -9,6 +9,7 @@ This site is the canonical anchor for Anand Suresh's public writing. Published c
 - [The method, applied](https://www.anandsureshworks.com/method/): the method run end-to-end on one question — "is this thing alive?"
 - [Status](https://www.anandsureshworks.com/status/): a live personal SRE dashboard reading the site's own gate outputs
 - [Trust audit](https://www.anandsureshworks.com/trust/): the site audits itself, live, in the visitor's browser
+- [Particles](https://www.anandsureshworks.com/particles/): the Standard Model as a public chart, lit one live in-browser instrument at a time — with every derivation shown on the page
 - [Notes](https://www.anandsureshworks.com/notes/): the writing stream — long notes and field notes; Atom feed at /notes/feed.xml, per-tag feeds under /notes/tag/
 
 ## Notes

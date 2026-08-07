@@ -1,0 +1,178 @@
+{
+ "generated_at": "2026-08-07T14:51:58.212391+00:00",
+ "cadence": "one instrument per quarter",
+ "last_lit": "2026-08-07",
+ "counts": {
+  "queued": 2,
+  "never": 5,
+  "lit": 7,
+  "work": 3
+ },
+ "slots": [
+  {
+   "id": "u",
+   "sym": "u",
+   "name": "up",
+   "gen": 1,
+   "col": 1,
+   "row": 1,
+   "state": "queued"
+  },
+  {
+   "id": "c",
+   "sym": "c",
+   "name": "charm",
+   "gen": 2,
+   "col": 2,
+   "row": 1,
+   "state": "never"
+  },
+  {
+   "id": "t",
+   "sym": "t",
+   "name": "top",
+   "gen": 3,
+   "col": 3,
+   "row": 1,
+   "state": "never"
+  },
+  {
+   "id": "gamma",
+   "sym": "γ",
+   "name": "photon",
+   "gen": 0,
+   "col": 4,
+   "row": 1,
+   "state": "lit",
+   "inst": "inst-gamma"
+  },
+  {
+   "id": "d",
+   "sym": "d",
+   "name": "down",
+   "gen": 1,
+   "col": 1,
+   "row": 2,
+   "state": "queued"
+  },
+  {
+   "id": "s",
+   "sym": "s",
+   "name": "strange",
+   "gen": 2,
+   "col": 2,
+   "row": 2,
+   "state": "never"
+  },
+  {
+   "id": "b",
+   "sym": "b",
+   "name": "bottom",
+   "gen": 3,
+   "col": 3,
+   "row": 2,
+   "state": "never"
+  },
+  {
+   "id": "g",
+   "sym": "g",
+   "name": "gluon",
+   "gen": 0,
+   "col": 4,
+   "row": 2,
+   "state": "lit",
+   "inst": "inst-g"
+  },
+  {
+   "id": "e",
+   "sym": "e",
+   "name": "electron",
+   "gen": 1,
+   "col": 1,
+   "row": 3,
+   "state": "lit",
+   "inst": "inst-e",
+   "ring": true
+  },
+  {
+   "id": "mu",
+   "sym": "μ",
+   "name": "muon",
+   "gen": 2,
+   "col": 2,
+   "row": 3,
+   "state": "lit",
+   "inst": "inst-mu",
+   "ring": true
+  },
+  {
+   "id": "tau",
+   "sym": "τ",
+   "name": "tau",
+   "gen": 3,
+   "col": 3,
+   "row": 3,
+   "state": "never"
+  },
+  {
+   "id": "W",
+   "sym": "W",
+   "name": "W",
+   "gen": 0,
+   "col": 4,
+   "row": 3,
+   "state": "work"
+  },
+  {
+   "id": "nue",
+   "sym": "ν<sub>e</sub>",
+   "name": "ν-e",
+   "gen": 1,
+   "col": 1,
+   "row": 4,
+   "state": "lit",
+   "inst": "inst-nu",
+   "ring": true
+  },
+  {
+   "id": "numu",
+   "sym": "ν<sub>μ</sub>",
+   "name": "ν-μ",
+   "gen": 2,
+   "col": 2,
+   "row": 4,
+   "state": "lit",
+   "inst": "inst-nu",
+   "ring": true
+  },
+  {
+   "id": "nutau",
+   "sym": "ν<sub>τ</sub>",
+   "name": "ν-τ",
+   "gen": 3,
+   "col": 3,
+   "row": 4,
+   "state": "lit",
+   "inst": "inst-nu",
+   "ring": true
+  },
+  {
+   "id": "Z",
+   "sym": "Z",
+   "name": "Z",
+   "gen": 0,
+   "col": 4,
+   "row": 4,
+   "state": "work"
+  },
+  {
+   "id": "H",
+   "sym": "H",
+   "name": "Higgs",
+   "gen": 0,
+   "col": 4,
+   "row": 5,
+   "state": "work"
+  }
+ ]
+}

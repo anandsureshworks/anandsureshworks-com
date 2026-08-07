@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Particles — seventeen slots, one room — Anand Suresh</title>
+<meta name="description" content="The Standard Model as a public chart, lit one live instrument at a time — muon rain, your own radioactivity, the neutrino river, the oldest light, and the glue that is most of your mass. Every number computes in your browser; every derivation is shown." />
+<meta property="og:title" content="Particles — seventeen slots, one room: yours" />
+<meta property="og:description" content="Live physics instruments in your browser — and a chart that only claims what actually ships." />
+<meta property="og:image" content="https://www.anandsureshworks.com/og-card.png" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.anandsureshworks.com/particles/" />
+<link rel="canonical" href="https://www.anandsureshworks.com/particles/" />
+<link rel="icon" href="/icon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="/brand.css" />
+<style>
+  /* type on the 1.333 ladder: .75 / .85 / 1.02 / 1.33 / 1.78 / 2.37rem (mono micro-labels are utility sizes, per homepage precedent) */
+  .wrap{max-width:56rem;margin:0 auto;padding:2rem clamp(1rem,4vw,2.5rem) 3.5rem}
+  .top{display:flex;justify-content:space-between;align-items:center;gap:.6rem;margin-bottom:1.8rem}
+  .back{font-family:var(--mono);font-size:.75rem;color:var(--t3);text-decoration:none}
+  .back:hover{color:var(--t1)}
+  .ctl{display:flex;gap:.4rem}
+  #pauseAll{height:28px;display:inline-flex;align-items:center;font-family:var(--mono);font-size:.66rem;background:none;color:var(--t2);border:1px solid var(--bd-sub);border-radius:7px;cursor:pointer;padding:0 .5rem}
+  #pauseAll[aria-pressed=true]{color:var(--accent);border-color:var(--accent)}
+  .kicker{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+  h1{font-size:clamp(1.78rem,4.5vw,2.37rem);line-height:1.12;letter-spacing:-.02em;margin:.35rem 0 .6rem;text-wrap:balance}
+  .stance{border-left:2px solid var(--accent);padding-left:1rem;max-width:40rem;color:var(--t2);font-size:1.02rem;margin:0 0 2.4rem}
+  .stance b{color:var(--t1)}
+  .stance a{color:var(--accent);text-decoration:none}
+  h2{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);font-weight:400;margin:2.6rem 0 .9rem}
+  /* chart — tiles are buttons; page-local state palette per BRAND.md scoped ruling 2026-08-07 */
+  .smgen{display:grid;grid-template-columns:repeat(3,minmax(4.4rem,5.4rem)) 1.4rem minmax(4.4rem,5.4rem);gap:.4rem;align-items:stretch}
+  .gh{font-family:var(--mono);font-size:.58rem;letter-spacing:.07em;text-transform:uppercase;color:var(--t3);padding-bottom:.1rem}
+  .gh.you{color:var(--accent)}
+  button.pt{border:1px solid var(--bd-sub);border-radius:8px;padding:.4rem .5rem;position:relative;background:none;text-align:left;cursor:pointer;color:inherit;font-family:var(--sans)}
+  button.pt:hover{border-color:var(--t3)}
+  .pt .sym{font-size:1.02rem;font-weight:700;line-height:1}
+  .pt .nm{font-size:.58rem;color:var(--t3);margin-top:.12rem;line-height:1.2;font-family:var(--mono)}
+  .pt .st{position:absolute;bottom:.3rem;right:.4rem;font-family:var(--mono);font-size:.44rem;letter-spacing:.06em;color:var(--t3)}
+  .pt.lit{border-color:var(--accent)}
+  .pt.lit .sym,.pt.lit .st{color:var(--accent)}
+  .pt.work{border-color:color-mix(in oklch,var(--d5) 60%,transparent)}
+  .pt.work .sym,.pt.work .st{color:var(--d5)}
+  .pt.never{opacity:.45}
+  .you-dot{position:absolute;top:.35rem;right:.4rem;width:7px;height:7px;border-radius:50%;border:1.3px solid var(--d3)}
+  .you-dot.on{background:var(--d3)}
+  .tilereveal{margin-top:.7rem;min-height:2.9em;border:1px dashed var(--bd-sub);border-radius:8px;padding:.55rem .8rem;font-size:.85rem;color:var(--t2);max-width:40rem}
+  .tilereveal b{color:var(--t1)}
+  .tilereveal .tag{font-family:var(--mono);font-size:.58rem;letter-spacing:.07em;text-transform:uppercase;margin-right:.5rem}
+  .tilereveal .tag.never{color:var(--d1)}
+  .tilereveal .tag.queued{color:var(--t3)}
+  .tilereveal .tag.work{color:var(--d5)}
+  .tilereveal .tag.lit{color:var(--accent)}
+  .tilereveal a{color:var(--accent);text-decoration:none}
+  .chartmeta{font-family:var(--mono);font-size:.64rem;color:var(--t3);margin-top:.8rem;line-height:1.9}
+  .chartmeta b{color:var(--t2);font-weight:700}
+  .chartmeta .lg{display:inline-block;margin-right:1.1rem}
+  .chartmeta i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:.3rem}
+  /* instruments */
+  .inst{display:grid;grid-template-columns:3.2rem minmax(0,1fr) 15rem;gap:0 2rem;padding:1.5rem 0;border-top:1px solid var(--bd-sub);scroll-margin-top:1rem}
+  .inst:last-of-type{border-bottom:1px solid var(--bd-sub)}
+  @media(max-width:46rem){.inst{grid-template-columns:3.2rem minmax(0,1fr)}.live{grid-column:2;margin-top:.8rem}}
+  .inst.flash{animation:rowflash 1.8s ease-out}
+  @keyframes rowflash{0%{background:color-mix(in oklch,var(--accent) 14%,transparent)}100%{background:transparent}}
+  @media (prefers-reduced-motion:reduce){.inst.flash{animation:none;outline:1px solid var(--accent)}}
+  .rail{font-family:var(--mono)}
+  .rail .no{font-size:.66rem;color:var(--t3)}
+  .rail .psym{font-size:1.33rem;font-weight:700;color:var(--t1);line-height:1.15} /* ruled 2026-08-07: symbols are identity, not live-status — green never decorates */
+  .inst .claim{font-size:1.02rem;font-weight:700;line-height:1.3;margin:0 0 .35rem;letter-spacing:-.01em}
+  .inst p.c{font-size:.85rem;color:var(--t2);margin:0 0 .5rem;line-height:1.5;max-width:30rem}
+  .inst p.c b{color:var(--t1)}
+  .meta{font-family:var(--mono);font-size:.66rem;color:var(--t3);line-height:1.8}
+  .meta .who{color:var(--d5)}
+  .meta a{color:var(--accent);text-decoration:none}
+  .live{display:flex;flex-direction:column;gap:.55rem;min-width:0}
+  .big{font-family:var(--mono);font-size:1.33rem;font-variant-numeric:tabular-nums;line-height:1.1}
+  .big small{font-size:.58rem;color:var(--t3);display:block;letter-spacing:.04em;text-transform:uppercase;margin-top:.18rem;font-weight:400}
+  .dir{font-family:var(--mono);font-size:.66rem;color:var(--d5);line-height:1.5}
+  input[type=range]{width:100%;accent-color:var(--accent);margin:0}
+  label.wl{font-family:var(--mono);font-size:.62rem;color:var(--t3)}
+  .seg{display:flex;gap:.3rem;flex-wrap:wrap}
+  .seg button{font-family:var(--mono);font-size:.6rem;background:none;border:1px solid var(--bd-sub);color:var(--t2);border-radius:5px;padding:.18rem .5rem;cursor:pointer}
+  .seg button[aria-pressed=true]{color:var(--accent);border-color:var(--accent)}
+  .seg button.miss{color:var(--d1);border-color:var(--d1)}
+  .btn{font-family:var(--mono);font-size:.64rem;background:none;border:1px solid var(--bd-sub);color:var(--accent);border-radius:6px;padding:.3rem .6rem;cursor:pointer;align-self:flex-start}
+  .reveal{font-size:.75rem;color:var(--t2);display:none;line-height:1.5}
+  .reveal.show{display:block}
+  .reveal a{color:var(--accent);text-decoration:none}
+  .quizfb{font-family:var(--mono);font-size:.64rem;line-height:1.5;min-height:1.3em}
+  .quizfb.ok{color:var(--accent)}
+  .quizfb.miss{color:var(--d1)}
+  .latrow{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;font-family:var(--mono);font-size:.62rem;color:var(--t3)}
+  .latrow input[type=number]{width:3.6rem;background:var(--s1);border:1px solid var(--bd-sub);border-radius:5px;color:var(--t1);font-family:var(--mono);font-size:.66rem;padding:.15rem .3rem}
+  .zstage{font-family:var(--mono);font-size:.68rem;color:var(--t2);min-height:2.6em;line-height:1.5}
+  .zstage b{color:var(--t1)}
+  canvas{width:100%;height:56px;border-radius:6px;border:1px solid var(--bd-sub);display:block}
+  /* work & absence */
+  .wa{display:grid;grid-template-columns:2.6rem minmax(0,1fr) auto;gap:.3rem 1rem;font-size:.85rem;max-width:40rem;scroll-margin-top:1rem}
+  .wa .s{font-family:var(--mono);font-weight:700;color:var(--d5)}
+  .wa .s.n{color:var(--d1)}
+  .wa .d{color:var(--t2)}
+  .wa .lt{font-family:var(--mono);font-size:.62rem;color:var(--t3);white-space:nowrap;align-self:center}
+  .wa .row-flash{animation:rowflash 1.8s ease-out}
+  .wa-note{font-size:.75rem;color:var(--t3);margin-top:.7rem;max-width:40rem}
+  .wa-note b{color:var(--t2)}
+  /* the arithmetic — every derivation shown, in place */
+  .der{border-top:1px solid var(--bd-sub);padding:1.1rem 0;display:grid;grid-template-columns:3.2rem minmax(0,1fr);gap:0 2rem;scroll-margin-top:1rem}
+  .der:last-of-type{border-bottom:1px solid var(--bd-sub)}
+  .der .psym{font-family:var(--mono);font-size:1.02rem;font-weight:700;color:var(--t1)}
+  .der h3{font-size:.85rem;font-weight:700;margin:0 0 .3rem}
+  .der p{font-size:.85rem;color:var(--t2);margin:.2rem 0;max-width:36rem;line-height:1.6}
+  .der .m{font-family:var(--mono);font-size:.75rem;color:var(--t1);background:var(--s1);border:1px solid var(--bd-sub);border-radius:6px;padding:.4rem .6rem;display:inline-block;margin:.2rem 0}
+  .der .src{font-family:var(--mono);font-size:.62rem;color:var(--t3)}
+  .pfoot{margin-top:2.6rem;border-top:1px solid var(--bd-sub);padding-top:1.1rem;font-family:var(--mono);font-size:.72rem;color:var(--t3);line-height:1.9}
+  .pfoot a{color:var(--t2)}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+</style>
+<script>
+(function(){
+  var d=document.documentElement;
+  function resolve(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')return t;return matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}catch(e){return 'dark';}}
+  function paint(t){d.dataset.theme=t;var b=document.getElementById('themeToggle');if(b){b.textContent=t==='light'?'☾':'☀';b.setAttribute('aria-label','Switch to '+(t==='light'?'dark':'light')+' theme');}}
+  paint(resolve());
+  document.addEventListener('DOMContentLoaded',function(){
+    paint(d.dataset.theme);
+    var b=document.getElementById('themeToggle');
+    if(b)b.addEventListener('click',function(){var nt=d.dataset.theme==='light'?'dark':'light';try{localStorage.setItem('theme',nt);}catch(e){}paint(nt);});
+  });
+})();
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle color theme">☀</button>
+<div class="wrap">
+  <div class="top"><a class="back" href="/#cosmos">← anandsureshworks · cosmos</a>
+    <span class="ctl"><button id="pauseAll" aria-pressed="false">⏸ pause motion</button></span></div>
+
+  <main id="main">
+  <div class="kicker">cosmos · /particles/</div>
+  <h1>Seventeen particles, one room — yours</h1>
+  <p class="stance"><b>I'm not a physicist — that's the point.</b> <a href="/method/">The method</a>, run where I hold no credential. Every number computes in your browser; every derivation is <a href="#arith">shown below</a>.</p>
+
+  <h2>The chart — everything you are is generation one · click any tile</h2>
+  <div class="smgen" id="smgen" aria-label="Standard Model chart, three generations plus bosons; each tile is a button">
+    <div class="gh you">gen 1 — you</div><div class="gh">gen 2</div><div class="gh">gen 3</div><div></div><div class="gh">forces · mass</div>
+  </div>
+  <div class="tilereveal" id="tileReveal" aria-live="polite">the chart is a map, not a container — <b>lit</b> jumps to its instrument, <b>work</b> highlights its line, <b>never</b> answers honestly, <b>queued</b> tells you when.</div>
+  <p class="chartmeta" id="chartmeta">loading the chart state…</p>
+
+  <h2>The instruments — in your browser, from your clock; nothing leaves your tab</h2>
+
+  <div class="inst" id="inst-mu">
+    <div class="rail"><div class="no">01</div><div class="psym">μ</div></div>
+    <div>
+      <p class="claim">What's raining through you right now?</p>
+      <p class="c">Born 15 km up, 2.2 μs to live — dead in 660 m, by the math. From your seat they arrive because <b>their clocks tick slow</b>; from the muon's seat its clock is fine — <b>it's the atmosphere that length-contracts</b> to a few hundred meters. Two stories, one arrival: that agreement <em>is</em> special relativity. Its heavier sibling, the tau, never makes it.</p>
+      <div class="meta"><a href="#d-mu">how we know &rarr;</a></div>
+    </div>
+    <div class="live">
+      <div class="big">1.1<small>muons / cm²·min at sea level · PDG</small></div>
+      <div class="meta">in the muon's own frame it still lives just 2.2 μs. what saves it?</div>
+      <div class="seg" role="group" aria-label="muon check">
+        <button data-a="w1">its time dilates for it</button>
+        <button data-a="r">the mountain shrinks</button>
+        <button data-a="w2">nothing — most don't make it</button>
+      </div>
+      <div class="quizfb" id="muFb" role="status"></div>
+    </div>
+  </div>
+
+  <div class="inst" id="inst-e">
+    <div class="rail"><div class="no">02</div><div class="psym">e</div></div>
+    <div>
+      <p class="claim">You are a decay engine.</p>
+      <p class="c">Potassium-40 and carbon-14 decay inside you, every second of your life. Harmless — a night beside another human adds ~0.05 μSv. <b>You have always been a source.</b></p>
+      <div class="meta"><span class="who">every tick is a W boson at work</span> · <a href="#d-e">how we know &rarr;</a></div>
+    </div>
+    <div class="live">
+      <div class="big"><span id="bqNow" aria-hidden="true">7,400</span><span class="sr-only">about 7,400</span><small>decays / second inside you · UNSCEAR</small></div>
+      <label class="wl" for="kg">your weight · <span id="kgLbl">70</span> kg</label>
+      <input type="range" id="kg" min="40" max="120" value="70" aria-label="body weight in kilograms" />
+      <div class="meta"><span id="bqTotal" aria-hidden="true">0</span><span class="sr-only">a running count of decays</span> since you opened this page</div>
+    </div>
+  </div>
+
+  <div class="inst" id="inst-nu">
+    <div class="rail"><div class="no">03</div><div class="psym">ν</div></div>
+    <div>
+      <p class="claim">What's pouring through your thumbnail?</p>
+      <p class="c">Born <b>ν<sub>e</sub></b> in the Sun's core, gone instantly — the light beside them takes 100,000 years to get out. By your thumbnail the river is <b>all three flavors</b>: Davis was "wrong" for 30 years, until oscillation proved neutrinos have mass — the Standard Model's <b>first crack</b>. One river, three slots, honestly.</p>
+      <div class="meta"><span class="who">runs on the W · first seen via the Z</span> · <a href="#d-nu">how we know &rarr;</a></div>
+    </div>
+    <div class="live">
+      <div class="big"><span id="nuCount" aria-hidden="true">0</span><small id="nuLbl">through 1 cm² since you arrived · ~65 billion /cm²·s</small></div>
+      <div class="dir" id="nuDir"></div>
+      <div class="latrow"><button class="btn" id="geoBtn" style="align-self:center">use my location</button><label for="latIn">or latitude</label><input type="number" id="latIn" min="-90" max="90" value="40" aria-label="latitude in degrees" /><span id="latState">assuming 40°N — set yours</span></div>
+      <div class="seg" role="group" aria-label="aperture"><button data-ap="1" aria-pressed="true">1 cm²</button><button data-ap="100">palm</button><button data-ap="7000">all of you</button></div>
+      <button class="btn" id="nuGuess">how many stopped inside you?</button>
+      <div class="reveal" id="nuReveal" role="status"><b>Almost certainly zero</b> — a lifetime total of one or two. So how did anyone ever detect one? That question built Super-Kamiokande. <a href="#d-nu">the derivation &rarr;</a></div>
+    </div>
+  </div>
+
+  <div class="inst" id="inst-gamma">
+    <div class="rail"><div class="no">04</div><div class="psym">γ</div></div>
+    <div>
+      <p class="claim">The oldest light is in the room with you.</p>
+      <p class="c">The cosmic microwave background: 13.8 billion years in flight, arriving from every direction — famously, <em>roughly</em> a percent of analog static. Its discoverers spent a year blaming pigeons; the hiss stayed. <b>Ruling out is the method.</b></p>
+      <div class="meta"><a href="#d-gamma">how we know &rarr;</a></div>
+    </div>
+    <div class="live">
+      <div class="big">411<small>CMB photons in every cm³ of your room</small></div>
+      <canvas id="cmb" width="300" height="56" aria-hidden="true"></canvas>
+      <span class="sr-only">Animated static; about one percent of the flicker represents cosmic microwave background photons.</span>
+      <button class="btn" id="cmbHold">hold — show only the Big Bang</button>
+    </div>
+  </div>
+
+  <div class="inst" id="inst-g">
+    <div class="rail"><div class="no">05</div><div class="psym">g</div></div>
+    <div>
+      <p class="claim">Your mass is mostly trapped energy.</p>
+      <p class="c">Zoom from your body to the inside of a proton. The quarks' own masses cover barely 1% — the rest is the energy of confinement. Nuclear binding energy subtracts; confinement traps. <b>Trapped energy weighs.</b></p>
+      <div class="meta"><span class="who">the 1% that isn't glue is the Higgs — the electron's mass sets every atom's size</span> · <a href="#d-g">the budget &rarr;</a></div>
+    </div>
+    <div class="live">
+      <input type="range" id="zoom" min="0" max="6" value="0" step="1" aria-label="zoom depth" />
+      <div class="zstage" id="zstage" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <h2 id="wa-h">Met by their work · honestly never — one true thing each</h2>
+  <div class="wa" id="wa">
+    <span class="s" data-w="W">W</span><span class="d" data-w="W">every tick in 02 · no W, no sunlight</span><span class="lt"></span>
+    <span class="s" data-w="Z">Z</span><span class="d" data-w="Z">how the river was first seen</span><span class="lt">1973</span>
+    <span class="s" data-w="H">H</span><span class="d" data-w="H">sets the electron's mass — and so the size of every atom</span><span class="lt"></span>
+    <span class="s n" data-w="t">t</span><span class="d" data-w="t">the only quark that dies before it can dress itself in a hadron — we've only ever met it naked</span><span class="lt">5×10⁻²⁵ s</span>
+    <span class="s n" data-w="c">c</span><span class="d" data-w="c">a charm–anticharm pair (J/ψ, 1974) forced the world to believe in quarks — the November Revolution</span><span class="lt">~10⁻¹² s</span>
+    <span class="s n" data-w="s">s</span><span class="d" data-w="s">named before it was understood: 1947 cloud-chamber tracks lived suspiciously long, so "strangeness" was invented</span><span class="lt">~10⁻¹⁰ s</span>
+    <span class="s n" data-w="b">b</span><span class="d" data-w="b">B-mesons are CP violation's best laboratory — part of why matter outnumbers antimatter is written here</span><span class="lt">~10⁻¹² s</span>
+    <span class="s n" data-w="tau">τ</span><span class="d" data-w="tau">the muon's sibling that never reaches the ground</span><span class="lt">2.9×10⁻¹³ s</span>
+  </div>
+  <p class="wa-note"><b>Forcing "it's in your room" onto these would be a lie.</b> The absence is the story — but every absence gets its one true thing.</p>
+
+  <h2 id="arith">The arithmetic — how we know, in five short sums</h2>
+
+  <div class="der" id="d-mu">
+    <div class="psym">μ</div>
+    <div><h3>Why any muon reaches you at all</h3>
+      <p>At rest a muon lives τ = 2.2 μs — at light speed that is a range of</p>
+      <p class="m">c·τ = 3×10⁸ m/s × 2.2×10⁻⁶ s ≈ 660 m</p>
+      <p>far short of the ~15 km of atmosphere. But a typical ~4 GeV sea-level muon carries γ = E/mc² ≈ 4000/105.7 ≈ 38, so from your frame its clock runs 38× slow: range ≈ 38 × 660 m ≈ 25 km. From the muon's frame the same γ contracts the 15 km of sky to ~400 m. Both frames predict arrival — that agreement is the theory.</p>
+      <p class="src">inputs: PDG muon mass 105.7 MeV, mean sea-level muon energy ~4 GeV, flux ~1 /cm²·min</p></div>
+  </div>
+  <div class="der" id="d-e">
+    <div class="psym">e</div>
+    <div><h3>Your ~7,400 Bq, from scratch</h3>
+      <p>A 70 kg body holds ~140 g potassium (0.2% of mass). K-40 is 0.0117% of that: 16 mg → N ≈ 2.5×10²⁰ atoms. With half-life 1.25 Gy:</p>
+      <p class="m">A = N·ln2/t½ ≈ 2.5×10²⁰ × 0.693 / (3.9×10¹⁶ s) ≈ 4,400 Bq</p>
+      <p>Carbon-14 (1.2 parts per trillion of your ~16 kg carbon, t½ 5,730 y) adds ~3,000 Bq. Total ≈ 7,400 decays every second — about 106 per kg, which is what the slider computes.</p>
+      <p class="src">inputs: UNSCEAR body composition; K-40 t½ 1.25×10⁹ y; C-14 t½ 5,730 y</p></div>
+  </div>
+  <div class="der" id="d-nu">
+    <div class="psym">ν</div>
+    <div><h3>65 billion through every cm², from sunlight alone</h3>
+      <p>The pp chain releases 26.7 MeV and exactly 2 neutrinos per helium made. The Sun's power is 3.8×10²⁶ W, so it must emit</p>
+      <p class="m">2 × 3.8×10²⁶ / 4.3×10⁻¹² J ≈ 1.8×10³⁸ ν/s</p>
+      <p>Spread over a sphere of radius 1 AU (4πr² ≈ 2.8×10²⁷ cm²): ≈ 6.5×10¹⁰ per cm² per second. You can derive the flux from nothing but the solar constant — the detection story is the hard part, and it's why the "how many stopped inside you?" answer built Super-Kamiokande.</p>
+      <p class="src">inputs: solar luminosity 3.8×10²⁶ W; pp-chain 26.7 MeV; 1 AU = 1.5×10¹³ cm</p></div>
+  </div>
+  <div class="der" id="d-gamma">
+    <div class="psym">γ</div>
+    <div><h3>411 ancient photons per cm³</h3>
+      <p>A blackbody at temperature T holds a fixed photon density. For the CMB's measured T = 2.725 K:</p>
+      <p class="m">n = (2ζ(3)/π²) (kT/ħc)³ ≈ 411 photons/cm³</p>
+      <p>No fitting, no cosmology dial — one measured temperature in, one room-filling number out. The "about a percent of analog static" claim is looser: it depends on the receiver, which is why the page hedges it.</p>
+      <p class="src">inputs: COBE/FIRAS T = 2.725 K; ζ(3) ≈ 1.202</p></div>
+  </div>
+  <div class="der" id="d-g">
+    <div class="psym">g</div>
+    <div><h3>The 1% quark, 99% glue budget</h3>
+      <p>A proton weighs 938.3 MeV. Its three valence quarks weigh</p>
+      <p class="m">2×m(u) + m(d) ≈ 2×2.2 + 4.7 ≈ 9.1 MeV ≈ 1%</p>
+      <p>The other ~99% is QCD binding — confinement energy, carried by the gluon field. Nuclear binding energy makes nuclei <em>lighter</em> than their parts; confinement makes the proton <em>heavier</em> than its quarks. Different signs, both "trapped energy weighs."</p>
+      <p class="src">inputs: PDG quark masses (MS-bar); proton mass 938.272 MeV</p></div>
+  </div>
+
+  <div class="pfoot">
+    sources: PDG · Bahcall · UNSCEAR · COBE/FIRAS · long-form derivation notes land under the <a href="/notes/">cosmos tag</a>, one per instrument<br>
+    chart state: <a href="/data/particles.json">data/particles.json</a> · owned by gen_particles.py · your quiz ring stays in your browser<br>
+    queued next: up/down quark instrument · share-card of your numbers · Geiger click
+  </div>
+  </main>
+</div>
+
+<script type="module">
+var PAUSED=false;
+(function(){var b=document.getElementById('pauseAll');
+b.addEventListener('click',function(){PAUSED=!PAUSED;b.setAttribute('aria-pressed',String(PAUSED));b.textContent=PAUSED?'▶ resume motion':'⏸ pause motion';});})();
+
+/* ---- chart: built from data/particles.json (gen_particles.py is the only owner) ---- */
+const REVEAL_NEVER={
+  t:'<b>top</b> — the only quark that dies before it can dress itself in a hadron (5×10⁻²⁵ s). Every top we\'ve ever met was naked.',
+  c:'<b>charm</b> — never in your room, but it changed the room: the J/ψ (a charm–anticharm pair, 1974) forced physics to believe in quarks. They call it the November Revolution.',
+  s:'<b>strange</b> — named before it was understood. 1947 cloud-chamber tracks lived suspiciously long; "strangeness" was invented as a bookkeeping trick that turned out to be real.',
+  b:'<b>bottom</b> — CP violation\'s best laboratory. Part of why there is more matter than antimatter is written in oscillating B-mesons.',
+  tau:'<b>tau</b> — the muon\'s heavier sibling (2.9×10⁻¹³ s). Born in the same cosmic-ray showers, it decays long before the ground. The muon reaches you; the tau never does.'};
+const REVEAL_QUEUED={
+  u:'<b>up</b> — queued, next in line. The teaser: you are mostly up and down quarks <b>by count</b> — and barely by mass.',
+  d:'<b>down</b> — queued with up as one instrument. By count you are half down quarks; by mass they barely register.'};
+const REVEAL_WORK={W:'<b>W</b> — you meet its work every second: instrument 02\'s ticks are each a W boson acting. No W, no sunlight.',
+  Z:'<b>Z</b> — how the neutrino river was first seen (1973, Gargamelle).',
+  H:'<b>H</b> — sets the electron\'s mass, and the electron\'s mass sets the size of every atom — including yours.'};
+const STATE_LABEL={lit:"instrument live",work:"met by its work",queued:"queued",never:"honestly never in your room"};
+
+(async()=>{
+  const grid=document.getElementById('smgen'),meta=document.getElementById('chartmeta'),reveal=document.getElementById('tileReveal');
+  let data;
+  try{
+    const r=await fetch('/data/particles.json',{cache:'no-store'}); if(!r.ok)throw 0;
+    data=await r.json(); if(!(data.slots||[]).length)throw 0;
+  }catch(e){meta.textContent='chart state unavailable — the instruments below still run.';return;}
+  const cells=[];
+  for(let row=1;row<=5;row++){
+    for(let col=1;col<=3;col++){
+      const s=data.slots.find(x=>x.row===row&&x.col===col);
+      cells.push(s||null);
+    }
+    cells.push('spacer');
+    const b=data.slots.find(x=>x.row===row&&x.col===4);
+    cells.push(b||null);
+  }
+  grid.insertAdjacentHTML('beforeend',cells.map(cel=>{
+    if(cel==='spacer')return'<div></div>';
+    if(!cel)return'<div></div>';
+    const ring=cel.ring?`<span class="you-dot" data-p="${cel.id}"></span>`:'';
+    return `<button class="pt ${cel.state}" data-p="${cel.id}" data-inst="${cel.inst||''}" aria-label="${cel.name} — ${STATE_LABEL[cel.state]}">`+
+      `<div class="sym">${cel.sym}</div><div class="nm">${cel.name}</div>${ring}<span class="st">${cel.state.toUpperCase()}</span></button>`;
+  }).join(''));
+  const c=data.counts;
+  meta.innerHTML=
+    `<span class="lg"><i style="border:1.3px solid var(--accent)"></i><b>${c.lit} lit</b> — instrument live</span>`+
+    `<span class="lg"><i style="border:1.3px solid var(--d5)"></i><b>${c.work}</b> met by their work</span>`+
+    `<span class="lg"><i style="background:var(--bd)"></i><b>${c.queued}</b> queued</span>`+
+    `<span class="lg"><i style="background:var(--bd);opacity:.4"></i><b>${c.never}</b> honestly never</span>`+
+    `<span class="lg"><i style="border:1.3px solid var(--d3);border-radius:50%"></i>your ring — checks passed, saved locally</span><br>`+
+    `${data.cadence} · last lit ${data.last_lit} · designed to be completed, not eternal`;
+  paintRing();
+  grid.querySelectorAll('button.pt').forEach(t=>{
+    t.addEventListener('click',()=>{
+      const p=t.dataset.p, inst=t.dataset.inst;
+      if(inst){const row=document.getElementById(inst);
+        reveal.innerHTML='<span class="tag lit">LIT</span>jumping to its instrument ↓';
+        row.classList.remove('flash');void row.offsetWidth;row.classList.add('flash');
+        row.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});}
+      else if(REVEAL_WORK[p]){
+        reveal.innerHTML='<span class="tag work">MET BY ITS WORK</span>'+REVEAL_WORK[p]+' <a href="#wa-h">its line ↓</a>';
+        document.querySelectorAll('#wa [data-w]').forEach(x=>x.classList.toggle('row-flash',x.dataset.w===p));
+        document.getElementById('wa').scrollIntoView({behavior:'smooth',block:'center'});}
+      else if(REVEAL_NEVER[p]){reveal.innerHTML='<span class="tag never">HONESTLY NEVER</span>'+REVEAL_NEVER[p];}
+      else if(REVEAL_QUEUED[p]){reveal.innerHTML='<span class="tag queued">QUEUED</span>'+REVEAL_QUEUED[p]+' <span style="font-family:var(--mono);font-size:.72em;color:var(--t3)">cadence: '+data.cadence+'</span>';}
+    });
+  });
+})();
+
+/* ---- instruments ---- */
+function solarElevation(latDeg){
+  var now=new Date(), lat=latDeg*Math.PI/180;
+  var start=new Date(now.getFullYear(),0,0), doy=(now-start)/864e5;
+  var decl=-23.44*Math.PI/180*Math.cos(2*Math.PI/365*(doy+10));
+  var h=(now.getHours()+now.getMinutes()/60-12)*15*Math.PI/180;
+  return Math.asin(Math.sin(lat)*Math.sin(decl)+Math.cos(lat)*Math.cos(decl)*Math.cos(h))*180/Math.PI;
+}
+(function(){
+  var t0=Date.now(),el=document.getElementById('nuCount'),lbl=document.getElementById('nuLbl'),
+      dir=document.getElementById('nuDir'),latIn=document.getElementById('latIn'),
+      latState=document.getElementById('latState'),RATE=6.5e10,AP=1,LAT=40;
+  function fmt(n){
+    if(n>=1e15)return (n/1e15).toFixed(2)+' quadrillion';
+    if(n>=1e12)return (n/1e12).toFixed(2)+' trillion';
+    if(n>=1e9)return (n/1e9).toFixed(2)+' billion';
+    return Math.round(n).toLocaleString();
+  }
+  setInterval(function(){if(!PAUSED)el.textContent=fmt((Date.now()-t0)/1000*RATE*AP);},120);
+  document.querySelectorAll('[data-ap]').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('[data-ap]').forEach(function(x){x.setAttribute('aria-pressed','false');});
+      b.setAttribute('aria-pressed','true');AP=+b.dataset.ap;
+      lbl.textContent='through '+(AP===1?'1 cm²':AP===100?'your palm':'all of you')+' since you arrived · ~65 billion /cm²·s';
+    });
+  });
+  function paintDir(){
+    var e=solarElevation(LAT),state,arrow;
+    if(e>10){state='your ceiling — the Sun is '+Math.round(e)+'° up';arrow='↓';}
+    else if(e<-10){state='your floor — the Sun shines through the Earth';arrow='↑';}
+    else{state='your walls — the Sun is on your horizon';arrow='→';}
+    dir.textContent=arrow+' arriving through '+state;
+  }
+  paintDir();setInterval(paintDir,60000);
+  latIn.addEventListener('input',function(){var v=+latIn.value;if(v>=-90&&v<=90){LAT=v;latState.textContent='using '+Math.abs(v)+'°'+(v>=0?'N':'S');paintDir();}});
+  document.getElementById('geoBtn').addEventListener('click',function(){
+    var s=latState;
+    if(!navigator.geolocation){s.textContent='no geolocation — set latitude manually';return;}
+    s.textContent='asking…';
+    navigator.geolocation.getCurrentPosition(function(pos){LAT=pos.coords.latitude;latIn.value=Math.round(LAT);s.textContent='using your location ('+Math.abs(Math.round(LAT))+'°'+(LAT>=0?'N':'S')+') — never sent anywhere';paintDir();},
+      function(){s.textContent='declined — set latitude manually';});
+  });
+  document.getElementById('nuGuess').addEventListener('click',function(){
+    document.getElementById('nuReveal').classList.add('show');this.hidden=true;
+  });
+})();
+(function(){
+  var kg=document.getElementById('kg'),lbl=document.getElementById('kgLbl'),
+      now=document.getElementById('bqNow'),tot=document.getElementById('bqTotal'),PERKG=106,t0=Date.now();
+  function rate(){return kg.value*PERKG;}
+  function paint(){lbl.textContent=kg.value;now.textContent=Math.round(rate()).toLocaleString();}
+  kg.addEventListener('input',paint);paint();
+  setInterval(function(){if(!PAUSED)tot.textContent=Math.round((Date.now()-t0)/1000*rate()).toLocaleString();},150);
+})();
+(function(){
+  var cv=document.getElementById('cmb'),cx=cv.getContext('2d'),only=false;
+  var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hold=document.getElementById('cmbHold');
+  hold.addEventListener('pointerdown',function(){only=true;});
+  addEventListener('pointerup',function(){only=false;});
+  hold.addEventListener('keydown',function(e){if(e.key===' '||e.key==='Enter')only=true;});
+  hold.addEventListener('keyup',function(){only=false;});
+  function frame(){
+    if(!PAUSED){
+      var img=cx.createImageData(cv.width,cv.height),p=img.data;
+      for(var i=0;i<p.length;i+=4){
+        var cosmic=Math.random()<0.01, v=Math.random()*255|0;
+        if(only){p[i]=cosmic?60:8;p[i+1]=cosmic?220:8;p[i+2]=cosmic?120:10;}
+        else{p[i]=cosmic?60:v;p[i+1]=cosmic?220:v;p[i+2]=cosmic?120:v;}
+        p[i+3]=255;
+      }
+      cx.putImageData(img,0,0);
+    }
+    if(!reduced)setTimeout(frame,90);
+  }
+  frame();
+})();
+(function(){
+  var z=document.getElementById('zoom'),st=document.getElementById('zstage');
+  var S=[
+    ['you','1 m','a body — 100% of your mass present'],
+    ['a cell','10⁻⁵ m','30 trillion of these; still ordinary matter'],
+    ['a molecule','10⁻⁸ m','chemistry — the electron field doing all the work'],
+    ['an atom','10⁻¹⁰ m','<b>empty of mass, full of electron field</b> — that fullness is why your hand doesn’t pass through the desk'],
+    ['the nucleus','10⁻¹⁴ m','all but 0.03% of your mass, in 1/10,000th of the width'],
+    ['a proton','10⁻¹⁵ m','three quarks… whose own masses cover barely 1%'],
+    ['the confined quark-gluon system','&lt;10⁻¹⁸ m','<b>the other 99% is confinement energy. You are mostly glue.</b>']
+  ];
+  function paint(){var s=S[z.value];st.innerHTML='<b>'+s[0]+'</b> · '+s[1]+'<br>'+s[2];z.setAttribute('aria-valuetext',s[0]+', '+s[1].replace(/<[^>]*>/g,''));}
+  z.addEventListener('input',paint);paint();
+})();
+const RINGKEY='particles-your-ring';
+let ring={};
+try{ring=JSON.parse(localStorage.getItem(RINGKEY))||{};}catch(e){}
+function paintRing(){document.querySelectorAll('.you-dot').forEach(function(d){d.classList.toggle('on',!!ring[d.dataset.p]);});}
+paintRing();
+(function(){
+  var fb=document.getElementById('muFb');
+  document.querySelectorAll('.seg [data-a]').forEach(function(b){
+    b.addEventListener('click',function(ev){
+      ev.stopPropagation();
+      if(b.dataset.a==='r'){ring.mu=true;try{localStorage.setItem(RINGKEY,JSON.stringify(ring));}catch(e){}
+        fb.className='quizfb ok';fb.textContent='✓ your ring on μ is lit — in its frame, the 15 km of sky contracts to ~400 m. "Time dilates" is YOUR frame\'s telling of the same fact.';paintRing();}
+      else if(b.dataset.a==='w1'){b.classList.add('miss');fb.className='quizfb miss';fb.textContent='that\'s the view from the ground, not from the muon — in its own frame its clock runs normally. What changes in its frame?';}
+      else{b.classList.add('miss');fb.className='quizfb miss';fb.textContent='half-true — most DO decay. But 1.1/cm²·min still land. Something in the muon\'s frame must shorten the trip…';}
+    });
+  });
+})();
+</script>
+</body>
+</html>
