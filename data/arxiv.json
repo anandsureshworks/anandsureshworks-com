@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-08-06T11:28:42Z",
+  "generated_at": "2026-08-07T11:20:04Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Agent Against Agent: An Agentic System for Automatic Prompt Injection Red Teaming",
-      "url": "https://arxiv.org/abs/2608.05108",
-      "c": "cs.CR",
+      "t": "Tracing the Heart: An Evidence-Linked Pipeline for Heart-Failure Feature Engineering",
+      "url": "https://arxiv.org/abs/2608.06366",
+      "c": "cs.AI",
       "s": 0.83
     },
     {
-      "t": "Argus: A General-Purpose Agentic Runtime for Long-Horizon Reasoning",
-      "url": "https://arxiv.org/abs/2608.05144",
+      "t": "The Low Frequency Trap: Video Language Models Fail at Simple Event Bookkeeping",
+      "url": "https://arxiv.org/abs/2608.06361",
       "c": "cs.AI",
-      "s": 0.78
+      "s": 0.83
     },
     {
-      "t": "Hierarchical Graph Memory for LLM Agents with Path-level Localization and Rewrite",
-      "url": "https://arxiv.org/abs/2608.05095",
-      "c": "cs.AI",
-      "s": 0.72
+      "t": "From Passive Mirrors to Active Agents: Holonic Digital Twins for Physical AI over Networks",
+      "url": "https://arxiv.org/abs/2608.06227",
+      "c": "cs.NI",
+      "s": 0.83
     }
   ]
 }
