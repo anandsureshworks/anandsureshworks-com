@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-08-09T11:20:06Z",
+  "generated_at": "2026-08-10T11:30:55Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Tracing the Heart: An Evidence-Linked Pipeline for Heart-Failure Feature Engineering",
-      "url": "https://arxiv.org/abs/2608.06366",
-      "c": "cs.AI",
-      "s": 0.83
+      "t": "Taxonomy-Driven Analysis of Open-Source AI Risk Mitigation Tools",
+      "url": "https://arxiv.org/abs/2608.07446",
+      "c": "cs.SE",
+      "s": 0.99
     },
     {
-      "t": "The Low Frequency Trap: Video Language Models Fail at Simple Event Bookkeeping",
-      "url": "https://arxiv.org/abs/2608.06361",
+      "t": "ResidencyRL: Reinforcement Learning in Simulated Clinical Environments",
+      "url": "https://arxiv.org/abs/2608.07418",
       "c": "cs.AI",
-      "s": 0.83
+      "s": 0.99
     },
     {
-      "t": "From Passive Mirrors to Active Agents: Holonic Digital Twins for Physical AI over Networks",
-      "url": "https://arxiv.org/abs/2608.06227",
-      "c": "cs.NI",
-      "s": 0.83
+      "t": "Fisher-R1: Training LLM Agents for Reliable Hypothesis Testing",
+      "url": "https://arxiv.org/abs/2608.07437",
+      "c": "cs.AI",
+      "s": 0.94
     }
   ]
 }
