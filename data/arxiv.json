@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-08-11T11:31:08Z",
+  "generated_at": "2026-08-12T11:20:45Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Stealing Reasoning Traces from Proprietary LLM APIs",
-      "url": "https://arxiv.org/abs/2608.09867",
-      "c": "cs.CR",
-      "s": 0.99
+      "t": "Test-Time Self-Evolving GUI Visual Grounding via Reflection-Guided On-Policy Self-Distillation",
+      "url": "https://arxiv.org/abs/2608.11191",
+      "c": "cs.CV",
+      "s": 0.78
     },
     {
-      "t": "Decoding-Level Taboo: A Diagnostic Stress Test for LLM Robustness",
-      "url": "https://arxiv.org/abs/2608.09900",
+      "t": "The Illusion of Cross-Lingual Safety in Low-Resource Languages",
+      "url": "https://arxiv.org/abs/2608.11146",
       "c": "cs.CL",
-      "s": 0.94
+      "s": 0.61
     },
     {
-      "t": "Agentic Harnesses: LLM-Driven Verification Layers for Robot Autonomy",
-      "url": "https://arxiv.org/abs/2608.09857",
-      "c": "cs.RO",
-      "s": 0.89
+      "t": "Scheduling Mixed RL Rollouts Beyond Prefix Locality",
+      "url": "https://arxiv.org/abs/2608.11152",
+      "c": "cs.DC",
+      "s": 0.56
     }
   ]
 }
