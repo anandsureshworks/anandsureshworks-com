@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-08-12T11:20:45Z",
+  "generated_at": "2026-08-13T11:20:03Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Test-Time Self-Evolving GUI Visual Grounding via Reflection-Guided On-Policy Self-Distillation",
-      "url": "https://arxiv.org/abs/2608.11191",
+      "t": "Beyond Trial-and-Error: Agentic Optimization for Image-to-Video Adherence",
+      "url": "https://arxiv.org/abs/2608.12290",
       "c": "cs.CV",
+      "s": 0.99
+    },
+    {
+      "t": "VICBench: A Multi-Language Benchmark for Code Vulnerability Detection",
+      "url": "https://arxiv.org/abs/2608.12246",
+      "c": "cs.CR",
+      "s": 0.99
+    },
+    {
+      "t": "Constructing Dynamic Master Logic Models as Knowledge Graphs for Complex System Diagnostics Using Retrieval-Augmented Large Language Models",
+      "url": "https://arxiv.org/abs/2608.12304",
+      "c": "cs.AI",
       "s": 0.78
-    },
-    {
-      "t": "The Illusion of Cross-Lingual Safety in Low-Resource Languages",
-      "url": "https://arxiv.org/abs/2608.11146",
-      "c": "cs.CL",
-      "s": 0.61
-    },
-    {
-      "t": "Scheduling Mixed RL Rollouts Beyond Prefix Locality",
-      "url": "https://arxiv.org/abs/2608.11152",
-      "c": "cs.DC",
-      "s": 0.56
     }
   ]
 }
