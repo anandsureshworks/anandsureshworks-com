@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-08-15T11:20:03Z",
+  "generated_at": "2026-08-21T11:32:28Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "MLLM-Routed Heterogeneous Ensembles for Robust Cross-Dataset Image Classification",
-      "url": "https://arxiv.org/abs/2608.13463",
-      "c": "cs.CV",
-      "s": 0.83
+      "t": "Multi-Agent Orchestration with the Common-Sense Reasoning Capabilities of LLMs for Autonomous Driving",
+      "url": "https://arxiv.org/abs/2608.20129",
+      "c": "cs.MA",
+      "s": 0.89
     },
     {
-      "t": "LLM-Assisted Dynamic Threat Analysis for Attacker-Reachable Software Weaknesses in Autonomous Vehicles",
-      "url": "https://arxiv.org/abs/2608.13450",
-      "c": "cs.SE",
-      "s": 0.83
+      "t": "MidTool: Mid-training Data Synthesis for Agentic Tool Use",
+      "url": "https://arxiv.org/abs/2608.20314",
+      "c": "cs.AI",
+      "s": 0.78
     },
     {
-      "t": "AutoDesign: Meta-Harness Optimization for Long-Horizon Agentic Design",
-      "url": "https://arxiv.org/abs/2608.13560",
-      "c": "cs.CV",
-      "s": 0.72
+      "t": "An Agentic Approach for Active Data Collection, Travel Behavior Modeling, and Weather-Sensitive Demand Prediction",
+      "url": "https://arxiv.org/abs/2608.20320",
+      "c": "cs.AI",
+      "s": 0.67
     }
   ]
 }
