@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Review: The Oracle Outside the Loop</title>
+<style>
+  :root {
+    --bg: #faf9f6; --ink: #1e2126; --muted: #6b6f76; --rail: #f1efe9;
+    --accent: #8a5a00; --note: #fff8e6; --note-border: #e0c470;
+    --resolved: #9aa0a6; --mark: #fdf0c8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 17px/1.65 Georgia, "Times New Roman", serif;
+  }
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--bg); border-bottom: 1px solid #e3e0d8;
+    padding: 10px 24px; display: flex; align-items: baseline; gap: 16px;
+    font-family: -apple-system, system-ui, sans-serif;
+  }
+  header h1 { font-size: 14px; margin: 0; font-weight: 600; }
+  header .hint { font-size: 12px; color: var(--muted); flex: 1; }
+  header button {
+    font: 12px -apple-system, system-ui, sans-serif; font-weight: 600;
+    padding: 5px 12px; border-radius: 6px; border: 1px solid #d8d4c8;
+    background: #fff; cursor: pointer; color: var(--ink);
+  }
+  header button:hover { border-color: var(--accent); color: var(--accent); }
+  header button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .layout { display: grid; grid-template-columns: minmax(0, 720px) 340px; gap: 40px;
+            max-width: 1140px; margin: 0 auto; padding: 40px 24px 120px; }
+  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+
+  article h1 { font-size: 34px; line-height: 1.2; margin: 0 0 6px; letter-spacing: -0.01em; }
+  article .kicker { font-family: -apple-system, system-ui, sans-serif; font-size: 12px;
+                    color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em;
+                    margin-bottom: 28px; }
+  article h2 { font-size: 22px; margin: 38px 0 10px; }
+  article p { margin: 0 0 18px; }
+  article hr { border: none; border-top: 1px solid #e3e0d8; margin: 32px 0; }
+  article strong { font-weight: 700; }
+  article em { font-style: italic; }
+  .draftnotes { background: var(--rail); border-radius: 10px; padding: 18px 20px;
+                font-size: 14px; color: var(--muted); }
+  .draftnotes p { margin: 0 0 8px; }
+
+  /* Commentable blocks */
+  [data-i] { position: relative; border-radius: 6px; transition: background 0.15s;
+             cursor: pointer; }
+  [data-i]:hover { background: #f3f0e6; }
+  [data-i].has-note { border-left: 3px solid var(--note-border); padding-left: 12px;
+                      margin-left: -15px; }
+  [data-i].active { background: var(--mark); }
+
+  /* Composer */
+  #composer { position: absolute; z-index: 20; width: 320px; background: #fff;
+              border: 1px solid #d8d4c8; border-radius: 10px; padding: 12px;
+              box-shadow: 0 8px 30px rgba(0,0,0,0.12); display: none;
+              font-family: -apple-system, system-ui, sans-serif; }
+  #composer .quote { font-size: 12px; color: var(--muted); border-left: 3px solid var(--note-border);
+                     padding-left: 8px; margin-bottom: 8px; max-height: 60px; overflow: hidden;
+                     font-style: italic; }
+  #composer textarea { width: 100%; min-height: 70px; font: 13px/1.5 -apple-system, system-ui, sans-serif;
+                       border: 1px solid #ddd; border-radius: 6px; padding: 8px; resize: vertical; }
+  #composer .row { display: flex; gap: 8px; margin-top: 8px; justify-content: flex-end; }
+  #composer button { font: 12px -apple-system, system-ui, sans-serif; font-weight: 600;
+                     padding: 5px 12px; border-radius: 6px; border: 1px solid #d8d4c8;
+                     background: #fff; cursor: pointer; }
+  #composer button.save { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  /* Notes rail */
+  aside { font-family: -apple-system, system-ui, sans-serif; }
+  aside .rail-head { font-size: 12px; font-weight: 700; text-transform: uppercase;
+                     letter-spacing: 0.08em; color: var(--muted); margin-bottom: 12px; }
+  .note { background: var(--note); border: 1px solid var(--note-border); border-radius: 10px;
+          padding: 10px 12px; margin-bottom: 10px; font-size: 13px; }
+  .note.resolved { background: #f4f4f2; border-color: #ddd; color: var(--resolved); }
+  .note .nq { font-style: italic; color: var(--muted); font-size: 12px; margin-bottom: 6px;
+              border-left: 2px solid var(--note-border); padding-left: 7px;
+              overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .note .nt { white-space: pre-wrap; }
+  .note .nrow { display: flex; gap: 10px; margin-top: 8px; font-size: 11px; }
+  .note .nrow a { color: var(--accent); cursor: pointer; text-decoration: none; font-weight: 600; }
+  .note .nrow a:hover { text-decoration: underline; }
+  .empty { font-size: 13px; color: var(--muted); }
+  #toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+           background: var(--ink); color: #fff; padding: 8px 18px; border-radius: 8px;
+           font: 13px -apple-system, system-ui, sans-serif; opacity: 0; transition: opacity 0.25s;
+           pointer-events: none; z-index: 30; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Draft review</h1>
+  <span class="hint">Click a paragraph — or select text first — to attach a note. Notes persist in this browser.</span>
+  <span id="count" style="font-size:12px;color:var(--muted)"></span>
+  <button id="export">Download JSON</button>
+  <button id="copymd" class="primary">Copy for Claude</button>
+</header>
+
+<div class="layout">
+<article id="article">
+  <h1>The Oracle Outside the Loop</h1>
+  <div class="kicker">Draft &middot; series: agents-from-operations &middot; not published</div>
+
+  <p data-i="1">There is a Vedic almanac widget on my desktop. It computes the panchang — the five limbs of the traditional Hindu calendar — from raw astronomy: solar and lunar longitudes, sidereal offsets, the geometry of sunrise at my latitude. It has a test suite. The tests were green for months.</p>
+
+  <p data-i="2">One evening I cross-checked it against drikpanchang.com, the reference almanac used by millions of households. My widget said the current karana — a half-day division of the lunar cycle — was Vishti. The almanac said Vanija.</p>
+
+  <p data-i="3">The widget had been wrong since version 1. Not wrong occasionally — wrong by construction. The code modeled the karana cycle with 46 slots; the classical scheme has 60. Every karana it ever displayed was shifted one slot early. And every test passed, because the tests checked the code against itself.</p>
+
+  <p data-i="4">That kicked off a month of auditing every widget I run. The score so far: four widgets audited, roughly ten real defects found, every single one predating the audit, every single one invisible to the internal test suites.</p>
+
+  <p data-i="5">A finance card whose "daily change" was actually a five-day return — it once showed Bitcoin up 16.6% on a day the true move was 5.7%. A sky widget that manufactured a Moon–Venus conjunction out of a wrong constant — it used the Moon's longitude rate where the elongation rate belonged, and advertised an event that wasn't happening. A weather panel quietly reporting cloud cover for a grid cell twenty-seven kilometers from my house, because the cell ID was hardcoded once and never derived again.</p>
+
+  <p data-i="6">Different widgets, different domains, one sentence underneath all of it:</p>
+
+  <p data-i="7"><strong>A self-consistent system cannot detect its own wrongness.</strong></p>
+
+  <p data-i="8">The tests passed because they were written from the code. Twice I found test fixtures that had captured the buggy output as the expected value — the bug enshrined as specification, guarded by a green checkmark. The only thing that ever found a defect was a reference the system didn't control: a thousand-year-old almanac tradition, a Swiss ephemeris, a competing price API, the weather service's own coordinate resolver.</p>
+
+  <h2 data-i="9">Why this matters for agents</h2>
+
+  <p data-i="10">Everyone building agentic systems right now is drawing loops and graphs: generate, then critique, then refine. Plan, act, reflect. And the most common shape I see is a critique node that is the same model, prompted slightly differently, checking its own work.</p>
+
+  <p data-i="11">That is my copied test suite, running at inference time. The critic was trained on the same distribution, shares the same blind spots, and will approve the same wrongness — fluently. A self-review loop converges on self-consistency, and self-consistency is exactly the property my widgets had while they were lying to me.</p>
+
+  <p data-i="12">Three rules fell out of this month, and I now apply them to every graph I design:</p>
+
+  <p data-i="13"><strong>1. Every loop needs an oracle outside it.</strong> For each node that produces a claim, name the independent reference that could falsify it — an ephemeris, a second data provider, a deterministic validator, a human. If you cannot name the node's oracle, you have not designed a check; you have designed reassurance. The question I write in the margin of every design now: <em>what is this node's almanac?</em></p>
+
+  <p data-i="14"><strong>2. Draw the health edges, not just the data edges.</strong> Every arrow in your graph moves data. Almost no one draws the second arrow: <em>is the thing at the other end still alive, still fresh, still running the engine it claims?</em> My almanac widget had a fallback math path for when the precise ephemeris library was missing — and production ran that fallback silently for months, because the fallback's activation was displayed in a footer a human was supposed to notice. A label is not a check. Freshness contracts, mode fields, per-source status — machine-checked, or they don't exist.</p>
+
+  <p data-i="15"><strong>3. Put the model where inference lives, not where arithmetic lives.</strong> Detection in my fleet is deterministic: a timestamp is stale or it isn't; an engine field says the wrong thing or it doesn't. No model needed, and a model would only add noise. Where a model earns its place is the step after a sensor trips: correlating a log line with a failure class, drafting the diagnosis a human will verify. Deterministic sensors detect. The model interprets. The human decides. Each layer checks the one below it — and none of them checks itself.</p>
+
+  <p data-i="16">The karana on my desktop is correct tonight. Not because I wrote better tests — because an almanac older than the concept of software disagreed with my code, and I let it win.</p>
+
+  <hr>
+
+  <div class="draftnotes" data-i="17">
+    <p><strong>Draft notes (not for publish):</strong></p>
+    <p>Toby draft. Ad Astra softening candidates: "lying to me" (×2) could soften to "wrong"; "designed reassurance" is the sharpest line — keep; "fluently" as a one-word jab — keep.</p>
+    <p>Pull-quote candidate: "If you cannot name the node's oracle, you have designed reassurance."</p>
+    <p>Series continuity: sibling of "green checkmark is not a pulse" — cross-link candidate at rule 2.</p>
+  </div>
+</article>
+
+<aside>
+  <div class="rail-head">Notes <span id="railcount"></span></div>
+  <div id="rail"><div class="empty">No notes yet. Click any paragraph to start.</div></div>
+</aside>
+</div>
+
+<div id="composer">
+  <div class="quote" id="cq" style="display:none"></div>
+  <textarea id="ct" placeholder="Your note…"></textarea>
+  <div class="row">
+    <button id="ccancel">Cancel</button>
+    <button id="csave" class="save">Save note</button>
+  </div>
+</div>
+<div id="toast"></div>
+
+<script>
+(function () {
+  var KEY = "oracle-review-v1";
+  var notes = [];
+  try { notes = JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) {}
+
+  var composer = document.getElementById("composer");
+  var cq = document.getElementById("cq");
+  var ct = document.getElementById("ct");
+  var pendingAnchor = null, pendingQuote = "";
+
+  function save() { localStorage.setItem(KEY, JSON.stringify(notes)); render(); }
+
+  function toast(msg) {
+    var t = document.getElementById("toast");
+    t.textContent = msg; t.style.opacity = 1;
+    setTimeout(function () { t.style.opacity = 0; }, 1600);
+  }
+
+  function blockText(i) {
+    var el = document.querySelector('[data-i="' + i + '"]');
+    return el ? el.textContent.trim().slice(0, 80) : "";
+  }
+
+  function render() {
+    var rail = document.getElementById("rail");
+    rail.innerHTML = "";
+    document.querySelectorAll("[data-i]").forEach(function (el) {
+      el.classList.remove("has-note");
+    });
+    if (!notes.length) {
+      rail.innerHTML = '<div class="empty">No notes yet. Click any paragraph to start.</div>';
+    }
+    notes.forEach(function (n, idx) {
+      var el = document.querySelector('[data-i="' + n.anchor + '"]');
+      if (el && !n.resolved) el.classList.add("has-note");
+      var d = document.createElement("div");
+      d.className = "note" + (n.resolved ? " resolved" : "");
+      var q = n.quote || blockText(n.anchor);
+      d.innerHTML =
+        '<div class="nq">¶' + n.anchor + " · “" + q.replace(/</g, "&lt;") + "”</div>" +
+        '<div class="nt">' + n.text.replace(/</g, "&lt;") + "</div>" +
+        '<div class="nrow">' +
+        '<a data-act="jump" data-idx="' + idx + '">jump</a>' +
+        '<a data-act="resolve" data-idx="' + idx + '">' + (n.resolved ? "reopen" : "resolve") + "</a>" +
+        '<a data-act="delete" data-idx="' + idx + '">delete</a>' +
+        "</div>";
+      rail.appendChild(d);
+    });
+    var open = notes.filter(function (n) { return !n.resolved; }).length;
+    document.getElementById("count").textContent =
+      notes.length ? open + " open / " + notes.length + " total" : "";
+    document.getElementById("railcount").textContent = notes.length ? "(" + notes.length + ")" : "";
+  }
+
+  document.getElementById("rail").addEventListener("click", function (e) {
+    var a = e.target.closest("a[data-act]");
+    if (!a) return;
+    var idx = +a.dataset.idx, n = notes[idx];
+    if (a.dataset.act === "delete") { notes.splice(idx, 1); save(); }
+    else if (a.dataset.act === "resolve") { n.resolved = !n.resolved; save(); }
+    else if (a.dataset.act === "jump") {
+      var el = document.querySelector('[data-i="' + n.anchor + '"]');
+      if (el) { el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.classList.add("active");
+        setTimeout(function () { el.classList.remove("active"); }, 1200); }
+    }
+  });
+
+  document.getElementById("article").addEventListener("click", function (e) {
+    var block = e.target.closest("[data-i]");
+    if (!block) return;
+    var sel = window.getSelection();
+    pendingQuote = (sel && !sel.isCollapsed) ? sel.toString().trim().slice(0, 200) : "";
+    pendingAnchor = block.dataset.i;
+    var r = block.getBoundingClientRect();
+    composer.style.display = "block";
+    composer.style.left = Math.min(r.left + window.scrollX, window.scrollX + window.innerWidth - 360) + "px";
+    composer.style.top = (r.bottom + window.scrollY + 6) + "px";
+    cq.style.display = pendingQuote ? "block" : "none";
+    cq.textContent = pendingQuote ? "“" + pendingQuote + "”" : "";
+    ct.value = "";
+    ct.focus();
+  });
+
+  document.getElementById("ccancel").onclick = function () { composer.style.display = "none"; };
+  document.getElementById("csave").onclick = function () {
+    var text = ct.value.trim();
+    if (!text) { composer.style.display = "none"; return; }
+    notes.push({ anchor: pendingAnchor, quote: pendingQuote, text: text,
+                 ts: new Date().toISOString(), resolved: false });
+    composer.style.display = "none";
+    save();
+  };
+  ct.addEventListener("keydown", function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.key === "Enter") document.getElementById("csave").onclick();
+    if (e.key === "Escape") composer.style.display = "none";
+  });
+
+  document.getElementById("export").onclick = function () {
+    var blob = new Blob([JSON.stringify(notes, null, 2)], { type: "application/json" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "oracle-review-notes.json";
+    a.click();
+    toast("Notes downloaded");
+  };
+
+  document.getElementById("copymd").onclick = function () {
+    var md = "## Review notes — The Oracle Outside the Loop\n\n" +
+      notes.map(function (n) {
+        return "- **¶" + n.anchor + "**" + (n.resolved ? " (resolved)" : "") +
+          (n.quote ? ' — re: “' + n.quote + '”' : " — re: “" + blockText(n.anchor) + "…”") +
+          "\n  " + n.text.replace(/\n/g, "\n  ");
+      }).join("\n");
+    navigator.clipboard.writeText(md).then(
+      function () { toast("Copied — paste it to Claude"); },
+      function () { toast("Clipboard blocked — use Download JSON"); }
+    );
+  };
+
+  render();
+})();
+</script>
+</body>
+</html>
