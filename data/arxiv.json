@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-08-23T11:29:03Z",
+  "generated_at": "2026-08-24T11:20:06Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,20 +9,20 @@
   },
   "papers": [
     {
-      "t": "Multi-Agent Orchestration with the Common-Sense Reasoning Capabilities of LLMs for Autonomous Driving",
-      "url": "https://arxiv.org/abs/2608.20129",
-      "c": "cs.MA",
-      "s": 0.89
-    },
-    {
-      "t": "MidTool: Mid-training Data Synthesis for Agentic Tool Use",
-      "url": "https://arxiv.org/abs/2608.20314",
+      "t": "CLEAR: Continuous Latent Adapter Routing for Utility-Preserving LLM Safety Alignment",
+      "url": "https://arxiv.org/abs/2608.21278",
       "c": "cs.AI",
-      "s": 0.78
+      "s": 0.67
     },
     {
-      "t": "An Agentic Approach for Active Data Collection, Travel Behavior Modeling, and Weather-Sensitive Demand Prediction",
-      "url": "https://arxiv.org/abs/2608.20320",
+      "t": "The Exceedance Design Effect: Effective Sample Size for Thresholds under Clustering",
+      "url": "https://arxiv.org/abs/2608.21262",
+      "c": "stat.ML",
+      "s": 0.67
+    },
+    {
+      "t": "Personalized Privacy Control in LLMs via Attention Head Intervention",
+      "url": "https://arxiv.org/abs/2608.21209",
       "c": "cs.AI",
       "s": 0.67
     }
