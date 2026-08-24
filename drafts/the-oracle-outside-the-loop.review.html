@@ -126,47 +126,41 @@
 <div class="layout">
 <article id="article">
   <h1>The Oracle Outside the Loop</h1>
-  <div class="kicker">Draft &middot; series: agents-from-operations &middot; not published</div>
+  <div class="kicker">Draft v2 &middot; revision round 1 applied &middot; not published</div>
 
-  <p data-i="1">There is a Vedic almanac widget on my desktop. It computes the panchang — the five limbs of the traditional Hindu calendar — from raw astronomy: solar and lunar longitudes, sidereal offsets, the geometry of sunrise at my latitude. It has a test suite. The tests were green for months.</p>
+  <p data-i="1">There is a Vedic almanac widget on my desktop. The panchang it computes is an old and intricate system — five interlocking limbs derived from positional astronomy, refined for centuries against the one oracle that never lies: the sky itself. My widget rebuilds that system from raw math: solar and lunar longitudes, sidereal offsets, the geometry of sunrise at my latitude. It has a test suite. The tests were green for months.</p>
 
-  <p data-i="2">One evening I cross-checked it against drikpanchang.com, the reference almanac used by millions of households. My widget said the current karana — a half-day division of the lunar cycle — was Vishti. The almanac said Vanija.</p>
+  <p data-i="2">One evening I checked it against drikpanchang.com — the reference almanac millions of households trust precisely because it has survived that scrutiny. My widget said the current karana — a half-day division of the lunar cycle — was Vishti. The almanac said Vanija. The widget had been wrong since version 1: the code modeled the karana cycle with 46 slots where the classical scheme has 60, so every karana it ever displayed was shifted one slot early. And every test passed, because the tests checked the code against itself.</p>
 
-  <p data-i="3">The widget had been wrong since version 1. Not wrong occasionally — wrong by construction. The code modeled the karana cycle with 46 slots; the classical scheme has 60. Every karana it ever displayed was shifted one slot early. And every test passed, because the tests checked the code against itself.</p>
+  <p data-i="3">That one wrong half-day kicked off a month of auditing every widget I run. A finance card had been doubling my daily moves for months — it showed Bitcoin up 16.6% on a day the true move was 5.7%. A sky widget manufactured a Moon–Venus conjunction out of a wrong constant, advertising an event that wasn't happening. A weather panel quietly reported cloud cover for a grid cell twenty-seven kilometers from my house, because the cell ID was hardcoded once and never derived again. Four widgets, roughly ten real defects, every one predating the audit, every one invisible to the internal test suites.</p>
 
-  <p data-i="4">That kicked off a month of auditing every widget I run. The score so far: four widgets audited, roughly ten real defects found, every single one predating the audit, every single one invisible to the internal test suites.</p>
+  <p data-i="4">It took four widgets to see the shape clearly. Different code, different domains, one sentence underneath all of it:</p>
 
-  <p data-i="5">A finance card whose "daily change" was actually a five-day return — it once showed Bitcoin up 16.6% on a day the true move was 5.7%. A sky widget that manufactured a Moon–Venus conjunction out of a wrong constant — it used the Moon's longitude rate where the elongation rate belonged, and advertised an event that wasn't happening. A weather panel quietly reporting cloud cover for a grid cell twenty-seven kilometers from my house, because the cell ID was hardcoded once and never derived again.</p>
+  <p data-i="5"><strong>A self-consistent system cannot tell when it is wrong.</strong></p>
 
-  <p data-i="6">Different widgets, different domains, one sentence underneath all of it:</p>
+  <p data-i="6">The tests passed because they were written from the code. Twice I found test fixtures that had captured the buggy output as the expected value — the bug enshrined as specification, guarded by a green checkmark. The only thing that ever found a defect was a reference the system didn't control: a thousand-year-old almanac tradition, a Swiss ephemeris, a competing price API, the weather service's own coordinate resolver.</p>
 
-  <p data-i="7"><strong>A self-consistent system cannot detect its own wrongness.</strong></p>
+  <h2 data-i="7">Why this matters for agents</h2>
 
-  <p data-i="8">The tests passed because they were written from the code. Twice I found test fixtures that had captured the buggy output as the expected value — the bug enshrined as specification, guarded by a green checkmark. The only thing that ever found a defect was a reference the system didn't control: a thousand-year-old almanac tradition, a Swiss ephemeris, a competing price API, the weather service's own coordinate resolver.</p>
+  <p data-i="8">Everyone building agentic systems right now is drawing loops and graphs: generate, then critique, then refine. Plan, act, reflect. The most common shape I see is a critique node that is the same model, prompted slightly differently, checking its own work.</p>
 
-  <h2 data-i="9">Why this matters for agents</h2>
+  <p data-i="9">That is my copied test suite, running at inference time. The critic was trained on the same distribution, shares the same blind spots, and will approve the same mistakes — fluently.</p>
 
-  <p data-i="10">Everyone building agentic systems right now is drawing loops and graphs: generate, then critique, then refine. Plan, act, reflect. And the most common shape I see is a critique node that is the same model, prompted slightly differently, checking its own work.</p>
+  <p data-i="10">Three rules fell out of this month, and I now apply them to every graph I design. They read like operations habits. They are actually the beginnings of a type system — every contract below becomes a checkable edge in the agent graphs I am starting to build.</p>
 
-  <p data-i="11">That is my copied test suite, running at inference time. The critic was trained on the same distribution, shares the same blind spots, and will approve the same wrongness — fluently. A self-review loop converges on self-consistency, and self-consistency is exactly the property my widgets had while they were lying to me.</p>
+  <p data-i="11"><strong>1. Every loop needs an oracle outside it.</strong> For each node that produces a claim, name the independent reference that could falsify it — an ephemeris, a second data provider, a deterministic validator, a human. If you cannot name the node's oracle, you have not designed a check; you have designed reassurance. The question I write in the margin of every design now: <em>what is this node's almanac?</em></p>
 
-  <p data-i="12">Three rules fell out of this month, and I now apply them to every graph I design:</p>
+  <p data-i="12"><strong>2. Draw the health edges, not just the data edges.</strong> Every arrow in your graph moves data. Almost no one draws the second arrow: <em>is the thing at the other end still alive, still fresh, still running the engine it claims?</em> My almanac widget had a fallback math path for when the precise ephemeris library was missing — and production ran that fallback silently for months, because the fallback&#39;s activation was displayed in a footer a human was supposed to notice. A label is not a check. Ask three questions of every box in your diagram, mechanically: when did you last update? which engine produced you? which of your sources failed? If nothing asks them automatically, nothing knows the answers.</p>
 
-  <p data-i="13"><strong>1. Every loop needs an oracle outside it.</strong> For each node that produces a claim, name the independent reference that could falsify it — an ephemeris, a second data provider, a deterministic validator, a human. If you cannot name the node's oracle, you have not designed a check; you have designed reassurance. The question I write in the margin of every design now: <em>what is this node's almanac?</em></p>
+  <p data-i="13"><strong>3. Put the model where inference lives, not where arithmetic lives.</strong> Detection in my fleet is deterministic: a timestamp is stale or it isn&#39;t; an engine field says the wrong thing or it doesn&#39;t. Where a model earns its place is the step after a sensor trips: correlating a log line with a failure class, drafting the diagnosis a human will verify. This placement is not aesthetic. Arithmetic is free, instant, and auditable — a model there adds cost, latency, and a new failure surface. And a diagnosis step runs fine as a small local model, which means the system&#39;s operational telemetry never leaves the machine it describes. Deterministic sensors detect. The model interprets. The human decides. Each layer checks the one below it — and none of them checks itself.</p>
 
-  <p data-i="14"><strong>2. Draw the health edges, not just the data edges.</strong> Every arrow in your graph moves data. Almost no one draws the second arrow: <em>is the thing at the other end still alive, still fresh, still running the engine it claims?</em> My almanac widget had a fallback math path for when the precise ephemeris library was missing — and production ran that fallback silently for months, because the fallback's activation was displayed in a footer a human was supposed to notice. A label is not a check. Freshness contracts, mode fields, per-source status — machine-checked, or they don't exist.</p>
-
-  <p data-i="15"><strong>3. Put the model where inference lives, not where arithmetic lives.</strong> Detection in my fleet is deterministic: a timestamp is stale or it isn't; an engine field says the wrong thing or it doesn't. No model needed, and a model would only add noise. Where a model earns its place is the step after a sensor trips: correlating a log line with a failure class, drafting the diagnosis a human will verify. Deterministic sensors detect. The model interprets. The human decides. Each layer checks the one below it — and none of them checks itself.</p>
-
-  <p data-i="16">The karana on my desktop is correct tonight. Not because I wrote better tests — because an almanac older than the concept of software disagreed with my code, and I let it win.</p>
+  <p data-i="14">The karana on my desktop is correct tonight. Not because I wrote better tests — because an almanac older than the concept of software disagreed with my code, and I let it win.</p>
 
   <hr>
 
-  <div class="draftnotes" data-i="17">
+  <div class="draftnotes" data-i="15">
     <p><strong>Draft notes (not for publish):</strong></p>
-    <p>Toby draft. Ad Astra softening candidates: "lying to me" (×2) could soften to "wrong"; "designed reassurance" is the sharpest line — keep; "fluently" as a one-word jab — keep.</p>
-    <p>Pull-quote candidate: "If you cannot name the node's oracle, you have designed reassurance."</p>
-    <p>Series continuity: sibling of "green checkmark is not a pulse" — cross-link candidate at rule 2.</p>
+    <p>v2: all 8 round-1 counter-notes applied. Pull-quote: "If you cannot name the node&#39;s oracle, you have designed reassurance." Cross-link candidate at rule 2: "green checkmark is not a pulse".</p>
   </div>
 </article>
 
@@ -188,8 +182,8 @@
 
 <script>
 (function () {
-  var KEY = "oracle-review-v1";
-  var DKEY = "oracle-decisions-v1";
+  var KEY = "oracle-review-v2";
+  var DKEY = "oracle-decisions-v2";
   var notes = [];
   var decisions = [];
   try { notes = JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) {}
@@ -197,30 +191,15 @@
 
   // ── Claude's counter-notes (2026-08-23, responding to your 8) ─────────────
   var CLAUDE_RESPONSES = [
-    { id: "cr-1", anchor: "1", stance: "agree",
-      text: "Agreed — the opener treats the almanac as a prop. If the reader feels WHY drikpanchang is a worthy oracle (an intricate, self-consistent system in its own right, refined for centuries against the actual sky), the failure against it lands harder.",
-      edit: "Proposed ¶1–2 direction: 'There is a Vedic almanac widget on my desktop. The panchang it computes is an old and intricate system — five interlocking limbs derived from real positional astronomy, refined for centuries against the one oracle that never lies: the sky itself. My widget recomputes that system from raw math… One evening I checked it against drikpanchang.com — the reference almanac millions of households trust precisely because it has survived that scrutiny. My widget said Vishti. The almanac said Vanija.'" },
-    { id: "cr-3", anchor: "3", stance: "counter",
-      text: "Counter on montage-as-opener (this + ¶5): the ending's callback — 'an almanac older than software disagreed with my code' — only pays off if panchang is the SPINE of the piece, not one item in a list. Full montage-first buys energy but sells the close.",
-      edit: "Trade I propose instead: keep panchang as opener but CUT ¶1–3 to two tight paragraphs (fold in your ¶1 note), then pull the montage up so it hits sooner. You keep the spine AND get the energy by paragraph four." },
-    { id: "cr-5", anchor: "5", stance: "proposal",
-      text: "It IS the highest-energy paragraph — your instinct is right. Two ways to honor that: (a) montage opens, panchang becomes exhibit A (costs the ending); (b) montage stays but moves up one slot and gets a sharper first clause. If you accept cr-3, this paragraph becomes the accelerant right after the compressed opener.",
-      edit: "Sharper first clause either way: 'A finance card had been doubling my daily moves for months — it showed Bitcoin up 16.6% on a day the true move was 5.7%.'" },
-    { id: "cr-8", anchor: "8", stance: "agree",
-      text: "Both points taken. Cadence: ¶6–8 stack three beats with no breath — I'll add a connective sentence so the thesis is arrived at, not dropped. 'Wrongness' goes.",
-      edit: "Thesis becomes: 'A self-consistent system cannot tell when it is wrong.' Bridge before it: 'It took four widgets to see the shape clearly.'" },
-    { id: "cr-11", anchor: "11", stance: "agree",
-      text: "Correct — the second sentence restates ¶7's thesis. Cut it; keep the distribution/blind-spots point, which is the only NEW information here.",
-      edit: "¶11 becomes: 'That is my copied test suite, running at inference time. The critic was trained on the same distribution, shares the same blind spots, and will approve the same mistakes — fluently.'" },
-    { id: "cr-13", anchor: "13", stance: "proposal",
-      text: "Good catch — the piece never says where this is going. One beat (not more — it should stay a practitioner piece) naming the arc: these node contracts are the precursor discipline for graph engineering.",
-      edit: "Add after ¶12: 'They read like operations habits. They are actually the beginnings of a type system — every contract below becomes a checkable edge in the agent graphs I am starting to build.'" },
-    { id: "cr-14", anchor: "14", stance: "agree",
-      text: "Agreed — the closing triplet is fleet jargon. Replace with the three questions a reader can feel.",
-      edit: "Last line of rule 2 becomes: 'Ask three questions of every box in your diagram, mechanically: when did you last update? which engine produced you? which of your sources failed? If nothing asks them automatically, nothing knows the answers.'" },
-    { id: "cr-15", anchor: "15", stance: "agree",
-      text: "Agreed — the rule asserts placement without motive. Add the why: cost, auditability, sovereignty in one beat.",
-      edit: "Add to rule 3: 'This placement is not aesthetic. Arithmetic is free, instant, and auditable — a model there adds cost, latency, and a new failure surface. And a diagnosis step runs fine as a small local model, which means the system\\'s operational telemetry never leaves the machine it describes.'" }
+    { id: "cr2-2", anchor: "2", stance: "proposal",
+      text: "Counter-review of my own revision: this paragraph now carries discovery + mechanism + the tests-passed turn in one block. The reveal deserves its own beat.",
+      edit: "Split after 'The almanac said Vanija.' — new paragraph begins 'The widget had been wrong since version 1…'" },
+    { id: "cr2-4", anchor: "4", stance: "proposal",
+      text: "Redundancy I introduced: the montage now ENDS on 'Four widgets, roughly ten real defects…' and this bridge immediately repeats 'four widgets'. The count already landed.",
+      edit: "Bridge becomes just: 'Different code, different domains, one sentence underneath all of it:'" },
+    { id: "cr2-13", anchor: "13", stance: "proposal",
+      text: "Rule 3 grew with the accepted motivation beat, and the closing triad now sits buried at the end of a long paragraph. It is the article&#39;s second-best cadence — give it air.",
+      edit: "Break 'Deterministic sensors detect. The model interprets. The human decides. Each layer checks the one below it — and none of them checks itself.' into its own short paragraph." }
   ];
 
   var composer = document.getElementById("composer");
