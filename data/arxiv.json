@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-08-25T11:20:06Z",
+  "generated_at": "2026-08-26T11:20:03Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Prime Agent: A Self-Improving RLM Harness",
-      "url": "https://arxiv.org/abs/2608.23552",
+      "t": "CAFE: Self-Improving Search Agents Need Co-Evolving Feedback",
+      "url": "https://arxiv.org/abs/2608.24794",
       "c": "cs.AI",
-      "s": 0.72
+      "s": 0.78
     },
     {
-      "t": "SRPO: Self-Reflective Policy Optimization for Long-Horizon Reasoning",
-      "url": "https://arxiv.org/abs/2608.23493",
+      "t": "StepGuard: Learning Step-Level Guardrails with Scalable Supervision and Safety-Utility Balancing",
+      "url": "https://arxiv.org/abs/2608.24777",
       "c": "cs.AI",
-      "s": 0.72
+      "s": 0.78
     },
     {
-      "t": "InjecMEM: Memory Injection Attack on LLM Agent Memory Systems",
-      "url": "https://arxiv.org/abs/2608.23471",
-      "c": "cs.CR",
-      "s": 0.72
+      "t": "Confident at the moment of action: belief miscalibration in LLM play under hidden information",
+      "url": "https://arxiv.org/abs/2608.24691",
+      "c": "cs.AI",
+      "s": 0.67
     }
   ]
 }
