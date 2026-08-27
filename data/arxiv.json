@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-08-26T11:20:03Z",
+  "generated_at": "2026-08-27T11:23:54Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "CAFE: Self-Improving Search Agents Need Co-Evolving Feedback",
-      "url": "https://arxiv.org/abs/2608.24794",
+      "t": "AsymSpec: Context-Asymmetric Speculative Decoding for Agentic LLMs",
+      "url": "https://arxiv.org/abs/2608.26004",
       "c": "cs.AI",
-      "s": 0.78
+      "s": 0.89
     },
     {
-      "t": "StepGuard: Learning Step-Level Guardrails with Scalable Supervision and Safety-Utility Balancing",
-      "url": "https://arxiv.org/abs/2608.24777",
+      "t": "Repair or Resample? Rethinking Failure Debugging in LLM Multi-Agent Systems",
+      "url": "https://arxiv.org/abs/2608.25920",
       "c": "cs.AI",
-      "s": 0.78
+      "s": 0.89
     },
     {
-      "t": "Confident at the moment of action: belief miscalibration in LLM play under hidden information",
-      "url": "https://arxiv.org/abs/2608.24691",
+      "t": "Trace Integrity for LLM Data Agents: A Vision for Auditable Structured Reasoning in Real-World Systems",
+      "url": "https://arxiv.org/abs/2608.26036",
       "c": "cs.AI",
-      "s": 0.67
+      "s": 0.83
     }
   ]
 }
