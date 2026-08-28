@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-08-27T11:23:54Z",
+  "generated_at": "2026-08-28T11:23:42Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "AsymSpec: Context-Asymmetric Speculative Decoding for Agentic LLMs",
-      "url": "https://arxiv.org/abs/2608.26004",
-      "c": "cs.AI",
-      "s": 0.89
+      "t": "INTENT-AS-A-TOOL Makes it Easy to Track Agentic Misalignment",
+      "url": "https://arxiv.org/abs/2608.27348",
+      "c": "cs.CL",
+      "s": 0.99
     },
     {
-      "t": "Repair or Resample? Rethinking Failure Debugging in LLM Multi-Agent Systems",
-      "url": "https://arxiv.org/abs/2608.25920",
-      "c": "cs.AI",
-      "s": 0.89
+      "t": "RedEvoAgent: Automatic Red-Teaming Agent with Experience-Driven Skill Evolution",
+      "url": "https://arxiv.org/abs/2608.27439",
+      "c": "cs.CR",
+      "s": 0.78
     },
     {
-      "t": "Trace Integrity for LLM Data Agents: A Vision for Auditable Structured Reasoning in Real-World Systems",
-      "url": "https://arxiv.org/abs/2608.26036",
-      "c": "cs.AI",
-      "s": 0.83
+      "t": "Beyond F1: Evaluating Coverage and Failure Recovery in AI Model Security Scanners",
+      "url": "https://arxiv.org/abs/2608.27424",
+      "c": "cs.CR",
+      "s": 0.67
     }
   ]
 }
