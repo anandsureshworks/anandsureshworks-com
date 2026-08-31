@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-08-30T11:20:07Z",
+  "generated_at": "2026-08-31T11:23:55Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "INTENT-AS-A-TOOL Makes it Easy to Track Agentic Misalignment",
-      "url": "https://arxiv.org/abs/2608.27348",
+      "t": "LLM-Based Agents for Software and Systems Security: Approaches, Applications, and Assessment",
+      "url": "https://arxiv.org/abs/2608.28490",
+      "c": "cs.CR",
+      "s": 0.99
+    },
+    {
+      "t": "Fidelity Is Not Enough: Dispatch-Level Instrumentation for Agentic Datasheet Extraction",
+      "url": "https://arxiv.org/abs/2608.28439",
       "c": "cs.CL",
       "s": 0.99
     },
     {
-      "t": "RedEvoAgent: Automatic Red-Teaming Agent with Experience-Driven Skill Evolution",
-      "url": "https://arxiv.org/abs/2608.27439",
+      "t": "Recognition Without Enforcement: Configuration-Dependent Failures in LLM Agent Instruction Arbitration and External Control",
+      "url": "https://arxiv.org/abs/2608.28502",
       "c": "cs.CR",
-      "s": 0.78
-    },
-    {
-      "t": "Beyond F1: Evaluating Coverage and Failure Recovery in AI Model Security Scanners",
-      "url": "https://arxiv.org/abs/2608.27424",
-      "c": "cs.CR",
-      "s": 0.67
+      "s": 0.94
     }
   ]
 }
