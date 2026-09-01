@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-08-31T11:23:55Z",
+  "generated_at": "2026-09-01T11:20:05Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "LLM-Based Agents for Software and Systems Security: Approaches, Applications, and Assessment",
-      "url": "https://arxiv.org/abs/2608.28490",
-      "c": "cs.CR",
-      "s": 0.99
+      "t": "Token-Efficient Data Reasoning Agents via Adaptive Structuring of Unstructured Data",
+      "url": "https://arxiv.org/abs/2608.31082",
+      "c": "cs.AI",
+      "s": 0.72
     },
     {
-      "t": "Fidelity Is Not Enough: Dispatch-Level Instrumentation for Agentic Datasheet Extraction",
-      "url": "https://arxiv.org/abs/2608.28439",
+      "t": "Scaling Large Reasoning Models beyond Human Supervision: A Path toward Superintelligence",
+      "url": "https://arxiv.org/abs/2608.31075",
+      "c": "cs.AI",
+      "s": 0.72
+    },
+    {
+      "t": "Learning to Evaluate Before Improving: Automatic Rubric Induction for Automatic Research Agents",
+      "url": "https://arxiv.org/abs/2608.31076",
       "c": "cs.CL",
-      "s": 0.99
-    },
-    {
-      "t": "Recognition Without Enforcement: Configuration-Dependent Failures in LLM Agent Instruction Arbitration and External Control",
-      "url": "https://arxiv.org/abs/2608.28502",
-      "c": "cs.CR",
-      "s": 0.94
+      "s": 0.67
     }
   ]
 }
