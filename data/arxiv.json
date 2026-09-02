@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-09-01T11:20:05Z",
+  "generated_at": "2026-09-02T11:20:12Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Token-Efficient Data Reasoning Agents via Adaptive Structuring of Unstructured Data",
-      "url": "https://arxiv.org/abs/2608.31082",
-      "c": "cs.AI",
-      "s": 0.72
+      "t": "TRIAGE: Three-level Routing and Intelligent Agent Guidance for Efficient Execution",
+      "url": "https://arxiv.org/abs/2609.01428",
+      "c": "cs.LG",
+      "s": 0.99
     },
     {
-      "t": "Scaling Large Reasoning Models beyond Human Supervision: A Path toward Superintelligence",
-      "url": "https://arxiv.org/abs/2608.31075",
-      "c": "cs.AI",
-      "s": 0.72
-    },
-    {
-      "t": "Learning to Evaluate Before Improving: Automatic Rubric Induction for Automatic Research Agents",
-      "url": "https://arxiv.org/abs/2608.31076",
+      "t": "SDARE-Bench: Evaluating Large Language Models on Conversational Stigma Detection and Response in Dyadic and Group Dialogue",
+      "url": "https://arxiv.org/abs/2609.01548",
       "c": "cs.CL",
-      "s": 0.67
+      "s": 0.78
+    },
+    {
+      "t": "When Guardrails Look Effective: Construct Validity Failures in LLM Agent Commerce Evaluation",
+      "url": "https://arxiv.org/abs/2609.01519",
+      "c": "cs.AI",
+      "s": 0.78
     }
   ]
 }
