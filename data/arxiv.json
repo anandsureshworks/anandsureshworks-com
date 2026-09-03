@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-09-02T11:20:12Z",
+  "generated_at": "2026-09-03T11:20:07Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "TRIAGE: Three-level Routing and Intelligent Agent Guidance for Efficient Execution",
-      "url": "https://arxiv.org/abs/2609.01428",
-      "c": "cs.LG",
+      "t": "Large Language Models (LLMs) for Telecom Root Cause Analysis (RCA): A Structured Reasoning Framework for Evidence-Grounded Diagnosis",
+      "url": "https://arxiv.org/abs/2609.02805",
+      "c": "cs.AI",
       "s": 0.99
     },
     {
-      "t": "SDARE-Bench: Evaluating Large Language Models on Conversational Stigma Detection and Response in Dyadic and Group Dialogue",
-      "url": "https://arxiv.org/abs/2609.01548",
-      "c": "cs.CL",
-      "s": 0.78
+      "t": "SafeEvolve: Harness-Policy Co-Evolution from Agent Experience for Safety Alignment",
+      "url": "https://arxiv.org/abs/2609.02786",
+      "c": "cs.AI",
+      "s": 0.99
     },
     {
-      "t": "When Guardrails Look Effective: Construct Validity Failures in LLM Agent Commerce Evaluation",
-      "url": "https://arxiv.org/abs/2609.01519",
-      "c": "cs.AI",
-      "s": 0.78
+      "t": "From Tokens to Semantics: Leveraging Complementary Signals for Hallucination Detection in Black-Box LLMs",
+      "url": "https://arxiv.org/abs/2609.02679",
+      "c": "cs.CL",
+      "s": 0.99
     }
   ]
 }
