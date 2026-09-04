@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-09-03T11:20:07Z",
+  "generated_at": "2026-09-04T11:21:45Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Large Language Models (LLMs) for Telecom Root Cause Analysis (RCA): A Structured Reasoning Framework for Evidence-Grounded Diagnosis",
-      "url": "https://arxiv.org/abs/2609.02805",
-      "c": "cs.AI",
+      "t": "SENTINEL-RL: Offloading Topological Reasoning from LLM Agents in the Security Operations Center",
+      "url": "https://arxiv.org/abs/2609.04159",
+      "c": "cs.CR",
       "s": 0.99
     },
     {
-      "t": "SafeEvolve: Harness-Policy Co-Evolution from Agent Experience for Safety Alignment",
-      "url": "https://arxiv.org/abs/2609.02786",
-      "c": "cs.AI",
-      "s": 0.99
+      "t": "A Black Box for Agentic Processes: Blockchain-Anchored Evidence for AI Agent Communication, Human Oversight, and GRC Audits",
+      "url": "https://arxiv.org/abs/2609.04017",
+      "c": "cs.CR",
+      "s": 0.89
     },
     {
-      "t": "From Tokens to Semantics: Leveraging Complementary Signals for Hallucination Detection in Black-Box LLMs",
-      "url": "https://arxiv.org/abs/2609.02679",
+      "t": "Representational alignment yields generalizable safety in language models",
+      "url": "https://arxiv.org/abs/2609.04022",
       "c": "cs.CL",
-      "s": 0.99
+      "s": 0.83
     }
   ]
 }
