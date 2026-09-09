@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-09-08T11:20:06Z",
+  "generated_at": "2026-09-09T11:20:07Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Large Language Models for HVAC Operations in Building Energy Systems: A Critical Review of Methods, Applications, and Deployment Readiness",
-      "url": "https://arxiv.org/abs/2609.05314",
+      "t": "PlannerForge: LLM Agents for Scenario-Based Testing of Motion Planners in Autonomous Driving",
+      "url": "https://arxiv.org/abs/2609.08965",
       "c": "cs.AI",
       "s": 0.99
     },
     {
-      "t": "How to Speculate about Uncertainty in Agentic Coding? A Draft-Model Gate Method",
-      "url": "https://arxiv.org/abs/2609.05274",
-      "c": "cs.LG",
-      "s": 0.83
+      "t": "PrivEscalate: Measuring and Augmenting the Threat of LLM-Automated Linux Privilege Escalation",
+      "url": "https://arxiv.org/abs/2609.09087",
+      "c": "cs.CR",
+      "s": 0.78
     },
     {
-      "t": "Distill Globally, Adapt Locally: Reasoning Distillation and Product-Type Test-Time Training for Scalable Trade-Up Recommendation",
-      "url": "https://arxiv.org/abs/2609.05363",
+      "t": "Do Reasoning Representations Help Humans Evaluate LLM Outputs?",
+      "url": "https://arxiv.org/abs/2609.09038",
       "c": "cs.LG",
-      "s": 0.67
+      "s": 0.78
     }
   ]
 }
