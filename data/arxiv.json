@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-09-09T11:20:07Z",
+  "generated_at": "2026-09-10T11:20:04Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "PlannerForge: LLM Agents for Scenario-Based Testing of Motion Planners in Autonomous Driving",
-      "url": "https://arxiv.org/abs/2609.08965",
-      "c": "cs.AI",
-      "s": 0.99
-    },
-    {
-      "t": "PrivEscalate: Measuring and Augmenting the Threat of LLM-Automated Linux Privilege Escalation",
-      "url": "https://arxiv.org/abs/2609.09087",
-      "c": "cs.CR",
-      "s": 0.78
-    },
-    {
-      "t": "Do Reasoning Representations Help Humans Evaluate LLM Outputs?",
-      "url": "https://arxiv.org/abs/2609.09038",
+      "t": "Forgetting Only What Matters: Layer-Selective Unlearning toward Robust LLMs",
+      "url": "https://arxiv.org/abs/2609.10439",
       "c": "cs.LG",
-      "s": 0.78
+      "s": 0.72
+    },
+    {
+      "t": "Towards Scalable and Cost-Efficient Vulnerability Detection: A Study on Automatic Query Generation",
+      "url": "https://arxiv.org/abs/2609.10412",
+      "c": "cs.SE",
+      "s": 0.72
+    },
+    {
+      "t": "From Symbolic Perception to Logical Deduction: A Framework for Guiding Language Models in Geometric Reasoning",
+      "url": "https://arxiv.org/abs/2609.10335",
+      "c": "cs.AI",
+      "s": 0.61
     }
   ]
 }
