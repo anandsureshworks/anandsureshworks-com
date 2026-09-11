@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-09-10T11:20:04Z",
+  "generated_at": "2026-09-11T11:20:05Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Forgetting Only What Matters: Layer-Selective Unlearning toward Robust LLMs",
-      "url": "https://arxiv.org/abs/2609.10439",
-      "c": "cs.LG",
-      "s": 0.72
+      "t": "BlueSTAR: Tiered Agentic Architecture for Autonomous Cyber Defense",
+      "url": "https://arxiv.org/abs/2609.11852",
+      "c": "cs.CR",
+      "s": 0.99
     },
     {
-      "t": "Towards Scalable and Cost-Efficient Vulnerability Detection: A Study on Automatic Query Generation",
-      "url": "https://arxiv.org/abs/2609.10412",
-      "c": "cs.SE",
-      "s": 0.72
+      "t": "RAG-Safety-Bench: Reliable Evaluation of Retrieval-Augmented LLM Safety",
+      "url": "https://arxiv.org/abs/2609.11758",
+      "c": "cs.CL",
+      "s": 0.99
     },
     {
-      "t": "From Symbolic Perception to Logical Deduction: A Framework for Guiding Language Models in Geometric Reasoning",
-      "url": "https://arxiv.org/abs/2609.10335",
-      "c": "cs.AI",
-      "s": 0.61
+      "t": "Domain-Specific Hallucination Detection in Large Language Models",
+      "url": "https://arxiv.org/abs/2609.11878",
+      "c": "cs.CL",
+      "s": 0.83
     }
   ]
 }
