@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-09-12T11:27:21Z",
+  "generated_at": "2026-09-16T11:30:49Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "BlueSTAR: Tiered Agentic Architecture for Autonomous Cyber Defense",
-      "url": "https://arxiv.org/abs/2609.11852",
-      "c": "cs.CR",
-      "s": 0.99
+      "t": "Agentic Societies Need a Social Harness",
+      "url": "https://arxiv.org/abs/2609.17527",
+      "c": "cs.MA",
+      "s": 0.72
     },
     {
-      "t": "RAG-Safety-Bench: Reliable Evaluation of Retrieval-Augmented LLM Safety",
-      "url": "https://arxiv.org/abs/2609.11758",
-      "c": "cs.CL",
-      "s": 0.99
+      "t": "Evaluating Verified Autonomy in Quantum Engineering",
+      "url": "https://arxiv.org/abs/2609.17439",
+      "c": "quant-ph",
+      "s": 0.67
     },
     {
-      "t": "Domain-Specific Hallucination Detection in Large Language Models",
-      "url": "https://arxiv.org/abs/2609.11878",
+      "t": "Enhancing Accessibility of Medical Texts through Large Language Model-Driven Plain Language Adaptation",
+      "url": "https://arxiv.org/abs/2609.17398",
       "c": "cs.CL",
-      "s": 0.83
+      "s": 0.67
     }
   ]
 }
