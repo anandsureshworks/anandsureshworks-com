@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-09-16T11:30:49Z",
+  "generated_at": "2026-09-17T11:20:01Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Agentic Societies Need a Social Harness",
-      "url": "https://arxiv.org/abs/2609.17527",
-      "c": "cs.MA",
-      "s": 0.72
-    },
-    {
-      "t": "Evaluating Verified Autonomy in Quantum Engineering",
-      "url": "https://arxiv.org/abs/2609.17439",
-      "c": "quant-ph",
-      "s": 0.67
-    },
-    {
-      "t": "Enhancing Accessibility of Medical Texts through Large Language Model-Driven Plain Language Adaptation",
-      "url": "https://arxiv.org/abs/2609.17398",
+      "t": "Playing log(N)-Questions over Wikipedia Abstracts: Communication Efficiency Between Paired Frontier Models",
+      "url": "https://arxiv.org/abs/2609.19113",
       "c": "cs.CL",
-      "s": 0.67
+      "s": 0.89
+    },
+    {
+      "t": "Decodable but Misrouted: Sparse Features Uncover a Readout Gap in Vision-Language Models for Harmful Meme Detection",
+      "url": "https://arxiv.org/abs/2609.18860",
+      "c": "cs.CV",
+      "s": 0.89
+    },
+    {
+      "t": "WaveTLM: Reliable Time-Series Language Modeling through Task Compilation",
+      "url": "https://arxiv.org/abs/2609.18812",
+      "c": "cs.LG",
+      "s": 0.89
     }
   ]
 }
