@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-09-17T11:20:01Z",
+  "generated_at": "2026-09-18T11:20:02Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Playing log(N)-Questions over Wikipedia Abstracts: Communication Efficiency Between Paired Frontier Models",
-      "url": "https://arxiv.org/abs/2609.19113",
-      "c": "cs.CL",
-      "s": 0.89
+      "t": "A Simulation Platform for AUV Fault Recovery: Exploring LLM-Based Diagnostic Strategies",
+      "url": "https://arxiv.org/abs/2609.20620",
+      "c": "cs.RO",
+      "s": 0.99
     },
     {
-      "t": "Decodable but Misrouted: Sparse Features Uncover a Readout Gap in Vision-Language Models for Harmful Meme Detection",
-      "url": "https://arxiv.org/abs/2609.18860",
-      "c": "cs.CV",
-      "s": 0.89
+      "t": "Coding Agents with an Obstacle-Aware Harness for Safe Robot Manipulation",
+      "url": "https://arxiv.org/abs/2609.20822",
+      "c": "cs.RO",
+      "s": 0.78
     },
     {
-      "t": "WaveTLM: Reliable Time-Series Language Modeling through Task Compilation",
-      "url": "https://arxiv.org/abs/2609.18812",
-      "c": "cs.LG",
-      "s": 0.89
+      "t": "Quantifying Overclaiming Propensity in Frontier LLM Agents",
+      "url": "https://arxiv.org/abs/2609.20812",
+      "c": "cs.SE",
+      "s": 0.78
     }
   ]
 }
