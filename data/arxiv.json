@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-09-20T11:20:02Z",
+  "generated_at": "2026-09-21T11:20:04Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "A Simulation Platform for AUV Fault Recovery: Exploring LLM-Based Diagnostic Strategies",
-      "url": "https://arxiv.org/abs/2609.20620",
-      "c": "cs.RO",
+      "t": "EnterpriseVal: Quantifying the Efficacy, Reliability and Value of Generative AI in the Enterprise",
+      "url": "https://arxiv.org/abs/2609.21841",
+      "c": "cs.AI",
       "s": 0.99
     },
     {
-      "t": "Coding Agents with an Obstacle-Aware Harness for Safe Robot Manipulation",
-      "url": "https://arxiv.org/abs/2609.20822",
-      "c": "cs.RO",
-      "s": 0.78
+      "t": "An Interpretable Memory Decision Controller for LLM Agents Based on Three-Signal Complementarity: Decoupling Confidence and Consistency",
+      "url": "https://arxiv.org/abs/2609.22043",
+      "c": "cs.CL",
+      "s": 0.94
     },
     {
-      "t": "Quantifying Overclaiming Propensity in Frontier LLM Agents",
-      "url": "https://arxiv.org/abs/2609.20812",
-      "c": "cs.SE",
-      "s": 0.78
+      "t": "Available Guardrails: Certifying Selective Prediction across ML Systems",
+      "url": "https://arxiv.org/abs/2609.22048",
+      "c": "cs.LG",
+      "s": 0.72
     }
   ]
 }
