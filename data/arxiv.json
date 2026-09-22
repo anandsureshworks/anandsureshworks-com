@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-09-21T11:20:04Z",
+  "generated_at": "2026-09-22T11:20:01Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "EnterpriseVal: Quantifying the Efficacy, Reliability and Value of Generative AI in the Enterprise",
-      "url": "https://arxiv.org/abs/2609.21841",
+      "t": "GRUET: Quantifying Uncertainty of Agentic Reasoning-and-Acting Processes",
+      "url": "https://arxiv.org/abs/2609.24831",
       "c": "cs.AI",
-      "s": 0.99
-    },
-    {
-      "t": "An Interpretable Memory Decision Controller for LLM Agents Based on Three-Signal Complementarity: Decoupling Confidence and Consistency",
-      "url": "https://arxiv.org/abs/2609.22043",
-      "c": "cs.CL",
       "s": 0.94
     },
     {
-      "t": "Available Guardrails: Certifying Selective Prediction across ML Systems",
-      "url": "https://arxiv.org/abs/2609.22048",
-      "c": "cs.LG",
-      "s": 0.72
+      "t": "Feedback Coding Enables Inference-Time Covert Agentic Communication",
+      "url": "https://arxiv.org/abs/2609.24994",
+      "c": "cs.IT",
+      "s": 0.89
+    },
+    {
+      "t": "Decoding Guardrails: XAI-Guided Perturbation Analysis of Prompt Injection Detection",
+      "url": "https://arxiv.org/abs/2609.24801",
+      "c": "cs.CR",
+      "s": 0.89
     }
   ]
 }
