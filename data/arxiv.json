@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-09-23T11:20:07Z",
+  "generated_at": "2026-09-24T11:20:04Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,21 +9,21 @@
   },
   "papers": [
     {
-      "t": "Rouxii: Exploiting Honeypots with Deception-Aware AI Pentesters",
-      "url": "https://arxiv.org/abs/2609.26555",
-      "c": "cs.CR",
+      "t": "PASTABench: Proactive Assessment of Sequential Trajectories for Agent Safety",
+      "url": "https://arxiv.org/abs/2609.28197",
+      "c": "cs.AI",
       "s": 0.94
     },
     {
-      "t": "SWE-Serve: Benchmarking Agentic Engineering For Production Inference Serving",
-      "url": "https://arxiv.org/abs/2609.26777",
-      "c": "cs.AI",
-      "s": 0.72
+      "t": "Controlling Collectives of AI Agents in Reasoning Space with Spatial Transformers",
+      "url": "https://arxiv.org/abs/2609.28247",
+      "c": "cs.RO",
+      "s": 0.78
     },
     {
-      "t": "Grow the Harness, Not the Context: From Strategy-Free Scaffolds to Reusable Specialist Agents",
-      "url": "https://arxiv.org/abs/2609.26760",
-      "c": "cs.AI",
+      "t": "Agent-Editing World Model: Rethinking World Modeling for LLM Agents",
+      "url": "https://arxiv.org/abs/2609.28416",
+      "c": "cs.CL",
       "s": 0.67
     }
   ]
