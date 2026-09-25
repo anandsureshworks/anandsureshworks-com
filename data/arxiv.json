@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-09-24T11:20:04Z",
+  "generated_at": "2026-09-25T11:20:04Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "PASTABench: Proactive Assessment of Sequential Trajectories for Agent Safety",
-      "url": "https://arxiv.org/abs/2609.28197",
+      "t": "Instrumental Monitor Evasion Emerges Under Ordinary Task Pressure",
+      "url": "https://arxiv.org/abs/2609.30217",
+      "c": "cs.CR",
+      "s": 0.99
+    },
+    {
+      "t": "GRASP: Generating, Revising, and Assessing for Strategic Planning with Agentic AI",
+      "url": "https://arxiv.org/abs/2609.30147",
       "c": "cs.AI",
-      "s": 0.94
+      "s": 0.99
     },
     {
-      "t": "Controlling Collectives of AI Agents in Reasoning Space with Spatial Transformers",
-      "url": "https://arxiv.org/abs/2609.28247",
+      "t": "Coding Agents for Generalized Task and Motion Planning Problems",
+      "url": "https://arxiv.org/abs/2609.30233",
       "c": "cs.RO",
-      "s": 0.78
-    },
-    {
-      "t": "Agent-Editing World Model: Rethinking World Modeling for LLM Agents",
-      "url": "https://arxiv.org/abs/2609.28416",
-      "c": "cs.CL",
-      "s": 0.67
+      "s": 0.83
     }
   ]
 }
