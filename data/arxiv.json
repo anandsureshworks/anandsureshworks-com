@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-09-27T11:30:41Z",
+  "generated_at": "2026-09-28T11:34:31Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Instrumental Monitor Evasion Emerges Under Ordinary Task Pressure",
-      "url": "https://arxiv.org/abs/2609.30217",
-      "c": "cs.CR",
-      "s": 0.99
-    },
-    {
-      "t": "GRASP: Generating, Revising, and Assessing for Strategic Planning with Agentic AI",
-      "url": "https://arxiv.org/abs/2609.30147",
+      "t": "DeepEdu-v1: Efficient and Scalable Agentic LLMs for Vietnamese Education",
+      "url": "https://arxiv.org/abs/2609.31568",
       "c": "cs.AI",
-      "s": 0.99
+      "s": 0.78
     },
     {
-      "t": "Coding Agents for Generalized Task and Motion Planning Problems",
-      "url": "https://arxiv.org/abs/2609.30233",
-      "c": "cs.RO",
-      "s": 0.83
+      "t": "Muslim: A Deployed Arabic Voice AI Platform for Grounded Islamic Knowledge",
+      "url": "https://arxiv.org/abs/2609.31511",
+      "c": "cs.CL",
+      "s": 0.72
+    },
+    {
+      "t": "Game Arena: Strategic LLM Evaluation in Competitive Environments",
+      "url": "https://arxiv.org/abs/2609.31473",
+      "c": "cs.AI",
+      "s": 0.72
     }
   ]
 }
