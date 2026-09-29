@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-09-28T11:34:31Z",
+  "generated_at": "2026-09-29T11:20:08Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "DeepEdu-v1: Efficient and Scalable Agentic LLMs for Vietnamese Education",
-      "url": "https://arxiv.org/abs/2609.31568",
-      "c": "cs.AI",
-      "s": 0.78
+      "t": "Tracekit: Tamper-Evident Intent-Reasoning-Action Auditing for Autonomous Coding Agents",
+      "url": "https://arxiv.org/abs/2609.35659",
+      "c": "cs.CE",
+      "s": 0.99
     },
     {
-      "t": "Muslim: A Deployed Arabic Voice AI Platform for Grounded Islamic Knowledge",
-      "url": "https://arxiv.org/abs/2609.31511",
-      "c": "cs.CL",
-      "s": 0.72
+      "t": "Reinforcing Agentic Creativity in Scientific Ideation with Night Science",
+      "url": "https://arxiv.org/abs/2609.35706",
+      "c": "cs.AI",
+      "s": 0.67
     },
     {
-      "t": "Game Arena: Strategic LLM Evaluation in Competitive Environments",
-      "url": "https://arxiv.org/abs/2609.31473",
-      "c": "cs.AI",
-      "s": 0.72
+      "t": "A Unified Uncertainty Representation for Graph Neural Networks via Doubly-Spectral Stochastic Expansion",
+      "url": "https://arxiv.org/abs/2609.35703",
+      "c": "cs.LG",
+      "s": 0.61
     }
   ]
 }
