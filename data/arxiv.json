@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-09-29T11:20:08Z",
+  "generated_at": "2026-09-30T11:20:06Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Tracekit: Tamper-Evident Intent-Reasoning-Action Auditing for Autonomous Coding Agents",
-      "url": "https://arxiv.org/abs/2609.35659",
-      "c": "cs.CE",
-      "s": 0.99
+      "t": "From Routing Signals to Selective Review: Visual regrounding in MoE VLMs",
+      "url": "https://arxiv.org/abs/2609.38111",
+      "c": "cs.CL",
+      "s": 0.89
     },
     {
-      "t": "Reinforcing Agentic Creativity in Scientific Ideation with Night Science",
-      "url": "https://arxiv.org/abs/2609.35706",
+      "t": "Auditable Long-Term Memory: A Deterministic Retrieval Chain Measured at 479/475 of 500 on LongMemEval-S",
+      "url": "https://arxiv.org/abs/2609.38021",
+      "c": "cs.CL",
+      "s": 0.89
+    },
+    {
+      "t": "Probability is Not Enough: Exploring and Counting Divergent Tokens for Reasoning Uncertainty Quantification in LLMs",
+      "url": "https://arxiv.org/abs/2609.38070",
       "c": "cs.AI",
-      "s": 0.67
-    },
-    {
-      "t": "A Unified Uncertainty Representation for Graph Neural Networks via Doubly-Spectral Stochastic Expansion",
-      "url": "https://arxiv.org/abs/2609.35703",
-      "c": "cs.LG",
-      "s": 0.61
+      "s": 0.83
     }
   ]
 }
