@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-10-01T11:20:02Z",
+  "generated_at": "2026-10-02T11:20:06Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "How Much of a Harness Does a Strong Agent Need for Autonomous ML Engineering?",
-      "url": "https://arxiv.org/abs/2609.40303",
-      "c": "cs.AI",
-      "s": 0.67
+      "t": "KaliBench: A Fine-Grained Benchmark for Cybersecurity Tool Use on Kali Linux with Runtime-Free Verifiable Rewards",
+      "url": "https://arxiv.org/abs/2610.02206",
+      "c": "cs.CL",
+      "s": 0.89
     },
     {
-      "t": "DynaHarness: A Dynamic Physical Harness for Self-Evolving Robot Agents",
-      "url": "https://arxiv.org/abs/2609.40306",
+      "t": "Reconstruct, Practice, Go Real: Guided Self-Improvement for Embodied Agents",
+      "url": "https://arxiv.org/abs/2610.02204",
       "c": "cs.RO",
-      "s": 0.61
+      "s": 0.83
     },
     {
-      "t": "WorldAuditBench: Interactive 3D World Auditing with Multimodal Agents",
-      "url": "https://arxiv.org/abs/2609.40325",
-      "c": "cs.AI",
-      "s": 0.56
+      "t": "The Missing Primitive: Diagnosing and Repairing Mathematical Reasoning in Large Language Models",
+      "url": "https://arxiv.org/abs/2610.02191",
+      "c": "cs.LG",
+      "s": 0.61
     }
   ]
 }
