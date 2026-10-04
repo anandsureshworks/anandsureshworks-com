@@ -24,14 +24,18 @@ fi
 "$HOME/bin/yantra-dirty-tree-audit.sh" >/dev/null 2>&1 || true   # writes ~/.dirty-tree-audit.json
 "$HOME/bin/yantra-rca-health.sh"        >/dev/null 2>&1 || true   # writes ~/.rca-health.json
 
+# Competence card data (whitelisted public fields only). Non-fatal: if the private source is
+# unreadable the committed data/circle.json is left untouched and the status publish proceeds.
+python3 scripts/gen_circle.py || echo "status: WARN circle refresh failed — keeping committed data/circle.json" >&2
+
 python3 scripts/status-sanitize.py data/status.json
 
-if git diff --quiet -- data/status.json; then
+if git diff --quiet -- data/status.json data/circle.json; then
   echo "status: no change — nothing to publish."
   exit 0
 fi
 
-git add data/status.json
+git add data/status.json data/circle.json
 git commit -m "chore(data): refresh status $(date -u +%Y-%m-%d)" \
            -m "Automated aggregate-only fleet-status refresh by the status publish job."
 git push origin main

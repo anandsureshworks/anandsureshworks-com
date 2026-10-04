@@ -1,0 +1,46 @@
+{
+ "generated_at": "2026-10-04T12:47:46.294985+00:00",
+ "threshold": 8.0,
+ "rows": [
+  {
+   "id": "ai_llm",
+   "label": "AI & LLM",
+   "score": 8.3,
+   "updated": "2026-08-21",
+   "prev_score": null,
+   "prev_updated": null
+  },
+  {
+   "id": "infra_security",
+   "label": "Infra & Security",
+   "score": 9.2,
+   "updated": "2026-07-15",
+   "prev_score": null,
+   "prev_updated": null
+  },
+  {
+   "id": "engineering",
+   "label": "Engineering",
+   "score": 8.8,
+   "updated": "2026-09-20",
+   "prev_score": null,
+   "prev_updated": null
+  },
+  {
+   "id": "research_learning",
+   "label": "Research & Learning",
+   "score": 8.5,
+   "updated": "2026-09-20",
+   "prev_score": null,
+   "prev_updated": null
+  },
+  {
+   "id": "leadership",
+   "label": "Leadership",
+   "score": 7.6,
+   "updated": "2026-09-19",
+   "prev_score": null,
+   "prev_updated": null
+  }
+ ]
+}

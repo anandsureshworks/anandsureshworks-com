@@ -6,6 +6,20 @@ Build/engine tooling for anandsureshworks.com. Dependency-free (Python stdlib + 
 Single source of truth for the woven **AS** brand mark. Regenerates the SVGs
 (`as-logo.svg`, `icon.svg`). Green is one token; never hand-edit the marks.
 
+## `gen_circle.py` — the homepage competence card
+Owns `data/circle.json`. Reads the private `~/.circle-of-competence.json` and publishes
+**only** whitelisted fields (five family rows: `id,label,score,updated,prev_score,prev_updated`,
+plus `threshold` and `generated_at`) — never rationale text. Score = mean of branch scores,
+1dp. Trend: when a score differs from the committed file, the old score/date become
+`prev_*`; otherwise `prev_*` carry forward. Atomic write (tmp+rename). Stdlib only.
+Refreshed daily by `status-publish.sh` (no separate plist); a failed refresh is non-fatal
+and leaves the committed file untouched.
+
+```sh
+python3 scripts/gen_circle.py          # regenerate data/circle.json
+python3 scripts/gen_circle.py --check  # exit 1 if missing, no generated_at, rows != 5, or extra keys
+```
+
 ## `arxiv-pulse.py` — the "read today" engine
 Fetches the day's arXiv firehose, scores each paper against a transparent interest
 model (`INTERESTS` in the script), and writes the top few to JSON. The website

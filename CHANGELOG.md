@@ -6,6 +6,38 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Changed
+- **Visual pass, tier 1 (site-wide)** — the four-reviewer redesign research found the
+  site "good, not elegant": 61 font sizes sat below 0.75rem, mono was used for chrome
+  as well as data, and every card was forced to 23rem with a fixed 160px signal band,
+  leaving empty middles. Root is now 17px so the 1.333 ladder lands at ≥12.75px for
+  labels and ≥14.5px for read text; mono is reserved for measurements (chips and
+  identifiers stay mono, eyebrows/buttons/links/footers move to sans); cards size to
+  content. Dark `--t3` 58→60% and the light accent/ramp darkened so every text pair
+  computes ≥4.5:1 (ruling recorded in BRAND.md). The type floor is a gate, not prose:
+  `scripts/check_type_floor.py` runs in the pre-commit hook and in CI (`site-check.yml`).
+- **Visual pass, tier 2 (homepage)** — one bordered container in the hero (the rail),
+  the woven mark at 44px, method steps as hairline rows, a chapter index in place of
+  the three door tiles that repeated the headers below them, duplicate above-the-fold
+  links removed, one green status dot kept (the others become ramp-coloured freshness
+  timestamps), labelled Dark|Light theme control, three phone defects fixed, resting
+  example content in the forgetting-curve, muon and PII cards so nothing is blank at
+  load, 44px tap targets, and the weave as the chapter section rule.
+- **Competence card reads real data** — scores were hardcoded and stale
+  (`AI Engineering 8.6` vs a live 8.3). `scripts/gen_circle.py` sanitises
+  `~/.circle-of-competence.json` to `data/circle.json` (whitelisted fields only, never
+  rationale text; atomic write; `--check`), run by the daily status publisher so the
+  engine law holds without a new plist. Each row now carries its change since the last
+  scoring and the month it moved; the committed file is the history, so trends appear
+  from the second publish onward. Line reads "self-assessed, re-scored monthly".
+
+### Fixed
+- `gen_notes.py` kept its own list of static pages and never learned `/particles/`,
+  so the next notes regeneration would have dropped it from the sitemap silently.
+- /circle/ and /redactor/ gain a `<main>` landmark and lose the retired `>_` glyph;
+  /particles/ phone header no longer hides "pause motion" under the theme toggle;
+  /circle/ radar labels wrap instead of clipping.
+
 ### Added
 - **/particles/ — the particle commons** (rev 5 spec, built): the Standard Model as a
   public 17-slot chart where a tile lights only when a live instrument ships. Chart is
