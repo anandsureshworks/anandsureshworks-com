@@ -107,7 +107,7 @@ old `>_` terminal glyph.
 ## Color — "color = signal"
 Chrome is **monochrome**; hue appears **only** where it carries data meaning.
 - Surfaces `oklch 10 / 14.5 / 18%`, borders `22 / 28%`.
-- Text `96 / 70 / 58%` — all ≥4.5:1 on a card.
+- Text `96 / 70 / 60%` (dark) — all ≥4.5:1 on every surface; light-theme ramp hues are darkened so each is ≥4.5:1 as text too (computed, not eyeballed).
 - **Accent (chrome only):** sap-green `oklch(72% .18 145)` — focus rings, the woven **AS mark**, the method-triangle thread, live-status. **Never on data.** Chosen because green is the hue *furthest from the data ramp*, so it can never be misread as a reading.
   - **The single green thread:** the accent is one continuous thread — woven through the AS monogram and run through the method triangle. One thread, every surface.
   - **Heritage:** *phosphor green* (CRT/terminal). Once referenced via the `>_` glyph; now expressed **structurally in the weave** itself, not as a literal terminal prompt.
@@ -118,14 +118,18 @@ Chrome is **monochrome**; hue appears **only** where it carries data meaning.
 - **Space Grotesk** (sans) — questions, prose, headings.
 - **Space Mono** (mono) — every reading: numbers, units, formulae, identifiers, the wordmark.
 - Rule: **if it's a measurement, it's mono.**
-- Rule (2026-08-05): **sizes sit on a 1.333 modular scale** — .75 / .85 / 1.02 / 1.33 / 1.78 / 2.37rem.
-  A size is a rung on the ladder, never a bespoke value; hierarchy comes free on every new page.
+- **Mono is for data only** — numbers, units, timestamps, formulae, identifiers, chips/tags, the wordmark. Chrome (buttons, eyebrows, nav links, footers, section labels) is Space Grotesk.
+- **Scale (one rule; root 17px since 2026-10-04, ladder first ruled 2026-08-05):** sizes sit on a 1.333 modular
+  ladder `.75 / .85 / 1.02 / 1.33 / 1.78 / 2.37 / 3.16rem` (= 12.75 / 14.5 / 17.3 / 22.6 / 30 / 40 / 54px). A size is a
+  rung, never a bespoke value. Floor `.75rem` for labels, chips and units (SVG text ≥12px); anything read as text
+  (descriptions, stat labels, buttons) ≥ `.85rem`; body ≥ `1.02rem`. Enforced by `scripts/check_type_floor.py`
+  (pre-commit + `site-check` CI).
 - CTA ladder: **one filled primary per screen**; secondaries are outlined, tertiaries are text.
   The accent stays chrome-only, so the single filled button spends the green budget whole.
 
 ## Card anatomy (uniform)
-Flex column, `min-height` floor, footer pinned. Four zones, always:
-`eyebrow · question` → `signal (fixed 160px)` → `stat` → `source`.
+Flex column, sized by content (no fixed heights), footer pinned. Four zones, always:
+`eyebrow · question` → `signal` → `stat` → `source`.
 New widgets and spaces (Learn / Secure / Finance …) drop in identically.
 
 ## Voice
@@ -136,3 +140,12 @@ Text ≥4.5:1 · visible focus rings · `role="img"`+labels on SVGs · animation
 
 ## Lean ethos
 Static over interactive where a glance suffices. **No tooltips, no legend boxes** — inline self-labeling only. The restraint is the brand.
+
+## Ruling 2026-10-04 — Tier 1 visual pass: type floor + contrast tokens
+Reason: with the root at 17px and the floor at .75rem, every text/background pair was recomputed (oklch → sRGB, WCAG)
+and held at ≥4.5:1 on s0/s1/s2, plain and on the 6–12% pill tints, in both themes. Changes in `brand.css`:
+- dark `--t3`: `oklch(58% 0 0)` → `oklch(60% 0 0)` (4.62 → 5.01:1 on s1).
+- light `--accent`: L 52% → 48% (fails on its own 10% tint at 52%).
+- light ramp: `--d5` 52 → 51, `--d4` 56 → 50, `--d3` 60 → 52, `--d2` 55 → 54; `--d1` unchanged (52). The old d4/d3 were 3.4–4.3:1 as text on paper.
+- sky/ and spacetime/ page-local `--t3`: 56% → 60% (4.32 → 5.10:1).
+- Highlight/`mark` text never takes a ramp hue: `--t1` text, tint only (redactor).

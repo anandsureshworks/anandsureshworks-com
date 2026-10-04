@@ -12,3 +12,7 @@ if git diff --cached --name-only | grep -qE '^notes/notes\.json$|^notes/[^/]+/in
   git add -A notes/index.html notes/feed.xml
   git add -A notes/tag 2>/dev/null || true
 fi
+
+# Type floor: nothing on the site renders below .75rem (12px). Cheap full scan, stdlib only —
+# a failing commit lists file:line. (Same check runs in CI: .github/workflows/site-check.yml.)
+python3 scripts/check_type_floor.py

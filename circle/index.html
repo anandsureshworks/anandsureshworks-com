@@ -8,36 +8,36 @@
 <link rel="stylesheet" href="/brand.css" />
 <style>
   .wrap{max-width:56rem;margin:0 auto;padding:2.2rem 1.25rem 3rem}
-  .back{font-family:var(--mono);font-size:.74rem;color:var(--t3);text-decoration:none}
+  .back{font-family:var(--sans);font-size:0.85rem;color:var(--t3);text-decoration:none}
   .back:hover{color:var(--t1)} .back .gt{color:var(--accent)}
-  h1{font-size:1.6rem;font-weight:600;margin:1rem 0 .25rem;letter-spacing:-.01em}
-  .q{font-size:1rem;color:var(--t2);margin:0 0 .3rem}
-  .concept{font-size:.86rem;color:var(--t2);max-width:40rem;margin:0 0 2rem}
+  h1{font-size:1.78rem;font-weight:600;margin:1rem 0 .25rem;letter-spacing:-.01em}
+  .q{font-size:1.02rem;color:var(--t2);margin:0 0 .3rem}
+  .concept{font-size:0.85rem;color:var(--t2);max-width:40rem;margin:0 0 2rem}
   .concept b{color:var(--t1)}
   .tool{display:grid;gap:2rem}
   @media(min-width:48rem){.tool{grid-template-columns:1fr .85fr;align-items:start}}
   .radar-wrap{background:var(--s1);border:1px solid var(--bd-sub);border-radius:14px;padding:1rem;display:flex;flex-direction:column;align-items:center}
-  .summary{font-family:var(--mono);font-size:.78rem;color:var(--t2);margin-top:.4rem}
+  .summary{font-family:var(--mono);font-size:0.85rem;color:var(--t2);margin-top:.4rem}
   .summary b{color:var(--d5)}
-  .panel h2{font-size:.7rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.09em;color:var(--t3);margin:0 0 .7rem}
+  .panel h2{font-size:0.75rem;font-family:var(--sans);text-transform:uppercase;letter-spacing:.09em;color:var(--t3);margin:0 0 .7rem}
   .drow{display:flex;align-items:center;gap:.6rem;padding:.5rem 0;border-bottom:1px solid var(--bd-sub)}
-  .drow .nm{flex:1;font-size:.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .drow .nm{flex:1;font-size:0.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .drow input[type=range]{width:96px;accent-color:var(--accent)}
-  .drow .sc{font-family:var(--mono);font-size:.8rem;width:30px;text-align:right}
-  .drow .rm{background:none;border:none;color:var(--t3);cursor:pointer;font-size:1rem;line-height:1;padding:0 2px}
+  .drow .sc{font-family:var(--mono);font-size:0.85rem;width:30px;text-align:right}
+  .drow .rm{background:none;border:none;color:var(--t3);cursor:pointer;font-size:1.02rem;line-height:1;padding:0;min-width:24px;min-height:24px;margin-block:-2px;display:inline-flex;align-items:center;justify-content:center}
   .drow .rm:hover{color:var(--d1)}
   .addf{display:flex;gap:.5rem;margin-top:.9rem}
-  .addf input{flex:1;background:var(--s0);border:1px solid var(--bd);border-radius:7px;color:var(--t1);font-family:var(--sans);font-size:.82rem;padding:7px 10px}
+  .addf input{flex:1;background:var(--s0);border:1px solid var(--bd);border-radius:7px;color:var(--t1);font-family:var(--sans);font-size:0.85rem;padding:7px 10px}
   .addf input:focus-visible{outline:none;border-color:var(--accent)}
-  .addf button{flex:none;border:1px solid color-mix(in oklch,var(--accent) 50%,transparent);background:color-mix(in oklch,var(--accent) 14%,transparent);color:var(--accent);border-radius:7px;font-size:.82rem;padding:0 12px;cursor:pointer}
-  .hint{font-size:.78rem;color:var(--t3);margin-top:1.1rem;line-height:1.5}
+  .addf button{flex:none;border:1px solid color-mix(in oklch,var(--accent) 50%,transparent);background:color-mix(in oklch,var(--accent) 14%,transparent);color:var(--accent);border-radius:7px;font-size:0.85rem;padding:0 12px;cursor:pointer}
+  .hint{font-size:0.85rem;color:var(--t3);margin-top:1.1rem;line-height:1.5}
   .hint b{color:var(--t2)}
-  .pfoot{margin-top:3rem;border-top:1px solid var(--bd-sub);padding-top:1.1rem;font-family:var(--mono);font-size:.72rem;color:var(--t3)}
+  .pfoot{margin-top:3rem;border-top:1px solid var(--bd-sub);padding-top:1.1rem;font-family:var(--sans);font-size:0.85rem;color:var(--t3)}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <a class="back" href="/"><span class="gt">&lt;_</span> anandsureshworks</a>
+<main class="wrap" id="main">
+  <a class="back" href="/"><img class="mk-inline" src="/as-logo.svg" alt=""> anandsureshworks</a>
   <h1>Circle of Competence</h1>
   <p class="q">What's inside your circle?</p>
   <p class="concept">Rate what you actually know. <b>Inside the edge</b> (7.0) — trust your own judgment and predict. <b>Outside it</b> — borrow breadth and verify, don't guess.</p>
@@ -55,7 +55,7 @@
     </div>
   </div>
   <p class="pfoot"><img class="mk-inline" src="/as-logo.svg" alt=""> anandsureshworks · circle-of-competence · self-assessed, local only</p>
-</div>
+</main>
 
 <script type="module">
   const KEY="coc_domains", THRESH=7.0;
@@ -69,8 +69,10 @@
 
   function renderRadar(){
     const el=document.getElementById("radar");
-    const size=300,cx=150,cy=150,maxR=112,N=D.length;
-    if(N<3){el.innerHTML=`<svg viewBox="0 0 ${size} ${size}" width="100%"><text x="${cx}" y="${cy}" text-anchor="middle" fill="var(--t3)" font-family="Space Grotesk" font-size="12">add at least 3 domains</text></svg>`;return;}
+    const W=330,H=300,cx=165,cy=150,maxR=70,N=D.length;  // labels are 13px at ~1:1 scale; long names wrap onto extra lines, never truncated
+    el.setAttribute("aria-label",N?"Competence radar: "+D.map(d=>d.name+" "+d.s.toFixed(1)).join("; "):"Competence radar: no domains");
+    const wrap=(t,n=12)=>{const L=[];let cur="";for(let w of t.split(/\s+/)){while(w.length>n){if(cur){L.push(cur);cur="";}L.push(w.slice(0,n));w=w.slice(n);}const nx=cur?cur+" "+w:w;if(nx.length>n&&cur){L.push(cur);cur=w;}else cur=nx;}if(cur)L.push(cur);return L;};
+    if(N<3){el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%"><text x="${cx}" y="${cy}" text-anchor="middle" fill="var(--t3)" font-family="Space Grotesk" font-size="13">add at least 3 domains</text></svg>`;return;}
     const ang=i=>-Math.PI/2+i*2*Math.PI/N, pt=(i,r)=>[cx+Math.cos(ang(i))*r, cy+Math.sin(ang(i))*r];
     const ring=(r,attr)=>{const p=D.map((_,i)=>pt(i,r).map(n=>n.toFixed(1)).join(",")).join(" ");return `<polygon points="${p}" fill="none" ${attr}/>`;};
     const grid=[.25,.5,.75,1].map(f=>ring(f*maxR,`stroke="var(--bd-sub)"`)).join("");
@@ -79,10 +81,10 @@
     const poly=D.map((d,i)=>pt(i,d.s/10*maxR).map(n=>n.toFixed(1)).join(",")).join(" ");
     const shape=`<polygon points="${poly}" fill="color-mix(in oklch,var(--d4) 16%,transparent)" stroke="var(--d4)" stroke-width="1.5"/>`;
     const verts=D.map((d,i)=>{const[x,y]=pt(i,d.s/10*maxR);return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.4" fill="${dcol(d.s/10)}"/>`;}).join("");
-    const labels=D.map((d,i)=>{const[x,y]=pt(i,maxR+13);const c=Math.cos(ang(i));const anc=c>.3?"start":c<-.3?"end":"middle";
-      return `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${anc}" dominant-baseline="middle" fill="var(--t2)" font-family="Space Grotesk" font-size="9.5">${esc(d.name)}</text>
-        <text x="${x.toFixed(1)}" y="${(y+11).toFixed(1)}" text-anchor="${anc}" dominant-baseline="middle" fill="${dcol(d.s/10)}" font-family="Space Mono" font-size="9">${d.s.toFixed(1)}</text>`;}).join("");
-    el.innerHTML=`<svg viewBox="0 0 ${size} ${size}" width="100%" style="max-width:300px">${grid}${edge}${axes}${shape}${verts}${labels}</svg>`;
+    const labels=D.map((d,i)=>{const[x,y]=pt(i,maxR+14);const c=Math.cos(ang(i)),sn=Math.sin(ang(i));const anc=c>.3?"start":c<-.3?"end":"middle";
+      const L=wrap(d.name),n=L.length+1,y0=y+(sn<-.3?-(n-1)*15:Math.abs(sn)<=.3?-(n-1)*7.5:0);
+      return `<text x="${x.toFixed(1)}" y="${y0.toFixed(1)}" text-anchor="${anc}" dominant-baseline="middle" fill="var(--t2)" font-family="Space Grotesk" font-size="13">${L.map((t,k)=>`<tspan x="${x.toFixed(1)}" dy="${k?15:0}">${esc(t)}</tspan>`).join("")}<tspan x="${x.toFixed(1)}" dy="15" fill="${dcol(d.s/10)}" font-family="Space Mono" font-size="12.5">${d.s.toFixed(1)}</tspan></text>`;}).join("");
+    el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:330px">${grid}${edge}${axes}${shape}${verts}${labels}</svg>`;
   }
   function renderDomains(){
     document.getElementById("domains").innerHTML=D.map((d,i)=>`<div class="drow">

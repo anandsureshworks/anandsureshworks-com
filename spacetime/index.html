@@ -8,59 +8,60 @@
 <link rel="stylesheet" href="/brand.css" />
 <style>
   :root{--s0:oklch(8% 0 0);--s1:oklch(13% 0 0);--bd-sub:oklch(22% 0 0);--bd:oklch(28% 0 0);
-    --t1:oklch(96% 0 0);--t2:oklch(70% 0 0);--t3:oklch(56% 0 0);--accent:oklch(72% 0.18 145);
+    --t1:oklch(96% 0 0);--t2:oklch(70% 0 0);--t3:oklch(60% 0 0);--accent:oklch(72% 0.18 145);
     --far:oklch(63% 0.16 28);--near:oklch(72% 0.13 240);
     --sans:"Space Grotesk",system-ui,sans-serif;--mono:"Space Mono",monospace;}
   *{box-sizing:border-box}
   body{margin:0;background:var(--s0);color:var(--t1);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
   .wrap{max-width:50rem;margin:0 auto;padding:2.4rem 1.25rem 4rem}
   .mono{font-family:var(--mono)}
-  .back{font-family:var(--mono);font-size:.74rem;color:var(--t3);text-decoration:none}.back:hover{color:var(--t1)}.back .gt{color:var(--accent)}
-  .lead{font-family:var(--mono);font-size:.8rem;color:var(--accent)}
-  h1{font-size:1.7rem;font-weight:600;margin:.5rem 0 .3rem;letter-spacing:-.01em}
+  .back{font-family:var(--sans);font-size:0.85rem;color:var(--t3);text-decoration:none}.back:hover{color:var(--t1)}.back .gt{color:var(--accent)}
+  .lead{font-family:var(--sans);font-size:0.85rem;color:var(--accent)}
+  h1{font-size:1.78rem;font-weight:600;margin:.5rem 0 .3rem;letter-spacing:-.01em}
   .intro{color:var(--t2);max-width:40rem;margin:0 0 2.5rem}
   section{margin:2.6rem 0;padding-top:2rem;border-top:1px solid var(--bd-sub)}
-  .eyebrow{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3)}
-  h2{font-size:1.15rem;font-weight:600;margin:.35rem 0 .2rem}
-  .teach{font-size:.86rem;color:var(--t2);max-width:40rem;margin:0 0 1.2rem}
+  .eyebrow{font-family:var(--sans);font-size:0.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3)}
+  h2{font-size:1.33rem;font-weight:600;margin:.35rem 0 .2rem}
+  .teach{font-size:1.02rem;color:var(--t2);max-width:40rem;margin:0 0 1.2rem}
   .teach b{color:var(--t1)}
 
   /* demo 1: light-travel-time */
   .lt{display:flex;flex-direction:column;gap:0}
   .ltrow{display:grid;grid-template-columns:8.5rem 1fr 9rem;align-items:center;gap:.6rem;padding:.4rem 0;border-bottom:1px solid var(--bd-sub);cursor:default}
   .ltrow:hover{background:oklch(16% 0 0)}
-  .ltrow .nm{font-size:.84rem}
+  @media(max-width:30rem){.ltrow{grid-template-columns:6.5rem 1fr 7.5rem}}
+  .ltrow .nm{font-size:0.85rem}
   .ltrow .bar{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--near),var(--far))}
-  .ltrow .yr{font-family:var(--mono);font-size:.72rem;color:var(--t2);text-align:right}
+  .ltrow .yr{font-family:var(--mono);font-size:0.75rem;color:var(--t2);text-align:right}
   .ltrow .yr b{color:var(--t1)}
-  .ltnote{font-size:.78rem;color:var(--t3);margin-top:.7rem}
+  .ltnote{font-size:0.85rem;color:var(--t3);margin-top:.7rem}
 
   /* demo 2: curvature shader */
   .glwrap{position:relative;border:1px solid var(--bd-sub);border-radius:14px;overflow:hidden;background:var(--s1)}
   #gl{display:block;width:100%;height:260px}
-  .glcap{position:absolute;left:12px;bottom:10px;font-family:var(--mono);font-size:.68rem;color:var(--t2);background:oklch(10% 0 0/.6);padding:3px 7px;border-radius:5px}
+  .glcap{position:absolute;left:12px;bottom:10px;font-family:var(--mono);font-size:0.75rem;color:var(--t2);background:oklch(10% 0 0/.6);padding:3px 7px;border-radius:5px}
 
   /* demo 3: powers of ten */
   .potwrap{background:var(--s1);border:1px solid var(--bd-sub);border-radius:14px;padding:1.2rem}
   .potstage{position:relative;height:230px;display:flex;align-items:center;justify-content:center;overflow:hidden}
   .frame{width:200px;height:200px;border-radius:50%;border:1px solid var(--bd);position:relative;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle, oklch(15% 0.02 250), oklch(10% 0 0))}
   .earth{border-radius:50%;background:var(--near);box-shadow:0 0 12px color-mix(in oklch,var(--near) 60%,transparent);flex:none}
-  .youtag{position:absolute;font-family:var(--mono);font-size:.64rem;color:var(--t3)}
+  .youtag{position:absolute;font-family:var(--mono);font-size:0.75rem;color:var(--t3)}
   .potmeta{text-align:center;margin-top:.6rem}
-  .potmeta .nm{font-size:1.1rem;font-weight:700}
-  .potmeta .sc{font-family:var(--mono);font-size:.74rem;color:var(--t3)}
-  .potmeta .awe{font-size:.82rem;color:var(--t2);min-height:1.2rem;margin-top:.2rem}
+  .potmeta .nm{font-size:1.02rem;font-weight:700}
+  .potmeta .sc{font-family:var(--mono);font-size:0.75rem;color:var(--t3)}
+  .potmeta .awe{font-size:0.85rem;color:var(--t2);min-height:1.2rem;margin-top:.2rem}
   input[type=range]{width:100%;accent-color:var(--accent);margin-top:1rem}
   /* demo 4: gotchas */
   .gotchas{display:grid;gap:.9rem;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr))}
   .gotcha{background:var(--s1);border:1px solid var(--bd-sub);border-radius:12px;padding:1rem}
-  .gotcha .badge{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border:1px solid color-mix(in oklch,var(--accent) 40%,transparent);border-radius:4px;padding:1px 5px;margin-bottom:.55rem}
-  .gotcha .claim{font-size:.92rem;font-weight:600;margin:0 0 .5rem;line-height:1.35}
-  .gotcha .proof{font-size:.8rem;color:var(--t2);line-height:1.5;margin:0}
+  .gotcha .badge{display:inline-block;font-family:var(--mono);font-size:0.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border:1px solid color-mix(in oklch,var(--accent) 40%,transparent);border-radius:4px;padding:1px 5px;margin-bottom:.55rem}
+  .gotcha .claim{font-size:1.02rem;font-weight:600;margin:0 0 .5rem;line-height:1.35}
+  .gotcha .proof{font-size:0.85rem;color:var(--t2);line-height:1.5;margin:0}
   .gotcha .proof b{color:var(--t1)}
-  .closer{font-size:.92rem;color:var(--t1);margin-top:1.4rem;max-width:42rem}
+  .closer{font-size:1.02rem;color:var(--t1);margin-top:1.4rem;max-width:42rem}
   .closer b{color:var(--accent)}
-  .pfoot{margin-top:3rem;border-top:1px solid var(--bd-sub);padding-top:1.1rem;font-family:var(--mono);font-size:.72rem;color:var(--t3)}
+  .pfoot{margin-top:3rem;border-top:1px solid var(--bd-sub);padding-top:1.1rem;font-family:var(--sans);font-size:0.85rem;color:var(--t3)}
 </style>
 </head>
 <body>

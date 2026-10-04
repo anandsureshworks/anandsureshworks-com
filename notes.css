@@ -5,40 +5,40 @@
 
 /* masthead (matches the home mark) */
 .note-mast { display: inline-flex; align-items: center; gap: .55rem; font-family: var(--mono);
-  font-size: .8rem; color: var(--t2); text-decoration: none; }
+  font-size:0.85rem; color: var(--t2); text-decoration: none; }
 .note-mast img { width: 26px; height: 26px; border-radius: 4px; display: block; }
 .note-mast:hover { color: var(--t1); }
 .note-mast b { color: var(--t1); font-weight: 600; }
 
 /* ---- index / tag listing ---- */
 .notes-head { margin: 1.6rem 0 1.8rem; }
-.notes-head h1 { font-size: 1.5rem; font-weight: 600; letter-spacing: -.015em; margin: 0 0 .3rem; }
-.notes-head p { color: var(--t2); font-size: .95rem; margin: 0; max-width: 36rem; }
-.notes-head .filter { font-family: var(--mono); font-size: .76rem; color: var(--t3); margin-top: .6rem; }
+.notes-head h1 { font-size:1.78rem; font-weight: 600; letter-spacing: -.015em; margin: 0 0 .3rem; }
+.notes-head p { color: var(--t2); font-size:1.02rem; margin: 0; max-width: 36rem; }
+.notes-head .filter { font-family: var(--mono); font-size:0.85rem; color: var(--t3); margin-top: .6rem; }
 .note-list { list-style: none; margin: 0; padding: 0; }
 .note-item { padding: 1.15rem 0; border-top: 1px solid var(--bd-sub); }
-.note-item .meta { font-family: var(--mono); font-size: .7rem; color: var(--t3); letter-spacing: .02em;
+.note-item .meta { font-family: var(--mono); font-size:0.75rem; color: var(--t3); letter-spacing: .02em;
   display: flex; flex-wrap: wrap; gap: .5rem .8rem; align-items: center; }
-.note-item h2 { font-size: 1.2rem; margin: .3rem 0 .35rem; letter-spacing: -.01em; }
+.note-item h2 { font-size:1.33rem; margin: .3rem 0 .35rem; letter-spacing: -.01em; }
 .note-item h2 a { color: var(--t1); text-decoration: none; }
 .note-item h2 a:hover { color: var(--accent); }
-.note-item .dek { color: var(--t2); font-size: .93rem; margin: 0; }
-.tagchip { font-family: var(--mono); font-size: .64rem; color: var(--t2); border: 1px solid var(--bd);
+.note-item .dek { color: var(--t2); font-size:1.02rem; margin: 0; }
+.tagchip { font-family: var(--mono); font-size:0.75rem; color: var(--t2); border: 1px solid var(--bd);
   border-radius: 4px; padding: 1px 7px; text-decoration: none; }
 .tagchip:hover { color: var(--t1); border-color: var(--t3); }
-.subscribe { margin-top: 2.2rem; font-family: var(--mono); font-size: .8rem; color: var(--t3); }
+.subscribe { margin-top: 2.2rem; font-family: var(--mono); font-size:0.85rem; color: var(--t3); }
 .subscribe a { color: var(--t2); }
 
 /* ---- article ---- */
 article header { margin: 1.4rem 0 1.6rem; }
-article .kicker { font-family: var(--mono); font-size: .72rem; letter-spacing: .08em;
+article .kicker { font-family: var(--mono); font-size:0.75rem; letter-spacing: .08em;
   text-transform: uppercase; color: var(--accent); }
-article h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); line-height: 1.13; letter-spacing: -.02em;
+article h1 { font-size: clamp(1.78rem, 5vw, 2.37rem); line-height: 1.13; letter-spacing: -.02em;
   margin: .5rem 0 .5rem; font-weight: 700; }
-article .dek { color: var(--t2); font-size: 1.1rem; line-height: 1.5; margin: 0 0 .8rem; }
-article .byline { font-family: var(--mono); font-size: .74rem; color: var(--t3);
+article .dek { color: var(--t2); font-size:1.02rem; line-height: 1.5; margin: 0 0 .8rem; }
+article .byline { font-family: var(--mono); font-size:0.75rem; color: var(--t3);
   display: flex; flex-wrap: wrap; gap: .4rem .8rem; }
-article p { margin: 0 0 1.1rem; font-size: 1.05rem; line-height: 1.7; }
+article p { margin: 0 0 1.1rem; font-size:1.02rem; line-height: 1.7; }
 article strong { color: var(--t1); font-weight: 600; }
 article em { color: var(--t1); font-style: italic; }
 article hr { border: 0; border-top: 1px solid var(--bd-sub); margin: 2rem 0; }
@@ -46,30 +46,30 @@ article hr { border: 0; border-top: 1px solid var(--bd-sub); margin: 2rem 0; }
 /* the through-line callout (states the theme up top — retention anchor) */
 .throughline { margin: 1.5rem 0; padding: .9rem 1.1rem; border-left: 3px solid var(--accent);
   background: color-mix(in oklch, var(--accent) 8%, transparent); border-radius: 0 .4rem .4rem 0;
-  color: var(--t1); font-size: 1.06rem; }
-.throughline p { margin: 0; font-size: 1.06rem; }
+  color: var(--t1); font-size:1.02rem; }
+.throughline p { margin: 0; font-size:1.02rem; }
 
 /* scenario blocks — parallel structure, year-badged (scannable = retention) */
 .scenario { margin: 1.8rem 0; padding-top: 1.3rem; border-top: 1px solid var(--bd-sub); }
-.scenario .year { font-family: var(--mono); font-size: .82rem; font-weight: 700; color: var(--accent);
+.scenario .year { font-family: var(--mono); font-size:0.85rem; font-weight: 700; color: var(--accent);
   border: 1px solid color-mix(in oklch, var(--accent) 45%, transparent); border-radius: 6px;
   padding: 2px 9px; display: inline-block; margin-bottom: .5rem; }
-.scenario h2 { font-size: 1.22rem; letter-spacing: -.01em; margin: .15rem 0 .5rem; }
+.scenario h2 { font-size:1.33rem; letter-spacing: -.01em; margin: .15rem 0 .5rem; }
 
 article footer { margin-top: 2.6rem; padding-top: 1.2rem; border-top: 1px solid var(--bd-sub);
-  font-family: var(--mono); font-size: .78rem; color: var(--t3); display: flex;
+  font-family: var(--mono); font-size:0.85rem; color: var(--t3); display: flex;
   flex-wrap: wrap; gap: .5rem 1.1rem; align-items: center; justify-content: space-between; }
 
-.draft { font-family: var(--mono); font-size: .74rem; color: var(--d3);
+.draft { font-family: var(--mono); font-size:0.85rem; color: var(--d3);
   border: 1px dashed color-mix(in oklch, var(--d3) 50%, transparent);
   border-radius: .4rem; padding: .5rem .8rem; margin: 0 0 1.4rem; }
 .ph { color: var(--t3); font-style: italic; }   /* placeholder prose, removed on publish */
 
 /* series teaser — one mono line after the close of a series installment */
-.series-next { font-family: var(--mono); font-size: .76rem; color: var(--t3); margin: 1.4rem 0 0; }
+.series-next { font-family: var(--mono); font-size:0.85rem; color: var(--t3); margin: 1.4rem 0 0; }
 
 /* field notes — the short tier: 150-300 words, one lesson, no throat-clearing */
-.fchip { font-family: var(--mono); font-size: .6rem; letter-spacing: .05em; text-transform: uppercase;
+.fchip { font-family: var(--mono); font-size:0.75rem; letter-spacing: .05em; text-transform: uppercase;
   color: var(--accent); border: 1px solid color-mix(in oklch, var(--accent) 40%, transparent);
   border-radius: 4px; padding: .08rem .4rem; }
 article p a { color: var(--accent); text-decoration: none; border-bottom: 1px solid color-mix(in oklch, var(--accent) 45%, transparent); }

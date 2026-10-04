@@ -1,0 +1,29 @@
+# Gate the site: fail the push/PR if any stylesheet, page, or inline SVG/JS text sets a font size
+# below .75rem (12px), or if a committed data file drifts from its generator manifest
+# (circle, particles). Pure stdlib, no network, no secrets.
+name: site-check
+
+on:
+  push:
+    paths: ['**/*.css', '**/*.html', 'data/**', 'scripts/check_type_floor.py', 'scripts/gen_circle.py', 'scripts/gen_particles.py', '.github/workflows/site-check.yml']
+  pull_request:
+    paths: ['**/*.css', '**/*.html', 'data/**', 'scripts/check_type_floor.py', 'scripts/gen_circle.py', 'scripts/gen_particles.py', '.github/workflows/site-check.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  site-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
+      - name: Check no font-size falls below the type floor
+        run: python3 scripts/check_type_floor.py
+      - name: Type-floor checker self-test
+        run: python3 scripts/check_type_floor.py --selftest
+      - name: Check circle data matches its generator
+        run: python3 scripts/gen_circle.py --check
+      - name: Check particles data matches its manifest
+        run: python3 scripts/gen_particles.py --check
