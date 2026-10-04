@@ -101,7 +101,8 @@ SLUG_RE = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
 # The sitemap is machine-owned here so it can never drift: static pages declared,
 # published notes appended automatically.
 STATIC_PAGES = ["", "notes/", "netsentinel/", "status/", "trust/", "method/",
-                "redactor/", "sky/", "spacetime/", "circle/", "consumer/"]
+                "redactor/", "sky/", "spacetime/", "circle/", "consumer/",
+                "particles/"]
 
 def validate_names(data: dict) -> None:
     bad = []
