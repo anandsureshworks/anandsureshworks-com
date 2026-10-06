@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-10-05T11:20:05Z",
+  "generated_at": "2026-10-06T11:20:03Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Writerslogic at PAN 2026: Process over Content for Robust Detection under Domain Shift",
-      "url": "https://arxiv.org/abs/2610.03565",
-      "c": "cs.CL",
+      "t": "BazaarBench: Delegation Safety in Decentralized C2C Marketplaces Run by LLM Agents",
+      "url": "https://arxiv.org/abs/2610.06748",
+      "c": "cs.MA",
+      "s": 0.99
+    },
+    {
+      "t": "Back to the Future: Rethinking EDA Infrastructure for Agentic Systems in Chip Design Verification",
+      "url": "https://arxiv.org/abs/2610.06790",
+      "c": "cs.AI",
       "s": 0.78
     },
     {
-      "t": "Threat-Preserving Representation Sensitivity in Agent-Security Benchmarks",
-      "url": "https://arxiv.org/abs/2610.03585",
-      "c": "cs.CR",
+      "t": "MedPrune: Topology-Efficient Multimodal Multi-Agent Communication Evolution for Medical VQA Tasks",
+      "url": "https://arxiv.org/abs/2610.06695",
+      "c": "cs.CL",
       "s": 0.72
-    },
-    {
-      "t": "FrugalEvo: Towards Cost-Aware LLM-Guided Program Evolution",
-      "url": "https://arxiv.org/abs/2610.03675",
-      "c": "cs.NE",
-      "s": 0.56
     }
   ]
 }
