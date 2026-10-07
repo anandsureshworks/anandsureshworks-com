@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-10-06T11:20:03Z",
+  "generated_at": "2026-10-07T11:20:06Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,21 +9,21 @@
   },
   "papers": [
     {
-      "t": "BazaarBench: Delegation Safety in Decentralized C2C Marketplaces Run by LLM Agents",
-      "url": "https://arxiv.org/abs/2610.06748",
-      "c": "cs.MA",
+      "t": "BARE-AI: Bit-Flip Attack Resilience in AI Hardware through Built-in Performance Monitors",
+      "url": "https://arxiv.org/abs/2610.08739",
+      "c": "cs.CR",
       "s": 0.99
     },
     {
-      "t": "Back to the Future: Rethinking EDA Infrastructure for Agentic Systems in Chip Design Verification",
-      "url": "https://arxiv.org/abs/2610.06790",
-      "c": "cs.AI",
+      "t": "Secure Speculative Decoding for Large Language Models",
+      "url": "https://arxiv.org/abs/2610.08678",
+      "c": "cs.CR",
       "s": 0.78
     },
     {
-      "t": "MedPrune: Topology-Efficient Multimodal Multi-Agent Communication Evolution for Medical VQA Tasks",
-      "url": "https://arxiv.org/abs/2610.06695",
-      "c": "cs.CL",
+      "t": "VeriFine: Scaling Verification for Self-Improvement in Embodied Reasoning",
+      "url": "https://arxiv.org/abs/2610.08761",
+      "c": "cs.AI",
       "s": 0.72
     }
   ]
