@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-10-07T11:20:06Z",
+  "generated_at": "2026-10-08T11:26:37Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "BARE-AI: Bit-Flip Attack Resilience in AI Hardware through Built-in Performance Monitors",
-      "url": "https://arxiv.org/abs/2610.08739",
-      "c": "cs.CR",
+      "t": "Open-MMUnlearning: Unifying Methods and Evaluation for MLLM Unlearning",
+      "url": "https://arxiv.org/abs/2610.10358",
+      "c": "cs.AI",
       "s": 0.99
     },
     {
-      "t": "Secure Speculative Decoding for Large Language Models",
-      "url": "https://arxiv.org/abs/2610.08678",
-      "c": "cs.CR",
-      "s": 0.78
+      "t": "Reasoning-Token Spikes Under Prompted Untruthful Responding in Large Language Models",
+      "url": "https://arxiv.org/abs/2610.10405",
+      "c": "cs.AI",
+      "s": 0.83
     },
     {
-      "t": "VeriFine: Scaling Verification for Self-Improvement in Embodied Reasoning",
-      "url": "https://arxiv.org/abs/2610.08761",
+      "t": "RECAST: Learning to Compute the Right Context through Adaptive Evidence Routing",
+      "url": "https://arxiv.org/abs/2610.10507",
       "c": "cs.AI",
-      "s": 0.72
+      "s": 0.78
     }
   ]
 }
