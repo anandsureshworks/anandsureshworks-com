@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-10-08T11:26:37Z",
+  "generated_at": "2026-10-09T11:20:05Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Open-MMUnlearning: Unifying Methods and Evaluation for MLLM Unlearning",
-      "url": "https://arxiv.org/abs/2610.10358",
+      "t": "OnTrack: Real-Time Monitoring and Intervention in LLM Agent Trajectories via Streaming Structure-Aware Optimal Transport",
+      "url": "https://arxiv.org/abs/2610.12375",
       "c": "cs.AI",
-      "s": 0.99
+      "s": 0.89
     },
     {
-      "t": "Reasoning-Token Spikes Under Prompted Untruthful Responding in Large Language Models",
-      "url": "https://arxiv.org/abs/2610.10405",
-      "c": "cs.AI",
-      "s": 0.83
-    },
-    {
-      "t": "RECAST: Learning to Compute the Right Context through Adaptive Evidence Routing",
-      "url": "https://arxiv.org/abs/2610.10507",
+      "t": "Accurate but Not Humble: Evaluating Epistemic Humility in LLM Agents under Knowledge Conflict",
+      "url": "https://arxiv.org/abs/2610.12360",
       "c": "cs.AI",
       "s": 0.78
+    },
+    {
+      "t": "Caught in the Act: Probes Effectively Detect Sabotage and Catch Unverbalized Deception",
+      "url": "https://arxiv.org/abs/2610.12445",
+      "c": "cs.LG",
+      "s": 0.72
     }
   ]
 }
