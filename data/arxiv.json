@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-10-10T11:34:25Z",
+  "generated_at": "2026-10-22T14:30:59Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,21 +9,21 @@
   },
   "papers": [
     {
-      "t": "OnTrack: Real-Time Monitoring and Intervention in LLM Agent Trajectories via Streaming Structure-Aware Optimal Transport",
-      "url": "https://arxiv.org/abs/2610.12375",
-      "c": "cs.AI",
-      "s": 0.89
+      "t": "Circuits of LLM Classifiers",
+      "url": "https://arxiv.org/abs/2610.30076",
+      "c": "cs.LG",
+      "s": 0.99
     },
     {
-      "t": "Accurate but Not Humble: Evaluating Epistemic Humility in LLM Agents under Knowledge Conflict",
-      "url": "https://arxiv.org/abs/2610.12360",
-      "c": "cs.AI",
+      "t": "The End of Consensus Research?",
+      "url": "https://arxiv.org/abs/2610.30114",
+      "c": "cs.DC",
       "s": 0.78
     },
     {
-      "t": "Caught in the Act: Probes Effectively Detect Sabotage and Catch Unverbalized Deception",
-      "url": "https://arxiv.org/abs/2610.12445",
-      "c": "cs.LG",
+      "t": "Charts as Epistemic Actions for Experience-Driven Agentic Data Analysis",
+      "url": "https://arxiv.org/abs/2610.30072",
+      "c": "cs.AI",
       "s": 0.72
     }
   ]
