@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-10-22T14:30:59Z",
+  "generated_at": "2026-10-23T14:32:13Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,21 +9,21 @@
   },
   "papers": [
     {
-      "t": "Circuits of LLM Classifiers",
-      "url": "https://arxiv.org/abs/2610.30076",
-      "c": "cs.LG",
-      "s": 0.99
-    },
-    {
-      "t": "The End of Consensus Research?",
-      "url": "https://arxiv.org/abs/2610.30114",
-      "c": "cs.DC",
+      "t": "EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence",
+      "url": "https://arxiv.org/abs/2610.31650",
+      "c": "cs.AI",
       "s": 0.78
     },
     {
-      "t": "Charts as Epistemic Actions for Experience-Driven Agentic Data Analysis",
-      "url": "https://arxiv.org/abs/2610.30072",
-      "c": "cs.AI",
+      "t": "From Structured Records to Patient Narratives: Preserving Clinical Alignment in LLM-Generated Health Summaries",
+      "url": "https://arxiv.org/abs/2610.31467",
+      "c": "cs.CL",
+      "s": 0.78
+    },
+    {
+      "t": "Questioning Instrumental Convergence in RLVR: Checkpoint Evidence from OLMo-3",
+      "url": "https://arxiv.org/abs/2610.31624",
+      "c": "cs.LG",
       "s": 0.72
     }
   ]
