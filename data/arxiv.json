@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-10-25T14:20:04Z",
+  "generated_at": "2026-10-26T14:20:04Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence",
-      "url": "https://arxiv.org/abs/2610.31650",
+      "t": "Semantic Representation for Agentic Self-Play in Automated Laboratories",
+      "url": "https://arxiv.org/abs/2610.32755",
+      "c": "cs.RO",
+      "s": 0.94
+    },
+    {
+      "t": "Reimagining Enterprise RAG for Multi-Agent Systems: A Knowledge Layer That Organizes Before It Retrieves",
+      "url": "https://arxiv.org/abs/2610.32851",
       "c": "cs.AI",
-      "s": 0.78
+      "s": 0.61
     },
     {
-      "t": "From Structured Records to Patient Narratives: Preserving Clinical Alignment in LLM-Generated Health Summaries",
-      "url": "https://arxiv.org/abs/2610.31467",
-      "c": "cs.CL",
-      "s": 0.78
-    },
-    {
-      "t": "Questioning Instrumental Convergence in RLVR: Checkpoint Evidence from OLMo-3",
-      "url": "https://arxiv.org/abs/2610.31624",
-      "c": "cs.LG",
-      "s": 0.72
+      "t": "SceneBloom: Agentic Indoor Environment Generation with Realistic and Diverse Layouts for Embodied Learning",
+      "url": "https://arxiv.org/abs/2610.32978",
+      "c": "cs.CV",
+      "s": 0.56
     }
   ]
 }
