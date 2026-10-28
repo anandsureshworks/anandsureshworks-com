@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-10-27T14:20:04Z",
+  "generated_at": "2026-10-28T14:20:02Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Reva: Real-Time Vulnerability Detection through Contextual Probing of Large Language Models",
-      "url": "https://arxiv.org/abs/2610.35829",
-      "c": "cs.CR",
+      "t": "Heads of Security: Learned Attention Gates Improve Prompt Injection Robustness",
+      "url": "https://arxiv.org/abs/2610.37657",
+      "c": "cs.LG",
       "s": 0.99
     },
     {
-      "t": "Evaluating DeepSeek V4.1 Flash-1017 for loss of control and harmful manipulation risks",
-      "url": "https://arxiv.org/abs/2610.35671",
+      "t": "Teach reality, not ethics: a drop-in continued-pretraining corpus installs coupled human-biosphere-AI welfare dispositions across model families",
+      "url": "https://arxiv.org/abs/2610.37484",
       "c": "cs.CL",
-      "s": 0.99
+      "s": 0.83
     },
     {
-      "t": "Patient-specific rubric-based evaluation of large language models across longitudinal cancer care",
-      "url": "https://arxiv.org/abs/2610.35847",
-      "c": "cs.AI",
-      "s": 0.94
+      "t": "PerceptRL: Making Visual Perception Rewardable in MLLMs from Answers to Interactions",
+      "url": "https://arxiv.org/abs/2610.37471",
+      "c": "cs.CV",
+      "s": 0.83
     }
   ]
 }
