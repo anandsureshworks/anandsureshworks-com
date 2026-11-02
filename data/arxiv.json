@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-11-01T15:20:06Z",
+  "generated_at": "2026-11-02T15:20:03Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,21 +9,21 @@
   },
   "papers": [
     {
-      "t": "Elucidating the Design Space of LM Data Attribution",
-      "url": "https://arxiv.org/abs/2610.40655",
-      "c": "cs.CL",
-      "s": 0.67
+      "t": "SecPO: Principled Adversarial Training for Prompt Injection Security",
+      "url": "https://arxiv.org/abs/2610.41998",
+      "c": "cs.CR",
+      "s": 0.99
     },
     {
-      "t": "Training language models in simulation for psychiatric intake",
-      "url": "https://arxiv.org/abs/2610.40476",
-      "c": "cs.AI",
-      "s": 0.67
+      "t": "Subquadratic Attention with a Hierarchical Tree-Structured Indexer",
+      "url": "https://arxiv.org/abs/2610.42112",
+      "c": "cs.CL",
+      "s": 0.83
     },
     {
-      "t": "ShallowDefend: Harnessing Shallow Safety Alignment for Multi-Turn Defender",
-      "url": "https://arxiv.org/abs/2610.40627",
-      "c": "cs.CL",
+      "t": "CausalXRL: Explainable Reinforcement Learning through Causal Graph Reasoning",
+      "url": "https://arxiv.org/abs/2610.42028",
+      "c": "cs.LG",
       "s": 0.61
     }
   ]
