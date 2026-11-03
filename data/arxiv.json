@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-11-02T15:20:03Z",
+  "generated_at": "2026-11-03T15:20:07Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "SecPO: Principled Adversarial Training for Prompt Injection Security",
-      "url": "https://arxiv.org/abs/2610.41998",
-      "c": "cs.CR",
+      "t": "VeriHarm-Bench: Measuring Harmful Success in LLM Coding Agents Verifiably",
+      "url": "https://arxiv.org/abs/2611.03575",
+      "c": "cs.CL",
       "s": 0.99
     },
     {
-      "t": "Subquadratic Attention with a Hierarchical Tree-Structured Indexer",
-      "url": "https://arxiv.org/abs/2610.42112",
-      "c": "cs.CL",
-      "s": 0.83
+      "t": "From Natural Language to Exact Cover: A Neuro-Symbolic Approach to Zebra Puzzles",
+      "url": "https://arxiv.org/abs/2611.03641",
+      "c": "cs.AI",
+      "s": 0.67
     },
     {
-      "t": "CausalXRL: Explainable Reinforcement Learning through Causal Graph Reasoning",
-      "url": "https://arxiv.org/abs/2610.42028",
-      "c": "cs.LG",
-      "s": 0.61
+      "t": "DistDebug-Bench: Can LLM Agents Diagnose Bugs in Distributed Systems?",
+      "url": "https://arxiv.org/abs/2611.03523",
+      "c": "cs.SE",
+      "s": 0.67
     }
   ]
 }
