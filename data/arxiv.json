@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-11-03T15:20:07Z",
+  "generated_at": "2026-11-04T15:20:01Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,21 +9,21 @@
   },
   "papers": [
     {
-      "t": "VeriHarm-Bench: Measuring Harmful Success in LLM Coding Agents Verifiably",
-      "url": "https://arxiv.org/abs/2611.03575",
-      "c": "cs.CL",
+      "t": "OperAItor: An Agentic Framework for Fault-Tolerant Operation of Chemical Processes",
+      "url": "https://arxiv.org/abs/2611.05179",
+      "c": "eess.SY",
       "s": 0.99
     },
     {
-      "t": "From Natural Language to Exact Cover: A Neuro-Symbolic Approach to Zebra Puzzles",
-      "url": "https://arxiv.org/abs/2611.03641",
+      "t": "Adversarial Speculative Reasoning Improves Long Horizon Agents",
+      "url": "https://arxiv.org/abs/2611.05345",
       "c": "cs.AI",
-      "s": 0.67
+      "s": 0.72
     },
     {
-      "t": "DistDebug-Bench: Can LLM Agents Diagnose Bugs in Distributed Systems?",
-      "url": "https://arxiv.org/abs/2611.03523",
-      "c": "cs.SE",
+      "t": "The Geometry of Ignorance: Detecting Suppressed Knowledge in LLMs through Activation Fragmentation",
+      "url": "https://arxiv.org/abs/2611.05272",
+      "c": "cs.AI",
       "s": 0.67
     }
   ]
