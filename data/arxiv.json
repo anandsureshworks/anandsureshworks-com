@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-11-04T15:20:01Z",
+  "generated_at": "2026-11-05T15:20:05Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,20 +9,20 @@
   },
   "papers": [
     {
-      "t": "OperAItor: An Agentic Framework for Fault-Tolerant Operation of Chemical Processes",
-      "url": "https://arxiv.org/abs/2611.05179",
-      "c": "eess.SY",
-      "s": 0.99
+      "t": "BEAKER: An Expert-Curated Benchmark for Embodied Brains in Self-Driving Chemical Laboratories",
+      "url": "https://arxiv.org/abs/2611.06911",
+      "c": "cs.AI",
+      "s": 0.83
     },
     {
-      "t": "Adversarial Speculative Reasoning Improves Long Horizon Agents",
-      "url": "https://arxiv.org/abs/2611.05345",
+      "t": "Task-Efficient Agent Evaluation Using Cached Traces",
+      "url": "https://arxiv.org/abs/2611.06803",
       "c": "cs.AI",
       "s": 0.72
     },
     {
-      "t": "The Geometry of Ignorance: Detecting Suppressed Knowledge in LLMs through Activation Fragmentation",
-      "url": "https://arxiv.org/abs/2611.05272",
+      "t": "CompressionBench: How can your coding agents compress LLMs?",
+      "url": "https://arxiv.org/abs/2611.06858",
       "c": "cs.AI",
       "s": 0.67
     }
