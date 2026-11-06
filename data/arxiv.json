@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-11-05T15:20:05Z",
+  "generated_at": "2026-11-06T15:20:06Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "BEAKER: An Expert-Curated Benchmark for Embodied Brains in Self-Driving Chemical Laboratories",
-      "url": "https://arxiv.org/abs/2611.06911",
+      "t": "The Power of Meta Access in the Software of the Future --- Demonstrated on LLM Chat UIs and Chat AI",
+      "url": "https://arxiv.org/abs/2611.08428",
       "c": "cs.AI",
-      "s": 0.83
+      "s": 0.94
     },
     {
-      "t": "Task-Efficient Agent Evaluation Using Cached Traces",
-      "url": "https://arxiv.org/abs/2611.06803",
-      "c": "cs.AI",
+      "t": "LABBA: LLM-Assisted Behavioral Biometric Authentication",
+      "url": "https://arxiv.org/abs/2611.08343",
+      "c": "cs.CR",
+      "s": 0.89
+    },
+    {
+      "t": "Multimodal-SEA: Benchmarking AI Agent Security under Multimodal Social Engineering Attacks",
+      "url": "https://arxiv.org/abs/2611.08281",
+      "c": "cs.CL",
       "s": 0.72
-    },
-    {
-      "t": "CompressionBench: How can your coding agents compress LLMs?",
-      "url": "https://arxiv.org/abs/2611.06858",
-      "c": "cs.AI",
-      "s": 0.67
     }
   ]
 }
