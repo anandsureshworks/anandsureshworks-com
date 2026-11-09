@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-11-08T15:20:03Z",
+  "generated_at": "2026-11-09T15:20:04Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "The Power of Meta Access in the Software of the Future --- Demonstrated on LLM Chat UIs and Chat AI",
-      "url": "https://arxiv.org/abs/2611.08428",
-      "c": "cs.AI",
-      "s": 0.94
-    },
-    {
-      "t": "LABBA: LLM-Assisted Behavioral Biometric Authentication",
-      "url": "https://arxiv.org/abs/2611.08343",
+      "t": "GuardrailAgent: An Agentic Framework for Jailbreak Defense",
+      "url": "https://arxiv.org/abs/2611.09734",
       "c": "cs.CR",
-      "s": 0.89
+      "s": 0.99
     },
     {
-      "t": "Multimodal-SEA: Benchmarking AI Agent Security under Multimodal Social Engineering Attacks",
-      "url": "https://arxiv.org/abs/2611.08281",
-      "c": "cs.CL",
+      "t": "Knowing When to Intervene: Causal Evaluation of AI Agents",
+      "url": "https://arxiv.org/abs/2611.09792",
+      "c": "cs.AI",
       "s": 0.72
+    },
+    {
+      "t": "CPU-ARC: Agentic Reasoning Caching for on-CPU Reasoning Reuse",
+      "url": "https://arxiv.org/abs/2611.09891",
+      "c": "cs.AI",
+      "s": 0.67
     }
   ]
 }
