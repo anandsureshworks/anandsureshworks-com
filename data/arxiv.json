@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-11-12T15:20:03Z",
+  "generated_at": "2026-11-13T15:20:03Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Comparative Analysis of Agent Evaluation Frameworks: Stability, Detection, and Discovery in Enterprise Analytics Agents",
-      "url": "https://arxiv.org/abs/2611.14493",
-      "c": "cs.AI",
-      "s": 0.89
+      "t": "Scalable Conversational Assessment: Chat-Based Exams with a Two-Agent LLM Pipeline",
+      "url": "https://arxiv.org/abs/2611.17220",
+      "c": "cs.CY",
+      "s": 0.67
     },
     {
-      "t": "Cognitive Mapping of Learning by Thinking Mechanisms in Large Language Models",
-      "url": "https://arxiv.org/abs/2611.14382",
-      "c": "cs.AI",
-      "s": 0.78
-    },
-    {
-      "t": "Evaluating LLM-Generated World Models for Neuro-Symbolic Reasoning",
-      "url": "https://arxiv.org/abs/2611.14419",
+      "t": "CapLite: Prompt-Injection Defense for Small Language Model Agents without Model-Written Security Artifacts",
+      "url": "https://arxiv.org/abs/2611.17115",
       "c": "cs.AI",
       "s": 0.67
+    },
+    {
+      "t": "AgentSSL: Can MLE Agents Leverage Unlabeled Data?",
+      "url": "https://arxiv.org/abs/2611.17323",
+      "c": "cs.AI",
+      "s": 0.61
     }
   ]
 }
