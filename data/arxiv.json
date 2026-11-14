@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-11-13T15:20:03Z",
+  "generated_at": "2026-11-14T15:20:06Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
