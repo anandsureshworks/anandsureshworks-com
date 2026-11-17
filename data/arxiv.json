@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-11-16T15:20:02Z",
+  "generated_at": "2026-11-17T15:20:05Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "TradeGauntlet: Evaluating Compliance Controls for Autonomous Trading Agents",
-      "url": "https://arxiv.org/abs/2611.18493",
-      "c": "cs.MA",
-      "s": 0.89
-    },
-    {
-      "t": "Can Mechanistic Interpretability Help Explain LLM Agent Failures? A Case Study on Web Element Hallucination",
-      "url": "https://arxiv.org/abs/2611.18514",
-      "c": "cs.AI",
-      "s": 0.83
-    },
-    {
-      "t": "Do Verifier Judgments Survive Abstraction? Measuring Verification Transport for LLM Agent Evaluation",
-      "url": "https://arxiv.org/abs/2611.18471",
+      "t": "Evaluating Cultural Reasoning and Robustness in LLMs for Spanish Political Discourse",
+      "url": "https://arxiv.org/abs/2611.21535",
       "c": "cs.CL",
-      "s": 0.83
+      "s": 0.99
+    },
+    {
+      "t": "SciResearch-Eval: Evaluating Scientific Judgment in Autonomous Experimental Agents",
+      "url": "https://arxiv.org/abs/2611.21541",
+      "c": "cs.AI",
+      "s": 0.72
+    },
+    {
+      "t": "RESILAGENT: A Three-Pillar Architecture for Cyber-Physical Resilience in Electrical Power and Energy Systems",
+      "url": "https://arxiv.org/abs/2611.21480",
+      "c": "cs.CR",
+      "s": 0.72
     }
   ]
 }
