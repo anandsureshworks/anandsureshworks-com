@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-11-17T15:20:05Z",
+  "generated_at": "2026-11-18T15:20:04Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,21 +9,21 @@
   },
   "papers": [
     {
-      "t": "Evaluating Cultural Reasoning and Robustness in LLMs for Spanish Political Discourse",
-      "url": "https://arxiv.org/abs/2611.21535",
-      "c": "cs.CL",
-      "s": 0.99
-    },
-    {
-      "t": "SciResearch-Eval: Evaluating Scientific Judgment in Autonomous Experimental Agents",
-      "url": "https://arxiv.org/abs/2611.21541",
-      "c": "cs.AI",
+      "t": "Spool: Low-Latency Streaming Inference for Hybrid Vision-Language Models",
+      "url": "https://arxiv.org/abs/2611.23228",
+      "c": "cs.CV",
       "s": 0.72
     },
     {
-      "t": "RESILAGENT: A Three-Pillar Architecture for Cyber-Physical Resilience in Electrical Power and Energy Systems",
-      "url": "https://arxiv.org/abs/2611.21480",
-      "c": "cs.CR",
+      "t": "Dynamic Task Allocation with Dialogue",
+      "url": "https://arxiv.org/abs/2611.23119",
+      "c": "cs.CL",
+      "s": 0.72
+    },
+    {
+      "t": "ForecastGym: A Live, Controlled, and Replayable Benchmark for Forecasting Agents",
+      "url": "https://arxiv.org/abs/2611.23045",
+      "c": "cs.AI",
       "s": 0.72
     }
   ]
