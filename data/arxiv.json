@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-11-18T15:20:04Z",
+  "generated_at": "2026-11-19T15:20:04Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Spool: Low-Latency Streaming Inference for Hybrid Vision-Language Models",
-      "url": "https://arxiv.org/abs/2611.23228",
-      "c": "cs.CV",
-      "s": 0.72
+      "t": "Kaer: Security-Aware Replanning for Multi-Agent Systems",
+      "url": "https://arxiv.org/abs/2611.24839",
+      "c": "cs.MA",
+      "s": 0.99
     },
     {
-      "t": "Dynamic Task Allocation with Dialogue",
-      "url": "https://arxiv.org/abs/2611.23119",
+      "t": "LLM-Guided Cyber-Physical Attack Path Identification in Smart Grids",
+      "url": "https://arxiv.org/abs/2611.24765",
+      "c": "cs.CR",
+      "s": 0.94
+    },
+    {
+      "t": "Jailbreak Detection on Large Language Models via Contrastive Prototype Structures",
+      "url": "https://arxiv.org/abs/2611.24936",
       "c": "cs.CL",
-      "s": 0.72
-    },
-    {
-      "t": "ForecastGym: A Live, Controlled, and Replayable Benchmark for Forecasting Agents",
-      "url": "https://arxiv.org/abs/2611.23045",
-      "c": "cs.AI",
-      "s": 0.72
+      "s": 0.78
     }
   ]
 }
