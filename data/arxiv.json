@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-11-19T15:20:04Z",
+  "generated_at": "2026-11-20T12:34:43Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Kaer: Security-Aware Replanning for Multi-Agent Systems",
-      "url": "https://arxiv.org/abs/2611.24839",
-      "c": "cs.MA",
+      "t": "Replication of Agentic Security Events: Audit and Investigation (ROGUE-AI)",
+      "url": "https://arxiv.org/abs/2611.26553",
+      "c": "cs.CR",
       "s": 0.99
     },
     {
-      "t": "LLM-Guided Cyber-Physical Attack Path Identification in Smart Grids",
-      "url": "https://arxiv.org/abs/2611.24765",
-      "c": "cs.CR",
-      "s": 0.94
+      "t": "Mind2Act World: A Diagnostic Benchmark for Embodied Mind, Physical Action, and Mind-Action Composition in Robotic Manipulation",
+      "url": "https://arxiv.org/abs/2611.26444",
+      "c": "cs.RO",
+      "s": 0.72
     },
     {
-      "t": "Jailbreak Detection on Large Language Models via Contrastive Prototype Structures",
-      "url": "https://arxiv.org/abs/2611.24936",
-      "c": "cs.CL",
-      "s": 0.78
+      "t": "Seer: Guiding Small Deep-Research Agents with Shared Decision Models",
+      "url": "https://arxiv.org/abs/2611.26423",
+      "c": "cs.AI",
+      "s": 0.61
     }
   ]
 }
