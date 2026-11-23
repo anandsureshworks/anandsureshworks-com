@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-11-22T12:20:06Z",
+  "generated_at": "2026-11-23T12:21:14Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,21 +9,21 @@
   },
   "papers": [
     {
-      "t": "Replication of Agentic Security Events: Audit and Investigation (ROGUE-AI)",
-      "url": "https://arxiv.org/abs/2611.26553",
-      "c": "cs.CR",
-      "s": 0.99
+      "t": "RoSci: Exploring Robustness in Science VLMs",
+      "url": "https://arxiv.org/abs/2611.27750",
+      "c": "cs.CL",
+      "s": 0.78
     },
     {
-      "t": "Mind2Act World: A Diagnostic Benchmark for Embodied Mind, Physical Action, and Mind-Action Composition in Robotic Manipulation",
-      "url": "https://arxiv.org/abs/2611.26444",
-      "c": "cs.RO",
+      "t": "Can Vision-Language Models Synthesize Executable Game-Playing Programs?",
+      "url": "https://arxiv.org/abs/2611.27741",
+      "c": "cs.AI",
       "s": 0.72
     },
     {
-      "t": "Seer: Guiding Small Deep-Research Agents with Shared Decision Models",
-      "url": "https://arxiv.org/abs/2611.26423",
-      "c": "cs.AI",
+      "t": "Autonomous Parameter Surgery: How LLMs Implant Selective Backdoors into Language Models",
+      "url": "https://arxiv.org/abs/2611.27920",
+      "c": "cs.CR",
       "s": 0.61
     }
   ]
