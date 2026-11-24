@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-11-23T12:21:14Z",
+  "generated_at": "2026-11-24T12:31:56Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "RoSci: Exploring Robustness in Science VLMs",
-      "url": "https://arxiv.org/abs/2611.27750",
-      "c": "cs.CL",
-      "s": 0.78
-    },
-    {
-      "t": "Can Vision-Language Models Synthesize Executable Game-Playing Programs?",
-      "url": "https://arxiv.org/abs/2611.27741",
-      "c": "cs.AI",
-      "s": 0.72
-    },
-    {
-      "t": "Autonomous Parameter Surgery: How LLMs Implant Selective Backdoors into Language Models",
-      "url": "https://arxiv.org/abs/2611.27920",
+      "t": "FATCAT: Fault Injection Attacks Targeting Chip-level Alignment",
+      "url": "https://arxiv.org/abs/2611.31129",
       "c": "cs.CR",
-      "s": 0.61
+      "s": 0.99
+    },
+    {
+      "t": "Language Models Steer on Injected Uncertainty Tokens, but Fail to Self-Monitor In Situ",
+      "url": "https://arxiv.org/abs/2611.31228",
+      "c": "cs.AI",
+      "s": 0.99
+    },
+    {
+      "t": "From Local Errors to System Failures: Modeling and Benchmarking Error Propagation in Multi-Agent LLM Systems",
+      "url": "https://arxiv.org/abs/2611.31063",
+      "c": "cs.MA",
+      "s": 0.94
     }
   ]
 }
