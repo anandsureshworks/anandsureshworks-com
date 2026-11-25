@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-11-24T12:31:56Z",
+  "generated_at": "2026-11-25T12:20:49Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "FATCAT: Fault Injection Attacks Targeting Chip-level Alignment",
-      "url": "https://arxiv.org/abs/2611.31129",
-      "c": "cs.CR",
+      "t": "Towards Realistic Evaluation of Uncertainty Quantification for LLM-Based Recommender Systems",
+      "url": "https://arxiv.org/abs/2611.33036",
+      "c": "cs.IR",
       "s": 0.99
     },
     {
-      "t": "Language Models Steer on Injected Uncertainty Tokens, but Fail to Self-Monitor In Situ",
-      "url": "https://arxiv.org/abs/2611.31228",
+      "t": "Can LLM Judges Catch Unsafe Clinical Actions? A Fault-Injection Study",
+      "url": "https://arxiv.org/abs/2611.33012",
       "c": "cs.AI",
-      "s": 0.99
+      "s": 0.94
     },
     {
-      "t": "From Local Errors to System Failures: Modeling and Benchmarking Error Propagation in Multi-Agent LLM Systems",
-      "url": "https://arxiv.org/abs/2611.31063",
-      "c": "cs.MA",
-      "s": 0.94
+      "t": "Attestation is All You Need: Toward a Zero-Trust Architecture for HPC AI Agents",
+      "url": "https://arxiv.org/abs/2611.32958",
+      "c": "cs.CR",
+      "s": 0.89
     }
   ]
 }
