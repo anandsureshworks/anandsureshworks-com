@@ -1,6 +1,6 @@
 {
   "source": "arxiv-pulse",
-  "generated_at": "2026-11-25T12:20:49Z",
+  "generated_at": "2026-11-26T12:20:07Z",
   "scored": 60,
   "_contract": {
     "owner": "arxiv-pulse (this engine) — owns the arXiv fetch + relevance scoring",
@@ -9,22 +9,22 @@
   },
   "papers": [
     {
-      "t": "Towards Realistic Evaluation of Uncertainty Quantification for LLM-Based Recommender Systems",
-      "url": "https://arxiv.org/abs/2611.33036",
-      "c": "cs.IR",
-      "s": 0.99
+      "t": "Diverse Alternative Reasoning Traces for Hard Math Problems",
+      "url": "https://arxiv.org/abs/2611.34928",
+      "c": "cs.CL",
+      "s": 0.72
     },
     {
-      "t": "Can LLM Judges Catch Unsafe Clinical Actions? A Fault-Injection Study",
-      "url": "https://arxiv.org/abs/2611.33012",
+      "t": "Put the World Back: Timestamps Matter in Time Series Reasoning",
+      "url": "https://arxiv.org/abs/2611.34848",
+      "c": "cs.LG",
+      "s": 0.72
+    },
+    {
+      "t": "TASK Memory: Beyond Text-Only Memory with Activation Steering and Knowledge Editing against Memory Hallucination",
+      "url": "https://arxiv.org/abs/2611.34762",
       "c": "cs.AI",
-      "s": 0.94
-    },
-    {
-      "t": "Attestation is All You Need: Toward a Zero-Trust Architecture for HPC AI Agents",
-      "url": "https://arxiv.org/abs/2611.32958",
-      "c": "cs.CR",
-      "s": 0.89
+      "s": 0.61
     }
   ]
 }
