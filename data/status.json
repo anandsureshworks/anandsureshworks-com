@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-11-26T12:43:57.840697+00:00",
+  "generated_at": "2026-11-27T12:46:08.110942+00:00",
   "checks": {
     "rca_mechanisms": {
-      "pass": 27,
+      "pass": 25,
       "total": 30,
-      "verified_at": "2026-11-26T12:43:57.768807+00:00"
+      "verified_at": "2026-11-27T12:46:08.038278+00:00"
     },
     "dirty_trees": {
       "dirty": 0,
       "total": 15,
-      "verified_at": "2026-11-26T12:43:49.029104+00:00"
+      "verified_at": "2026-11-27T12:46:00.074320+00:00"
     },
     "engines": {
       "live": 18,
